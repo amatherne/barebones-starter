@@ -19,7 +19,13 @@ export default function Sounds(props : ClientPageProps) {
     });
     return (
       <div>
-        {/*<code>
+        <h1>
+          {data.sounds.title}
+        </h1>
+        <div>
+          {data.sounds.body}
+        </div>
+        <code>
           <pre
             style={{
               backgroundColor: "lightgray",
@@ -27,13 +33,7 @@ export default function Sounds(props : ClientPageProps) {
           >
             {JSON.stringify(data.sounds, null, 2)}
           </pre>
-        </code>*/}
-        <h1>
-          {data.sounds.title}
-        </h1>
-        <div>
-          {data.sounds.body}
-        </div>
+        </code>
       </div>
     );
   }

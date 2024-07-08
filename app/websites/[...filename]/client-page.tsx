@@ -19,7 +19,13 @@ export default function Website(props : ClientPageProps) {
     });
     return (
       <div>
-        {/*<code>
+        <h1>
+          {data.website.title}
+        </h1>
+        <div>
+          {data.website.body}
+        </div>
+        <code>
           <pre
             style={{
               backgroundColor: "lightgray",
@@ -27,13 +33,7 @@ export default function Website(props : ClientPageProps) {
           >
             {JSON.stringify(data.website, null, 2)}
           </pre>
-        </code>*/}
-        <h1>
-          {data.website.title}
-        </h1>
-        <div>
-          {data.website.body}
-        </div>
+        </code>
       </div>
     );
   }
