@@ -6,11 +6,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <title>Tina App</title>
-        <meta name="description" content="Austin Matherne" />
-        <link rel="icon" href="/favicon.ico" />
-      </head>
       <body>        
         <header>
           <Link href="/">
@@ -19,10 +14,6 @@ export default function RootLayout({
           {' | '}
           <Link href="/posts">
             Posts
-          </Link>
-          {' | '}
-          <Link href="/websites">
-            Websites
           </Link>
         </header>
         <main>{children}</main>
