@@ -6,7 +6,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>        
+      <body style={{
+        margin: '3rem',
+      }}>        
         <header>
           <Link href="/">
             Home
