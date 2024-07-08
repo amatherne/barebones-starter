@@ -1,16 +1,16 @@
 "use client"
 import { useTina } from "tinacms/dist/react";
-import { WebsiteQuery } from "../../../tina/__generated__/types";
+import { SoundsQuery } from "../../../tina/__generated__/types";
 
 interface ClientPageProps {
   query: string;
   variables: {
     relativePath: string;
   };
-  data: WebsiteQuery;
+  data: SoundsQuery;
 }
 
-export default function Website(props : ClientPageProps) {
+export default function Sounds(props : ClientPageProps) {
     // data passes though in production mode and data is updated to the sidebar data in edit-mode
     const { data } = useTina({
       query: props.query,
@@ -25,14 +25,14 @@ export default function Website(props : ClientPageProps) {
               backgroundColor: "lightgray",
             }}
           >
-            {JSON.stringify(data.website, null, 2)}
+            {JSON.stringify(data.sounds, null, 2)}
           </pre>
         </code>*/}
         <h1>
-          {data.website.title}
+          {data.sounds.title}
         </h1>
         <div>
-          {data.website.body}
+          {data.sounds.body}
         </div>
       </div>
     );

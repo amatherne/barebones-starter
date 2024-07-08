@@ -19,6 +19,10 @@ export default function RootLayout({
           <Link href="/websites">
             Websites
           </Link>
+          {' | '}
+          <Link href="/sounds">
+            Sounds
+          </Link>
         </header>
         <main>{children}</main>
       </body>

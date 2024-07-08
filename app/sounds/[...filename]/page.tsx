@@ -1,9 +1,9 @@
-import Website from "./client-page";
+import Sounds from "./client-page";
 import client from "../../../tina/__generated__/client";
 
 export async function generateStaticParams() {
-  const pages = await client.queries.websiteConnection();
-  const paths = pages.data?.websiteConnection?.edges?.map((edge) => ({
+  const pages = await client.queries.soundsConnection();
+  const paths = pages.data?.soundsConnection?.edges?.map((edge) => ({
     filename: edge?.node?._sys.breadcrumbs,
   }));
 
@@ -17,11 +17,11 @@ export default async function PostPage({
   params: { filename: string[] };
 }) {
 
-  const data = await client.queries.website({
+  const data = await client.queries.sounds({
     relativePath: `${params.filename}.md`,
   });
 
   return (
-    <Website {...data}></Website>
+    <Sounds {...data}></Sounds>
   );
 }
