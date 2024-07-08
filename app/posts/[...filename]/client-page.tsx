@@ -18,14 +18,22 @@ export default function Post(props : ClientPageProps) {
       data: props.data,
     });
     return (
-      <code>
-        <pre
-          style={{
-            backgroundColor: "lightgray",
-          }}
-        >
-          {JSON.stringify(data.post, null, 2)}
-        </pre>
-      </code>
+      <div>
+        {/*<code>
+          <pre
+            style={{
+              backgroundColor: "lightgray",
+            }}
+          >
+            {JSON.stringify(data.post, null, 2)}
+          </pre>
+        </code>*/}
+        <h1>
+          {data.post.title}
+        </h1>
+        <div>
+          {data.post.body}
+        </div>
+      </div>
     );
   }
