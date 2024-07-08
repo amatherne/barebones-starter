@@ -15,6 +15,10 @@ export default function RootLayout({
           <Link href="/posts">
             Posts
           </Link>
+          {' | '}
+          <Link href="/websites">
+            Websites
+          </Link>
         </header>
         <main>{children}</main>
       </body>

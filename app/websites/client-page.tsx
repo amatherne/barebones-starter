@@ -4,12 +4,12 @@ export default function PostList(props) {
 
     return (
       <>
-        <h1>Posts</h1>
+        <h1>Websites</h1>
         <div>
-          {props.data.postConnection.edges.map((post) => (
-            <div key={post.node.id}>
-              <Link href={`/posts/${post.node._sys.filename}`}>
-                <div>{post.node._sys.filename}</div>
+          {props.data.postConnection.edges.map((website) => (
+            <div key={website.node.id}>
+              <Link href={`/websites/${website.node._sys.filename}`}>
+                <div>{website.node._sys.filename}</div>
               </Link>
               <div>
                 <code>
@@ -18,7 +18,7 @@ export default function PostList(props) {
                       backgroundColor: "lightgray",
                     }}
                   >
-                    {JSON.stringify(post, null, 2)}
+                    {JSON.stringify(website, null, 2)}
                   </pre>
                 </code>
               </div>

@@ -3,11 +3,7 @@ import Head from 'next/head'
 
 export const Layout = (props) => {
   return (
-    <div
-      style={{
-        margin: '3rem',
-      }}
-    >
+    <div>
       <Head>
         <title>Tina App</title>
         <meta name="description" content="A TinaCMS Application" />
@@ -20,6 +16,10 @@ export const Layout = (props) => {
         {' | '}
         <Link href="/posts">
           Posts
+        </Link>
+        {' | '}
+        <Link href="/websites">
+          Websites
         </Link>
       </header>
       <main>{props.children}</main>
