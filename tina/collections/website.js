@@ -72,7 +72,7 @@ export default {
   ],
   ui: {
     router: ({ document }) => {
-      return `/website/${document._sys.filename}`;
+      return `/websites/${document._sys.filename}`;
     },
   },
 };
