@@ -32,7 +32,7 @@ export default {
       name: "body",
       isBody: true,
       ui: {
-        component: "textarea",
+        component: "rich-text",
       },
     },
   ],
