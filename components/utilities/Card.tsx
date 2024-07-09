@@ -3,10 +3,10 @@ import Link from "next/link";
 
 export const Card = ({object}) => {
 
-  const type = object.node.__typename;
-  const handle = `${type.toLowerCase()}${type.slice(-1) === 's' ? '' : 's'}`;
-  const image = object.node.hero_image;
-  const imageAlt = object.node.hero_image_alt?object.node.hero_image_alt:'';
+  const type      = object.node.__typename;
+  const handle    = `${type.toLowerCase()}${type.slice(-1)==='s'?'':'s'}`;
+  const image     = object.node.hero_image;
+  const imageAlt  = object.node.hero_image_alt?object.node.hero_image_alt:'';
 
   return (
     <div className="card">

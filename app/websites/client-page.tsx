@@ -1,8 +1,6 @@
 import { Card } from '../../components/utilities/Card';
 
-
 export default function PostList(props) {
-
     return (
       <>
         <div className="posts-page">
@@ -11,9 +9,8 @@ export default function PostList(props) {
         
           <div className="cell">
             {props.data.websiteConnection.edges.map((website) => {
-              const web = website.node;
               return (
-                <div key={web.id} className="cell__item ">
+                <div key={website.node.id} className="cell__item ">
                   <Card 
                     object={website}
                   />

@@ -44,16 +44,24 @@ export default {
       name: 'gallery',
       list: true,
       ui: {
-        itemProps: (item) => ({
-          label: item?.alt || 'New Image',
-          thumbnail: item?.src,
-        }),
-        validate: (values) => {
-          const heroCount = values.gallery.filter(item => item.hero).length;
-          if (heroCount > 1) {
-            throw new Error("Only one gallery image can be marked as hero.");
-          }
+        itemProps: (item) => {
+          console.log('Gallery Item:', item); // Debugging line
+          return {
+            label: `${item.hero ? '(H) ' : ''}${item.alt || item.src || 'Image'}`,
+            thumbnail: item.src || '', // from chatGPT
+            image: item.src || '', // test
+          };
         },
+        // validate: (values) => {
+        //   console.log("Validation values:", values);
+        //   if (values?.gallery) {
+        //     const gallery = values.gallery;
+        //     const heroCount = gallery.filter(item => item.hero).length;
+        //     if (heroCount > 1) {
+        //       return "Only one gallery image can be marked as hero.";
+        //     }
+        //   }
+        // },
       },
       fields: [
         {
@@ -70,20 +78,17 @@ export default {
           type: "boolean",
           label: "Hero",
           name: "hero",
-          ui: {
-            component: 'checkbox',
-            parse: (value, values) => {
-              // Ensure only one hero is allowed
-              if (value) {
-                values.gallery.forEach((item, index) => {
-                  if (index !== values.index) {
-                    item.hero = false;
-                  }
-                });
-              }
-              return value;
-            },
-          },
+          // parse: (value, field, allValues) => {
+          //   // Ensure only one hero is allowed
+          //   if (value) {
+          //     allValues.gallery.forEach((item) => {
+          //       if (item !== field) {
+          //         item.hero = false;
+          //       }
+          //     });
+          //   }
+          //   return value;
+          // },
         },
       ],
     },

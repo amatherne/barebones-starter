@@ -2,6 +2,8 @@
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { tinaField, useTina } from "tinacms/dist/react";
 import { WebsiteQuery } from "../../../tina/__generated__/types";
+import { Img } from '../../../components/utilities/Img';
+
 
 interface ClientPageProps {
   query: string;
@@ -19,22 +21,29 @@ export default function Website(props : ClientPageProps) {
       data: props.data,
     });
 
-    const content = data.website.body;
+    const content   = data.website.body;
+
+    const images    = data.website?.gallery || [];
+    const hero      = images.filter(item => item && item.hero)[0] || null;
 
     return (
       <div>
+
+        {hero && hero.src !== '' ? (
+          <Img src={hero.src} alt={hero.alt} className />
+        ) : ''}
+
         <h1>
           {data.website.title}
         </h1>
-        {/*<div>
-          {data.website.body}
-        </div>*/}
+
         {content ? (
           <div data-tina-field={tinaField(data.website, "body")}>
             <TinaMarkdown content={content} />
           </div>
         ) : null}
-        {/*<code>
+
+        <code>
           <pre
             style={{
               backgroundColor: "lightgray",
@@ -42,7 +51,8 @@ export default function Website(props : ClientPageProps) {
           >
             {JSON.stringify(data.website, null, 2)}
           </pre>
-        </code>*/}
+        </code>
+
       </div>
     );
   }
