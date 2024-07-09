@@ -1,5 +1,5 @@
 ---
 title: Masienda
+hero_image: /uploads/steve-carter-Ixp4YhCKZkI-unsplash.jpg
 ---
 
-Tortillas
