@@ -8,14 +8,22 @@ export default {
   format: "mdx",
   fields: [
     {
-      type: "string",
-      label: "Title",
-      name: "title",
+      type: "boolean",
+      label: "published",
+      name: "Published",
     },
     {
       type: "string",
-      label: "URL",
-      name: "url",
+      label: "Title",
+      name: "title",
+      isTitle: true,
+      required: true,
+    },
+    {
+      label: "Website Body",
+      name: "body",
+      type: "rich-text",
+      isBody: true,
     },
     {
       type: "image",
@@ -23,15 +31,43 @@ export default {
       name: "hero_image",
     },
     {
+      type: 'string',
+      label: 'Alt Text',
+      name: 'alt',
+    },
+    {
+      type: "string",
+      label: "URL",
+      name: "url",
+    },
+    {
       type: "string",
       label: "Length of Service Provided",
       name: "time_span",
     },
     {
-      label: "Website Body",
-      name: "body",
-      type: "rich-text",
-      isBody: true,
+      type: 'object',
+      label: 'Gallery',
+      name: 'gallery',
+      list: true, // This indicates that the field is a list of objects
+      ui: {
+        itemProps: (item) => ({
+          label: item?.alt || 'New Image',
+          thumbnail: item?.src, // This will show the image thumbnail
+        }),
+      },
+      fields: [
+        {
+          type: 'image',
+          label: 'Image',
+          name: 'src',
+        },
+        {
+          type: 'string',
+          label: 'Alt Text',
+          name: 'alt',
+        },
+      ],
     },
   ],
   ui: {
