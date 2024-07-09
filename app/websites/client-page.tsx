@@ -1,30 +1,27 @@
-import Link from "next/link";
+import { Card } from '../../components/utilities/Card';
+
 
 export default function PostList(props) {
 
     return (
       <>
+
         <h1>Websites</h1>
-        <div>
-          {props.data.websiteConnection.edges.map((website) => (
-            <div key={website.node.id}>
-              <Link href={`/websites/${website.node._sys.filename}`}>
-                <div>{website.node._sys.filename}</div>
-              </Link>
-              <div>
-                <code>
-                  <pre
-                    style={{
-                      backgroundColor: "lightgray",
-                    }}
-                  >
-                    {JSON.stringify(website, null, 2)}
-                  </pre>
-                </code>
+
+        <div className="cell ">
+          {props.data.websiteConnection.edges.map((website) => {
+            const web = website.node;
+            return (
+              <div key={web.id} className="cell__item ">
+                <Card 
+                  object={website}
+                  handle="websites" 
+                />
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
+
       </>
     );
   }

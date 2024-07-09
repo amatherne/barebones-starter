@@ -36,7 +36,7 @@ export default {
   ],
   ui: {
     router: ({ document }) => {
-      return `/websites/${document._sys.filename}`;
+      return `/website/${document._sys.filename}`;
     },
   },
 };

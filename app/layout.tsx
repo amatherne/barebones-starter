@@ -1,5 +1,6 @@
-import Link from 'next/link'
 import React from 'react'
+import { Navigation } from '../components/Navigation';
+
 
 export default function RootLayout({
   children,
@@ -7,23 +8,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>        
-        <header>
-          <Link href="/">
-            Home
-          </Link>
-          {/*{' | '}
-          <Link href="/posts">
-            Posts
-          </Link>*/}
-          {' | '}
-          <Link href="/websites">
-            Websites
-          </Link>
-          {/*{' | '}
-          <Link href="/sounds">
-            Sounds
-          </Link>*/}
-        </header>
+
+        <Navigation />
+
         <main>{children}</main>
       </body>
     </html>

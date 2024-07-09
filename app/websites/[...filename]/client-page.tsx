@@ -34,7 +34,7 @@ export default function Website(props : ClientPageProps) {
             <TinaMarkdown content={content} />
           </div>
         ) : null}
-        <code>
+        {/*<code>
           <pre
             style={{
               backgroundColor: "lightgray",
@@ -42,7 +42,7 @@ export default function Website(props : ClientPageProps) {
           >
             {JSON.stringify(data.website, null, 2)}
           </pre>
-        </code>
+        </code>*/}
       </div>
     );
   }
