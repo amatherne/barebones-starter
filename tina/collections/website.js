@@ -12,7 +12,7 @@ export default {
       gallery: [
         {
           src: '',
-          alt: 'Default Hero Image',
+          alt: '',
           hero: true, // Default the first image as hero
         },
       ],
