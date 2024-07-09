@@ -45,8 +45,9 @@ export default {
       list: true,
       ui: {
         itemProps: (item) => {
-          console.log('Gallery Item:', item); // Debugging line
+          console.log('Item:', item); // Debugging line
           const imgTitle = item.src.lastIndexOf('/').substring(lastIndex + 1);
+          console.log('imgTitle:', imgTitle); // Debugging line
           return {
             label: `${item.hero ? '(H) ' : ''}${item.alt || imgTitle || 'Image'}`,
             thumbnail: item.src || '', // from chatGPT
