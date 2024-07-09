@@ -22,6 +22,9 @@ export default {
         return 'default-filename'; // Fallback if isTitle is not true
       },
     },
+    router: ({ document }) => {
+      return `/websites/${document._sys.filename}`;
+    },
   },
   fields: [
     {
@@ -87,9 +90,4 @@ export default {
       ],
     },
   ],
-  ui: {
-    router: ({ document }) => {
-      return `/websites/${document._sys.filename}`;
-    },
-  },
 };
