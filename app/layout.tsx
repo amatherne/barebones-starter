@@ -11,18 +11,18 @@ export default function RootLayout({
           <Link href="/">
             Home
           </Link>
-          {' | '}
+          {/*{' | '}
           <Link href="/posts">
             Posts
-          </Link>
+          </Link>*/}
           {' | '}
           <Link href="/websites">
             Websites
           </Link>
-          {' | '}
+          {/*{' | '}
           <Link href="/sounds">
             Sounds
-          </Link>
+          </Link>*/}
         </header>
         <main>{children}</main>
       </body>

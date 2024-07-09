@@ -13,11 +13,26 @@ export default {
     },
     {
       type: "string",
+      label: "URL",
+      name: "url",
+    },
+    {
+      type: "image",
+      label: "Hero Image",
+      name: "hero_image",
+    },
+    {
+      type: "string",
+      label: "Length of Service Provided",
+      name: "time_span",
+    },
+    {
+      type: "string",
       label: "Website Body",
       name: "body",
       isBody: true,
       ui: {
-        component: "textarea",
+        component: "rich-text",
       },
     },
   ],
