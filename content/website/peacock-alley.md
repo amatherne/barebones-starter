@@ -1,10 +1,7 @@
 ---
 title: Peacock Alley
-url: https://peacockalley.com
+url: 'https://peacockalley.com'
+hero_image: /uploads/renato-pozzi-G4oGYy_ZcsQ-unsplash.jpg
 time_span: 5 years
 ---
 
-
-Testing
-
-ok please work.
