@@ -11,6 +11,18 @@ export default {
       published: true, 
     };
   },
+  ui: {
+    filename: {
+      readonly: true, // Make the filename read-only
+      slugify: (values) => {
+        // Check if isTitle is true and downcase the title
+        if (values.isTitle) {
+          return values.title.toLowerCase().replace(/ /g, '-');
+        }
+        return 'default-filename'; // Fallback if isTitle is not true
+      },
+    },
+  },
   fields: [
     {
       type: "boolean",
