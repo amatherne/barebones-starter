@@ -14,7 +14,7 @@ export const Card = ({object}) => {
       </Link>
 
       {object.node.hero_image ? (
-        <Image src={object.node.hero_image} />
+        <Image src={object.node.hero_image} alt={object.node.hero_image_alt?object.node.hero_image_alt:''} />
       ) : null}
 
       <h2 className="h3">

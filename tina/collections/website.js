@@ -33,7 +33,7 @@ export default {
     {
       type: 'string',
       label: 'Alt Text',
-      name: 'alt',
+      name: 'hero_image_alt',
     },
     {
       type: "string",
