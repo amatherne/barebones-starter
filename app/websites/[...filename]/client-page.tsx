@@ -18,6 +18,9 @@ export default function Website(props : ClientPageProps) {
       variables: props.variables,
       data: props.data,
     });
+
+    const content = data.website.body;
+
     return (
       <div>
         <h1>
@@ -26,9 +29,11 @@ export default function Website(props : ClientPageProps) {
         {/*<div>
           {data.website.body}
         </div>*/}
-        <div data-tina-field={tinaField(data.website, "body")}>
-          <TinaMarkdown content={content} />
-        </div>
+        {content ? (
+          <div data-tina-field={tinaField(data.website, "body")}>
+            <TinaMarkdown content={content} />
+          </div>
+        ) : null}
         <code>
           <pre
             style={{

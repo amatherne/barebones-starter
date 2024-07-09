@@ -5,6 +5,7 @@ export default {
   label: "Websites",
   name: "website",
   path: "content/website",
+  format: "mdx",
   fields: [
     {
       type: "string",
@@ -27,13 +28,10 @@ export default {
       name: "time_span",
     },
     {
-      type: "string",
       label: "Website Body",
       name: "body",
+      type: "rich-text",
       isBody: true,
-      ui: {
-        component: "rich-text",
-      },
     },
   ],
   ui: {
