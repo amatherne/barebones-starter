@@ -1,4 +1,5 @@
-export const Image = ({ src, alt, className }) => {
+/* eslint-disable @next/next/no-img-element */
+export const Img = ({ src, alt, className }) => {
   return (
     <>
       {/* This is a test comment */}
@@ -14,3 +15,4 @@ export const Image = ({ src, alt, className }) => {
     </>
   );
 };
+/* eslint-enable @next/next/no-img-element */

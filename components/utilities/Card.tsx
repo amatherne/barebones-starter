@@ -1,10 +1,12 @@
-import { Image } from '../../components/utilities/Image';
+import { Img } from '../../components/utilities/Img';
 import Link from "next/link";
 
 export const Card = ({object}) => {
 
   const type = object.node.__typename;
   const handle = `${type.toLowerCase()}${type.slice(-1) === 's' ? '' : 's'}`;
+  const image = object.node.hero_image;
+  const imageAlt = object.node.hero_image_alt?object.node.hero_image_alt:'';
 
   return (
     <div className="card">
@@ -13,8 +15,8 @@ export const Card = ({object}) => {
         {object.node.title}
       </Link>
 
-      {object.node.hero_image ? (
-        <Image src={object.node.hero_image} alt={object.node.hero_image_alt?object.node.hero_image_alt:''} />
+      {image ? (
+        <Img src={image} alt={imageAlt} className />
       ) : null}
 
       <h2 className="h3">
