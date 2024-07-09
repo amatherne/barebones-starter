@@ -1,8 +1,8 @@
-import { Image } from '../../components/utilities/Image';
+// import { Image } from '../../components/utilities/Image';
 import Link from "next/link";
 
 
-export const Card = ({object, handle}) => {
+export const Card = ({object}) => {
 
   return (
     <div className="card">
@@ -11,9 +11,9 @@ export const Card = ({object, handle}) => {
         {object.node.title}
       </Link>
 
-      {object.node.hero_image ? (
+      {/*{object.node.hero_image ? (
         <Image src={object.node.hero_image} />
-      ) : null}
+      ) : null}*/}
 
       <h2 className="h3">
         {object.node.title}

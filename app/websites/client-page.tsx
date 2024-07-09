@@ -15,7 +15,6 @@ export default function PostList(props) {
               <div key={web.id} className="cell__item ">
                 <Card 
                   object={website}
-                  handle="websites" 
                 />
               </div>
             );
