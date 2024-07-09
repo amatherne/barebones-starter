@@ -46,7 +46,7 @@ export default {
       ui: {
         itemProps: (item) => {
           const imgTitle = item.src.substring(item.src.lastIndexOf('/') + 1);
-          console.log('item.src:', item.src); // Debugging line
+          // console.log('item.src:', item.src); // Debugging line
           // console.log('imgTitle:', imgTitle); // Debugging line
           return {
             label: `${item.hero ? '(H) ' : ''}${item.alt || imgTitle || 'Image'}`,

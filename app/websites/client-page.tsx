@@ -8,6 +8,7 @@ export default function PostList(props) {
           <h1>Websites</h1>
         
           <div className="cell">
+            
             {props.data.websiteConnection.edges.map((website) => {
               return (
                 <div key={website.node.id} className="cell__item ">
@@ -17,6 +18,7 @@ export default function PostList(props) {
                 </div>
               );
             })}
+            
           </div>
 
         </div>
