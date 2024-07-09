@@ -6,11 +6,16 @@ export default {
   name: "website",
   path: "content/website",
   format: "mdx",
+  defaultItem: () => {
+    return {
+      published: true, 
+    };
+  },
   fields: [
     {
       type: "boolean",
-      label: "published",
-      name: "Published",
+      label: "Published",
+      name: "published",
     },
     {
       type: "string",
