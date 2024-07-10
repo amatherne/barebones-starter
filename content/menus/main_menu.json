@@ -8,6 +8,10 @@
     {
       "label": "Websites",
       "url": "/websites"
+    },
+    {
+      "label": "Sounds",
+      "url": "/sounds"
     }
   ]
 }
