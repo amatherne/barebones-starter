@@ -1,0 +1,9 @@
+{
+  "name": "Footer Menu",
+  "items": [
+    {
+      "label": "Footer Home",
+      "url": "/"
+    }
+  ]
+}
