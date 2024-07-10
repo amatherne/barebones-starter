@@ -1,0 +1,13 @@
+{
+  "name": "Main Menu",
+  "items": [
+    {
+      "label": "Home",
+      "url": "/"
+    },
+    {
+      "label": "Websites",
+      "url": "/websites"
+    }
+  ]
+}

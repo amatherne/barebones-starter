@@ -5,7 +5,18 @@ export default {
   label: "Menus",
   name: "menu",
   path: "content/menus",
-  format: "mdx",
+  format: "json",
+  ui: {
+    filename: {
+      readonly: true,
+      slugify: (values) => {
+        if (values.name) {
+          return values.name.toLowerCase().replace(/ /g, '-');
+        }
+        return 'default-filename';
+      },
+    },
+  },
   fields: [
     {
       type: "string",
@@ -19,6 +30,13 @@ export default {
       label: "Menu Items",
       name: "items",
       list: true,
+      ui: {
+        itemProps: (item) => {
+          return {
+            label: item.label || 'Menu Item',
+          };
+        },
+      },
       fields: [
         {
           type: "string",

@@ -1,40 +1,50 @@
 'use client'; // Add this directive at the top
 
+
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
 interface MenuItem {
   label: string;
   url: string;
-  subitems?: MenuItem[]; // Optional subitems for nested menus
+  subitems?: MenuItem[];
 }
 
-export const Navigation = () => {
+interface NavigationProps {
+  menuData: MenuItem[]; // Define prop type for menuData
+}
+
+const Navigation = ({ menuData }: NavigationProps) => {
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
 
   useEffect(() => {
-    const fetchMenuData = async () => {
-      // Replace with your actual data fetching logic
-      const response = await fetch('/api/menus'); // Example API endpoint
-      const data: MenuItem[] = await response.json();
-      setMenuItems(data);
-    };
-
-    fetchMenuData();
-  }, []);
+    setMenuItems(menuData);
+  }, [menuData]); // Ensure useEffect runs when menuData changes
 
   return (
-    <>
-      <header>
-        {menuItems.map((item, index) => (
-          <span key={item.label}>
+    <nav>
+      <ul>
+        {menuItems.map((item) => (
+          <li key={item.label}>
             <Link href={item.url}>
               {item.label}
             </Link>
-            {index < menuItems.length - 1 && ' | '}
-          </span>
+            {item.subitems && item.subitems.length > 0 && (
+              <ul>
+                {item.subitems.map((subitem) => (
+                  <li key={subitem.label}>
+                    <Link href={subitem.url}>
+                      {subitem.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </li>
         ))}
-      </header>
-    </>
+      </ul>
+    </nav>
   );
 };
+
+export default Navigation;
