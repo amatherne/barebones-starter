@@ -57,6 +57,13 @@ export default {
           label: "Submenu Items",
           name: "subitems",
           list: true,
+          ui: {
+            itemProps: (item) => {
+              return {
+                label: item.label || 'SubMenu Item',
+              };
+            },
+          },
           fields: [
             {
               type: "string",
@@ -104,6 +111,13 @@ export default {
           label: "Submenu Items",
           name: "subitems",
           list: true,
+          ui: {
+            itemProps: (item) => {
+              return {
+                label: item.label || 'SubMenu Item',
+              };
+            },
+          },
           fields: [
             {
               type: "string",

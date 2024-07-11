@@ -13,8 +13,12 @@
       "url": "/websites",
       "subitems": [
         {
-          "label": "Peacock Allet",
+          "label": "Peacock Alley",
           "url": "/websites/peacock-alley"
+        },
+        {
+          "label": "100Percent",
+          "url": "/websites/100percent"
         }
       ]
     }
