@@ -15,8 +15,8 @@ const TinaContentFields = ({ input }) => {
   const fetchMDXFiles = async () => {
     console.log('Fetching MDX files...');
     try {
-      const response = await fetch('../../app/api/get-mdx-files');
-      console.log('Response:', response);
+      const response = await fetch('../../admin/app/api/get-mdx-files'); // Adjust endpoint as per your project setup
+      console.log(response)
       if (!response.ok) {
         throw new Error('Network response was not ok');
       }
