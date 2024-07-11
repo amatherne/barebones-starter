@@ -1,3 +1,7 @@
+// ../tina/collections/global_settings.js
+
+import TinaContentFields from '../../components/customTinaCMS/TinaContentFields';
+
 /**
  * @type {import('tinacms').Collection}
  */
@@ -51,6 +55,27 @@ export default {
           label: "URL",
           name: "url",
           required: true,
+        },
+        // {
+        //   type: "object",
+        //   label: "Content Link",
+        //   name: "contentLink",
+        //   component: "custom",
+        //   render: () => <TinaContentFields />,
+        // },
+        {
+          type: "object",
+          label: "Content Link",
+          name: "contentLink",
+          fields: [
+            {
+              type: "string", // Ensure a valid type here
+              label: "MDX File",
+              name: "mdxFile",
+              component: "text",
+              description: "Choose an MDX file for this menu item.",
+            },
+          ],
         },
         {
           type: "object",
@@ -135,6 +160,5 @@ export default {
         },
       ],
     },
-
   ],
 };

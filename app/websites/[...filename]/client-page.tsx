@@ -30,8 +30,8 @@ const Website = (props: ClientPageProps) => {
   const images = gallery || [];
   const hero = images.find(item => item?.hero) || null;
 
-  const pageSeoTitle = data?.website?.seo_title || "Page-specific SEO Title"; 
-  const pageSeoText = data?.website?.seo_text || "Page-specific SEO Text";   
+  const pageSeoTitle = data?.website?.seo_title || ""; 
+  const pageSeoText = data?.website?.seo_text || "";   
 
   return (
     <>

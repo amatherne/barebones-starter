@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 
+require('es6-promise').polyfill();
+
 module.exports = {
   async rewrites() {
     return [

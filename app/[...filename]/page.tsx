@@ -1,3 +1,5 @@
+// ../app/[...filename]/page.tsx
+
 import ClientPage from "./client-page";
 import client from "../../tina/__generated__/client";
 

@@ -11,10 +11,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@apollo/client": "^3.10.8",
+    "es6-promise": "^4.2.8",
     "next": "^14.2.4",
+    "promise-polyfill": "^8.3.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "tinacms": "^1.6.4",
+    "react-tinacms-github": "^0.52.0",
+    "styled-components": "^6.1.11",
+    "tinacms": "^1.6.5",
     "typescript": "5.5.2"
   },
   "devDependencies": {
