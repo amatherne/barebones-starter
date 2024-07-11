@@ -56,24 +56,16 @@ export default {
           name: "url",
           required: true,
         },
-        // {
-        //   type: "object",
-        //   label: "Content Link",
-        //   name: "contentLink",
-        //   component: "custom",
-        //   render: () => <TinaContentFields />,
-        // },
         {
           type: "object",
-          label: "Content Link",
-          name: "contentLink",
+          label: "Content",
+          name: "content",
           fields: [
             {
-              type: "string", // Ensure a valid type here
-              label: "MDX File",
-              name: "mdxFile",
-              component: "text",
-              description: "Choose an MDX file for this menu item.",
+              type: "string",
+              label: "Content Link",
+              name: "contentLink",
+              component: TinaContentFields,
             },
           ],
         },
@@ -159,6 +151,13 @@ export default {
           ],
         },
       ],
+    },
+  ],
+  plugins: [
+    {
+      __type: 'field',
+      name: 'contentLink',
+      Component: TinaContentFields,
     },
   ],
 };
