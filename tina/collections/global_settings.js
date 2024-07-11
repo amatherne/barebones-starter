@@ -57,18 +57,24 @@ export default {
           required: true,
         },
         {
-          type: "object",
-          label: "Content",
-          name: "content",
-          fields: [
-            {
-              type: "string",
-              label: "Content Link",
-              name: "contentLink",
-              component: TinaContentFields,
-            },
-          ],
+          label: 'Content',
+          name: 'content',
+          type: 'reference',
+          collections: ['page','website','sounds'], 
         },
+        // {
+        //   type: "object",
+        //   label: "Content",
+        //   name: "content",
+        //   fields: [
+        //     {
+        //       type: "string",
+        //       label: "Content Link",
+        //       name: "contentLink",
+        //       component: TinaContentFields,
+        //     },
+        //   ],
+        // },
         {
           type: "object",
           label: "Submenu Items",
