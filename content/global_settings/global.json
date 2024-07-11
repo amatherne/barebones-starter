@@ -10,7 +10,13 @@
     },
     {
       "label": "Websites",
-      "url": "/websites"
+      "url": "/websites",
+      "subitems": [
+        {
+          "label": "Peacock Allet",
+          "url": "/websites/peacock-alley"
+        }
+      ]
     }
   ],
   "footer_menu": [
