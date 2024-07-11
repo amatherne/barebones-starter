@@ -17,8 +17,8 @@ const Head = ({ seoTitle: pageSeoTitle, seoText: pageSeoText }) => {
     }[match]));
   };
 
-  const seoTitle  = pageSeoTitle ? pageSeoTitle + ' | ' + globalSeoTitle : globalSeoTitle;
-  const seoText   = pageSeoText ? pageSeoText + ' | ' + globalSeoText : globalSeoText;
+  const seoTitle  = pageSeoTitle.length > 0 ? pageSeoTitle + ' | ' + globalSeoTitle : globalSeoTitle;
+  const seoText   = pageSeoText.length > 0 ? pageSeoText + ' | ' + globalSeoText : globalSeoText;
 
   return (
     <>
@@ -31,7 +31,6 @@ const Head = ({ seoTitle: pageSeoTitle, seoText: pageSeoText }) => {
       <title>{seoTitle}</title>
 
       <meta name="description" content={escapeHtml(seoText)} />
-      {/*<meta name="description" content={seoText} />*/}
 
     </>
   );
