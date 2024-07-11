@@ -1,7 +1,5 @@
 // ../tina/collections/global_settings.js
 
-import TinaContentFields from '../../components/customTinaCMS/TinaContentFields';
-
 /**
  * @type {import('tinacms').Collection}
  */
@@ -60,21 +58,13 @@ export default {
           label: 'Content',
           name: 'content',
           type: 'reference',
-          collections: ['page','website','sounds'], 
+          collections: [
+            'page',
+            'website',
+            'sounds',
+            'post'
+          ], 
         },
-        // {
-        //   type: "object",
-        //   label: "Content",
-        //   name: "content",
-        //   fields: [
-        //     {
-        //       type: "string",
-        //       label: "Content Link",
-        //       name: "contentLink",
-        //       component: TinaContentFields,
-        //     },
-        //   ],
-        // },
         {
           type: "object",
           label: "Submenu Items",
@@ -157,13 +147,6 @@ export default {
           ],
         },
       ],
-    },
-  ],
-  plugins: [
-    {
-      __type: 'field',
-      name: 'contentLink',
-      Component: TinaContentFields,
     },
   ],
 };

@@ -6,7 +6,8 @@
   "main_menu": [
     {
       "label": "Home",
-      "url": "/"
+      "url": "/",
+      "content": "content/page/home.mdx"
     },
     {
       "label": "Websites",
