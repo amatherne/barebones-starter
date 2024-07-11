@@ -18,7 +18,7 @@ const Head = ({ seoTitle: pageSeoTitle, seoText: pageSeoText }) => {
   };
 
   const seoTitle  = pageSeoTitle.length > 0 ? pageSeoTitle + ' | ' + globalSeoTitle : globalSeoTitle;
-  const seoText   = pageSeoText.length > 0 ? pageSeoText + ' | ' + globalSeoText : globalSeoText;
+  const seoText   = pageSeoText.length > 0 ? pageSeoText : globalSeoText;
 
   return (
     <>
