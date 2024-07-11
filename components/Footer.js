@@ -4,7 +4,7 @@ import React from 'react';
 import Navigation from '../components/Navigation';
 import Globals from "../content/global_settings/global.json";
 
-const Footer = ({ object }) => {
+const Footer = () => {
 
   return (
     <footer>

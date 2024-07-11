@@ -3,7 +3,6 @@
 'use client'; 
 
 import React from 'react';
-import Globals from "../content/global_settings/global.json";
 import Head from '../components/Head';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -16,8 +15,8 @@ const RootLayout = ({ children }: RootLayoutProps) => {
 
   return (
     <html lang="en">
-    
-      <Head key="head" />
+
+      <Head key="head" seoTitle seoText />
 
       <body>
        

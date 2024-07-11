@@ -4,15 +4,17 @@ import React from 'react';
 import Navigation from '../components/Navigation';
 import Link from "next/link";
 import Globals from "../content/global_settings/global.json";
+import { Img } from '../components/utilities/Img';
 
-const Header = ({ object }) => {
+
+const Header = () => {
 
   return (
     <header>
 
       <Link href="/" title={Globals.title} className="logo--link">
         {Globals.logo ? (
-          <img src={Globals.logo} alt="Logo" className="logo--image" />
+          <Img src={Globals.logo} alt="Logo" className="logo--image" />
         ) : Globals.title }
       </Link>
 

@@ -1,7 +1,6 @@
 // ../components/Head.js
 
 import React from 'react';
-import Navigation from '../components/Navigation';
 import Globals from "../content/global_settings/global.json";
 
 const Head = ({ seoTitle: pageSeoTitle, seoText: pageSeoText }) => {
@@ -31,8 +30,8 @@ const Head = ({ seoTitle: pageSeoTitle, seoText: pageSeoText }) => {
 
       <title>{seoTitle}</title>
 
-      {/*<meta name="description" content={escapeHtml(seoText)} />*/}
-      <meta name="description" content={seoText} />
+      <meta name="description" content={escapeHtml(seoText)} />
+      {/*<meta name="description" content={seoText} />*/}
 
     </>
   );
