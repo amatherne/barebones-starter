@@ -1,30 +1,32 @@
+// ../app/ayout.tsx
+
 'use client'; 
 
 import React from 'react';
-import Navigation from '../components/Navigation';
-import Link from "next/link";
 import Globals from "../content/global_settings/global.json";
+import Head from '../components/Head';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 interface RootLayoutProps {
   children: React.ReactNode;
 }
 
 const RootLayout = ({ children }: RootLayoutProps) => {
-  const mainMenuPath = `../${Globals.main_menu}`;
 
   return (
     <html lang="en">
+    
+      <Head key="head" />
+
       <body>
-        <header>
-          <Link href="/" title="Austin Matherne" className="logo--link">
-            {Globals.logo ? (
-              <img src={Globals.logo} alt="Logo" className="logo--image" />
-            ) : 'Austin Matherne'}
-          </Link>
-          <Navigation key="mainMenu" menuData={mainMenuPath} />
-        </header>
+       
+        <Header key="header"  />
+        
         <main>{children}</main>
-        {/*<Navigation key="footerMenu" menuData={footerMenuPath} />*/}
+
+        <Footer key="footer"  />
+
       </body>
     </html>
   );

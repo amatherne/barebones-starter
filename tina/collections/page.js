@@ -2,19 +2,35 @@
  * @type {import('tinacms').Collection}
  */
 export default {
-  label: "Page Content",
+  label: "Pages",
   name: "page",
   path: "content/page",
   format: "mdx",
   fields: [
     {
+      type: "string",
+      label: "Title",
+      name: "title",
+      isTitle: true,
+      required: true,
+    },
+    {
       name: "body",
-      label: "Main Content",
+      label: "Main",
       type: "rich-text",
       isBody: true,
     },
   ],
   ui: {
+    filename: {
+      readonly: true,
+      slugify: (values) => {
+        if (values.title) {
+          return values.title.toLowerCase().replace(/ /g, '-');
+        }
+        return 'default-filename';
+      },
+    },
     router: ({ document }) => {
       if (document._sys.filename === "home") {
         return `/`;

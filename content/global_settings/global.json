@@ -1,5 +1,22 @@
 {
-  "logo": "/uploads/vintage-1082057_1280.jpg",
-  "main_menu": "content/menus/main_menu.json",
-  "footer_menu": "content/menus/footer-menu.json"
+  "logo": "",
+  "title": "AM",
+  "seo_title": "Austin Matherne | Web Developer | Musician",
+  "seo_text": "Testing the SEO. \"testing testing testing\"\n",
+  "main_menu": [
+    {
+      "label": "Home",
+      "url": "/"
+    },
+    {
+      "label": "Websites",
+      "url": "/websites"
+    }
+  ],
+  "footer_menu": [
+    {
+      "label": "Home",
+      "url": "/"
+    }
+  ]
 }

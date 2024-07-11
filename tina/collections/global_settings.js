@@ -13,16 +13,114 @@ export default {
       name: "logo",
     },
     {
-      label: 'Main Menu',
-      name: 'main_menu',
-      type: 'reference',
-      collections: ['menu'], // Example collection where main menu items are stored
+      type: "string",
+      label: "Site Title",
+      name: "title",
     },
     {
-      label: 'Footer Menu',
-      name: 'footer_menu',
-      type: 'reference',
-      collections: ['menu'], // Example collection where footer menu items are stored
+      type: "string",
+      label: "SEO Title",
+      name: "seo_title",
     },
+    {
+      type: "rich-text",
+      label: "SEO Text",
+      name: "seo_text",
+    },
+    {
+      type: "object",
+      label: "Main Menu",
+      name: "main_menu",
+      list: true,
+      ui: {
+        itemProps: (item) => {
+          return {
+            label: item.label || 'Menu Item',
+          };
+        },
+      },
+      fields: [
+        {
+          type: "string",
+          label: "Label",
+          name: "label",
+          required: true,
+        },
+        {
+          type: "string",
+          label: "URL",
+          name: "url",
+          required: true,
+        },
+        {
+          type: "object",
+          label: "Submenu Items",
+          name: "subitems",
+          list: true,
+          fields: [
+            {
+              type: "string",
+              label: "Label",
+              name: "label",
+              required: true,
+            },
+            {
+              type: "string",
+              label: "URL",
+              name: "url",
+              required: true,
+            },
+          ],
+        },
+      ],
+    },
+    {
+      type: "object",
+      label: "Footer Menu",
+      name: "footer_menu",
+      list: true,
+      ui: {
+        itemProps: (item) => {
+          return {
+            label: item.label || 'Menu Item',
+          };
+        },
+      },
+      fields: [
+        {
+          type: "string",
+          label: "Label",
+          name: "label",
+          required: true,
+        },
+        {
+          type: "string",
+          label: "URL",
+          name: "url",
+          required: true,
+        },
+        {
+          type: "object",
+          label: "Submenu Items",
+          name: "subitems",
+          list: true,
+          fields: [
+            {
+              type: "string",
+              label: "Label",
+              name: "label",
+              required: true,
+            },
+            {
+              type: "string",
+              label: "URL",
+              name: "url",
+              required: true,
+            },
+          ],
+        },
+      ],
+    },
+
   ],
 };

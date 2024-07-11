@@ -1,9 +1,13 @@
-"use client"
+// ../app/websites/[...filename]/client-page.tsx
+
+"use client";
+
+import React from "react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { tinaField, useTina } from "tinacms/dist/react";
 import { WebsiteQuery } from "../../../tina/__generated__/types";
 import { Img } from '../../../components/utilities/Img';
-
+import Head from '../../../components/Head';
 
 interface ClientPageProps {
   query: string;
@@ -13,46 +17,50 @@ interface ClientPageProps {
   data: WebsiteQuery;
 }
 
-export default function Website(props : ClientPageProps) {
-    // data passes though in production mode and data is updated to the sidebar data in edit-mode
-    const { data } = useTina({
-      query: props.query,
-      variables: props.variables,
-      data: props.data,
-    });
+const Website = (props: ClientPageProps) => {
 
-    const content   = data.website.body;
+  const { data } = useTina({
+    query: props.query,
+    variables: props.variables,
+    data: props.data,
+  });
 
-    const images    = data.website?.gallery || [];
-    const hero      = images.filter(item => item && item.hero)[0] || null;
+  const { website } = data;
+  const { body, title, gallery } = website || {};
+  const images = gallery || [];
+  const hero = images.find(item => item?.hero) || null;
 
-    return (
+  const pageSeoTitle = data?.website?.seo_title || "Page-specific SEO Title"; 
+  const pageSeoText = data?.website?.seo_text || "Page-specific SEO Text";   
+
+  return (
+    <>
+      
+      <Head seoTitle={pageSeoTitle} seoText={pageSeoText} />
+
       <div>
+        
+        
+        {hero && hero.src !== '' && (
+          <Img src={hero.src} alt={hero.alt} className="hero-image" />
+        )}
 
-        {hero && hero.src !== '' ? (
-          <Img src={hero.src} alt={hero.alt} className />
-        ) : ''}
+        <h1>{title}</h1>
 
-        <h1>
-          {data.website.title}
-        </h1>
-
-        {content ? (
-          <div data-tina-field={tinaField(data.website, "body")}>
-            <TinaMarkdown content={content} />
+        {body && (
+          <div data-tina-field={tinaField(website, "body")}>
+            <TinaMarkdown content={body} />
           </div>
-        ) : null}
+        )}
 
         <code>
-          <pre
-            style={{
-              backgroundColor: "lightgray",
-            }}
-          >
-            {JSON.stringify(data.website, null, 2)}
+          <pre style={{ backgroundColor: "lightgray" }}>
+            {JSON.stringify(website, null, 2)}
           </pre>
         </code>
-
       </div>
-    );
-  }
+    </>
+  );
+};
+
+export default Website;
