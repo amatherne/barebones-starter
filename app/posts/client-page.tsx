@@ -1,3 +1,5 @@
+// ../app/posts/client-page.tsx
+
 import Link from "next/link";
 
 export default function PostList(props) {

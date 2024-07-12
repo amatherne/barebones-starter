@@ -139,44 +139,6 @@ export default {
             'post'
           ], 
         },
-        {
-          type: "object",
-          label: "Submenu Items",
-          name: "subitems",
-          list: true,
-          ui: {
-            itemProps: (item) => {
-              return {
-                label: item.label || 'SubMenu Item',
-              };
-            },
-          },
-          fields: [
-            {
-              type: "string",
-              label: "Label",
-              name: "label",
-              required: true,
-            },
-            {
-              type: "string",
-              label: "URL",
-              name: "url",
-              required: true,
-            },
-            {
-              label: 'Content',
-              name: 'content',
-              type: 'reference',
-              collections: [
-                'page',
-                'website',
-                'sounds',
-                'post'
-              ], 
-            },
-          ],
-        },
       ],
     },
   ],

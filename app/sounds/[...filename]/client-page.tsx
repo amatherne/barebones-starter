@@ -1,3 +1,5 @@
+// ../app/sounds/[...filename]/client-page.tsx
+
 "use client"
 import { useTina } from "tinacms/dist/react";
 import { SoundsQuery } from "../../../tina/__generated__/types";

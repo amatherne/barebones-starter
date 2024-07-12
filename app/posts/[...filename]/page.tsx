@@ -1,3 +1,5 @@
+// ../app/posts/[...filename]/page.tsx
+
 import Post from "./client-page";
 import client from "../../../tina/__generated__/client";
 
@@ -9,7 +11,6 @@ export async function generateStaticParams() {
 
   return paths || [];
 }
-
 
 export default async function PostPage({
   params,

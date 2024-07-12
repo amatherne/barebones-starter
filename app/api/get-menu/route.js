@@ -1,4 +1,4 @@
-// app/api/get-menu/route.js
+// ../app/api/get-menu/route.js
 
 import { NextResponse } from 'next/server';
 import fs from 'fs';

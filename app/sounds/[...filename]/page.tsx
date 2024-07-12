@@ -1,3 +1,5 @@
+// ../app/sounds/[...filename]/page.tsx
+
 import Sounds from "./client-page";
 import client from "../../../tina/__generated__/client";
 

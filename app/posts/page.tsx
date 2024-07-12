@@ -1,6 +1,7 @@
+// ../app/posts/page.tsx
+
 import PostList from "./client-page";
 import { client } from "../../tina/__generated__/client";
-
 
 
 export default async function Page() {
