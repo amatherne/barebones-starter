@@ -1,4 +1,4 @@
-// components/customTinaCMS/CustomReferenceField.js
+// components/customTinaCMS/CustomReferenceField.tsx
 
 import { useCMS } from 'tinacms';
 

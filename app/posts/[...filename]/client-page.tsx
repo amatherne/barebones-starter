@@ -6,8 +6,8 @@ import React from "react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { tinaField, useTina } from "tinacms/dist/react";
 import { PostQuery } from "../../../tina/__generated__/types";
-import { Img } from '../../../components/utilities/Img';
-import Head from '../../../components/Head';
+import { Img } from '../../../components/Utilities/Img';
+import Head from '../../../components/Head/Head';
 
 interface ClientPageProps {
   query: string;

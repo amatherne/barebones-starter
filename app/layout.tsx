@@ -3,7 +3,7 @@
 'use client'; 
 
 import React from 'react';
-import Head from '../components/Head';
+import Head from '../components/Head/Head';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 

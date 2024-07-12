@@ -1,4 +1,4 @@
-// ../components/Footer.js
+// ../components/Footer.tsx
 
 import React from 'react';
 import Navigation from '../components/Navigation';

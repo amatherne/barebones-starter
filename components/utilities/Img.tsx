@@ -1,3 +1,5 @@
+// ../components/Utilities/Img.tsx
+
 /* eslint-disable @next/next/no-img-element */
 export const Img = ({ src, alt, className }) => {
   return (

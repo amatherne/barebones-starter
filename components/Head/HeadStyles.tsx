@@ -1,7 +1,7 @@
-// ../components/utilities/HeadStyles.tsx
+// ../components/Head/HeadStyles.tsx
 
 import React from 'react';
-import RGB_CSS from './RGB_CSS';
+import RGB_CSS from './Utilities/RGB_CSS';
 
 
 const HeadStyles = () => {

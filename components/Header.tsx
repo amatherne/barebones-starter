@@ -4,13 +4,13 @@ import React from 'react';
 import Navigation from '../components/Navigation';
 import Link from "next/link";
 import Globals from "../content/global_settings/global.json";
-import { Img } from '../components/utilities/Img';
+import { Img } from '../components/Utilities/Img';
 
 
 const Header = () => {
 
   return (
-    <header>
+    <header className="header">
 
       <Link href="/" title={Globals.title} className="logo--link hxl">
         {Globals.logo ? (
