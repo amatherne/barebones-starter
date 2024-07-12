@@ -2,7 +2,7 @@
   "logo": "",
   "title": "AM",
   "seo_title": "Austin Matherne | Web Developer",
-  "seo_text": "Austin, TX based Front-End Web Developer and Musician. \n",
+  "seo_text": "Austin, TX based Front-End Web Developer and Musician.\n",
   "main_menu": [
     {
       "label": "Home",
@@ -35,6 +35,9 @@
     }
   ],
   "footer_menu": [
+    {
+      "label": "adsasdfasdf"
+    },
     {
       "label": "Home",
       "url": "/"
