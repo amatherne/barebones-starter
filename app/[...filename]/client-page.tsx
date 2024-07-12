@@ -38,6 +38,7 @@ const ClientPage = (props: ClientPageProps) => {
   // console.log(props.params.filename)
   // console.log(props.params.filename.join("/"))
   const showTitle = props.params.filename.join("/") !== "home";
+  // const showTitle = true;
 
   return (
     <>

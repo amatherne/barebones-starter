@@ -18,7 +18,7 @@ const Navigation = ({ menuData, className }) => {
                             .replace('.md', '');
           }
           
-          const url = contentUrl || item.url;
+          const url = contentUrl || item.url || '';
 
           return (
             <li key={item.label}>
