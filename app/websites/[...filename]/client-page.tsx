@@ -6,7 +6,7 @@ import React from "react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { tinaField, useTina } from "tinacms/dist/react";
 import { WebsiteQuery } from "../../../tina/__generated__/types";
-import { Img } from '../../../components/Utilities/Img';
+// import { Img } from '../../../components/Utilities/Img';
 import Head from '../../../components/Head/Head';
 
 interface ClientPageProps {
@@ -27,8 +27,8 @@ const Website = (props: ClientPageProps) => {
 
   const { website } = data;
   const { body, title, gallery } = website || {};
-  const images = gallery || [];
-  const hero = images.find(item => item?.hero) || null;
+  // const images = gallery || [];
+  // const hero = images.find(item => item?.hero) || null;
 
   const pageSeoTitle = data?.website?.seo_title || ""; 
   const pageSeoText = data?.website?.seo_text || "";   
@@ -41,9 +41,9 @@ const Website = (props: ClientPageProps) => {
       <div>
         
         
-        {hero && hero.src !== '' && (
+        {/*{hero && hero.src !== '' && (
           <Img src={hero.src} alt={hero.alt} className="hero-image" />
-        )}
+        )}*/}
 
         <h1>{title}</h1>
 
