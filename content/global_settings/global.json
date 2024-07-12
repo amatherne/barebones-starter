@@ -13,16 +13,6 @@
       "url": "/websites"
     },
     {
-      "label": "Sounds",
-      "url": "/sounds",
-      "subitems": [
-        {
-          "label": "Vetter Kids",
-          "content": "content/sounds/vetter-kids.mdx"
-        }
-      ]
-    },
-    {
       "label": "About",
       "content": "content/page/about.mdx"
     },
