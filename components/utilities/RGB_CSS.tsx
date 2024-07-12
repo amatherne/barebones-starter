@@ -27,8 +27,8 @@ const RGB_CSS = ({ convert }) => {
   const rgbValue = hexToRgb(hexValue);
 
 
-  return `${variableName}: ${hexValue};
-          ${variableName}-rgb: ${rgbValue};`;
+  return `--color--${variableName}: ${hexValue};
+          --color--${variableName}-rgb: ${rgbValue};`;
 };
 
 export default RGB_CSS;

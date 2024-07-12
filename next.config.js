@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 
+require('./utils/logger');
+
 const es6Promise = require('es6-promise');
 const path = require('path');
 

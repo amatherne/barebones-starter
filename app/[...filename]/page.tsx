@@ -1,7 +1,7 @@
 // ../app/[...filename]/page.tsx
 
-import ClientPage from "./client-page";
 import client from "../../tina/__generated__/client";
+import ClientPage from "./client-page";
 
 export async function generateStaticParams() {
   const pages = await client.queries.pageConnection();
@@ -18,10 +18,16 @@ export default async function Page({
   params: { filename: string[] };
 }) {
   const data = await client.queries.page({
-    relativePath: `${params.filename}.mdx`,
+    relativePath: `${params.filename.join("/")}.mdx`,
   });
 
+  // Pass params to the client component
   return (
-    <ClientPage {...data}></ClientPage>
+    <ClientPage
+      query={data.query}
+      variables={{ relativePath: `${params.filename.join("/")}.mdx` }}
+      data={data.data}
+      params={params}
+    />
   );
 }

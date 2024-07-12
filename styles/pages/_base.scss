@@ -1,0 +1,39 @@
+
+
+#MainContent {
+  
+  @include mq($sm) {
+    width: 100%;
+  }
+
+  @include mq($md-up) {
+    --header--transition: .35s;
+
+    padding-left: var(--desktop--header-width);
+    filter: blur(0);
+    will-change: filter;
+    transition: filter var(--header--transition) ease-out;
+
+    body.header-menu-is-open & {
+      --header--transition: .85s;
+      filter: blur(4px);
+    }
+  }
+}
+
+
+
+
+
+.overlay {
+  display: block;
+  position: absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+
+  &.overlay-link {
+    z-index: 2;
+  }
+}

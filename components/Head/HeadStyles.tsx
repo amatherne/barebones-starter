@@ -1,12 +1,16 @@
 // ../components/Head/HeadStyles.tsx
 
 import React from 'react';
-import RGB_CSS from './Utilities/RGB_CSS';
+import RGB_CSS from '../Utilities/RGB_CSS';
 
+import '../../styles/base/_typography.scss';
+import '../../styles/global.scss';
 
 const HeadStyles = () => {
   return (
     <>
+      <link rel="stylesheet" href="https://use.typekit.net/akz3yrt.css" {...({ precedence: "default" } as any)} />
+
       <style jsx global>{`
 
         @font-face {
@@ -48,9 +52,10 @@ const HeadStyles = () => {
         }
 
         :root {
-          ${RGB_CSS({ convert: "--color--foreground: #535355;" })}
-          ${RGB_CSS({ convert: "--color--background: #ffffff;" })}
-          ${RGB_CSS({ convert: "--color--test: #ffffff;" })}
+          ${RGB_CSS({ convert: "foreground: #212121;" })}
+          ${RGB_CSS({ convert: "background: #ffffff;" })}
+
+          {/*${RGB_CSS({ convert: "background: #ffffff;" })}*/}
         }
 
         :root {
@@ -96,14 +101,21 @@ const HeadStyles = () => {
         :root {
           --font-body--scale                : 1.0;
           --font-body--family               : Quicksand, sans-serif;
+          --font-body--family               : neuzeit-grotesk, sans-serif;
+          --font-body--family-condensed     : neuzeit-grotesk-condensed, sans-serif;
           --font-body--style                : normal;
-          --font-body--weight               : 500;
+          --font-body--weight               : 400;
           --font-body--weight-bold          : 700;
 
           --font-heading--scale             : 1.0;
           --font-heading--family            : Butler, Georgia, serif;
           --font-heading--style             : normal;
           --font-heading--weight            : 900
+        }
+
+        :root {
+          --desktop--header-width           : 125px;
+          --desktop--header-width--open     : 400px;
         }
 
         body {
@@ -124,9 +136,9 @@ const HeadStyles = () => {
         }
 
         body {
-          display: grid;
-          grid-template-rows: auto auto 1fr auto;
-          grid-template-columns: 100%;
+          {/*display: grid;*/}
+          {/*grid-template-rows: auto auto 1fr auto;*/}
+          {/*grid-template-columns: 100%;*/}
           min-height: 100%;
           margin: 0;
           font-size: var(--font-size);
@@ -142,8 +154,5 @@ const HeadStyles = () => {
     </>
   );
 }
-
-import '../../styles/base/_typography.scss';
-import '../../styles/global.scss';
 
 export default HeadStyles;

@@ -16,15 +16,19 @@ const RootLayout = ({ children }: RootLayoutProps) => {
   return (
     <html lang="en">
 
-      <Head key="head" seoTitle seoText />
+      <Head key="head" />
 
       <body>
+
+        <a id="Top" className="skip-to-content-link button visually-hidden" href="#MainContent">Skip to Content</a>
        
         <Header key="header"  />
         
-        <main>{children}</main>
+        <main id="MainContent" className="focus-none" role="main" tabIndex={-1}>{children}</main>
 
         <Footer key="footer"  />
+
+        <a className="skip-to-content-link button visually-hidden" href="#Top">Back to Top</a>
 
       </body>
     </html>

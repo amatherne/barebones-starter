@@ -13,6 +13,7 @@ interface ClientPageProps {
     relativePath: string;
   };
   data: { page: PageQuery['page'] };
+  params: { filename: string[] }; // Add params to props
 }
 
 const ClientPage = (props: ClientPageProps) => {
@@ -32,16 +33,26 @@ const ClientPage = (props: ClientPageProps) => {
   // const pageSeoTitle = data?.page?.seo_title || ""; 
   // const pageSeoText = data?.page?.seo_text || ""; 
 
+  // console.log(props)
+  // console.log(props.params)
+  // console.log(props.params.filename)
+  // console.log(props.params.filename.join("/"))
+  const showTitle = props.params.filename.join("/") !== "home";
+
   return (
-    <div>
+    <>
+      <section className="page page--default">
+        <div className="page-width">
 
-      <h1>{title}</h1>
+          {showTitle && <h1>{title}</h1>}
 
+          <div data-tina-field={tinaField(data.page, 'body')}>
+            <TinaMarkdown content={content} />
+          </div>
 
-      <div data-tina-field={tinaField(data.page, 'body')}>
-        <TinaMarkdown content={content} />
-      </div>
-    </div>
+        </div>
+      </section>
+    </>
   );
 };
 

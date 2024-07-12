@@ -1,7 +1,7 @@
 // ../components/Utilities/Card.tsx
 
 
-import { Img } from '../../components/utilities/Img';
+import { Img } from '../../components/Utilities/Img';
 import Link from "next/link";
 
 export const Card = ({object}) => {

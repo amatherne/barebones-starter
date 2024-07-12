@@ -3,10 +3,10 @@
 import React from 'react';
 import Link from 'next/link';
 
-const Navigation = ({ menuData }) => {
+const Navigation = ({ menuData, className }) => {
   const renderMenuItems = (items) => {
     return (
-      <ul>
+      <ul className="list-unstyled">
         {items.map((item) => {
 
           let contentUrl = '';
@@ -38,7 +38,7 @@ const Navigation = ({ menuData }) => {
   }
 
   return (
-    <nav>
+    <nav className={className}>
       {renderMenuItems(menuData)}
     </nav>
   );

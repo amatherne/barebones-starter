@@ -7,9 +7,9 @@ import Globals from "../content/global_settings/global.json";
 const Footer = () => {
 
   return (
-    <footer>
+    <footer className="footer">
 
-      <Navigation key="footerMenu" menuData={Globals.footer_menu} />
+      <Navigation key="footerMenu" className="" menuData={Globals.footer_menu} />
 
     </footer>
   );
