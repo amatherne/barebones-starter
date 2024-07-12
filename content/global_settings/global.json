@@ -13,6 +13,10 @@
       "url": "/websites"
     },
     {
+      "label": "Sounds",
+      "url": "/sounds"
+    },
+    {
       "label": "About",
       "content": "content/page/about.mdx"
     },
