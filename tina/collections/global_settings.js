@@ -126,7 +126,6 @@ export default {
           type: "string",
           label: "URL",
           name: "url",
-          required: true,
         },
         {
           label: 'Content',

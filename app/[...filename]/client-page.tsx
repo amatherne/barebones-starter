@@ -24,8 +24,20 @@ const ClientPage = (props: ClientPageProps) => {
 
   const content = data.page.body;
 
+  const { page } = data;
+  const { body, title } = page || {};
+  // const images = gallery || [];
+  // const hero = images.find(item => item?.hero) || null;
+
+  // const pageSeoTitle = data?.page?.seo_title || ""; 
+  // const pageSeoText = data?.page?.seo_text || ""; 
+
   return (
     <div>
+
+      <h1>{title}</h1>
+
+
       <div data-tina-field={tinaField(data.page, 'body')}>
         <TinaMarkdown content={content} />
       </div>

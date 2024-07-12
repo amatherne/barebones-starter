@@ -191,7 +191,19 @@ h6:empty {
 }
 
 
+ul,
+ol {
+  list-style-position: outside;
+  padding-left: 2rem;
 
+  li {
+    list-style: inherit;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
 
 .rte {
   
@@ -228,20 +240,6 @@ h6:empty {
     border-radius: var(--media-radius);
     box-shadow: var(--media-shadow-horizontal-offset) var(--media-shadow-vertical-offset) var(--media-shadow-blur-radius) rgba(var(--color-shadow), var(--media-shadow-opacity));
     margin-bottom: var(--media-shadow-vertical-offset);
-  }
-
-  ul,
-  ol {
-    list-style-position: outside;
-    padding-left: 2rem;
-
-    li {
-      list-style: inherit;
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
   }
 
   a {
