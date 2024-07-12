@@ -7,15 +7,24 @@
     {
       "label": "Home",
       "url": "/",
-      "content": "content/page/home.mdx"
+      "content": ""
     },
     {
       "label": "Websites",
       "url": "/websites"
     },
     {
-      "label": "Contact Me",
-      "url": ""
+      "label": "Sounds",
+      "url": "/sounds"
+    },
+    {
+      "label": "About",
+      "content": "content/page/about.mdx"
+    },
+    {
+      "label": "Contact",
+      "url": "",
+      "content": "content/page/contact-me.mdx"
     }
   ],
   "footer_menu": [
