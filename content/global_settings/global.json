@@ -17,6 +17,10 @@
       "url": "/sounds"
     },
     {
+      "label": "Posts",
+      "url": "/posts"
+    },
+    {
       "label": "About",
       "content": "content/page/about.mdx"
     },

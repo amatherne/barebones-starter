@@ -2,8 +2,12 @@
 
 "use client"
 
-import { useTina } from "tinacms/dist/react";
+import React from "react";
+import { TinaMarkdown } from "tinacms/dist/rich-text";
+import { tinaField, useTina } from "tinacms/dist/react";
 import { PostQuery } from "../../../tina/__generated__/types";
+import { Img } from '../../../components/utilities/Img';
+import Head from '../../../components/Head';
 
 interface ClientPageProps {
   query: string;
@@ -20,8 +24,25 @@ export default function Post(props : ClientPageProps) {
       variables: props.variables,
       data: props.data,
     });
+
+    const { post } = data;
+    const { body, title, gallery } = post || {};
+
+
     return (
       <div>
+      
+        <h1>
+          {data.post.title}
+        </h1>
+        
+
+        {body && (
+          <div data-tina-field={tinaField(post, "body")}>
+            <TinaMarkdown content={body} />
+          </div>
+        )}
+
         {/*<code>
           <pre
             style={{
@@ -31,12 +52,6 @@ export default function Post(props : ClientPageProps) {
             {JSON.stringify(data.post, null, 2)}
           </pre>
         </code>*/}
-        <h1>
-          {data.post.title}
-        </h1>
-        <div>
-          {data.post.body}
-        </div>
       </div>
     );
   }

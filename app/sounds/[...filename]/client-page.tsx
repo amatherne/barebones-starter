@@ -1,8 +1,13 @@
 // ../app/sounds/[...filename]/client-page.tsx
 
 "use client"
-import { useTina } from "tinacms/dist/react";
+
+import React from "react";
+import { TinaMarkdown } from "tinacms/dist/rich-text";
+import { tinaField, useTina } from "tinacms/dist/react";
 import { SoundsQuery } from "../../../tina/__generated__/types";
+import { Img } from '../../../components/utilities/Img';
+import Head from '../../../components/Head';
 
 interface ClientPageProps {
   query: string;
@@ -19,14 +24,24 @@ export default function Sounds(props : ClientPageProps) {
       variables: props.variables,
       data: props.data,
     });
+
+    const { sounds } = data;
+    const { body, title, gallery } = sounds || {};
+
+
     return (
       <div>
         <h1>
           {data.sounds.title}
         </h1>
-        <div>
-          {data.sounds.body}
-        </div>
+        
+
+        {body && (
+          <div data-tina-field={tinaField(sounds, "body")}>
+            <TinaMarkdown content={body} />
+          </div>
+        )}
+
         {/*<code>
           <pre
             style={{

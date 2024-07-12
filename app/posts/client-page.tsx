@@ -13,7 +13,7 @@ export default function PostList(props) {
               <Link href={`/posts/${post.node._sys.filename}`}>
                 <div>{post.node._sys.filename}</div>
               </Link>
-              <div>
+              {/*<div>
                 <code>
                   <pre
                     style={{
@@ -23,7 +23,7 @@ export default function PostList(props) {
                     {JSON.stringify(post, null, 2)}
                   </pre>
                 </code>
-              </div>
+              </div>*/}
             </div>
           ))}
         </div>
