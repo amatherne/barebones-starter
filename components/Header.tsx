@@ -3,7 +3,7 @@
 import React, { useEffect } from 'react';
 import Link from 'next/link';
 import Globals from '../content/global_settings/global.json';
-import { Img } from '../components/Utilities/Img';
+// import { Img } from '../components/Utilities/Img';
 import Navigation from '../components/Navigation';
 // import { wrapCharactersInSpan } from '../utils/helpers';
 import { useMenuHandler } from '../utils/menu';
@@ -23,7 +23,7 @@ const Header = () => {
         
         <Link href="/" title={Globals.title} className="logo">
           {Globals.logo ? (
-            <Img src={Globals.logo} alt="Logo" className="logo--image" />
+            {/*<Img src={Globals.logo} alt="Logo" className="logo--image" />*/}
           ) : (
             textLogo
           )}
