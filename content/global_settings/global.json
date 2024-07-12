@@ -11,30 +11,11 @@
     },
     {
       "label": "Websites",
-      "url": "/websites",
-      "subitems": [
-        {
-          "label": "Peacock Alley",
-          "url": "/websites/peacock-alley",
-          "content": "content/website/peacock-alley.mdx"
-        },
-        {
-          "label": "100Percent",
-          "url": "/websites/100percent",
-          "content": "content/website/100percent.mdx"
-        }
-      ]
+      "url": "/websites"
     },
     {
-      "label": "Sounds",
-      "url": "/sounds",
-      "subitems": [
-        {
-          "label": "Vetter Kids",
-          "url": "",
-          "content": "content/sounds/vetter-kids.mdx"
-        }
-      ]
+      "label": "Contact Me",
+      "url": ""
     }
   ],
   "footer_menu": [

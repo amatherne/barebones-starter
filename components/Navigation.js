@@ -12,9 +12,9 @@ const Navigation = ({ menuData }) => {
           const contentUrl = item.content ? item.content.replace('content', '').replace('.mdx', '') : '';
           const url = contentUrl || item.url; 
 
-          console.log('======')
+          {/*console.log('======')
           console.log(item.label)
-          console.log(url)
+          console.log(url)*/}
 
           return (
             <li key={item.label}>

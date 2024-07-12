@@ -20,11 +20,11 @@ const Header = () => {
 
       <Navigation key="mainMenu" menuData={Globals.main_menu} />
 
-      <code>
+      {/*<code>
         <pre style={{ backgroundColor: "lightgray" }}>
           {JSON.stringify(Globals.main_menu, null, 2)}
         </pre>
-      </code>
+      </code>*/}
       
     </header>
   );

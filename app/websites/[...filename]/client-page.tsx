@@ -53,11 +53,11 @@ const Website = (props: ClientPageProps) => {
           </div>
         )}
 
-        <code>
+       {/* <code>
           <pre style={{ backgroundColor: "lightgray" }}>
             {JSON.stringify(website, null, 2)}
           </pre>
-        </code>
+        </code>*/}
       </div>
     </>
   );
