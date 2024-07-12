@@ -1,7 +1,7 @@
 // ../components/Utilities/Card.tsx
 
 
-import { Img } from '../../components/Utilities/Img';
+// import { Img } from '../../components/Utilities/Img';
 import Link from "next/link";
 
 export const Card = ({object}) => {
@@ -18,9 +18,9 @@ export const Card = ({object}) => {
         {object.node.title}
       </Link>
 
-      {image ? (
+      {/*{image ? (
         <Img src={image} alt={imageAlt} className />
-      ) : null}
+      ) : null}*/}
 
       <h2 className="h3">
         {object.node.title}
