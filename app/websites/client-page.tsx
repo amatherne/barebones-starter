@@ -1,6 +1,6 @@
 // ../app/websites/client-page.tsx
 
-import { Card } from '../../components/Utilities/Card';
+// import { Card } from '../../components/Utilities/Card';
 
 export default function PostList(props) {
     return (
@@ -14,9 +14,9 @@ export default function PostList(props) {
             {props.data.websiteConnection.edges.map((website) => {
               return (
                 <div key={website.node.id} className="cell__item ">
-                  <Card 
+                  {/*<Card 
                     object={website}
-                  />
+                  />*/}
                 </div>
               );
             })}
