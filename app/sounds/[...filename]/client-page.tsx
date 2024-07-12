@@ -26,7 +26,7 @@ export default function Sounds(props : ClientPageProps) {
     });
 
     const { sounds } = data;
-    const { body, title, gallery } = sounds || {};
+    const { body, title } = sounds || {};
 
 
     return (

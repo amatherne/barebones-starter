@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Globals from "../content/global_settings/global.json";
+import HeadStyles from '../components/utilities/HeadStyles';
 
 const Head = ({ seoTitle: pageSeoTitle, seoText: pageSeoText }) => {
   const globalSeoTitle = Globals.seo_title;
@@ -31,6 +32,8 @@ const Head = ({ seoTitle: pageSeoTitle, seoText: pageSeoText }) => {
       <title>{seoTitle}</title>
 
       <meta name="description" content={escapeHtml(seoText)} />
+
+      <HeadStyles />
 
     </>
   );

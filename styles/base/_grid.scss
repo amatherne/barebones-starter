@@ -1,0 +1,299 @@
+
+
+
+// 
+// pixel to em mixin
+// num AND base size must be a value with no unit (px,em, vh,etc)
+//     ===
+@function em($num) {
+  $result: calc(((#{$num}) / (var(--font-size-base))) * 1em);
+  @return $result;
+}
+
+
+
+
+/*================ Responsive Show/Hide Helper ================*/
+@mixin responsive-display-helper($grid-breakpoint-type: '') {
+  // sass-lint:disable no-important
+  .cell,
+  .cell_no_margin,
+  :root,
+  :after, 
+  :before {
+    --grid-gutter--neg: calc(var(--grid-gutter) * -1);
+  }
+  .#{$grid-breakpoint-type}show {
+    display: block !important;
+  }
+
+  .#{$grid-breakpoint-type}hide {
+    display: none !important;
+  }
+}
+
+
+/*================ Responsive Text Alignment Helper ================*/
+@mixin responsive-text-align-helper($grid-breakpoint-type: '') {
+  // sass-lint:disable no-important
+  .#{$grid-breakpoint-type}text-left {
+    text-align: left !important;
+  }
+
+  .#{$grid-breakpoint-type}text-right {
+    text-align: right !important;
+  }
+
+  .#{$grid-breakpoint-type}text-center {
+    text-align: center !important;
+  }
+}
+
+@mixin clearfix() {
+  &::after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+
+  // sass-lint:disable no-misspelled-properties
+  *zoom: 1;
+}
+
+
+
+
+/*============================================================================
+  Grid Setup
+    1. Allow the grid system to be used on lists.
+    2. Remove any margins and paddings that might affect the grid system.
+    3. Apply a negative `margin-left` to negate the columns' gutters.
+==============================================================================*/
+
+// Allows a repetion of the base grid settings
+%grid-vars {
+  --base-gutter                           : var(--global--grid-horizontal,30px);
+  
+  --base-gutter--double                   : calc( var(--base-gutter) * 2 );
+  --base-gutter--trip                     : calc( var(--base-gutter) * 3 );
+  --base-gutter--quad                     : calc( var(--base-gutter) * 4 );
+
+  --base-gutter--half                     : calc( var(--base-gutter) / 2 );
+  --base-gutter--third                    : calc( var(--base-gutter) / 3 );
+  --base-gutter--quarter                  : calc( var(--base-gutter) / 4 );
+  --base-gutter--eighth                   : calc( var(--base-gutter) / 8 );
+
+  --grid-gutter                           : var(--base-gutter);
+  --grid-gutter--mobile                   : var(--global--mobile--grid-horizontal,var(--base-gutter--half));
+  --grid-gutter--neg                      : calc(var(--grid-gutter) * -1);
+
+  --grid-gutter-bottom                    : var(--global--grid-vertical,var(--base-gutter));
+  --grid-gutter-bottom--mobile            : var(--global--mobile--grid-horizontal,var(--base-gutter--half));
+  --grid-gutter-bottom--neg               : calc(var(--grid-gutter) * -1);
+}
+
+
+// Gives access to whole site
+.cell,
+.cell_no_margin,
+:root,
+:after, 
+:before {
+  @extend %grid-vars;
+}
+
+
+.cell {
+
+  // @include clearfix();
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-left: var(--grid-gutter--neg);
+  font-size:0;
+  letter-spacing: 0;
+  @include mq($sm) {
+    --grid-gutter: var(--grid-gutter--mobile);
+    --grid-gutter-bottom: var(--grid-gutter-bottom--mobile);
+  }
+  &:not(.no_gutter) > .cell__item {
+    padding-left: var(--grid-gutter);
+    &[class*="--push"] {
+      position: relative;
+    }
+  }
+    
+}
+.cell.no_gutter,
+.cell_no_gutter {
+  // @include clearfix();
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size:0;
+  & > .cell__item {
+    display:inline-block;
+    font-size:16px;
+    font-size: var(--theme--font-size--rte);
+    
+  }
+}
+
+.cell__item {
+  --width-raw: 100; // fallback if no width class applied for current media query
+
+  --page-width--padding: var(--base-gutter--half);
+
+  --page-width--with-padding: (var(--page-width,1600px) - (var(--page-width--padding) * 2));
+  
+  --vw-max: min(100vw, var(--page-width--with-padding));
+  --vw-perc: (var(--width-raw) * 0.01);
+  --vw-offset: var(--grid-gutter);
+
+  --width-vw: calc((var(--vw-max) * var(--vw-perc)) - var(--vw-offset)); 
+  --width-vw: (var(--vw-max) * var(--vw-perc) - var(--vw-offset)); 
+  --width: calc(var(--width-raw) * 1%);
+
+  width: 100%;
+  display:inline-block;
+  font-size:16px;
+  font-size: var(--theme--font-size--rte);
+  width: var(--width);
+  // width: var(--width-vw);
+
+  &[class*="--push"] {
+    position: relative;
+  }
+  @include mq($md-up) {
+    --page-width--padding: var(--base-gutter);
+  }
+}
+
+.cell,
+.cell_no_gutter {
+  .cell__item {
+    vertical-align: top;
+  }
+  &.vert-top {
+    & > .cell__item {
+      vertical-align: top;
+    }
+  }
+  &.vert-mid,
+  &.vert-middle {
+    & > .cell__item {
+      vertical-align: middle;
+    }
+  }
+  &.vert-bot,
+  &.vert-bottom {
+    & > .cell__item {
+      vertical-align: bottom;
+    }
+  }
+
+  &.half_gutter {
+    --grid-gutter: var(--base-gutter--half);
+  }
+  &.double_gutter {
+    --grid-gutter: var(--base-gutter--double);
+  }
+
+  &.cell_margin_bottom,
+  &.cell_bottom_margin {
+    margin-bottom: var(--grid-gutter-bottom--neg);
+    & > .cell__item {
+      margin-bottom: var(--grid-gutter-bottom);
+    }
+  }
+}
+
+/*============================================================================
+    Reversed grids allow you to structure your source in the opposite
+    order to how your rendered layout will appear.
+==============================================================================*/
+.cell--rev {
+  direction: rtl;
+  text-align: left;
+
+  > .cell__item {
+    direction: ltr;
+    text-align: left;
+    float: right;
+  }
+}
+
+.page-width {
+  --page-width--padding: var(--base-gutter--half);
+  width: 100%;
+  max-width: var(--page-width);
+  margin: 0 auto;
+  padding:{
+    left: var(--page-width--padding);
+    right: var(--page-width--padding);
+  }
+
+  @include mq($md-up) {
+    --page-width--padding: var(--base-gutter);
+  }
+
+  &.no-padding {  
+    padding: 0;
+  }
+  &.page-width--narrow {
+    max-width: $grid-md;
+  }
+}
+
+
+
+/*============================================================================
+  Grid Columns
+    - Create width classes, prepended by the breakpoint name.
+==============================================================================*/
+// sass-lint:disable brace-style empty-line-between-blocks
+@mixin grid-column-generator($grid-breakpoint-type: '') {
+  // These round the numbers
+  $multiply: 100;
+
+  .#{$grid-breakpoint-type}w-5    { $width: (5 / 100) * $multiply; --width-raw: #{$width};  }
+  .#{$grid-breakpoint-type}w-10   { $width: (10 / 100) * $multiply; --width-raw: #{$width};  }
+  // One Eighth
+  .#{$grid-breakpoint-type}w-12   { $width: (1 / 8) * $multiply; --width-raw: #{$width};  }
+  .#{$grid-breakpoint-type}w-15   { $width: (15 / 100) * $multiply; --width-raw: #{$width};  }
+  // One Sixth
+  .#{$grid-breakpoint-type}w-16   { $width: (1 / 6) * $multiply; --width-raw: #{$width};  }
+  .#{$grid-breakpoint-type}w-20   { $width: (20 / 100) * $multiply; --width-raw: #{$width};  }
+  .#{$grid-breakpoint-type}w-25   { $width: (25 / 100) * $multiply; --width-raw: #{$width};  }
+  .#{$grid-breakpoint-type}w-30   { $width: (30 / 100) * $multiply; --width-raw: #{$width};  }
+  // Third
+  .#{$grid-breakpoint-type}w-33   { $width: (1 / 3) * $multiply; --width-raw: #{$width};  }
+  .#{$grid-breakpoint-type}w-35   { $width: (35 / 100) * $multiply; --width-raw: #{$width};  }
+  .#{$grid-breakpoint-type}w-40   { $width: (40 / 100) * $multiply; --width-raw: #{$width};  }
+  .#{$grid-breakpoint-type}w-45   { $width: (45 / 100) * $multiply; --width-raw: #{$width};  }
+  // Half
+  .#{$grid-breakpoint-type}w-50   { $width: (50 / 100) * $multiply; --width-raw: #{$width};  }
+  .#{$grid-breakpoint-type}w-60   { $width: (60 / 100) * $multiply; --width-raw: #{$width};  }
+  // Two Thirds
+  .#{$grid-breakpoint-type}w-66   { $width: (2 / 3) * $multiply; --width-raw: #{$width};  }
+  .#{$grid-breakpoint-type}w-70   { $width: (70 / 100) * $multiply; --width-raw: #{$width};  }
+  .#{$grid-breakpoint-type}w-80   { $width: (80 / 100) * $multiply; --width-raw: #{$width};  }
+  .#{$grid-breakpoint-type}w-85   { $width: (85 / 100) * $multiply; --width-raw: #{$width};  }
+  .#{$grid-breakpoint-type}w-90   { $width: (90 / 100) * $multiply; --width-raw: #{$width};  }
+  .#{$grid-breakpoint-type}w-95   { $width: (95 / 100) * $multiply; --width-raw: #{$width};  }
+  .#{$grid-breakpoint-type}w-100  { $width: (100 / 100) * $multiply; --width-raw: #{$width};  }
+}
+
+/*================ Build Base Grid Classes ================*/
+@include grid-column-generator();
+@include responsive-display-helper();
+@include responsive-text-align-helper();
+
+/*================ Build Responsive Grid Classes ================*/
+@each $breakpoint in $grid-breakpoint-has-widths {
+  @include mq($breakpoint) {
+    @include grid-column-generator('#{$breakpoint}--');
+    @include responsive-display-helper('#{$breakpoint}--');
+    @include responsive-text-align-helper('#{$breakpoint}--');
+  }
+}

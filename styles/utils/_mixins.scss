@@ -1,0 +1,176 @@
+
+/*
+  
+  No '.' classes should be added to this file.
+  Only references that you want universal should be added here.
+
+  Example: 
+
+  %visually-hidden {
+    your properties
+  }
+
+*/
+
+/*============================================================================
+  Grid Breakpoints and Class Names
+    - Do not change the variable names
+    - $grid-x-sm is based on a Shopify breakpoint for checkout buttons
+==============================================================================*/
+$screen-sm: 800px;
+$screen-md: 1000px;
+$screen-lg: 1300px;
+
+$grid-x-sm: 400px;
+$grid-md: 750px;
+$grid-lg: 990px;
+$grid-x-lg: 1200px;
+$grid-wide: 1600px; // may need to be updated per theme settings
+
+$grid-gutter: var(--base-gutter);
+$grid-gutter-mobile: var(--base-gutter--half);
+
+$height-sm: 'height-sm';
+$height-md: 'height-md';
+$height-lg: 'height-lg';
+$height-x-lg: 'height-x-lg';
+
+$x-sm: 'x-sm';
+$not-x-sm: 'not-x-sm';
+$sm: 'sm';
+
+$md: 'md';
+$md-down: 'md-down';
+$md-up: 'md-up';
+
+$lg: 'lg';
+$lg-down: 'lg-down';
+$lg-up: 'lg-up';
+
+$x-lg: 'x-lg';
+$x-lg-up: 'ex-lg-up';
+$wide: 'wide';
+
+/*============================================================================
+  Generate breakpoint-specific column widths and push classes
+    - Default column widths: $grid-breakpoint-has-widths: ($sm, $md-up);
+    - Default is no push classes
+==============================================================================*/
+$grid-breakpoint-has-widths: ($x-sm, $not-x-sm, $sm, $md-up, $md, $md-down, $lg, $lg-up, $lg-down, $x-lg, $x-lg-up);
+$grid-breakpoint-has-push: $grid-breakpoint-has-widths;
+
+
+
+/*============================================================================
+  #Grid
+==============================================================================*/
+
+// The `$grid-breakpoints` list is used to build our media queries.
+// You can use these in the mq mixin.
+$grid-breakpoints: (
+  $height-sm '(max-height: #{$screen-sm})',
+  $height-md '(max-height: #{$screen-md})',
+  $height-lg '(max-height: #{$screen-lg})',
+  $height-x-lg '(min-height: #{$screen-lg + 1})',
+
+  $x-sm '(max-width: #{$grid-x-sm - 1})',
+  $not-x-sm '(min-width: #{$grid-x-sm}) and (max-width: #{$grid-md - 1})',
+  $sm '(max-width: #{$grid-md - 1})',
+
+  $md '(min-width: #{$grid-md}) and (max-width: #{$grid-lg - 1})',
+  $md-down '(max-width: #{$grid-lg - 1})',
+  $md-up '(min-width: #{$grid-md})',
+
+  $lg '(min-width: #{$grid-lg}) and (max-width: #{$grid-x-lg - 1})',
+  $lg-down '(max-width: #{$grid-x-lg - 1})',
+  $lg-up '(min-width: #{$grid-lg})',
+
+  $x-lg '(min-width: #{$grid-x-lg}) and (max-width: #{$grid-wide - 1})',
+  $x-lg-up '(min-width: #{$grid-x-lg})',
+  $wide '(min-width: #{$grid-wide})'
+);
+
+
+
+@mixin mq($mq) {
+  $breakpoint-found: false;
+
+  @each $breakpoint in $grid-breakpoints {
+    $name: nth($breakpoint, 1);
+    $declaration: nth($breakpoint, 2);
+
+    @if $mq == $name and $declaration {
+      $breakpoint-found: true;
+
+      @media only screen and #{$declaration} {
+        @content;
+      }
+    }
+  }
+
+  @if $breakpoint-found == false {
+    @warn 'Breakpoint "#{$mq}" does not exist';
+  }
+}
+
+
+// scss doesn't like min() and max(), so use these mixins to fix
+@function css-function( $function, $values... ) {
+  @return 
+    $function
+    + unquote( '(' )
+    + $values
+    + unquote( ')' )
+  ;
+}
+
+@function css-min( $values... ) {
+  @return css-function( min, $values );
+}
+
+@function css-max( $values... ) {
+  @return css-function( max, $values );
+}
+
+
+@mixin prefix($property, $value, $prefixes) {
+  @each $prefix in $prefixes {
+    @if $prefix==webkit {
+      -webkit-#{$property}: $value;
+    }
+
+    @else if $prefix==moz {
+      -moz-#{$property}: $value;
+    }
+
+    @else if $prefix==ms {
+      -ms-#{$property}: $value;
+    }
+
+    @else if $prefix==o {
+      -o-#{$property}: $value;
+    }
+
+    @else if $prefix==spec {
+      #{$property}: $value;
+    }
+
+    @else {
+      @warn 'unrecognized prefix: #{$prefix}';
+    }
+  }
+}
+
+
+%u-sr-only,
+%visually-hidden {
+  position: absolute !important;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
+  clip: rect(0 0 0 0);
+  word-wrap: normal !important;
+}

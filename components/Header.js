@@ -12,7 +12,7 @@ const Header = () => {
   return (
     <header>
 
-      <Link href="/" title={Globals.title} className="logo--link">
+      <Link href="/" title={Globals.title} className="logo--link hxl">
         {Globals.logo ? (
           <Img src={Globals.logo} alt="Logo" className="logo--image" />
         ) : Globals.title }

@@ -1,13 +1,11 @@
 /** @type {import('next').NextConfig} */
 
 const es6Promise = require('es6-promise');
+const path = require('path');
 
 es6Promise.polyfill();
 
-const path = require('path');
-
 module.exports = {
-
   async rewrites() {
     return [
       {
@@ -24,24 +22,5 @@ module.exports = {
       },
     ];
   },
-
-  // Add SCSS configuration
-  webpack(config, options) {
-    config.module.rules.push({
-      test: /\.scss$/,
-      use: [
-        options.defaultLoaders.babel,
-        {
-          loader: 'sass-loader',
-          options: {
-            sassOptions: {
-              includePaths: [path.join(__dirname, 'styles')],
-            },
-          },
-        },
-      ],
-    });
-
-    return config;
-  },
 };
+

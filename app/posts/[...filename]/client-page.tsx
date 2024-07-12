@@ -26,7 +26,7 @@ export default function Post(props : ClientPageProps) {
     });
 
     const { post } = data;
-    const { body, title, gallery } = post || {};
+    const { body, title } = post || {};
 
 
     return (

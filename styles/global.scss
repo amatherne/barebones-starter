@@ -1,22 +1,12 @@
-// @import './utils/mixins';
+@import './utils/mixins';
 
-// @import './base/reset';
+@import './base/reset';
 // @import './base/typography';
+@import './base/grid';
 
 
-// @import './components/rte';
 // @import './components/button';
 
 // @import './layouts/header';
 // @import './layouts/footer';
 
-
-
-body {
-  background: red;
-  background: blue;
-}
-
-main {
-  background: yellow;
-}
