@@ -1,7 +1,7 @@
 import { defineConfig } from "tinacms";
 import globalSettings from "./collections/global_settings";
 import page from "./collections/page";
-import website from "./collections/website";
+import website from "./collections/websites";
 import sounds from "./collections/sounds";
 import post from "./collections/post";
 
