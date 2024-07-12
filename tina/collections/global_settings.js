@@ -52,6 +52,80 @@ export default {
           type: "string",
           label: "URL",
           name: "url",
+        },
+        {
+          label: 'Content',
+          name: 'content',
+          type: 'reference',
+          collections: [
+            'page',
+            'website',
+            'sounds',
+            'post'
+          ], 
+        },
+        {
+          type: "object",
+          label: "Submenu Items",
+          name: "subitems",
+          list: true,
+          ui: {
+            itemProps: (item) => {
+              return {
+                label: item.label || 'SubMenu Item',
+              };
+            },
+          },
+          fields: [
+            {
+              type: "string",
+              label: "Label",
+              name: "label",
+              required: true,
+            },
+            {
+              type: "string",
+              label: "URL",
+              name: "url",
+            },
+            {
+              label: 'Content',
+              name: 'content',
+              type: 'reference',
+              collections: [
+                'page',
+                'website',
+                'sounds',
+                'post'
+              ], 
+            },
+          ],
+        },
+      ],
+    },
+    {
+      type: "object",
+      label: "Footer Menu",
+      name: "footer_menu",
+      list: true,
+      ui: {
+        itemProps: (item) => {
+          return {
+            label: item.label || 'Menu Item',
+          };
+        },
+      },
+      fields: [
+        {
+          type: "string",
+          label: "Label",
+          name: "label",
+          required: true,
+        },
+        {
+          type: "string",
+          label: "URL",
+          name: "url",
           required: true,
         },
         {
@@ -90,59 +164,16 @@ export default {
               name: "url",
               required: true,
             },
-          ],
-        },
-      ],
-    },
-    {
-      type: "object",
-      label: "Footer Menu",
-      name: "footer_menu",
-      list: true,
-      ui: {
-        itemProps: (item) => {
-          return {
-            label: item.label || 'Menu Item',
-          };
-        },
-      },
-      fields: [
-        {
-          type: "string",
-          label: "Label",
-          name: "label",
-          required: true,
-        },
-        {
-          type: "string",
-          label: "URL",
-          name: "url",
-          required: true,
-        },
-        {
-          type: "object",
-          label: "Submenu Items",
-          name: "subitems",
-          list: true,
-          ui: {
-            itemProps: (item) => {
-              return {
-                label: item.label || 'SubMenu Item',
-              };
-            },
-          },
-          fields: [
             {
-              type: "string",
-              label: "Label",
-              name: "label",
-              required: true,
-            },
-            {
-              type: "string",
-              label: "URL",
-              name: "url",
-              required: true,
+              label: 'Content',
+              name: 'content',
+              type: 'reference',
+              collections: [
+                'page',
+                'website',
+                'sounds',
+                'post'
+              ], 
             },
           ],
         },

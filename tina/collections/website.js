@@ -4,7 +4,7 @@
 export default {
   label: "Websites",
   name: "website",
-  path: "content/website",
+  path: "content/websites",
   format: "mdx",
   defaultItem: () => {
     return {
