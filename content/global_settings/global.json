@@ -2,7 +2,7 @@
   "logo": "",
   "title": "AM",
   "seo_title": "Austin Matherne | Web Developer",
-  "seo_text": "Testing the SEO. \"testing testing testing\"\n",
+  "seo_text": "Austin, TX based Front-End Web Developer and Musician. \n",
   "main_menu": [
     {
       "label": "Home",
@@ -34,6 +34,11 @@
     {
       "label": "Home",
       "url": "/"
+    },
+    {
+      "label": "Contact",
+      "url": "/",
+      "content": "content/page/contact-me.mdx"
     }
   ]
 }
