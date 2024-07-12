@@ -6,8 +6,7 @@
   "main_menu": [
     {
       "label": "Home",
-      "url": "/",
-      "content": ""
+      "url": "/"
     },
     {
       "label": "Websites",
@@ -15,7 +14,13 @@
     },
     {
       "label": "Sounds",
-      "url": "/sounds"
+      "url": "/sounds",
+      "subitems": [
+        {
+          "label": "Vetter Kids",
+          "content": "content/sounds/vetter-kids.mdx"
+        }
+      ]
     },
     {
       "label": "About",

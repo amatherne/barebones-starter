@@ -1,6 +1,7 @@
 // ../app/posts/[...filename]/client-page.tsx
 
 "use client"
+
 import { useTina } from "tinacms/dist/react";
 import { PostQuery } from "../../../tina/__generated__/types";
 
