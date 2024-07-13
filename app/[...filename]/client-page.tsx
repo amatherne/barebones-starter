@@ -47,7 +47,7 @@ const ClientPage = (props: ClientPageProps) => {
 
           {showTitle && <h1>{title}</h1>}
 
-          <div data-tina-field={tinaField(data.page, 'body')}>
+          <div className="rte" data-tina-field={tinaField(data.page, 'body')}>
             <TinaMarkdown content={content} />
           </div>
 

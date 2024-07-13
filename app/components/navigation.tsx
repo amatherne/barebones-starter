@@ -23,7 +23,7 @@ const Navigation = ({ menuData, className }) => {
           return (
             <li key={item.label}>
               <Link href={url}>
-                {item.label}
+                <span>{item.label}</span>
               </Link>
               {item.subitems && item.subitems.length > 0 && renderMenuItems(item.subitems)}
             </li>

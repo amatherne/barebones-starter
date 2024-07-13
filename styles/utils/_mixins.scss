@@ -174,3 +174,20 @@ $grid-breakpoints: (
   clip: rect(0 0 0 0);
   word-wrap: normal !important;
 }
+
+
+
+
+.gradient {
+  background: var(--color--mandy-pink);
+  background: linear-gradient(145deg, var(--color--mandy-pink), var(--color--windsor-purple));
+
+  &--text {
+    @extend .gradient;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+}
+
+
+

@@ -5,12 +5,15 @@
   left: 0;
   z-index: 5;;
 
-  --header--width: var(--desktop--header-width);
-  --header--transition-duration: .5s;
+  --header--width: var(--header--width--desktop);
+  --header--transition-duration: 0.5s;
   --header--transition-ease: ease;
 
+  --header--menu-width: calc(var(--header--width--open) - var(--base-gutter));
+
   --header--link-delay: 0s;
-  --header--link-delay-base: .10s;
+  --header--link-delay-base: 0.25s;
+  --header--link-delay-offset: 0.25s;
 
   --header--shadow-y: 20px;
   --header--shadow-opacity: 0.2;
@@ -18,7 +21,7 @@
   --header--shadow-opacity--open: 0.9;
 
   @include mq($sm) {
-    --header--width: var(--mobile--header-width);
+    --header--width: var(--header--width--mobile);
 
     --header--shadow-y: 10px;
     --header--shadow-opacity: 0.1;
@@ -27,8 +30,8 @@
   }
 
   body.header-menu-is-open & {
-    --header--width: var(--desktop--header-width--open);
-    --header--transition-duration: 1s;
+    --header--width: var(--header--width--open);
+    --header--transition-duration: 0.75s;
   }
 
   &--menu-panel {
@@ -37,17 +40,22 @@
     background: var(--color--background);
     height: 100vh;
     z-index: 3;
-    box-shadow: 6px 0 var(--header--shadow-y--open) 1px rgba(0,0,0,var(--header--shadow-opacity--open));
+    box-shadow: 6px 0 var(--header--shadow-y--open) 1px rgba(var(--color--foreground-rgb),var(--header--shadow-opacity--open));
     will-change: width, box-shadow;
     transition: {
       property: width, box-shadow;
       duration: var(--header--transition-duration);
       timing-function: var(--header--transition-ease);
     }
+
+    // menu open
+    body.header-menu-is-open & {
+      transition-timing-function: cubic-bezier(0.1, 0.9, 0, 1.2);
+    }
     
     // menu is closed
     body:not(.header-menu-is-open) & {
-      box-shadow: 6px 0 var(--header--shadow-y) 1px rgba(0,0,0,var(--header--shadow-opacity));
+      box-shadow: 6px 0 var(--header--shadow-y) 1px rgba(var(--color--foreground-rgb),var(--header--shadow-opacity));
 
       & + .overlay {
         opacity: 0;
@@ -77,14 +85,14 @@
     position: relative;
     padding: var(--base-gutter--quarter);
     margin: 0;
-    width: var(--desktop--header-width);
+    width: var(--header--width--desktop);
     display: inline-block;
     position: relative;
     line-height: 1;
     text-align: center;
 
     @include mq($sm) {
-      width: var(--mobile--header-width);
+      width: var(--header--width--mobile);
       font-size: var(--theme--font-size--h0);
     }
 
@@ -129,9 +137,22 @@
       width: 25px;
       height: 25px;
 
+      g {
+        will-change: fill;
+        transition: {
+          property: fill;
+          duration: var(--header--transition-duration);
+          timing-function: var(--header--transition-ease);
+        }
+        body.header-menu-is-open & {
+          fill: var(--color--mandy-pink);
+        }
+      }
+
       rect {
         transform: rotate(0deg);
         opacity: 1;
+        will-change: opacity, transform;
         transition: {
           property: opacity, transform;
           duration: var(--header--transition-duration);
@@ -171,16 +192,18 @@
     top: 50%;
     left: var(--base-gutter);
     transform: translateY(-50%);
-    width: calc(100% - var(--base-gutter));
+    width: var(--header--menu-width);
     overflow: hidden;
     list-style: none;
     margin: 0;
     padding: 0;
 
-    
-
     li {
       opacity: 1;
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      white-space: nowrap;
       will-change: width, opacity;
       transition: {
         property: opacity, width;
@@ -189,43 +212,93 @@
         delay: var(--header--link-delay);
       }
 
-      @for $i from 2 through 10 {
+      &::after {
+        content: '';
+        opacity: 1;
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: var(--base-gutter--double);
+        height: 100%;
+        background: rgb(var(--color--background-rgb));
+        background: linear-gradient(90deg, rgba(var(--color--background-rgb),0) 0%, rgba(var(--color--background-rgb),1) 100%);
+
+        body.header-menu-is-open & {
+          opacity: 0;
+          transition: opacity 0s var(--header--transition-duration) ease;
+        }
+      }
+
+      @for $i from 1 through 10 {
         &:nth-child(#{$i}) {
-          --header--link-delay: calc(var(--header--link-delay-base) * #{$i});
+          --header--link-delay: calc(var(--header--link-delay-offset) + var(--header--link-delay-base) * #{$i});
         }
       }
 
       a {
         display: block;
-        padding: var(--base-gutter--quarter) 0;
+        padding: var(--base-gutter--quarter) var(--base-gutter) var(--base-gutter--quarter) 0;
         color: var(--color--foreground);
         line-height: 1.1;
         letter-spacing: -0.2rem;
-        
+        white-space: wrap;
+        text-decoration: none;
+        width: var(--header--menu-width);
+      
         font: {
           family: var(--font-heading--family);
           weight: var(--font-heading--weight);
+          weight: 400;
           style: var(--font-heading--style);
           size: var(--theme--font-size--h1);
         }
 
-        will-change: color, font-weight;
+        will-change: color, font-weight, background;
         transition: {
           property: 
             font-weight, 
+            background,
             color;
-          duration: .2s;
+          duration: .3s;
           timing-function: linear;
         }
 
+        span {
+          text-decoration: underline;
+          text-decoration-thickness: 0.25rem;
+          text-decoration-color: transparent;
+
+          will-change: text-decoration-color;
+          transition: {
+            property: text-decoration-color;
+            duration: .3s;
+            timing-function: linear;
+          }
+        }
+
+
+        &.active span,
+        &:hover span,
+        &:focus span,
+        span:hover, 
+        span:focus {
+          @extend .gradient--text;
+          text-decoration-color: var(--color--mandy-pink);
+        }
+
+
         &:not(.active,:hover,:focus) {
-          font-weight: 400;
-          text-decoration: none;
+          // font-weight: 400;
+          // text-decoration: none;
         }
       }
 
+      body.header-menu-is-open & {
+        --header--transition-duration: 2.5s;
+      }
       body:not(.header-menu-is-open) & {
-        opacity: 0;
+        // opacity: 0;
+        width: 0%;
         pointer-events: none;
         --header--link-delay: 0s;
       }

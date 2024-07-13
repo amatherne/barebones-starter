@@ -56,6 +56,11 @@ const HeadStyles = () => {
         :root {
           ${RGB_CSS({ convert: "foreground: #212121;" })}
           ${RGB_CSS({ convert: "background: #ffffff;" })}
+
+          ${RGB_CSS({ convert: "mandy-pink: #EE5C6C;" })}
+          ${RGB_CSS({ convert: "windsor-purple: #6a0d83;" })}
+
+          --gradient: linear-gradient(145deg, var(--color--mandy-pink), var(--color--windsor-purple));
         }
 
         :root {
@@ -114,9 +119,9 @@ const HeadStyles = () => {
         }
 
         :root {
-          --mobile--header-width            : 90px;
-          --desktop--header-width           : 125px;
-          --desktop--header-width--open     : min(400px,100vw);
+          --header--width--mobile           : 90px;
+          --header--width--desktop          : 125px;
+          --header--width--open             : min(400px,100vw);
         }
 
         body {
@@ -128,6 +133,7 @@ const HeadStyles = () => {
         *::before,
         *::after {
           box-sizing: inherit;
+          {/*outline: 0.1rem solid red;*/}
         }
 
         html {

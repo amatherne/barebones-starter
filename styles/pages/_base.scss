@@ -2,7 +2,7 @@
 
 #MainContent {
   --content--transition: .35s;
-  --content--width: var(--desktop--header-width);
+  --content--width: var(--header--width--desktop);
 
   padding-left: var(--content--width);
   filter: blur(0);
@@ -15,7 +15,7 @@
   }
 
   @include mq($sm) {
-    --content--width: var(--mobile--header-width);
+    --content--width: var(--header--width--mobile);
   }
 }
 
