@@ -38,27 +38,29 @@ const Website = (props: ClientPageProps) => {
       
       {/*<Head seoTitle={pageSeoTitle} seoText={pageSeoText} />*/}
 
-      <div>
+      <section className="page page--default">
+        <div className="page-width">
         
         
-        {/*{hero && hero.src !== '' && (
-          <Img src={hero.src} alt={hero.alt} className="hero-image" />
-        )}*/}
+          {/*{hero && hero.src !== '' && (
+            <Img src={hero.src} alt={hero.alt} className="hero-image" />
+          )}*/}
 
-        <h1>{title}</h1>
+          <h1>{title}</h1>
 
-        {body && (
-          <div data-tina-field={tinaField(website, "body")}>
-            <TinaMarkdown content={body} />
-          </div>
-        )}
+          {body && (
+            <div data-tina-field={tinaField(website, "body")}>
+              <TinaMarkdown content={body} />
+            </div>
+          )}
 
-       {/* <code>
-          <pre style={{ backgroundColor: "lightgray" }}>
-            {JSON.stringify(website, null, 2)}
-          </pre>
-        </code>*/}
-      </div>
+         {/* <code>
+            <pre style={{ backgroundColor: "lightgray" }}>
+              {JSON.stringify(website, null, 2)}
+            </pre>
+          </code>*/}
+        </div>
+      </section>
     </>
   );
 };

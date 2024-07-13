@@ -6,25 +6,25 @@ import Card from '../components/utilities/card';
 export default function PostList(props) {
     return (
       <>
-        <div className="posts-page">
+        <section className="page page--default">
+          <div className="page-width">
 
-          <h1>Websites</h1>
-        
-          <div className="cell">
-            
-            {props.data.websiteConnection.edges.map((website) => {
-              return (
-                <div key={website.node.id} className="cell__item ">
-                  <Card 
-                    object={website}
-                  />
-                </div>
-              );
-            })}
+            <h1>Websites</h1>
+          
+            <div className="cell">
+              {props.data.websiteConnection.edges.map((website) => {
+                return (
+                  <div key={website.node.id} className="cell__item ">
+                    <Card 
+                      object={website}
+                    />
+                  </div>
+                );
+              })}
+            </div>
             
           </div>
-
-        </div>
+        </section>
       </>
     );
   }
