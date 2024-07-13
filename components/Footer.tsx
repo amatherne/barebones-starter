@@ -1,7 +1,7 @@
 // ../components/Footer.tsx
 
 import React from 'react';
-import Navigation from '../components/Navigation';
+import Navigation from '../components/navigation';
 import Globals from "../content/global_settings/global.json";
 
 const Footer = () => {

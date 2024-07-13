@@ -4,10 +4,10 @@ import React, { useEffect } from 'react';
 import Link from 'next/link';
 import Globals from '../content/global_settings/global.json';
 // import { Img } from '../components/Utilities/Img';
-import Navigation from '../components/Navigation';
+import Navigation from '../components/navigation';
 // import { wrapCharactersInSpan } from '../utils/helpers';
 import { useMenuHandler } from '../utils/menu';
-import MenuIcon from './Icons/MenuIcon';
+import MenuIcon from './icons/menuicon';
 
 const { wrapCharactersInSpan } = require('../utils/helpers');
 

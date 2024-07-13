@@ -1,10 +1,10 @@
-// ../components/Utilities/Card.tsx
+// ../components/utilities/card.tsx
 
 
 // import { Img } from '../../components/Utilities/Img';
 import Link from "next/link";
 
-const Card = ({object}) => {
+const card = ({object}) => {
 
   // const type      = object.node.__typename;
   // const handle    = `${type.toLowerCase()}${type.slice(-1)==='s'?'':'s'}`;
@@ -43,4 +43,4 @@ const Card = ({object}) => {
   );
 }
 
-export default Card;
+export default card;

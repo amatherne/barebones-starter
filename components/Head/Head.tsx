@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Globals from "../../content/global_settings/global.json";
-import HeadStyles from './HeadStyles';
+import HeadStyles from './headstyles';
 
 import '../../utils/index.js'
 

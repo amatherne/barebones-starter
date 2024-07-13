@@ -1,4 +1,4 @@
-// ../components/Head/HeadStyles.tsx
+// ../components/head/headstyles.tsx
 
 /* eslint-disable no-unused-vars */
 
