@@ -1,6 +1,6 @@
 // ../app/websites/client-page.tsx
 
-import card from '../../components/utilities/card';
+// import card from '../../components/utilities/card';
 
 
 export default function PostList(props) {
