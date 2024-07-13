@@ -6,19 +6,17 @@ import Link from "next/link";
 
 const card = ({object}) => {
 
-  // const type      = object.node.__typename;
-  // const handle    = `${type.toLowerCase()}${type.slice(-1)==='s'?'':'s'}`;
+  const type      = object.node.__typename;
+  const handle    = `${type.toLowerCase()}${type.slice(-1)==='s'?'':'s'}`;
   // const image     = object.node.hero_image;
   // const imageAlt  = object.node.hero_image_alt?object.node.hero_image_alt:'';
 
   return (
     <div className="card">
 
-    FUCK
-
-      {/*<Link href={`/${handle}/${object.node._sys.filename}`} title={object.node.title} className="overlay-link">
+      <Link href={`/${handle}/${object.node._sys.filename}`} title={object.node.title} className="overlay-link">
         {object.node.title}
-      </Link>*/}
+      </Link>
 
       {/*{image ? (
         <Img src={image} alt={imageAlt} className />

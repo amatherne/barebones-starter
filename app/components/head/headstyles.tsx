@@ -56,7 +56,6 @@ const HeadStyles = () => {
         :root {
           ${RGB_CSS({ convert: "foreground: #212121;" })}
           ${RGB_CSS({ convert: "background: #ffffff;" })}
-          ${RGB_CSS({ convert: "background: #ffffff;" })}
         }
 
         :root {
