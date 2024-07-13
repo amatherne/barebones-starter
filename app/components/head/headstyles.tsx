@@ -114,8 +114,9 @@ const HeadStyles = () => {
         }
 
         :root {
+          --mobile--header-width            : 90px;
           --desktop--header-width           : 125px;
-          --desktop--header-width--open     : 400px;
+          --desktop--header-width--open     : min(400px,100vw);
         }
 
         body {

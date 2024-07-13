@@ -1,3 +1,4 @@
+
 .header {
   position: fixed;
   top: 0;
@@ -11,6 +12,20 @@
   --header--link-delay: 0s;
   --header--link-delay-base: .10s;
 
+  --header--shadow-y: 20px;
+  --header--shadow-opacity: 0.2;
+  --header--shadow-y--open: 40px;
+  --header--shadow-opacity--open: 0.9;
+
+  @include mq($sm) {
+    --header--width: var(--mobile--header-width);
+
+    --header--shadow-y: 10px;
+    --header--shadow-opacity: 0.1;
+    --header--shadow-y--open: 20px;
+    --header--shadow-opacity--open: 0.8;
+  }
+
   body.header-menu-is-open & {
     --header--width: var(--desktop--header-width--open);
     --header--transition-duration: 1s;
@@ -22,7 +37,7 @@
     background: var(--color--background);
     height: 100vh;
     z-index: 3;
-    box-shadow: 6px 0 40px 1px rgba(0,0,0,.9);
+    box-shadow: 6px 0 var(--header--shadow-y--open) 1px rgba(0,0,0,var(--header--shadow-opacity--open));
     will-change: width, box-shadow;
     transition: {
       property: width, box-shadow;
@@ -32,7 +47,7 @@
     
     // menu is closed
     body:not(.header-menu-is-open) & {
-      box-shadow: 6px 0 20px 1px rgba(0,0,0,.2);
+      box-shadow: 6px 0 var(--header--shadow-y) 1px rgba(0,0,0,var(--header--shadow-opacity));
 
       & + .overlay {
         opacity: 0;
@@ -67,6 +82,11 @@
     position: relative;
     line-height: 1;
     text-align: center;
+
+    @include mq($sm) {
+      width: var(--mobile--header-width);
+      font-size: var(--theme--font-size--h0);
+    }
 
     span {
       position: relative;

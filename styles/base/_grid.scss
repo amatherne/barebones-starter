@@ -80,6 +80,7 @@
 
   --base-gutter--half                     : calc( var(--base-gutter) / 2 );
   --base-gutter--third                    : calc( var(--base-gutter) / 3 );
+  --base-gutter--twothirds                : calc( var(--base-gutter) * .6666667 );
   --base-gutter--quarter                  : calc( var(--base-gutter) / 4 );
   --base-gutter--eighth                   : calc( var(--base-gutter) / 8 );
 
@@ -142,7 +143,7 @@
 .cell__item {
   --width-raw: 100; // fallback if no width class applied for current media query
 
-  --page-width--padding: var(--base-gutter--half);
+  --page-width--padding: var(--base-gutter--twothirds);
 
   --page-width--with-padding: (var(--page-width,1600px) - (var(--page-width--padding) * 2));
   
@@ -224,7 +225,7 @@
 }
 
 .page-width {
-  --page-width--padding: var(--base-gutter--half);
+  --page-width--padding: var(--base-gutter--twothirds);
   width: 100%;
   max-width: var(--page-width);
   margin: 0 auto;

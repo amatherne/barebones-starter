@@ -1,23 +1,21 @@
 
 
 #MainContent {
-  
-  @include mq($sm) {
-    width: 100%;
+  --content--transition: .35s;
+  --content--width: var(--desktop--header-width);
+
+  padding-left: var(--content--width);
+  filter: blur(0);
+  will-change: filter;
+  transition: filter var(--content--transition) ease-out;
+
+  body.header-menu-is-open & {
+    --content--transition: .85s;
+    filter: blur(4px);
   }
 
-  @include mq($md-up) {
-    --header--transition: .35s;
-
-    padding-left: var(--desktop--header-width);
-    filter: blur(0);
-    will-change: filter;
-    transition: filter var(--header--transition) ease-out;
-
-    body.header-menu-is-open & {
-      --header--transition: .85s;
-      filter: blur(4px);
-    }
+  @include mq($sm) {
+    --content--width: var(--mobile--header-width);
   }
 }
 
@@ -35,5 +33,15 @@
 
   &.overlay-link {
     z-index: 2;
+  }
+}
+
+
+.page {
+  --page--padding: var(--base-gutter);
+  padding: var(--page--padding) 0;
+
+  @include mq($md-up) {
+    --page--padding: var(--base-gutter--double);
   }
 }
