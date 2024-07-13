@@ -13,14 +13,6 @@
       "url": "/websites"
     },
     {
-      "label": "Sounds",
-      "url": "/sounds"
-    },
-    {
-      "label": "Posts",
-      "url": "/posts"
-    },
-    {
       "label": "Testimonials",
       "content": "content/page/testimonials.mdx"
     },
@@ -35,9 +27,6 @@
     }
   ],
   "footer_menu": [
-    {
-      "label": "adsasdfasdf"
-    },
     {
       "label": "Home",
       "url": "/"
