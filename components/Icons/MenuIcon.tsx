@@ -12,4 +12,5 @@ const MenuIcon = ({ width = 30, height = 23, color = 'currentColor' }) => (
   </svg>
 );
 
+
 export default MenuIcon;
