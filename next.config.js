@@ -29,7 +29,10 @@ module.exports = {
       test: /\.md$/,
       use: 'raw-loader',
     });
+    
     return config;
+
+    config.resolve.modules.push(path.resolve('./'));
   },
 };
 
