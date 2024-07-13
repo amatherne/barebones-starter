@@ -18,10 +18,6 @@ module.exports = {
         source: '/admin',
         destination: '/admin/index.html',
       },
-      {
-        source: '/admin/app/api/:path*',
-        destination: 'http://localhost:3000/api/:path*',
-      },
     ];
   },
   webpack: (config) => {
@@ -30,9 +26,10 @@ module.exports = {
       use: 'raw-loader',
     });
     
+    config.resolve.modules.push(path.resolve('./'));
+
     return config;
 
-    config.resolve.modules.push(path.resolve('./'));
   },
 };
 
