@@ -4,8 +4,8 @@
 
 import React from 'react';
 
-import '../../styles/base/_typography.scss';
-import '../../styles/global.scss';
+import '../../../styles/base/_typography.scss';
+import '../../../styles/global.scss';
 
 const HeadStyles = () => {
   return (

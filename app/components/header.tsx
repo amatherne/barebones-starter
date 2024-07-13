@@ -2,14 +2,13 @@
 
 import React, { useEffect } from 'react';
 import Link from 'next/link';
-import Globals from '../content/global_settings/global.json';
+import Globals from '../../content/global_settings/global.json';
 // import { Img } from '../components/Utilities/Img';
 import Navigation from '../components/navigation';
-// import { wrapCharactersInSpan } from '../utils/helpers';
-import { useMenuHandler } from '../utils/menu';
+import { useMenuHandler } from '../../utils/menu';
 import MenuIcon from './icons/menuicon';
 
-const { wrapCharactersInSpan } = require('../utils/helpers');
+const { wrapCharactersInSpan } = require('../../utils/helpers');
 
 const Header = () => {
 
@@ -23,7 +22,7 @@ const Header = () => {
         
         <Link href="/" title={Globals.title} className="logo">
           {Globals.logo ? (
-            {/*<Img src={Globals.logo} alt="Logo" className="logo--image" />*/}
+            <Img src={Globals.logo} alt="Logo" className="logo--image" />
           ) : (
             textLogo
           )}
@@ -35,7 +34,7 @@ const Header = () => {
         </Link>
 
         {/* Add your navigation component here */}
-         <Navigation key="mainMenu" className="header--main-menu" menuData={Globals.main_menu} /> 
+        <Navigation key="mainMenu" className="header--main-menu" menuData={Globals.main_menu} /> 
       </div>
 
       <Link href="#" title="Close Menu" className="overlay overlay--link menu-trigger" />

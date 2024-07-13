@@ -1,10 +1,10 @@
 // ../components/Head/Head.tsx
 
 import React from 'react';
-import Globals from "../../content/global_settings/global.json";
-import HeadStyles from './headstyles';
+import Globals from "../../../content/global_settings/global.json";
+import HeadStyles from '../head/headstyles';
 
-import '../../utils/index.js'
+import '../../../utils/index.js'
 
 interface HeadProps {
   seoTitle?: string;

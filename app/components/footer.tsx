@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Navigation from '../components/navigation';
-import Globals from "../content/global_settings/global.json";
+import Globals from "../../content/global_settings/global.json";
 
 const Footer = () => {
 
