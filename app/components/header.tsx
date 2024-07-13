@@ -22,7 +22,7 @@ const Header = () => {
         
         <Link href="/" title={Globals.title} className="logo">
           {Globals.logo ? (
-            <Img src={Globals.logo} alt="Logo" className="logo--image" />
+            {/*<Img src={Globals.logo} alt="Logo" className="logo--image" />*/}
           ) : (
             textLogo
           )}

@@ -36,7 +36,7 @@ const Website = (props: ClientPageProps) => {
   return (
     <>
       
-      <Head seoTitle={pageSeoTitle} seoText={pageSeoText} />
+      {/*<Head seoTitle={pageSeoTitle} seoText={pageSeoText} />*/}
 
       <div>
         
