@@ -3,6 +3,7 @@
 /* eslint-disable no-unused-vars */
 
 import React from 'react';
+import RGB_CSS from '../../components/utilities/rgb_css';
 
 import '../../../styles/base/_typography.scss';
 import '../../../styles/global.scss';
@@ -53,8 +54,9 @@ const HeadStyles = () => {
         }
 
         :root {
-          --color--foreground: #212121;
-          --color--background: #ffffff;
+          ${RGB_CSS({ convert: "foreground: #212121;" })}
+          ${RGB_CSS({ convert: "background: #ffffff;" })}
+          ${RGB_CSS({ convert: "background: #ffffff;" })}
         }
 
         :root {
