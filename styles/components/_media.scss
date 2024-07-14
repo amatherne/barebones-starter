@@ -1,0 +1,197 @@
+
+:root {
+  --image--blur-start: 10px;
+  --image--scale-start: 1.025;
+
+  --image--blur-end: 0px;
+  --image--scale-end: 1;
+
+  --image--animation-rate: 1.5s;
+  --image--animation-delay: 0.5s;
+}
+
+.video--outer,
+.image--outer {
+  width: 100%;
+  position: relative;
+  margin: 0 auto;
+  overflow: hidden;
+  
+  &:not(.absolute) {
+    position: relative;
+  }
+  &.image--round {
+    border-radius: 150%;
+  }
+  &.image--contain {
+    img {
+      object-fit: contain;
+    }
+  }
+
+  &.background-video {
+    &,
+    .video--inner,
+    & > *:not(iframe,video) {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      width: 100%;
+      height: 100%;
+
+      iframe, 
+      video {
+
+      }
+    }
+  }
+
+  &:not(.background-video) > .video--inner,
+  iframe,
+  video {
+    aspect-ratio: 100 / var(--video--set-ratio, 56.6);
+    height: unset; // allows aspect-ratio to work
+  }
+
+  .video--inner,
+  .image--inner {
+    display: block;
+
+    .video-placeholder {
+      display: block;
+      height: 100%;
+      background: {
+        color: black;
+        size: cover;
+        position: center;
+        repeat: no-repeat;
+        image: var(--background-image);
+      }
+    }
+    .video-placeholder,
+    iframe,
+    video {
+      background-color: black;
+    }
+
+    .video-placeholder,
+    iframe,
+    video,
+    svg,
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+      width: 100%;
+    }
+
+
+
+    svg,
+    img {
+      height: 100%;
+      object-fit: cover;
+      object-position: var(--image--focal-point,center);
+
+      &.lazyloaded {
+        animation: {
+          name: progressiveReveal;
+          duration: var(--image--animation-rate);
+          delay: var(--image--animation-delay);
+          timing-function: ease-out;
+          direction: normal;
+          fill-mode: forwards;
+        } 
+      }
+      &.lazyloaded,
+      &.lazyload {
+        will-change: transform, filter;
+        filter: blur(var(--image--blur-start));
+        transform: scale(var(--image--scale-start));
+      }
+    }
+    .no-js & {
+      @extend %visually-hidden;
+    }
+  }
+}
+
+.bg_image {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  overflow: hidden;
+
+  svg,
+  img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: var(--image--focal-point,center);
+    &.lazyloaded {
+      will-change: transform, filter;
+      // animation: progressiveReveal var(--image--animation-rate) var(--image--animation-delay) ease-out;
+      animation: {
+        name: progressiveReveal;
+        duration: var(--image--animation-rate);
+        delay: var(--image--animation-delay);
+        timing-function: ease-out;
+        direction: normal;
+        fill-mode: forwards;
+      } 
+    }
+    &.lazyloaded,
+    &.lazyload {
+      will-change: transform, filter;
+      filter: blur(var(--image--blur-start));
+      transform: scale(var(--image--scale-start));
+    }
+  }
+}
+
+.bg_image, 
+.image--outer, 
+.image-content__image-container {
+  &.image--contain {
+    svg,
+    img {
+      object-fit: contain;
+    }
+  }
+}
+
+@keyframes progressiveReveal {
+  0% {
+    transform: scale(var(--image--scale-start));
+    filter: blur(var(--image--blur-start));
+  }
+  // 50% {
+  //   filter: blur(var(--image--blur-end));
+  // }
+  100% {
+    transform: scale(var(--image--scale-end));
+    filter: blur(var(--image--blur-end));
+  }
+}
+
+.video-inline {
+  position: relative;
+  padding-top: 56.6%;
+  overflow: hidden;
+
+  iframe, 
+  video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
+}

@@ -6,6 +6,8 @@ import React from 'react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { tinaField, useTina } from 'tinacms/dist/react';
 import { PageQuery } from '../../tina/__generated__/types';
+import { Img } from '../components/utilities/img';
+
 
 interface ClientPageProps {
   query: string;
@@ -27,21 +29,29 @@ const ClientPage = (props: ClientPageProps) => {
 
   const { page } = data;
   const { body, title } = page || {};
-  // const images = gallery || [];
-  // const hero = images.find(item => item?.hero) || null;
 
-  // const pageSeoTitle = data?.page?.seo_title || ""; 
-  // const pageSeoText = data?.page?.seo_text || ""; 
+  const images = data.page.gallery || [];
 
-  // console.log(props)
-  // console.log(props.params)
-  // console.log(props.params.filename)
-  // console.log(props.params.filename.join("/"))
+  const pageSeoTitle = data?.page?.seo_title || ""; 
+  const pageSeoText = data?.page?.seo_text || ""; 
+
   const showTitle = props.params.filename.join("/") !== "home";
-  // const showTitle = true;
 
   return (
-    <>
+    <>  
+
+      {images && (
+        <div className="gallery">
+          {images.map((image, index) => (
+            image.src && (
+              <div key={index}>
+                <Img src={image.src} alt={image.alt} className="hero-image" />
+              </div>
+            )
+          ))}
+        </div>
+      )}
+
       <section className="page page--default">
         <div className="page-width">
 
