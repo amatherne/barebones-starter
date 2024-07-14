@@ -41,7 +41,7 @@ img {
 }
 
 #MainContent {
-  --content--transition: .35s;
+  --content--transition: .5s;
   --content--width: var(--header--width--desktop);
 
   position: relative;
@@ -58,7 +58,7 @@ img {
 
   body.header-menu-is-open & {
     --content--transition: .85s;
-    filter: blur(4px);
+    filter: blur(10px);
   }
 
   @include mq($x-sm-up) {
