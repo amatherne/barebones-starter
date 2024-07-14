@@ -37,9 +37,7 @@
     --header--width: var(--header--width--mobile);
 
     --header--shadow-y: 10px;
-    // --header--shadow-opacity: 0.1;
     --header--shadow-y--open: 20px;
-    // --header--shadow-opacity--open: 0.8;
   }
 
   body.header-menu-is-open & {
@@ -142,6 +140,14 @@
 
     @include mq($x-sm) {
       grid-area: logo;
+    }
+
+    &:hover, 
+    &:focus {
+      span {
+        @extend .gradient--text;
+        text-shadow: none;
+      }
     }
 
     span {
