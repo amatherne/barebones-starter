@@ -7,7 +7,6 @@ import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { tinaField, useTina } from 'tinacms/dist/react';
 import { PageQuery } from '../../tina/__generated__/types';
 import Gallery from '../components/gallery';
-import ImgOutput from '../components/utilities/img';
 
 interface ClientPageProps {
   query: string;
@@ -32,20 +31,25 @@ const ClientPage = (props: ClientPageProps) => {
 
   const gallerySettings = data.page.hero || null;
 
+  // Transform gallery settings to match the expected type
+  const transformedGallerySettings = gallerySettings
+    ? {
+        height: gallerySettings.height,
+        min_height: gallerySettings.min_height,
+        max_height: gallerySettings.max_height,
+        gallery: gallerySettings.gallery?.map((item) =>
+          item?.src ? { src: item.src, alt: item.alt || '' } : null
+        ).filter((item) => item !== null) || [],
+      }
+    : null;
+
   // Check if the current page is not the home page to show the title
   const showTitle = props.params.filename.join("/") !== "home";
 
   return (
     <>
-      {gallerySettings && (
-        <Gallery
-          gallerySettings={{
-            height: gallerySettings.height,
-            min_height: gallerySettings.min_height,
-            max_height: gallerySettings.max_height,
-            gallery: gallerySettings.gallery || [],
-          }}
-        />
+      {transformedGallerySettings && (
+        <Gallery gallerySettings={transformedGallerySettings} />
       )}
 
       <section className="page page--default">

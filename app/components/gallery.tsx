@@ -8,7 +8,7 @@ interface GalleryProps {
     height?: string | null;
     min_height?: string | null;
     max_height?: string | null;
-    gallery: Array<{ src: string; alt: string } | null>;
+    gallery: Array<{ src: string; alt: string }>;
   };
 }
 
@@ -30,13 +30,11 @@ const Gallery: React.FC<GalleryProps> = ({ gallerySettings }) => {
 
   return (
     <div className={`gallery ${galleryClass ? 'set-height ' + galleryClass : ''}`} style={galleryStyle}>
-      {gallery.map((image, index) =>
-        image?.src ? (
-          <div key={index} className="gallery--item">
-            <ImgOutput src={image.src} alt={image.alt} className="gallery--image" />
-          </div>
-        ) : null
-      )}
+      {gallery.map((image, index) => (
+        <div key={index} className="gallery--item">
+          <ImgOutput src={image.src} alt={image.alt} className="gallery--image" />
+        </div>
+      ))}
     </div>
   );
 };
