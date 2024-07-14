@@ -1,6 +1,6 @@
 // ../app/components/test-media.tsx
 
-import { useCMS, Media } from 'tinacms';
+import { useCMS, Media, MediaList } from 'tinacms';
 import React, { useState } from 'react';
 
 const TestMedia = () => {
@@ -9,9 +9,10 @@ const TestMedia = () => {
 
   const handleListMedia = async () => {
     try {
-      const media = await cms.media.store.list();
-      setMediaList(media);
-      console.log('Media list:', media);
+      const media: MediaList = await cms.media.store.list();
+      const mediaArray: Media[] = Array.from(media); // Convert MediaList to Media[]
+      setMediaList(mediaArray);
+      console.log('Media list:', mediaArray);
     } catch (error) {
       console.error('Error listing media:', error);
     }
