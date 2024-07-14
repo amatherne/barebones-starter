@@ -17,7 +17,7 @@ interface ClientPageProps {
   params: { filename: string[] }; // Add params to props
 }
 
-const ClientPage = (props: ClientPageProps) => {
+const ClientPage: React.FC<ClientPageProps> = (props) => {
   const { data } = useTina({
     query: props.query,
     variables: props.variables,
@@ -25,31 +25,23 @@ const ClientPage = (props: ClientPageProps) => {
   });
 
   const content = data.page.body;
-
   const { page } = data;
   const { body, title } = page || {};
 
-  const gallerySettings = data.page.hero || null;
+  const gallerySettings = data.page.hero || {
+    height: null,
+    min_height: null,
+    max_height: null,
+    gallery: [],
+  };
 
-  // Transform gallery settings to match the expected type
-  const transformedGallerySettings = gallerySettings
-    ? {
-        height: gallerySettings.height,
-        min_height: gallerySettings.min_height,
-        max_height: gallerySettings.max_height,
-        gallery: gallerySettings.gallery?.map((item) =>
-          item?.src ? { src: item.src, alt: item.alt || '' } : null
-        ).filter((item) => item !== null) || [],
-      }
-    : null;
-
-  // Check if the current page is not the home page to show the title
   const showTitle = props.params.filename.join("/") !== "home";
 
   return (
     <>
-      {transformedGallerySettings && (
-        <Gallery gallerySettings={transformedGallerySettings} />
+
+      {gallerySettings && (
+        <Gallery gallerySettings={gallerySettings} />
       )}
 
       <section className="page page--default">
