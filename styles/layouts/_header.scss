@@ -48,7 +48,6 @@
   }
 
   &--menu-panel {
-    // overflow: hidden;
     background: var(--color--background);
     z-index: 3;
     will-change: width, box-shadow;
@@ -85,6 +84,7 @@
 
     @include mq($x-sm-up) {
       position: absolute;
+      overflow: hidden;
       width: var(--header--width);
       height: 100vh;
       box-shadow: 6px 0 var(--header--shadow-y--open) 1px rgba(var(--color--foreground-rgb),var(--header--shadow-opacity--open));
