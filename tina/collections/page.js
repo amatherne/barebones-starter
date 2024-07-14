@@ -1,89 +1,17 @@
+// ../tina/collections/page
 /**
  * @type {import('tinacms').Collection}
  */
+
+import gallery from '../schemas/gallery';
+
 export default {
   label: "Pages",
   name: "page",
   path: "content/page",
   format: "mdx",
-  defaultItem: () => {
-    return {
-      gallery: [
-        {
-          src: '',
-          alt: '',
-        },
-      ],
-    };
-  },
   fields: [
-    {
-      type: 'object',
-      label: 'Gallery',
-      name: 'gallery',
-      list: true,
-      ui: {
-        itemProps: (item) => {
-          const imgTitle = item.src.substring(item.src.lastIndexOf('/') + 1);
-          const galleryTitle = item.title;
-          return {
-            label: `${galleryTitle || item.alt || imgTitle || 'Image'}`,
-            // thumbnail: item.src || '', // from chatGPT
-            // image: item.src || '', // test
-          };
-        },
-      },
-      fields: [
-        {
-          type: 'image',
-          label: 'Image',
-          name: 'src',
-        },
-        {
-          type: 'string',
-          label: 'Alt Text',
-          name: 'alt',
-        },
-        {
-          type: 'string',
-          label: 'Title',
-          name: 'title',
-        },
-        {
-          type: "rich-text",
-          label: "Text",
-          name: "text",
-        },
-        {
-          type: 'object',
-          label: 'Button',
-          name: 'button',
-          fields: [
-            {
-              type: "string",
-              label: "Button Text",
-              name: "button_text",
-            },
-            {
-              type: "string",
-              label: "Button Url",
-              name: "button_url",
-            },
-            {
-              type: 'reference',
-              label: 'Button Url (content)',
-              name: 'button_url_content',
-              collections: [
-                'page',
-                'website',
-                'sounds',
-                'post'
-              ], 
-            },
-          ],
-        },
-      ],
-    },
+    gallery,
     {
       type: "string",
       label: "Title",

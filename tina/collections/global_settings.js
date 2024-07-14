@@ -3,6 +3,9 @@
 /**
  * @type {import('tinacms').Collection}
  */
+
+import link from '../schemas/link';
+
 export default {
   label: "Global Settings",
   name: "global_settings",
@@ -35,70 +38,28 @@ export default {
       name: "main_menu",
       list: true,
       ui: {
-        itemProps: (item) => {
-          return {
-            label: item.label || 'Menu Item',
-          };
-        },
+        itemProps: (item) => ({
+          label: item.text || 'Menu Item',
+        }),
       },
       fields: [
-        {
-          type: "string",
-          label: "Label",
-          name: "label",
-          required: true,
-        },
-        {
-          type: "string",
-          label: "URL",
-          name: "url",
-        },
-        {
-          label: 'Content',
-          name: 'content',
-          type: 'reference',
-          collections: [
-            'page',
-            'website',
-            'sounds',
-            'post'
-          ], 
-        },
+        link.fields[0],
+        link.fields[1],
+        link.fields[2],
         {
           type: "object",
           label: "Submenu Items",
           name: "subitems",
           list: true,
           ui: {
-            itemProps: (item) => {
-              return {
-                label: item.label || 'SubMenu Item',
-              };
-            },
+            itemProps: (item) => ({
+              label: item.text || 'SubMenu Item',
+            }),
           },
           fields: [
-            {
-              type: "string",
-              label: "Label",
-              name: "label",
-              required: true,
-            },
-            {
-              type: "string",
-              label: "URL",
-              name: "url",
-            },
-            {
-              label: 'Content',
-              name: 'content',
-              type: 'reference',
-              collections: [
-                'page',
-                'website',
-                'sounds',
-                'post'
-              ], 
-            },
+            link.fields[0],
+            link.fields[1],
+            link.fields[2],
           ],
         },
       ],
@@ -109,35 +70,14 @@ export default {
       name: "footer_menu",
       list: true,
       ui: {
-        itemProps: (item) => {
-          return {
-            label: item.label || 'Menu Item',
-          };
-        },
+        itemProps: (item) => ({
+          label: item.text || 'Menu Item',
+        }),
       },
       fields: [
-        {
-          type: "string",
-          label: "Label",
-          name: "label",
-          required: true,
-        },
-        {
-          type: "string",
-          label: "URL",
-          name: "url",
-        },
-        {
-          label: 'Content',
-          name: 'content',
-          type: 'reference',
-          collections: [
-            'page',
-            'website',
-            'sounds',
-            'post'
-          ], 
-        },
+        link.fields[0],
+        link.fields[1],
+        link.fields[2],
       ],
     },
   ],

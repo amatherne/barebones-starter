@@ -5,46 +5,46 @@
   "seo_text": "Austin, TX based Front-End Web Developer and Musician.\n",
   "main_menu": [
     {
-      "label": "Home",
-      "url": "/"
+      "text": "Home",
+      "content": "content/page/home.mdx"
     },
     {
-      "label": "Websites",
+      "text": "Websites",
       "url": "/websites"
     },
     {
-      "label": "Testimonials",
+      "text": "Testimonials",
       "content": "content/page/testimonials.mdx"
     },
     {
-      "label": "About",
+      "text": "About",
+      "url": "",
       "content": "content/page/about.mdx"
     },
     {
-      "label": "Contact",
-      "url": "",
+      "text": "Contact",
       "content": "content/page/contact-me.mdx"
     }
   ],
   "footer_menu": [
     {
-      "label": "Home",
+      "text": "Home",
       "url": "/"
     },
     {
-      "label": "Websites",
+      "text": "Websites",
       "url": "/websites"
     },
     {
-      "label": "Testimonials",
+      "text": "Testimonials",
       "content": "content/page/testimonials.mdx"
     },
     {
-      "label": "About",
+      "text": "About",
       "content": "content/page/about.mdx"
     },
     {
-      "label": "Contact",
+      "text": "Contact",
       "url": "",
       "content": "content/page/contact-me.mdx"
     }
