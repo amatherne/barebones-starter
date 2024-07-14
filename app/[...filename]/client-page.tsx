@@ -30,8 +30,6 @@ const ClientPage = (props: ClientPageProps) => {
   const { page } = data;
   const { body, title } = page || {};
 
-  // console.log(data);
-
   const gallerySettings = data.page.hero || null;
 
   // Check if the current page is not the home page to show the title
@@ -39,7 +37,16 @@ const ClientPage = (props: ClientPageProps) => {
 
   return (
     <>
-      {gallerySettings && <Gallery gallerySettings={gallerySettings} />}
+      {gallerySettings && (
+        <Gallery
+          gallerySettings={{
+            height: gallerySettings.height,
+            min_height: gallerySettings.min_height,
+            max_height: gallerySettings.max_height,
+            gallery: gallerySettings.gallery || [],
+          }}
+        />
+      )}
 
       <section className="page page--default">
         <div className="page-width">
