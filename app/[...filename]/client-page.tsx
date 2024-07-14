@@ -50,13 +50,6 @@ const ClientPage = (props: ClientPageProps) => {
               </div>
             ) : null
           ))}*/}
-          {images.map((image, index) => (
-            image ? (
-              <div key={index}>
-                <div>image: ${image}</div>
-              </div>
-            ) : null
-          ))}
         </div>
       )}
 
