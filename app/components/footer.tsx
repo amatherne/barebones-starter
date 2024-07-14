@@ -1,4 +1,4 @@
-// ../components/Footer.tsx
+// ../components/footer.tsx
 
 import React from 'react';
 import Navigation from '../components/navigation';
@@ -7,11 +7,17 @@ import Globals from "../../content/global_settings/global.json";
 const Footer = () => {
 
   return (
-    <footer className="footer">
+    <>
+      <footer className="footer section color--alt">
+        <div className="page-width">
+          <div className="footer--sticky-section">
 
-      <Navigation key="footerMenu" className="" menuData={Globals.footer_menu} />
-
-    </footer>
+            <Navigation key="footerMenu" className="footer--menu" menuData={Globals.footer_menu} />
+            
+          </div>
+        </div>
+      </footer>
+    </>
   );
 };
 

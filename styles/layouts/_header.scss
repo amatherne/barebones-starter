@@ -3,7 +3,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 5;;
+  z-index: 5;
 
   --header--width: var(--header--width--desktop);
   --header--transition-duration: 0.5s;
@@ -36,6 +36,7 @@
 
   &--menu-panel {
     position: absolute;
+    overflow: hidden;
     width: var(--header--width);
     background: var(--color--background);
     height: 100vh;

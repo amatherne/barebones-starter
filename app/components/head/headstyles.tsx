@@ -54,8 +54,13 @@ const HeadStyles = () => {
         }
 
         :root {
-          ${RGB_CSS({ convert: "foreground: #212121;" })}
-          ${RGB_CSS({ convert: "background: #ffffff;" })}
+          ${RGB_CSS({ convert: "mineshaft-black: #212121;" })}
+          ${RGB_CSS({ convert: "white: #ffffff;" })}
+
+          --color--foreground: var(--color--mineshaft-black);
+          --color--foreground-rgb: var(--color--mineshaft-black-rgb);
+          --color--background: var(--color--white);
+          --color--background-rgb: var(--color--white-rgb);
 
           ${RGB_CSS({ convert: "mandy-pink: #EE5C6C;" })}
           ${RGB_CSS({ convert: "windsor-purple: #6a0d83;" })}
@@ -63,7 +68,16 @@ const HeadStyles = () => {
           --gradient: linear-gradient(145deg, var(--color--mandy-pink), var(--color--windsor-purple));
         }
 
+        .color--alt {
+          --color--foreground: var(--color--white);
+          --color--foreground-rgb: var(--color--white-rgb);
+          --color--background: var(--color--mineshaft-black);
+          --color--background-rgb: var(--color--mineshaft-black-rgb);
+        }
+
         :root {
+          --page-width                      : 1600px;
+
           --global--spacing-sections        : 60px;
           --global--grid-horizontal         : 30px;
           --global--grid-vertical           : 30px;

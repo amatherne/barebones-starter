@@ -4,6 +4,8 @@
   --content--transition: .35s;
   --content--width: var(--header--width--desktop);
 
+  position: relative;
+  z-index: 1;
   padding-left: var(--content--width);
   filter: blur(0);
   will-change: filter;
@@ -36,8 +38,8 @@
   }
 }
 
-
-.page {
+.page,
+.section {
   --page--padding: var(--base-gutter);
   padding: var(--page--padding) 0;
 

@@ -1,3 +1,18 @@
 .footer {
-  display: none;
+  position: relative;
+  z-index: 10;
+  background: var(--color--background);
+
+  @include mq($md-up) {
+
+    .page-width {
+      min-height: calc(100vh - (var(--page-width--padding) * 2));
+    }
+
+    &--sticky-section {
+      position: sticky;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  } 
 }
