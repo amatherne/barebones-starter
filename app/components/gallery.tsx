@@ -15,10 +15,10 @@ interface GalleryProps {
 const Gallery: React.FC<GalleryProps> = ({ gallerySettings }) => {
   const { height, min_height, max_height, gallery } = gallerySettings;
 
-  const galleryStyle: React.CSSProperties = {
-    '--height--default': height ? height.replace('%', 'vw') : 'auto',
-    '--height--min': min_height ? min_height.replace('%', 'vw') : 'auto',
-    '--height--max': max_height ? max_height.replace('%', 'vw') : 'auto',
+  const galleryStyle: any = { 
+    ...(height && { '--height--default': height.replace('%', 'vw') }),
+    ...(min_height && { '--height--min': min_height.replace('%', 'vw') }),
+    ...(max_height && { '--height--max': max_height.replace('%', 'vw') }),
   };
 
   const galleryClass = `
