@@ -6,7 +6,7 @@ import React from 'react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { tinaField, useTina } from 'tinacms/dist/react';
 import { PageQuery } from '../../tina/__generated__/types';
-import { Img } from '../components/utilities/img';
+// import { Img } from '../components/utilities/img';
 
 
 interface ClientPageProps {
