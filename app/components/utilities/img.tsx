@@ -13,22 +13,22 @@ const Img = ({ src, alt, className }) => {
   const imageID = `${src}-${alt}-${className}`;
 
   return (
-    <div className={`image-outer image-${imageID} ${className ? className : ''}`}>
+    <div className={`image--outer image--${imageID} ${className ? className : ''}`}>
       <img
         src={src}
         alt={alt}
-        className="image-inner"
+        className="image--image"
         onLoad={handleImageLoad}
         style={{ maxWidth: '100%', height: 'auto' }}
       />
-      {dimensions.width && dimensions.height && (
+      { dimensions.width && dimensions.height ? (
         <style jsx>{`
-          .image-${imageID} {
-            --image-natural-width: ${dimensions.width}px;
-            --image-natural-height: ${dimensions.height}px;
+          .image--${imageID} {
+            --image--natural-width: ${dimensions.width}px;
+            --image--natural-height: ${ (1 / ( dimensions.width / dimensions.height )) * 100 }%;
           }
         `}</style>
-      )}
+      ) : null }
     </div>
   );
 };
