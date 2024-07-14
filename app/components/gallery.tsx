@@ -5,9 +5,9 @@ import ImgOutput from './utilities/img';
 
 interface GalleryProps {
   gallerySettings: {
-    height?: string;
-    min_height?: string;
-    max_height?: string;
+    height?: string | null;
+    min_height?: string | null;
+    max_height?: string | null;
     gallery: Array<{ src: string; alt: string } | null>;
   };
 }
@@ -34,8 +34,6 @@ const Gallery: React.FC<GalleryProps> = ({ gallerySettings }) => {
         image?.src ? (
           <div key={index} className="gallery--item">
             <ImgOutput src={image.src} alt={image.alt} className="gallery--image" />
-
-            
           </div>
         ) : null
       )}
