@@ -32,8 +32,8 @@ const ClientPage = (props: ClientPageProps) => {
 
   const images = data.page.gallery || [];
 
-  const pageSeoTitle = data?.page?.seo_title || ""; 
-  const pageSeoText = data?.page?.seo_text || ""; 
+  const pageSeoTitle = data?.page?.seo_title? || ""; 
+  // const pageSeoText = data?.page?.seo_text? || ""; 
 
   const showTitle = props.params.filename.join("/") !== "home";
 
