@@ -1,4 +1,4 @@
-// ../components/Utilities/RGB_CSS.tsx
+// ../components/utilities/rgb_css.tsx
 
 import React from 'react';
 

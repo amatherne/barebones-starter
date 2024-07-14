@@ -1,7 +1,13 @@
 // ../tina/schemas/gallery.js
 
 import link from '../schemas/link';
-import { fields as imageFields } from '../schemas/image';
+import { MediaUploadFieldPlugin } from '@tinacms/fields';
+import { FormBuilderPlugin } from '@tinacms/form-builder';
+import { GlobalStylesheet } from '@tinacms/styles';
+import { IconPlugin } from '@tinacms/icons';
+import { useCMS } from '@tinacms/react-core';
+
+
 
 const gallery = {
   type: 'object',
@@ -20,13 +26,36 @@ const gallery = {
       };
     },
   },
+  plugins: [
+    MediaUploadFieldPlugin,
+    FormBuilderPlugin,
+    GlobalStylesheet,
+    IconPlugin,
+  ],
   fields: [
     // {
     //   type: 'image',
     //   label: 'Image',
     //   name: 'src',
     // },
-    ...imageFields,
+    {
+      label: 'Image',
+      name: 'src',
+      component: 'image',
+      type: 'image',
+      ui: {
+        parse(media) {
+          if (media.filename) {
+            const newFilename = media.filename.replace(/\s+/g, '-'); // Replace spaces with hyphens
+            return {
+              ...media,
+              filename: newFilename,
+            };
+          }
+          return media;
+        },
+      },
+    },
     {
       type: 'string',
       label: 'Alt Text',
