@@ -1,73 +1,70 @@
+// ../app/components/utilities/img.js
 
-// /* eslint-disable @next/next/no-img-element */
+import React from 'react';
+import { useCMS } from 'tinacms';
 
-// import React, { useState, useEffect } from 'react';
+const ImgOutput = ({ src, alt, className }) => {
+  const cms = useCMS();
+  const [dimensions, setDimensions] = React.useState({ width: 0, height: 0 });
 
-// export const Img = ({ src, alt, className }) => {
-//   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-//   const [imageID, setImageID] = useState('');
+  React.useEffect(() => {
+    const getImageDimensions = async () => {
+      try {
+        const response = await fetch(src);
+        const blob = await response.blob();
+        const img = new Image();
+        img.src = URL.createObjectURL(blob);
+        img.onload = () => {
+          setDimensions({ width: img.width, height: img.height });
+        };
+      } catch (error) {
+        console.error('Error fetching image:', error);
+      }
+    };
 
-//   useEffect(() => {
-//     // Generate a unique image ID
-//     const id = `image-${Math.floor(Math.random() * 1000000)}`;
-//     setImageID(id);
+    getImageDimensions();
+  }, [src, alt, className]);
 
-//     // Fetch image dimensions
-//     getImageDimensions(src)
-//       .then(dimensions => {
-//         setDimensions(dimensions);
-//       })
-//       .catch(error => {
-//         console.error('Error loading image dimensions:', error);
-//       });
+  const aspectRatio = dimensions.width / dimensions.height;
+  const paddingTop = (1 / aspectRatio) * 100;
 
-//     // Clean up style element on component unmount
-//     return () => {
-//       // removeImageStyle(id);
-//     };
-//   }, [src]);
+  const generateHmacSha1 = (source, key) => {
+    const crypto = require('crypto');
+    const hmac = crypto.createHmac('sha1', key);
+    hmac.update(source);
+    return hmac.digest('hex');
+  };
 
-//   const aspectRatio = dimensions.width / dimensions.height;
-//   const paddingTop = (1 / aspectRatio) * 100;
+  const key = src + alt + className;
+  const imageID = generateHmacSha1(src, key);
 
-//   function getImageDimensions(url) {
-//     return new Promise((resolve, reject) => {
-//       const img = new Image();
-//       img.onload = () => {
-//         resolve({ width: img.width, height: img.height });
-//       };
-//       img.onerror = (err) => {
-//         reject(err);
-//       };
-//       img.src = url;
-//     });
-//   }
+  return (
+    dimensions.width && dimensions.height && (
+      <div className={`image--outer image--${imageID} ${className ? className : ''}`}>
+        <div className="image--inner">
+            <img
+              src={src}
+              alt={alt}
+              loading="lazy"
+              width={dimensions.width}
+              height={dimensions.height}
+            />
+        </div>
+        <style jsx>{`
+          .image--${imageID} {
+            --image--natural-width: ${dimensions.width}px;
+            --image--natural-height: ${paddingTop}%;
+            --image--set-width: var(--image--natural-width);
+            --image--set-height: var(--image--natural-height);
+            max-width: var(--image--set-width, 100%);
+          }
+          .image--${imageID} .image--inner {
+            padding-top: var(--image--set-height, 56.6%);
+          }
+        `}</style>
+      </div>
+    )
+  );
+};
 
-//   return (
-//     <>
-
-//       <div className={`image--outer image--${imageID} ${className ? className : ''}`}>
-//         <link rel="preload" href={src} as="image" />
-//         <div className="image--inner">
-//           <img
-//             src={src}
-//             alt={alt}
-//             loading="lazy" 
-//           />
-//         </div>
-//         <style jsx>{`
-//           .image--${imageID} {
-//             --image--natural-width: ${dimensions.width}px;
-//             --image--natural-height: ${paddingTop}%;
-//             --image--set-width: var(--image--natural-width);
-//             --image--set-height: var(--image--natural-height);
-//             max-width: var(--image--set-width, 100%);
-//           }
-//           .image--${imageID} .image--inner {
-//             padding-top: var(--image--set-height, 56.6%);
-//           }
-//         `}</style>
-//       </div>
-//     </>
-//   );
-// };
+export default ImgOutput;
