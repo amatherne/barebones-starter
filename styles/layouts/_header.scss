@@ -1,9 +1,22 @@
 
 .header {
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: relative;
   z-index: 5;
+
+  @include mq($x-sm) {
+    top: 0;
+    position: sticky;
+
+    body.header-menu-is-open & {
+      z-index: 15;
+    }
+  }
+
+  @include mq($x-sm-up) {
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
 
   --header--width: var(--header--width--desktop);
   --header--transition-duration: 0.5s;
@@ -24,9 +37,9 @@
     --header--width: var(--header--width--mobile);
 
     --header--shadow-y: 10px;
-    --header--shadow-opacity: 0.1;
+    // --header--shadow-opacity: 0.1;
     --header--shadow-y--open: 20px;
-    --header--shadow-opacity--open: 0.8;
+    // --header--shadow-opacity--open: 0.8;
   }
 
   body.header-menu-is-open & {
@@ -35,32 +48,53 @@
   }
 
   &--menu-panel {
-    position: absolute;
-    overflow: hidden;
-    width: var(--header--width);
+    // overflow: hidden;
     background: var(--color--background);
-    height: 100vh;
     z-index: 3;
-    box-shadow: 6px 0 var(--header--shadow-y--open) 1px rgba(var(--color--foreground-rgb),var(--header--shadow-opacity--open));
     will-change: width, box-shadow;
     transition: {
       property: width, box-shadow;
       duration: var(--header--transition-duration);
       timing-function: var(--header--transition-ease);
     }
-
-    // menu open
-    body.header-menu-is-open & {
-      transition-timing-function: cubic-bezier(0.1, 0.9, 0, 1.2);
-    }
     
-    // menu is closed
     body:not(.header-menu-is-open) & {
-      box-shadow: 6px 0 var(--header--shadow-y) 1px rgba(var(--color--foreground-rgb),var(--header--shadow-opacity));
 
       & + .overlay {
         opacity: 0;
         pointer-events: none;
+      }
+    }
+
+    @include mq($x-sm) {
+      position: relative;
+      display: grid;
+      grid-template-areas: 
+        'logo icon'
+        'menu menu'
+      ;
+      align-items: center;
+      padding: var(--base-gutter--quarter) 0;
+      width: 100%;
+      box-shadow: 0 6px var(--header--shadow-y--open) 1px rgba(var(--color--foreground-rgb),var(--header--shadow-opacity--open));
+
+      body:not(.header-menu-is-open) & {
+        box-shadow: 0 6px var(--header--shadow-y) 1px rgba(var(--color--foreground-rgb),var(--header--shadow-opacity));
+      }
+    }
+
+    @include mq($x-sm-up) {
+      position: absolute;
+      width: var(--header--width);
+      height: 100vh;
+      box-shadow: 6px 0 var(--header--shadow-y--open) 1px rgba(var(--color--foreground-rgb),var(--header--shadow-opacity--open));
+
+      body.header-menu-is-open & {
+        transition-timing-function: cubic-bezier(0.1, 0.9, 0, 1.2);
+      }
+
+      body:not(.header-menu-is-open) & {
+        box-shadow: 6px 0 var(--header--shadow-y) 1px rgba(var(--color--foreground-rgb),var(--header--shadow-opacity));
       }
     }
   }
@@ -82,8 +116,10 @@
     font-size: var(--theme--font-size--xlg);
     color: var(--color--foreground);
     font-weight: 900;
+    white-space: nowrap;
     text-decoration: none;
     position: relative;
+    z-index: 2;
     padding: var(--base-gutter--quarter);
     margin: 0;
     width: var(--header--width--desktop);
@@ -91,10 +127,21 @@
     position: relative;
     line-height: 1;
     text-align: center;
+    will-change: font-size;
+    transition: {
+      property: font-size;
+      // duration: 0.1s;
+      duration: var(--header--transition-duration);
+      timing-function: var(--header--transition-ease);
+    }
 
     @include mq($sm) {
       width: var(--header--width--mobile);
       font-size: var(--theme--font-size--h0);
+    }
+
+    @include mq($x-sm) {
+      grid-area: logo;
     }
 
     span {
@@ -116,10 +163,8 @@
 
   &--menu-icon {
     --icon--size: 30px;
-    position: absolute;
-    left: 50%;
-    top: 100px;
-    transform: translateX(-50%);
+
+    z-index: 2;
     width: var(--icon--size);
     height: var(--icon--size);
     will-change: left, top;
@@ -127,6 +172,33 @@
       property: left, top;
       duration: var(--header--transition-duration);
       timing-function: var(--header--transition-ease);
+    }
+
+    @include mq($x-sm) {
+      grid-area: icon;
+      justify-self: flex-end;
+      position: relative;
+      width: var(--header--width--mobile);
+    }
+
+    @include mq($x-sm-up) {
+      position: absolute;
+      left: 50%;
+      top: 100px;
+      transform: translateX(-50%);
+      body.header-menu-is-open & {
+        left: calc(100% - (var(--icon--size) * 1.5));
+        top: calc(var(--icon--size) * 0.75);
+      }
+    }
+
+    @include mq($not-x-sm) {
+      top: 60px;
+
+      body.header-menu-is-open & {
+        left: calc(100% - (var(--icon--size) * 1));
+        top: calc(var(--icon--size) * 0.35);
+      }
     }
 
     svg {
@@ -181,23 +253,58 @@
         }
       }
     }
-
-    body.header-menu-is-open & {
-      left: calc(100% - (var(--icon--size) * 2));
-      top: var(--icon--size);
-    }
   }
 
   &--main-menu {
-    position: absolute;
-    top: 50%;
-    left: var(--base-gutter);
-    transform: translateY(-50%);
-    width: var(--header--menu-width);
     overflow: hidden;
     list-style: none;
     margin: 0;
     padding: 0;
+
+    @include mq($x-sm) {
+      position: absolute;
+      background: var(--color--background);
+      width: 100vw;
+      height: 100vh;
+      z-index: 1;
+      padding: var(--base-gutter--half);
+      padding-top: 100px;
+      top: 0;
+      left: -105%;
+      opacity: 0;
+      overflow: auto;
+      will-change: left, opacity;
+      transition: {
+        property: opacity, left;
+        duration: var(--header--transition-duration);
+        timing-function: var(--header--transition-ease);
+        delay: var(--header--link-delay);
+      }
+
+      body:not(.header-menu-is-open) & {
+        pointer-events: none;
+      }
+
+      body.header-menu-is-open & {
+        opacity: 1;
+        left: 0;
+        // max-height: 80vh;
+        // transition: opacity 0s var(--header--transition-duration) ease;
+      }
+    }
+
+    @include mq($x-sm-up) {
+      position: absolute;
+      left: var(--base-gutter);
+      top: 100px;
+      // top: 50%;
+      // transform: translateY(-50%);
+      width: var(--header--menu-width);
+    }
+
+    @include mq($not-x-sm) {
+      top: 80px;
+    }
 
     li {
       opacity: 1;

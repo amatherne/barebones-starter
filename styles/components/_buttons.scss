@@ -1,0 +1,51 @@
+.btn,
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border: 0.1rem solid var(--color--btn-bdr);
+  padding: 0 3rem;
+  cursor: pointer;
+  font: inherit;
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: var(--color--btn-txt);
+  transition: box-shadow var(--duration-short) ease;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: var(--color--btn-bg);
+
+  &.secondary,
+  &--secondary {
+    --color--btn-bg: var(--color--btn-secondary-bg);
+    --color--btn-bdr: var(--color--btn-secondary-bdr);
+    --color--btn-txt: var(--color--btn-secondary-txt);
+    --color--btn-bg-hover: var(--color--btn-secondary-bg-hover);
+    --color--btn-bdr-hover: var(--color--btn-secondary-bdr-hover);
+    --color--btn-txt-hover: var(--color--btn-secondary-txt-hover);
+  }
+
+  &.link,
+  &--link,
+  &.underline,
+  &--underline {
+    padding: 0;
+    min-width: 0;
+    min-height: 0;
+    text-decoration: underline !important;
+    text-underline-offset: var(--base-gutter--quarter);
+    text-underline-position: from-font;
+    line-height: 2;
+    --color--btn-bg: transparent;
+    --color--btn-bdr: transparent;
+    --color--btn-txt: rgb(var(--color-base-text));
+    --color--btn-bg-hover: transparent;
+    --color--btn-bdr-hover: transparent;
+    --color--btn-txt-hover: var(--color--btn-txt);
+    opacity: 1;
+
+    &:hover {
+      opacity: 0.5;
+    }
+  }
+}

@@ -1,0 +1,118 @@
+
+:root {
+  --page-width                      : 1600px;
+
+  --global--spacing-sections        : 60px;
+  --global--grid-horizontal         : 30px;
+  --global--grid-vertical           : 30px;
+
+  --global--mobile--spacing-sections: 30px;
+  --global--mobile--grid-horizontal : 15px;
+  --global--mobile--grid-vertical   : 15px
+}
+
+:root {
+  /* Primary Button */
+  --color--btn-primary-bg           : var(--color--background);
+  --color--btn-primary-bdr          : var(--color--foreground);
+  --color--btn-primary-txt          : var(--color--foreground);
+  --color--btn-primary-bg-hover     : var(--color--foreground);
+  --color--btn-primary-bdr-hover    : var(--color--background);
+  --color--btn-primary-txt-hover    : var(--color--foreground);
+}
+
+:root {
+  /* Secondary Button */
+  --color--btn-secondary-bg         : var(--color--foreground);
+  --color--btn-secondary-bdr        : var(--color--background);
+  --color--btn-secondary-txt        : var(--color--foreground);
+  --color--btn-secondary-bg-hover   : var(--color--background);
+  --color--btn-secondary-bdr-hover  : var(--color--foreground);
+  --color--btn-secondary-txt-hover  : var(--color--foreground);
+}
+
+:root {
+  /* Set Button Defaults, Secondary is set in file */
+  --color--btn-bg                   : var(--color--btn-primary-bg);
+  --color--btn-bdr                  : var(--color--btn-primary-bdr);
+  --color--btn-txt                  : var(--color--btn-primary-txt);
+  --color--btn-bg-hover             : var(--color--btn-primary-bg-hover);
+  --color--btn-bdr-hover            : var(--color--btn-primary-bdr-hover);
+  --color--btn-txt-hover            : var(--color--btn-primary-txt-hover);
+}
+
+:root {
+  --font-body--scale                : 1.0;
+  --font-body--family               : Quicksand, sans-serif;
+  --font-body--family               : neuzeit-grotesk, sans-serif;
+  --font-body--family-condensed     : neuzeit-grotesk-condensed, sans-serif;
+  --font-body--style                : normal;
+  --font-body--weight               : 400;
+  --font-body--weight-bold          : 700;
+
+  --font-heading--scale             : 1.0;
+  --font-heading--family            : Butler, Georgia, serif;
+  --font-heading--style             : normal;
+  --font-heading--weight            : 900
+}
+
+:root {
+  --header--width--mobile           : 90px;
+  --header--width--desktop          : 125px;
+  --header--width--open             : min(400px,100vw);
+}
+
+:root {
+  --color--foreground               : var(--color--mineshaft-black);
+  --color--foreground-rgb           : var(--color--mineshaft-black-rgb);
+  --color--background               : var(--color--white);
+  --color--background-rgb           : var(--color--white-rgb);
+  --gradient                        : linear-gradient(145deg, var(--color--mandy-pink), var(--color--windsor-purple));
+}
+
+.color--alt {
+  --color--foreground               : var(--color--white);
+  --color--foreground-rgb           : var(--color--white-rgb);
+  --color--background               : var(--color--mineshaft-black);
+  --color--background-rgb           : var(--color--mineshaft-black-rgb);
+}
+
+:root {
+  --theme--font-size--xlg: calc(var(--font-heading--scale) * 5rem);
+  --theme--font-size--h0: calc(var(--font-heading--scale) * 4rem);
+  --theme--font-size--h1: calc(var(--font-heading--scale) * 3rem);
+  --theme--font-size--h2: calc(var(--font-heading--scale) * 2rem);
+  --theme--font-size--h3: calc(var(--font-heading--scale) * 1.7rem);
+  --theme--font-size--h4: calc(var(--font-heading--scale) * 1.5rem);
+  --theme--font-size--h5: calc(var(--font-heading--scale) * 1.2rem);
+  --theme--font-size--h6: calc(var(--font-heading--scale) * 1rem);
+  --theme--font-size--rte: 1.5rem;
+
+  // theme default
+  --font-size: var(--theme--font-size--rte);
+
+  @include mq($md-up) {
+    --theme--font-size--xlg: calc(var(--font-heading--scale) * 6.2rem);
+    --theme--font-size--h0: calc(var(--font-heading--scale) * 5.2rem);
+    --theme--font-size--h1: calc(var(--font-heading--scale) * 4rem);
+    --theme--font-size--h2: calc(var(--font-heading--scale) * 2.4rem);
+    --theme--font-size--h3: calc(var(--font-heading--scale) * 1.8rem);
+    --theme--font-size--h5: calc(var(--font-heading--scale) * 1.3rem);
+    --theme--font-size--rte: 1.6rem;
+  }
+}
+
+:root {
+  --duration-short: 100ms;
+  --duration-default: 200ms;
+  --duration-announcement-bar: 250ms;
+  --duration-medium: 300ms;
+  --duration-long: 500ms;
+  --duration-extra-long: 600ms;
+  --duration-extended: 3s;
+  --ease-out-slow: cubic-bezier(0, 0, 0.3, 1);
+  --animation-slide-in: slideIn var(--duration-extra-long) var(--ease-out-slow) forwards;
+  --animation-fade-in: fadeIn var(--duration-extra-long) var(--ease-out-slow);
+}
+
+

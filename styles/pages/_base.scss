@@ -1,19 +1,63 @@
 
 
+body {
+  background-color: var(--color--background);
+  color: var(--color--foreground);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+  // outline: 0.1rem solid red;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: calc(var(--font-body--scale) * 62.5%);
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  font-size: var(--font-size);
+  line-height: calc(1 + 0.8 / var(--font-body--scale));
+  font-family: var(--font-body--family);
+  font-style: var(--font-body--style);
+  font-weight: var(--font-body--weight);
+
+  @include mq($x-sm) {
+    display: grid;
+    grid-template-rows: auto auto 1fr auto;
+    grid-template-columns: 100%;
+  }
+}
+
+
 #MainContent {
   --content--transition: .35s;
   --content--width: var(--header--width--desktop);
 
   position: relative;
+  min-height: 100vh;
   z-index: 1;
-  padding-left: var(--content--width);
   filter: blur(0);
-  will-change: filter;
-  transition: filter var(--content--transition) ease-out;
+  padding-left: 0;
+  will-change: filter, padding-left;
+  transition: {
+    property: filter, padding-left;
+    duration: var(--content--transition);
+    timing-function: ease-out;
+  }
 
   body.header-menu-is-open & {
     --content--transition: .85s;
     filter: blur(4px);
+  }
+
+  @include mq($x-sm-up) {
+    padding-left: var(--content--width);
   }
 
   @include mq($sm) {
@@ -33,10 +77,12 @@
   width: 100%;
   height: 100%;
 
-  &.overlay-link {
+  &--link {
     z-index: 2;
   }
 }
+
+
 
 .page,
 .section {
