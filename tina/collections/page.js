@@ -3,7 +3,7 @@
  * @type {import('tinacms').Collection}
  */
 
-import gallery from '../schemas/gallery';
+import hero from '../schemas/hero';
 
 export default {
   label: "Pages",
@@ -11,7 +11,7 @@ export default {
   path: "content/page",
   format: "mdx",
   fields: [
-    gallery,
+    hero,
     {
       type: "string",
       label: "Title",

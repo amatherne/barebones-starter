@@ -22,7 +22,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
   }, []);
 
   useEffect(() => {
-    console.log('RootLayout mounted with cms:', cms);
+    // console.log('RootLayout mounted with cms:', cms);
   }, [cms]);
 
   return (

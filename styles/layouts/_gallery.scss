@@ -1,0 +1,63 @@
+
+.gallery {
+
+
+  --text--absolute-max-width: calc(100vw - (var(--gutter) * 2));
+
+  --content--max-width: min(var(--page-width,1600px), var(--text--absolute-max-width));
+
+  &.set-height {
+
+    &--default {
+      --height: var(--height--default);
+    }
+
+    &--min {
+      // Not a mistake, we want this to use max().
+      // We want it to act like a min-height.
+      --height: max(var(--height--default),var(--height--min));
+    }
+
+    &--max {
+      // Not a mistake, we want this to use min().
+      // We want it to act like a max-height.
+      --height: min(var(--height--default),var(--height--max));
+    }
+
+    &--clamp {
+      --height: clamp(var(--height--min),var(--height--default),var(--height--max));
+    }
+
+  }
+
+  .gallery--item {
+    display: block;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    vertical-align: bottom;
+    background: var(--color--fallback-background);
+    height: var(--height);
+
+  }
+
+  .page-width {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 100%;
+    max-width: var(--content--max-width);
+    height: 100%;
+    z-index: 2;
+  }
+
+  .image--outer {
+    max-width: 100%; // ensures images take full width
+  }
+
+
+
+
+}

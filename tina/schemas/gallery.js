@@ -8,7 +8,6 @@ import { IconPlugin } from '@tinacms/icons';
 import { useCMS } from '@tinacms/react-core';
 
 
-
 const gallery = {
   type: 'object',
   label: 'Gallery',
@@ -33,11 +32,6 @@ const gallery = {
     IconPlugin,
   ],
   fields: [
-    // {
-    //   type: 'image',
-    //   label: 'Image',
-    //   name: 'src',
-    // },
     {
       label: 'Image',
       name: 'src',
@@ -46,7 +40,7 @@ const gallery = {
       ui: {
         parse(media) {
           if (media.filename) {
-            const newFilename = media.filename.replace(/\s+/g, '-'); // Replace spaces with hyphens
+            const newFilename = media.filename.replace(/\s+/g, '-'); 
             return {
               ...media,
               filename: newFilename,
