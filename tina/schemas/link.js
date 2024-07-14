@@ -4,14 +4,19 @@ const link = {
   type: 'object',
   label: 'Link',
   name: 'link',
-  ui: {
-    itemProps: (item) => {
-      const itemText = item.text ? item.text : null;
-      return {
-        label: itemText || 'Link',
-      };
-    },
-  },
+  // ui: {
+  //   itemProps: (item) => {
+      
+  //     const linkTitle = item?.text ? item.text : null;
+
+  //     console.log('Button itemProps:', item?.button);
+
+  //     return {
+  //       label: linkTitle || 'FUCK',
+  //       // thumbnail: item.src || '',
+  //     };
+  //   },
+  // },
   fields: [
     {
       type: 'string',

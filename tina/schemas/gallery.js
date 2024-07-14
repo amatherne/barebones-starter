@@ -1,5 +1,3 @@
-// ../tina/schemas/gallery.js
-
 import link from '../schemas/link';
 
 const gallery = {
@@ -44,19 +42,16 @@ const gallery = {
       type: 'object',
       label: 'Button',
       name: 'button',
-      ui: {
-        itemProps: (item) => {
-          const linkTitle = item.text ? item.text : null;
-          return {
-            label: linkTitle || 'Button',
-          }
-        },
-      },
-      fields: [
-        link.fields[0], 
-        link.fields[1], 
-        link.fields[2], 
-      ],
+      fields: link.fields,
+      // ui: {
+      //   itemProps: (item) => {
+      //     const buttonTitle = item.text || 'Button text';
+      //     console.log('Button itemProps:', item);
+      //     return {
+      //       label: buttonTitle,
+      //     };
+      //   },
+      // },
     },
   ],
 };
