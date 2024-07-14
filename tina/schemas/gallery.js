@@ -1,4 +1,7 @@
+// ../tina/schemas/gallery.js
+
 import link from '../schemas/link';
+import { fields as imageFields } from '../schemas/image';
 
 const gallery = {
   type: 'object',
@@ -18,11 +21,12 @@ const gallery = {
     },
   },
   fields: [
-    {
-      type: 'image',
-      label: 'Image',
-      name: 'src',
-    },
+    // {
+    //   type: 'image',
+    //   label: 'Image',
+    //   name: 'src',
+    // },
+    ...imageFields,
     {
       type: 'string',
       label: 'Alt Text',

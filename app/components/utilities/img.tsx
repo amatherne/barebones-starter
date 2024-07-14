@@ -20,7 +20,7 @@ export const Img = ({ src, alt, className }) => {
 
     // Clean up style element on component unmount
     return () => {
-      removeImageStyle(id);
+      // removeImageStyle(id);
     };
   }, [src]);
 
@@ -40,24 +40,19 @@ export const Img = ({ src, alt, className }) => {
     });
   }
 
-  function removeImageStyle(id) {
-    const styleElement = document.getElementById(`image-style-${id}`);
-    if (styleElement) {
-      document.head.removeChild(styleElement);
-    }
-  }
-
   return (
     <>
+
       <div className={`image--outer image--${imageID} ${className ? className : ''}`}>
+        <link rel="preload" href={src} as="image" />
         <div className="image--inner">
           <img
             src={src}
             alt={alt}
-            // style={{ maxWidth: "100%", height: "auto" }}
+            loading="lazy" 
           />
         </div>
-        <style type="text/css">{`
+        <style jsx>{`
           .image--${imageID} {
             --image--natural-width: ${dimensions.width}px;
             --image--natural-height: ${paddingTop}%;

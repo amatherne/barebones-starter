@@ -34,6 +34,11 @@ body {
   }
 }
 
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
 
 #MainContent {
   --content--transition: .35s;

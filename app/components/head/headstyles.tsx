@@ -5,7 +5,6 @@
 import React from 'react';
 import RGB_CSS from '../../components/utilities/rgb_css';
 
-// import '../../../styles/base/_typography.scss';
 import '../../../styles/global.scss';
 
 const HeadStyles = () => {

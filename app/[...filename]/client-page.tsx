@@ -45,7 +45,7 @@ const ClientPage = (props: ClientPageProps) => {
           {images.map((image, index) => (
             image.src && (
               <div key={index}>
-                <Img src={image.src} alt={image.alt} className="hero-image" />
+                {/*<Img src={image.src} alt={image.alt} className="hero-image" />*/}
               </div>
             )
           ))}
