@@ -9,8 +9,12 @@ const TestMedia = () => {
 
   const handleListMedia = async () => {
     try {
-      const media: MediaList = await cms.media.store.list();
-      const mediaArray: Media[] = Array.from(media); // Convert MediaList to Media[]
+      const mediaListResponse: MediaList = await cms.media.store.list();
+      const mediaArray: Media[] = mediaListResponse.items.map((item) => ({
+        id: item.id,
+        filename: item.filename,
+        // Add more fields as needed
+      }));
       setMediaList(mediaArray);
       console.log('Media list:', mediaArray);
     } catch (error) {
