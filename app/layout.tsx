@@ -7,8 +7,8 @@ import React, { useMemo, useEffect } from 'react';
 import Head from './components/head/head';
 import Header from './components/header';
 import Footer from './components/footer';
-import CustomMediaStore from '../utils/custom-media-store';
-import TestMedia from './components/test-media';
+// import CustomMediaStore from '../utils/custom-media-store';
+// import TestMedia from './components/test-media';
 
 interface RootLayoutProps {
   children: React.ReactNode;
@@ -17,7 +17,7 @@ interface RootLayoutProps {
 const RootLayout = ({ children }: RootLayoutProps) => {
   const cms = useMemo(() => {
     const cms = new TinaCMS();
-    cms.media.store = new CustomMediaStore();
+    // cms.media.store = new CustomMediaStore();
     return cms;
   }, []);
 
@@ -35,9 +35,9 @@ const RootLayout = ({ children }: RootLayoutProps) => {
           </a>
           <Header key="header" />
           <main id="MainContent" className="focus-none" role="main" tabIndex={-1}>
-            <div style={{ padding: '20px', background: '#f0f0f0' }}>
+            {/*<div style={{ padding: '20px', background: '#f0f0f0' }}>
               <TestMedia />
-            </div>
+            </div>*/}
             {children}
           </main>
           <Footer key="footer" />
