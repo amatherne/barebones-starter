@@ -30,7 +30,7 @@ const ClientPage = (props: ClientPageProps) => {
   const { page } = data;
   const { body, title } = page || {};
 
-  const images = data.page.gallery || [];
+  const images = data.page.gallery || null;
 
   // const pageSeoTitle = data?.page?.seo_title? || ""; 
   // const pageSeoText = data?.page?.seo_text? || ""; 
@@ -43,11 +43,12 @@ const ClientPage = (props: ClientPageProps) => {
       {images && (
         <div className="gallery">
           {images.map((image, index) => (
-            image.src && (
+            image && image.src ? (
               <div key={index}>
+                <div>image.src: ${image.src}</div>
                 {/*<Img src={image.src} alt={image.alt} className="hero-image" />*/}
               </div>
-            )
+            ) : null
           ))}
         </div>
       )}
