@@ -1,5 +1,3 @@
-// ../app/components/test-media.tsx
-
 import { useCMS, Media, MediaList } from 'tinacms';
 import React, { useState } from 'react';
 
@@ -13,6 +11,8 @@ const TestMedia = () => {
       const mediaArray: Media[] = mediaListResponse.items.map((item) => ({
         id: item.id,
         filename: item.filename,
+        type: 'file', // Add default values for type and directory
+        directory: 'public/uploads', // or whatever default value you need
         // Add more fields as needed
       }));
       setMediaList(mediaArray);
