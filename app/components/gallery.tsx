@@ -15,7 +15,7 @@ interface GalleryProps {
 const Gallery: React.FC<GalleryProps> = ({ gallerySettings }) => {
   const { height, min_height, max_height, gallery } = gallerySettings;
 
-  const galleryStyle: React.CSSProperties = {
+  const galleryStyle: any = { // Asserting any type here
     ...(height && { '--height--default': height.replace('%', 'vw') }),
     ...(min_height && { '--height--min': min_height.replace('%', 'vw') }),
     ...(max_height && { '--height--max': max_height.replace('%', 'vw') }),
