@@ -7,7 +7,7 @@ function useMenuHandler() {
 
     const Body              = document.body;
 
-    const MenuTriggers      = '.menu-trigger,.header--main-menu a, .logo';
+    const MenuTriggers      = '.menu-trigger, .header--main-menu a, .logo';
     const MenuOpenClass     = 'header-menu-is-open';
 
     const handleMenuToggle = (event) => {
@@ -16,7 +16,7 @@ function useMenuHandler() {
       // but allow the logo to close menu if it already is open.
       const isLogo = (event.target.classList.contains('logo') || event.target.parentNode.classList.contains('logo'));
       if ( !Body.classList.contains(MenuOpenClass) && isLogo ) return;
-      
+
       if ( event.target.tagName === 'A' && event.target.getAttribute('href') === '#' ) {
         event.preventDefault();
       }
@@ -35,7 +35,6 @@ function useMenuHandler() {
       });
     };
   }, []); // Empty dependency array ensures this effect runs only once
-
 }
 
 export { useMenuHandler };

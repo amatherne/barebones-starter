@@ -6,12 +6,17 @@ import HeadStyles from '../head/headstyles';
 
 import '../../../utils/index.js'
 
+import { finishedLoading } from '../../../utils/index.js'
+
 interface HeadProps {
   seoTitle?: string;
   seoText?: string;
 }
 
 const Head: React.FC<HeadProps> = ({ seoTitle, seoText }) => {
+
+  finishedLoading();
+
   const globalSeoTitle = Globals.seo_title || '';
   const globalSeoText = Globals.seo_text || '';
 

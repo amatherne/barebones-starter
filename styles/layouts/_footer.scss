@@ -9,7 +9,8 @@
 
   &--sticky-section {
     position: sticky;
-    top: 50%;
-    transform: translateY(-50%);
+    top: 25vh;
+    // top: 50%;
+    // transform: translateY(-50%);
   }
 }

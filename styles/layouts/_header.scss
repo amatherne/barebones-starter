@@ -26,7 +26,7 @@
 
   --header--link-delay: 0s;
   --header--link-delay-base: 0.25s;
-  --header--link-delay-offset: 0.25s;
+  --header--link-delay-offset: 0.1s;
 
   --header--shadow-y: 20px;
   --header--shadow-opacity: 0.2;
@@ -128,7 +128,6 @@
     will-change: font-size;
     transition: {
       property: font-size;
-      // duration: 0.1s;
       duration: var(--header--transition-duration);
       timing-function: var(--header--transition-ease);
     }
@@ -142,13 +141,13 @@
       grid-area: logo;
     }
 
-    &:hover, 
-    &:focus {
-      span {
-        @extend .gradient--text;
-        text-shadow: none;
-      }
-    }
+    // &:hover, 
+    // &:focus {
+    //   span {
+    //     @extend .gradient--text;
+    //     text-shadow: none;
+    //   }
+    // }
 
     span {
       position: relative;
@@ -159,6 +158,13 @@
       text-shadow: 
         0 0 4px rgba(var(--color--background-rgb), .5), 
         0 0 10px rgba(var(--color--background-rgb), .47);
+      
+
+      body.site-loaded & {
+        color: var(--color--foreground);
+        @extend .gradient--text;
+        text-shadow: none;
+      }
 
       & + span {
         z-index: 1;
@@ -409,7 +415,9 @@
 
       body.header-menu-is-open & {
         --header--transition-duration: 2.5s;
+        --header--transition-duration: 2s;
       }
+
       body:not(.header-menu-is-open) & {
         // opacity: 0;
         width: 0%;

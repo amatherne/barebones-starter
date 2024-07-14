@@ -32,6 +32,18 @@
       "url": "/"
     },
     {
+      "label": "Websites",
+      "url": "/websites"
+    },
+    {
+      "label": "Testimonials",
+      "content": "content/page/testimonials.mdx"
+    },
+    {
+      "label": "About",
+      "content": "content/page/about.mdx"
+    },
+    {
       "label": "Contact",
       "url": "",
       "content": "content/page/contact-me.mdx"
