@@ -1,8 +1,8 @@
 // ../utils/custom-media-store.js
 
-import { MediaStore } from 'tinacms';
+import fetch from 'isomorphic-fetch';
 
-class CustomMediaStore extends MediaStore {
+class CustomMediaStore {
   async persist(files) {
     const uploadedFiles = await Promise.all(
       files.map(async (file) => {
@@ -40,7 +40,6 @@ class CustomMediaStore extends MediaStore {
 
   async previewSrc(filename) {
     try {
-      // Replace with your actual preview URL logic
       return `/uploads/${filename}`;
     } catch (error) {
       console.error('Error getting preview source:', error);
@@ -50,7 +49,6 @@ class CustomMediaStore extends MediaStore {
 
   async list() {
     try {
-      // Implement logic to list uploaded files (optional)
       const response = await fetch('/api/list-files');
       if (!response.ok) {
         throw new Error('Failed to list files');
@@ -71,7 +69,6 @@ class CustomMediaStore extends MediaStore {
 
   async delete(media) {
     try {
-      // Implement logic to delete the media file (optional)
       const response = await fetch(`/api/delete/${media.id}`, { method: 'DELETE' });
       if (!response.ok) {
         throw new Error('Failed to delete file');

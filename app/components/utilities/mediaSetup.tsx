@@ -52,17 +52,18 @@ const MediaSetup = () => {
       delete: async function deleteMedia(file) {
         // Implement logic to handle media deletion if needed
         console.log('Delete media:', file);
-        return file;
+        const response = await fetch(`/api/delete/${file.id}`, { method: 'DELETE' });
+        if (!response.ok) {
+          throw new Error('Failed to delete file');
+        }
+        console.log(`Deleted media with ID ${file.id}`);
       },
     },
   });
 
   return (
     <TinaProvider cms={cms}>
-      {/* Optionally, you can render a wrapper component */}
-      {/* This could include your html lang="en" and layout structure */}
-      {/* Example: <html lang="en">...</html> */}
-      {/* Ensure you also import TinaProvider from 'tinacms' at the start of this document. */}
+      {/* Render a wrapper component */}
       <div>
         {/* Your existing layout structure or components can go here */}
       </div>
