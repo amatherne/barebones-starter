@@ -6,7 +6,7 @@ import React from 'react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { tinaField, useTina } from 'tinacms/dist/react';
 import { PageQuery } from '../../tina/__generated__/types';
-// import { Img } from '../components/utilities/img';
+import { Img } from '../components/utilities/img';
 
 
 interface ClientPageProps {
@@ -42,6 +42,14 @@ const ClientPage = (props: ClientPageProps) => {
 
       {images && (
         <div className="gallery">
+          {images.map((image, index) => (
+            image && image.src ? (
+              <div key={index}>
+                <div>image.src: {image.src}</div>
+                {/*<Img src={image.src} alt={image.alt} className="hero-image" />*/}
+              </div>
+            ) : null
+          ))}
           {/*{images.map((image, index) => (
             image && image.src ? (
               <div key={index}>

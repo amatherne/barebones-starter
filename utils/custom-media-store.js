@@ -4,6 +4,7 @@ import fetch from 'isomorphic-fetch';
 
 class CustomMediaStore {
   async persist(files) {
+    console.log('CustomMediaStore persist called with files:', files);
     const uploadedFiles = await Promise.all(
       files.map(async (file) => {
         const formData = new FormData();
@@ -39,6 +40,7 @@ class CustomMediaStore {
   }
 
   async previewSrc(filename) {
+    console.log('CustomMediaStore previewSrc called with filename:', filename);
     try {
       return `/uploads/${filename}`;
     } catch (error) {
@@ -48,6 +50,7 @@ class CustomMediaStore {
   }
 
   async list() {
+    console.log('CustomMediaStore list called');
     try {
       const response = await fetch('/api/list-files');
       if (!response.ok) {
@@ -68,6 +71,7 @@ class CustomMediaStore {
   }
 
   async delete(media) {
+    console.log('CustomMediaStore delete called with media:', media);
     try {
       const response = await fetch(`/api/delete/${media.id}`, { method: 'DELETE' });
       if (!response.ok) {
