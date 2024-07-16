@@ -34,19 +34,19 @@ const Gallery: React.FC<GalleryProps> = ({ gallerySettings }) => {
   return (
     <section className={`gallery ${galleryClass ? 'set-height ' + galleryClass : ''}`} style={galleryStyle}>
       {gallery.map((item, index) => {
-        const image           = item.src || false;
-        const imageAlt        = item.alt || false;
-        const title           = item.title || false;
-        const text            = item.text || false;
-        const buttonText      = item.buttonText || false;
-        const buttonUrl       = item.buttonUrl || false;
-        const buttonContent   = item.buttonContent || false;
+        const image           = item.src || null;
+        const imageAlt        = item.alt || null;
+        const title           = item.title || null;
+        const text            = item.text || null;
+        const buttonText      = item.buttonText || null;
+        const buttonUrl       = item.buttonUrl || null;
+        const buttonContent   = item.buttonContent || null;
 
         const hasLink         = buttonUrl || buttonContent;
         const hasButton       = buttonText && hasLink;
         const hasOverlayLink  = !hasButton && hasLink;
 
-        let buttonLink        = buttonUrl;
+        let buttonLink: string | null = buttonUrl;
         if (buttonContent) {
           buttonLink          = formatUrl(buttonContent);  
         }
