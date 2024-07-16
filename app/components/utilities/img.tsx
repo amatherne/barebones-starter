@@ -1,5 +1,7 @@
 // ../app/components/utilities/Img.js
 
+'use client';
+
 import React, { useState } from 'react';
 
 const Img = ({ src, alt, className }) => {
@@ -10,10 +12,17 @@ const Img = ({ src, alt, className }) => {
     setDimensions({ width: naturalWidth, height: naturalHeight });
   };
 
-  const imageID = `${src}-${alt}-${className}`;
-
+  const imageIDString = `image--${src}-${alt}-${className}`;
+  const imageID = 
+    imageIDString
+      .toLowerCase()
+      .replace(/[^\w\s-]/gi, '')
+      .replace(/\s+/g, '-')
+      .replace(/-+/g, '-')
+      .replace(/^-|-$/g, '');
+      
   return (
-    <div className={`image--outer image--${imageID} ${className ? className : ''}`}>
+    <div className={`image--outer ${imageID} ${className ? className : ''}`}>
       <img
         src={src}
         alt={alt}

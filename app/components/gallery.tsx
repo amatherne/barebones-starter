@@ -14,6 +14,7 @@ interface GalleryItem {
   buttonText?: string;
   buttonUrl?: string;
   buttonContent?: any;
+  custom_css?: any;
 }
 
 interface GalleryProps {
@@ -57,6 +58,8 @@ const Gallery: React.FC<GalleryProps> = ({ gallerySettings }) => {
           buttonLink = formatUrl(buttonContent);  
         }
 
+        let customCSS       = item.custom_css || '';
+
         const hasButton       = buttonText && buttonLink;
         const hasOverlayLink  = !hasButton && buttonLink;
 
@@ -64,8 +67,26 @@ const Gallery: React.FC<GalleryProps> = ({ gallerySettings }) => {
 
         const hasContent      = title || text || hasButton;
 
+        const itemIDString    = `gallery--item--${image}-${imageAlt}-${title}`;
+        const itemID = 
+          itemIDString
+            .toLowerCase()
+            .replace(/[^\w\s-]/gi, '')
+            .replace(/\s+/g, '-')
+            .replace(/-+/g, '-')
+            .replace(/^-|-$/g, '');
+
+        if (customCSS) {
+          customCSS = 
+            customCSS
+              .replace('==', '.' + itemID)
+              .replace(';;', '##')
+              .replace(';', '!important;')
+              .replace('##', ';')
+        }
+
         return (
-          <div key={index} className="gallery--item">
+          <div key={index} className={`gallery--item ${itemID}`}>
             { hasOverlayLink && buttonLink ? (
               <Link 
                 href={buttonLink} 
@@ -100,6 +121,13 @@ const Gallery: React.FC<GalleryProps> = ({ gallerySettings }) => {
 
               </div>
             ) : null }
+
+            {customCSS ? (
+              <style>{`
+                ${customCSS}
+              `}</style>
+            ) : null }
+
           </div>
         );
       })}

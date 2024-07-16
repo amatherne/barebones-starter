@@ -9,12 +9,14 @@ export default function PostList(props) {
         <section className="page page--default">
           <div className="page-width">
 
-            <h1>Websites</h1>
-          
+            <div className="section--title text-center">
+              <h1>Websites</h1>
+            </div>
+
             <div className="cell">
               {props.data.websiteConnection.edges.map((website) => {
                 return (
-                  <div key={website.node.id} className="cell__item ">
+                  <div key={website.node.id} className="cell__item w-50 md-up--w-33">
                     <Card 
                       object={website}
                     />

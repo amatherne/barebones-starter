@@ -42,6 +42,7 @@ const ClientPage = (props: ClientPageProps) => {
             alt: item.alt || '',
             title: item.title || '',
             text: item.text || '',
+            custom_css: item.custom_css || '',
             buttonText: item.button?.text || '',
             buttonUrl: item.button?.url || '',
             buttonContent: item.button?.content || '',

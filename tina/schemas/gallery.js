@@ -1,11 +1,13 @@
 // ../tina/schemas/gallery.js
 
+import React from 'react';
 import link from '../schemas/link';
 import { MediaUploadFieldPlugin } from '@tinacms/fields';
 import { FormBuilderPlugin } from '@tinacms/form-builder';
 import { GlobalStylesheet } from '@tinacms/styles';
 import { IconPlugin } from '@tinacms/icons';
 import { useCMS } from '@tinacms/react-core';
+// import CustomCssField from '../schemas/customCSS';
 
 
 const gallery = {
@@ -70,15 +72,13 @@ const gallery = {
       label: 'Button',
       name: 'button',
       fields: link.fields,
-      // ui: {
-      //   itemProps: (item) => {
-      //     const buttonTitle = item.text || 'Button text';
-      //     console.log('Button itemProps:', item);
-      //     return {
-      //       label: buttonTitle,
-      //     };
-      //   },
-      // },
+    },
+    {
+      type: 'string',
+      label: 'Custom CSS',
+      name: 'custom_css',
+      component: 'textarea'
+      // component: CustomCssField,
     },
   ],
 };

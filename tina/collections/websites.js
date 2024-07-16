@@ -1,6 +1,9 @@
 /**
  * @type {import('tinacms').Collection}
  */
+
+import hero from '../schemas/hero';
+
 export default {
   label: "Websites",
   name: "website",
@@ -38,60 +41,7 @@ export default {
       label: "Publish",
       name: "published",
     },
-    {
-      type: 'object',
-      label: 'Gallery',
-      name: 'gallery',
-      list: true,
-      ui: {
-        itemProps: (item) => {
-          const imgTitle = item.src.substring(item.src.lastIndexOf('/') + 1);
-          return {
-            label: `${item.hero ? '(H) ' : ''}${item.alt || imgTitle || 'Image'}`,
-            thumbnail: item.src || '', // from chatGPT
-            image: item.src || '', // test
-          };
-        },
-        // validate: (values) => {
-        //   console.log("Validation values:", values);
-        //   if (values?.gallery) {
-        //     const gallery = values.gallery;
-        //     const heroCount = gallery.filter(item => item.hero).length;
-        //     if (heroCount > 1) {
-        //       return "Only one gallery image can be marked as hero.";
-        //     }
-        //   }
-        // },
-      },
-      fields: [
-        {
-          type: 'image',
-          label: 'Image',
-          name: 'src',
-        },
-        {
-          type: 'string',
-          label: 'Alt Text',
-          name: 'alt',
-        },
-        {
-          type: "boolean",
-          label: "Hero",
-          name: "hero",
-          // parse: (value, field, allValues) => {
-          //   // Ensure only one hero is allowed
-          //   if (value) {
-          //     allValues.gallery.forEach((item) => {
-          //       if (item !== field) {
-          //         item.hero = false;
-          //       }
-          //     });
-          //   }
-          //   return value;
-          // },
-        },
-      ],
-    },
+    hero,
     {
       type: "string",
       label: "Title",
