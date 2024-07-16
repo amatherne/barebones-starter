@@ -2,9 +2,9 @@
 
 'use client';
 
+import HeadElement from './components/head/head';
 import { TinaCMS, TinaProvider } from 'tinacms';
 import React, { useMemo, useEffect } from 'react';
-import Head from './components/head/head';
 import Header from './components/header';
 import Footer from './components/footer';
 // import CustomMediaStore from '../utils/custom-media-store';
@@ -27,7 +27,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
 
   return (
     <html lang="en">
-      <Head key="head" />
+      <HeadElement key="head" />
       <body>
         <TinaProvider cms={cms}>
           <a id="Top" className="skip-to-content-link button visually-hidden" href="#MainContent">

@@ -11,6 +11,17 @@
   --global--mobile--grid-vertical   : 15px
 }
 
+$colors: (
+  mineshaft-black: #212121,
+  white: #ffffff,
+  mandy-pink: #EE5C6C,
+  windsor-purple: #6a0d83,
+);
+
+:root {
+  @include generate-color-variables($colors);
+}
+
 :root {
   /* Primary Button */
   --color--btn-primary-txt          : var(--color--foreground);

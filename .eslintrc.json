@@ -9,7 +9,8 @@
     "next"
   ],
   "rules": {
-    "no-unused-vars": "off", // turn off no-unused-vars rule
+    "no-unused-vars": "off", 
+    "@next/next/no-img-element": "off",
     "padding-line-between-statements": [
       "error",
       {

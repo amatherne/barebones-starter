@@ -178,6 +178,13 @@ $grid-breakpoints: (
 }
 
 
+@mixin generate-color-variables($colors) {
+  @each $name, $hex in $colors {
+    --color--#{$name}: #{$hex};
+    --color--#{$name}-rgb: #{red($hex)}, #{green($hex)}, #{blue($hex)};
+  }
+}
+
 
 
 .gradient {
