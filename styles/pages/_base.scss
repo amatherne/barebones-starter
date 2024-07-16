@@ -70,10 +70,6 @@ img {
   }
 }
 
-
-
-
-
 .overlay {
   display: block;
   position: absolute;
@@ -87,14 +83,17 @@ img {
   }
 }
 
-
-
 .page,
 .section {
-  --page--padding: var(--base-gutter);
+  --cta--padding-top: var(--cta-set--padding-top,var(--global--mobile--spacing-sections));
+  --cta--padding-bottom: var(--cta-set--padding-bottom,var(--global--mobile--spacing-sections));
+
+  --page--padding: var(--sp);
   padding: var(--page--padding) 0;
 
   @include mq($md-up) {
-    --page--padding: var(--base-gutter--double);
+    --page--padding: var(--sp--2);
+    --cta--padding-top: var(--cta-set--padding-top,var(--global--spacing-sections));
+    --cta--padding-bottom: var(--cta-set--padding-bottom,var(--global--spacing-sections));
   }
 }

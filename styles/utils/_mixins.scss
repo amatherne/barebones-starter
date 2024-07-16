@@ -27,8 +27,8 @@ $grid-lg: 990px;
 $grid-x-lg: 1200px;
 $grid-wide: 1600px; // may need to be updated per theme settings
 
-$grid-gutter: var(--base-gutter);
-$grid-gutter-mobile: var(--base-gutter--half);
+$grid-gutter: var(--sp);
+$grid-gutter-mobile: var(--sp--1-2);
 
 $height-sm: 'height-sm';
 $height-md: 'height-md';

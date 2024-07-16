@@ -185,10 +185,10 @@ ol {
   .h3,
   .h4,
   .h5 {
-    margin: 0 0 var(--base-gutter--quarter);
+    margin: 0 0 var(--sp--1-4);
 
     &:not(:first-child) {
-      margin-top: var(--base-gutter);
+      margin-top: var(--sp);
     }
 
     &:last-child {
@@ -205,7 +205,7 @@ ol {
   }
 
   p {
-    margin: 0 0 var(--base-gutter--quarter);
+    margin: 0 0 var(--sp--1-4);
 
     &:last-child {
       margin-bottom: 0;

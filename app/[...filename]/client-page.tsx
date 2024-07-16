@@ -14,7 +14,7 @@ interface ClientPageProps {
     relativePath: string;
   };
   data: { page: PageQuery['page'] };
-  params: { filename: string[] }; // Add params to props
+  params: { filename: string[] }; 
 }
 
 const ClientPage = (props: ClientPageProps) => {
@@ -37,7 +37,15 @@ const ClientPage = (props: ClientPageProps) => {
         min_height: gallerySettings.min_height,
         max_height: gallerySettings.max_height,
         gallery: gallerySettings.gallery?.map((item) =>
-          item?.src ? { src: item.src, alt: item.alt || '' } : null
+          item?.src ? { 
+            src: item.src || '', 
+            alt: item.alt || '',
+            title: item.title || '',
+            text: item.text || '',
+            buttonText: item.button?.text || '',
+            buttonUrl: item.button?.url || '',
+            buttonContent: item.button?.content || '',
+          } : null
         ).filter((item) => item !== null) || [],
       }
     : null;

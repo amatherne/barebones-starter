@@ -22,7 +22,7 @@
   --header--transition-duration: 0.5s;
   --header--transition-ease: ease;
 
-  --header--menu-width: calc(var(--header--width--open) - var(--base-gutter));
+  --header--menu-width: calc(var(--header--width--open) - var(--sp));
 
   --header--link-delay: 0s;
   --header--link-delay-base: 0.25s;
@@ -71,7 +71,7 @@
         'menu menu'
       ;
       align-items: center;
-      padding: var(--base-gutter--quarter) 0;
+      padding: var(--sp--1-4) 0;
       width: 100%;
       box-shadow: 0 6px var(--header--shadow-y--open) 1px rgba(var(--color--foreground-rgb),var(--header--shadow-opacity--open));
 
@@ -118,7 +118,7 @@
     text-decoration: none;
     position: relative;
     z-index: 2;
-    padding: var(--base-gutter--quarter);
+    padding: var(--sp--1-4);
     margin: 0;
     width: var(--header--width--desktop);
     display: inline-block;
@@ -279,7 +279,7 @@
       width: 100vw;
       height: 100vh;
       z-index: 1;
-      padding: var(--base-gutter--half);
+      padding: var(--sp--1-2);
       padding-top: 100px;
       top: 0;
       left: -105%;
@@ -307,7 +307,7 @@
 
     @include mq($x-sm-up) {
       position: absolute;
-      left: var(--base-gutter);
+      left: var(--sp);
       top: 100px;
       // top: 50%;
       // transform: translateY(-50%);
@@ -338,7 +338,7 @@
         position: absolute;
         top: 0;
         right: 0;
-        width: var(--base-gutter--double);
+        width: var(--sp--2);
         height: 100%;
         background: rgb(var(--color--background-rgb));
         background: linear-gradient(90deg, rgba(var(--color--background-rgb),0) 0%, rgba(var(--color--background-rgb),1) 100%);
@@ -357,7 +357,7 @@
 
       a {
         display: block;
-        padding: var(--base-gutter--quarter) var(--base-gutter) var(--base-gutter--quarter) 0;
+        padding: var(--sp--1-4) var(--sp) var(--sp--1-4) 0;
         color: var(--color--foreground);
         line-height: 1.1;
         letter-spacing: -0.2rem;

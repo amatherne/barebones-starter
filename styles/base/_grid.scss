@@ -21,7 +21,7 @@
   :root,
   :after, 
   :before {
-    --grid-gutter--neg: calc(var(--grid-gutter) * -1);
+    --grid--neg: calc(var(--grid) * -1);
   }
   .#{$grid-breakpoint-type}show {
     display: block !important;
@@ -72,25 +72,25 @@
 
 // Allows a repetion of the base grid settings
 %grid-vars {
-  --base-gutter                           : var(--global--grid-horizontal,30px);
+  --sp                    : var(--global--grid-horizontal,30px);
   
-  --base-gutter--double                   : calc( var(--base-gutter) * 2 );
-  --base-gutter--trip                     : calc( var(--base-gutter) * 3 );
-  --base-gutter--quad                     : calc( var(--base-gutter) * 4 );
+  --sp--2                 : calc( var(--sp) * 2 );
+  --sp--3                 : calc( var(--sp) * 3 );
+  --sp--4                 : calc( var(--sp) * 4 );
 
-  --base-gutter--half                     : calc( var(--base-gutter) / 2 );
-  --base-gutter--third                    : calc( var(--base-gutter) / 3 );
-  --base-gutter--twothirds                : calc( var(--base-gutter) * .6666667 );
-  --base-gutter--quarter                  : calc( var(--base-gutter) / 4 );
-  --base-gutter--eighth                   : calc( var(--base-gutter) / 8 );
+  --sp--1-2               : calc( var(--sp) / 2 );
+  --sp--1-3               : calc( var(--sp) / 3 );
+  --sp--2-3               : calc( var(--sp) * .6666667 );
+  --sp--1-4               : calc( var(--sp) / 4 );
+  --sp--1-8               : calc( var(--sp) / 8 );
 
-  --grid-gutter                           : var(--base-gutter);
-  --grid-gutter--mobile                   : var(--global--mobile--grid-horizontal,var(--base-gutter--half));
-  --grid-gutter--neg                      : calc(var(--grid-gutter) * -1);
+  --grid                  : var(--sp);
+  --grid--mobile          : var(--global--mobile--grid-horizontal,var(--sp--1-2));
+  --grid--neg             : calc(var(--grid) * -1);
 
-  --grid-gutter-bottom                    : var(--global--grid-vertical,var(--base-gutter));
-  --grid-gutter-bottom--mobile            : var(--global--mobile--grid-horizontal,var(--base-gutter--half));
-  --grid-gutter-bottom--neg               : calc(var(--grid-gutter) * -1);
+  --grid-bottom           : var(--global--grid-vertical,var(--sp));
+  --grid-bottom--mobile   : var(--global--mobile--grid-horizontal,var(--sp--1-2));
+  --grid-bottom--neg      : calc(var(--grid) * -1);
 }
 
 
@@ -110,15 +110,15 @@
   list-style: none;
   margin: 0;
   padding: 0;
-  margin-left: var(--grid-gutter--neg);
+  margin-left: var(--grid--neg);
   font-size:0;
   letter-spacing: 0;
   @include mq($sm) {
-    --grid-gutter: var(--grid-gutter--mobile);
-    --grid-gutter-bottom: var(--grid-gutter-bottom--mobile);
+    --grid: var(--grid--mobile);
+    --grid-bottom: var(--grid-bottom--mobile);
   }
   &:not(.no_gutter) > .cell__item {
-    padding-left: var(--grid-gutter);
+    padding-left: var(--grid);
     &[class*="--push"] {
       position: relative;
     }
@@ -143,13 +143,13 @@
 .cell__item {
   --width-raw: 100; // fallback if no width class applied for current media query
 
-  --page-width--padding: var(--base-gutter--twothirds);
+  --page-width--padding: var(--sp--2-3);
 
   --page-width--with-padding: (var(--page-width,1600px) - (var(--page-width--padding) * 2));
   
   --vw-max: min(100vw, var(--page-width--with-padding));
   --vw-perc: (var(--width-raw) * 0.01);
-  --vw-offset: var(--grid-gutter);
+  --vw-offset: var(--grid);
 
   --width-vw: calc((var(--vw-max) * var(--vw-perc)) - var(--vw-offset)); 
   --width-vw: (var(--vw-max) * var(--vw-perc) - var(--vw-offset)); 
@@ -166,7 +166,7 @@
     position: relative;
   }
   @include mq($md-up) {
-    --page-width--padding: var(--base-gutter);
+    --page-width--padding: var(--sp);
   }
 }
 
@@ -194,17 +194,17 @@
   }
 
   &.half_gutter {
-    --grid-gutter: var(--base-gutter--half);
+    --grid: var(--sp--1-2);
   }
   &.double_gutter {
-    --grid-gutter: var(--base-gutter--double);
+    --grid: var(--sp--2);
   }
 
   &.cell_margin_bottom,
   &.cell_bottom_margin {
-    margin-bottom: var(--grid-gutter-bottom--neg);
+    margin-bottom: var(--grid-bottom--neg);
     & > .cell__item {
-      margin-bottom: var(--grid-gutter-bottom);
+      margin-bottom: var(--grid-bottom);
     }
   }
 }
@@ -225,7 +225,7 @@
 }
 
 .page-width {
-  --page-width--padding: var(--base-gutter--twothirds);
+  --page-width--padding: var(--sp--2-3);
   width: 100%;
   max-width: var(--page-width);
   margin: 0 auto;
@@ -235,7 +235,7 @@
   }
 
   @include mq($md-up) {
-    --page-width--padding: var(--base-gutter);
+    --page-width--padding: var(--sp);
   }
 
   &.no-padding {  
