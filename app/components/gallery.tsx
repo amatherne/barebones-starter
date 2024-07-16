@@ -37,7 +37,7 @@ const Gallery: React.FC<GalleryProps> = ({ gallerySettings }) => {
         const image           = item.src || '';
         const imageAlt        = item.alt || '';
         const title           = item.title || '';
-        const text            = item.text || '';
+        const text            = item.text || null;
         const buttonText      = item.buttonText || '';
         {/*const buttonUrl       = item.buttonUrl || '';*/}
         const buttonUrl       = item.buttonUrl ? item.buttonUrl : '';
