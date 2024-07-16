@@ -14,17 +14,24 @@
   clip: rect(0 0 0 0);
   word-wrap: normal !important;
 }
-.skip-to-content-link:focus {
-  z-index: 9999;
-  position: inherit;
-  overflow: auto;
-  width: auto;
-  height: auto;
-  clip: auto;
+
+.skip-to-content-link {
+  position: fixed;
+  top: var(--sp);
+  left: var(--sp);
+  
+  &:focus {
+    z-index: 9999;
+    overflow: auto;
+    width: auto;
+    height: auto;
+    clip: auto;
+  }
 }
 
 ::selection {
-  background-color: rgba(var(--color--foreground-rgb), 0.2);
+  background: rgba(var(--color--foreground-rgb), 0.2);
+  background: rgba(var(--color--mandy-pink-rgb), 0.75);
 }
 
 

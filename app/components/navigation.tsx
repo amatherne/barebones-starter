@@ -22,7 +22,7 @@ const Navigation = ({ menuData, className }) => {
 
           return (
             <li key={item.text}>
-              <Link href={url}>
+              <Link href={url} className={`menu--link `}>
                 <span>{item.text}</span>
               </Link>
               {item.subitems && item.subitems.length > 0 && renderMenuItems(item.subitems)}
@@ -38,7 +38,7 @@ const Navigation = ({ menuData, className }) => {
   }
 
   return (
-    <nav className={className}>
+    <nav className={`menu ${className} `}>
       {renderMenuItems(menuData)}
     </nav>
   );

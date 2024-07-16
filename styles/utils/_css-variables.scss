@@ -16,7 +16,16 @@ $colors: (
   white: #ffffff,
   mandy-pink: #EE5C6C,
   windsor-purple: #6a0d83,
+  gradient-midpoint: midpoint-color(#EE5C6C, #6a0d83)
 );
+
+// $colors2: (
+//   mineshaft-black: #212121,
+//   white: #ffffff,
+//   mandy-pink: #EE5C6C,
+//   windsor-purple: #6a0d83
+//   gradient-midpoint: midpoint-color(#EE5C6C, #6a0d83)
+// );
 
 :root {
   @include generate-color-variables($colors);
@@ -84,6 +93,9 @@ $colors: (
   --gradient--color-end             : var(--color--windsor-purple);
   --gradient                        : linear-gradient(var(--gradient--degree), var(--gradient--color-start), var(--gradient--color-end));
   --gradient--reverse               : linear-gradient(var(--gradient--degree), var(--gradient--color-end), var(--gradient--color-start));
+
+  // for text over a gradient
+  --gradient--text                  : var(--color--white);
 }
 
 .color--alt {

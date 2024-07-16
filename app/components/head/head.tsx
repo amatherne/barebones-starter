@@ -45,6 +45,15 @@ const HeadElement: React.FC<HeadProps> = ({ seoTitle, seoText }) => {
         
         <link rel="stylesheet" href="https://use.typekit.net/akz3yrt.css" {...({ precedence: "default" } as any)} />
 
+        <style>{`
+          @media screen and (min-width: 450px) {
+            .header {
+              position: fixed;
+              top: 0;
+            }
+          }
+        `}</style>
+
       </head>
     </>
   );

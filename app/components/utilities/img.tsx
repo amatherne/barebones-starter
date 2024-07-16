@@ -28,7 +28,7 @@ const Img = ({ src, alt, className }) => {
         alt={alt}
         className="image--image"
         onLoad={handleImageLoad}
-        style={{ maxWidth: '100%', height: 'auto' }}
+        // style={{ maxWidth: '100%', height: 'auto' }}
       />
       { dimensions.width && dimensions.height ? (
         <style jsx>{`

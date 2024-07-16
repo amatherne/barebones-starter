@@ -13,10 +13,10 @@ export default function PostList(props) {
               <h1>Websites</h1>
             </div>
 
-            <div className="cell">
+            <div className="cell match-height">
               {props.data.websiteConnection.edges.map((website) => {
                 return (
-                  <div key={website.node.id} className="cell__item w-50 md-up--w-33">
+                  <div key={website.node.id} className="cell__item w-50 lg-up--w-33">
                     <Card 
                       object={website}
                     />

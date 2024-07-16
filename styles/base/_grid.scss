@@ -123,7 +123,26 @@
       position: relative;
     }
   }
-    
+
+  &.match-height,
+  &--match-height {
+    display: flex;
+    flex-wrap: wrap;
+
+    .cell__item {
+      display: inline-flex;
+      flex-direction: column;
+      align-self: unset; // required for heights
+
+      > * { // should be only direct child
+        // display: flex;
+        // flex-direction: column;
+        display: grid;
+        height: 100%;
+        width: 100%;
+      }
+    }
+  } 
 }
 .cell.no_gutter,
 .cell_no_gutter {

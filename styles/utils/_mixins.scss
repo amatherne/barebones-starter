@@ -197,3 +197,21 @@ $grid-breakpoints: (
     -webkit-text-fill-color: transparent;
   }
 }
+
+
+
+@function midpoint-color($color1, $color2) {
+  $r1: red($color1);
+  $g1: green($color1);
+  $b1: blue($color1);
+
+  $r2: red($color2);
+  $g2: green($color2);
+  $b2: blue($color2);
+
+  $r-mid: (($r1 + $r2) / 2);
+  $g-mid: (($g1 + $g2) / 2);
+  $b-mid: (($b1 + $b2) / 2);
+
+  @return rgb($r-mid, $g-mid, $b-mid);
+}

@@ -30,6 +30,7 @@ const RootLayout = ({ children }: RootLayoutProps) => {
       <HeadElement key="head" />
       <body>
         <TinaProvider cms={cms}>
+          <span className="visually-hidden" id="Top">Top of Site</span>
           <a id="Top" className="skip-to-content-link button visually-hidden" href="#MainContent">
             Skip to Content
           </a>
