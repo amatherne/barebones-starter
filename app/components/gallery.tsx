@@ -38,15 +38,21 @@ const Gallery: React.FC<GalleryProps> = ({ gallerySettings }) => {
         const imageAlt        = item.alt || null;
         const title           = item.title || null;
         const text            = item.text || null;
-        const buttonText      = item.buttonText || null;
-        const buttonUrl       = item.buttonUrl || null;
-        const buttonContent   = item.buttonContent || null;
+        const buttonText      = item.buttonText || false;
+        {/*const buttonUrl       = item.buttonUrl || false;*/}
+        const buttonUrl       = item.buttonUrl ? item.buttonUrl : false;
+        const buttonContent   = item.buttonContent || false;
 
         const hasLink         = buttonUrl || buttonContent;
         const hasButton       = buttonText && hasLink;
         const hasOverlayLink  = !hasButton && hasLink;
 
-        let buttonLink: string | null = buttonUrl;
+        console.log('buttonUrl: ',buttonUrl)
+        console.log('buttonContent: ',buttonContent)
+        console.log('hasLink: ',hasLink)
+        console.log('hasOverlayLink: ',hasOverlayLink)
+
+        let buttonLink        = buttonUrl || false;
         if (buttonContent) {
           buttonLink          = formatUrl(buttonContent);  
         }
