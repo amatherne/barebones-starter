@@ -60,15 +60,16 @@ const Gallery: React.FC<GalleryProps> = ({ gallerySettings }) => {
         const hasButton       = buttonText && buttonLink;
         const hasOverlayLink  = !hasButton && buttonLink;
 
-        const linkTitle       = title || text || imageAlt;
+        const linkTitle: string = title || (typeof text === 'string' ? text : imageAlt || '');
+
         const hasContent      = title || text || hasButton;
 
         return (
           <div key={index} className="gallery--item">
-            { hasOverlayLink ? (
+            { hasOverlayLink && buttonLink ? (
               <Link 
                 href={buttonLink} 
-                title={linkTitle || undefined} 
+                title={linkTitle} 
                 className="overlay-link"
               ></Link>
             ) : null }
