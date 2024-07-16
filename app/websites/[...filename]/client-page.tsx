@@ -26,7 +26,7 @@ const Website = (props: ClientPageProps) => {
   });
 
   const { website } = data;
-  const { body, title, gallery } = website || {};
+  const { body, title } = website || {};
   // const images = gallery || [];
   // const hero = images.find(item => item?.hero) || null;
 
