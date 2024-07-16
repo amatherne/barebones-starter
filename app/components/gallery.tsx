@@ -1,17 +1,27 @@
 // ../components/gallery.tsx
 
 import React from 'react';
-import { TinaMarkdown } from 'tinacms/dist/rich-text';
+import { TinaMarkdown, TinaMarkdownContent } from 'tinacms/dist/rich-text';
 import ImgOutput from './utilities/img';
 import { formatUrl } from './utilities/formatUrl';
 import Link from 'next/link';
+
+interface GalleryItem {
+  src: string;
+  alt: string;
+  title?: string;
+  text?: TinaMarkdownContent | TinaMarkdownContent[];
+  buttonText?: string;
+  buttonUrl?: string;
+  buttonContent?: any;
+}
 
 interface GalleryProps {
   gallerySettings: {
     height?: string | null;
     min_height?: string | null;
     max_height?: string | null;
-    gallery: Array<{ src: string; alt: string; title?: string; text?: string; buttonText?: string; buttonUrl?: string; buttonContent?: any; }>;
+    gallery: GalleryItem[];
   };
 }
 
@@ -34,28 +44,21 @@ const Gallery: React.FC<GalleryProps> = ({ gallerySettings }) => {
   return (
     <section className={`gallery ${galleryClass ? 'set-height ' + galleryClass : ''}`} style={galleryStyle}>
       {gallery.map((item, index) => {
-        const image           = item.src || '';
-        const imageAlt        = item.alt || '';
-        const title           = item.title || '';
+        const image           = item.src || null;
+        const imageAlt        = item.alt || null;
+        const title           = item.title || null;
         const text            = item.text || null;
         const buttonText      = item.buttonText || '';
-        {/*const buttonUrl       = item.buttonUrl || '';*/}
-        const buttonUrl       = item.buttonUrl ? item.buttonUrl : '';
+        const buttonUrl       = item.buttonUrl || '';
         const buttonContent   = item.buttonContent || '';
 
-        const hasLink         = buttonUrl || buttonContent;
-        const hasButton       = buttonText && hasLink;
-        const hasOverlayLink  = !hasButton && hasLink;
-
-        console.log('buttonUrl: ',buttonUrl)
-        console.log('buttonContent: ',buttonContent)
-        console.log('hasLink: ',hasLink)
-        console.log('hasOverlayLink: ',hasOverlayLink)
-
-        let buttonLink        = buttonUrl || '';
+        let buttonLink: string = buttonUrl;
         if (buttonContent) {
-          buttonLink          = formatUrl(buttonContent);  
+          buttonLink = formatUrl(buttonContent);  
         }
+
+        const hasButton       = buttonText && buttonLink;
+        const hasOverlayLink  = !hasButton && buttonLink;
 
         const linkTitle       = title || text || imageAlt;
         const hasContent      = title || text || hasButton;
@@ -65,7 +68,7 @@ const Gallery: React.FC<GalleryProps> = ({ gallerySettings }) => {
             { hasOverlayLink ? (
               <Link 
                 href={buttonLink} 
-                title={linkTitle} 
+                title={linkTitle || undefined} 
                 className="overlay-link"
               ></Link>
             ) : null }
