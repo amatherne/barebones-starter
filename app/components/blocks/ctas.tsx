@@ -36,7 +36,8 @@ const CTAs = ({ settings }) => {
   const ctas                        = settings.item;
   
   const ctaTitles = ctas ? ctas.map((cta) => {
-    return cta.title
+    const title = cta.title || '';
+    return title
       .toLowerCase()
       .replaceAll(/[^\w\s-]/gi, '')
       .replaceAll(/\s+/g, '-')

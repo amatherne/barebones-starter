@@ -74,6 +74,7 @@
 %grid-vars {
   --sp                        : var(--global--grid-horizontal,30px);
   
+  --sp--1p5                   : calc( var(--sp) * 1.5 );
   --sp--2                     : calc( var(--sp) * 2 );
   --sp--3                     : calc( var(--sp) * 3 );
   --sp--4                     : calc( var(--sp) * 4 );
@@ -230,7 +231,7 @@
     margin-bottom: var(--grid-bottom);
   }
 
-  --grid-bottom--mobile: var(--sp--2);
+  // --grid-bottom--mobile: var(--sp--2);
 }
 
 /*============================================================================
