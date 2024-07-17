@@ -5,11 +5,6 @@
   "seo_text": "Austin, TX based Front-End Web Developer and Musician.\n",
   "main_menu": [
     {
-      "text": "Home",
-      "url": "/",
-      "content": ""
-    },
-    {
       "text": "Websites",
       "url": "/websites"
     },

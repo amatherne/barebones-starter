@@ -15,7 +15,7 @@ function useMenuHandler() {
       // prevent the menu opening if you're clicking the logo,
       // but allow the logo to close menu if it already is open.
       const isLogo = (event.target.classList.contains('logo') || event.target.parentNode.classList.contains('logo'));
-      if (!Menu.classList.contains(menuOpenClass) && isLogo) return;
+      if (!Body.classList.contains(menuOpenClass) && isLogo) return;
 
       if (event.target.tagName === 'A' && event.target.getAttribute('href') === '#') {
         event.preventDefault();
@@ -38,7 +38,7 @@ function useMenuHandler() {
       const closeMenuIfLeaving = (event) => {
         const relatedTarget = event.relatedTarget;
         if (!relatedTarget || (!relatedTarget.classList.contains('menu--link') && relatedTarget !== OpenLink)) {
-          menuToggle(false); // Close menu when leaving links
+          menuToggle(); 
         }
       };
 

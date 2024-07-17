@@ -1,0 +1,14 @@
+User-agent: *
+Disallow: /admin/
+Disallow: /api/
+Disallow: /static/admin/
+Disallow: /tinacms/
+Disallow: /___tina/
+Disallow: /_next/
+Disallow: /__webpack_hmr
+
+# Allow search engines to crawl everything else
+Allow: /
+
+# Optionally, specify the location of your sitemap
+# Sitemap: https://yourdomain.com/sitemap.xml

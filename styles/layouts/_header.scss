@@ -397,7 +397,7 @@
         }
 
 
-        &.active span,
+        &.menu--link--active span,
         &:hover span,
         &:focus span,
         span:hover, 
@@ -407,7 +407,7 @@
         }
 
 
-        &:not(.active,:hover,:focus) {
+        &:not(.menu--link--active,:hover,:focus) {
           // font-weight: 400;
           // text-decoration: none;
         }

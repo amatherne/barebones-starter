@@ -1,4 +1,4 @@
-// ../components/Header.js
+// ../app/components/Header.js
 
 import React, { useEffect } from 'react';
 import Link from 'next/link';

@@ -1,28 +1,34 @@
-// ../app/components/navigation.js
+// ../app/components/navigation.tsx
 
 import React from 'react';
 import Link from 'next/link';
+import activeLink from '../../utils/active-link'; 
 
 const Navigation = ({ menuData, className }) => {
-  const renderMenuItems = (items) => {
+  const { isActive } = activeLink();
+
+  const menuActive = 'menu--link--active';
+
+  const renderMenuItems = (items: MenuItem[]) => {
     return (
       <ul className="list-unstyled">
         {items.map((item) => {
-
+          
           let contentUrl = '';
           if (item.content) {
-            contentUrl = item.content
-                            .replace('content/page', '')
-                            .replace('content', '')
-                            .replace('.mdx', '')
-                            .replace('.md', '');
+            contentUrl = 
+              item.content
+                .replace('content/page', '')
+                .replace('content', '')
+                .replace('.mdx', '')
+                .replace('.md', '');
           }
           
           const url = contentUrl || item.url || '';
 
           return (
             <li key={item.text}>
-              <Link href={url} className={`menu--link `}>
+              <Link href={url} className={`menu--link ${isActive(url) ? menuActive : ''}`}>
                 <span>{item.text}</span>
               </Link>
               {item.subitems && item.subitems.length > 0 && renderMenuItems(item.subitems)}
@@ -38,7 +44,7 @@ const Navigation = ({ menuData, className }) => {
   }
 
   return (
-    <nav className={`menu ${className} `}>
+    <nav className={`menu ${className}`}>
       {renderMenuItems(menuData)}
     </nav>
   );
