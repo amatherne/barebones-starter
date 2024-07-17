@@ -1,46 +1,41 @@
-// ../schemas/blocks.tsx
+// ../tina/schemas/blocks.tsx
 
 import React from 'react'
-import type { Pages } from '../tina/__generated__/types'
+import type { Page } from '../__generated__/types'
 
 import Hero from './blocks/hero';
 // import Content from './blocks/content';
 // import Ctas from './blocks/ctas';
 
-export const hero = Hero;
-// export const content = Content;
-// export const ctas = Ctas;
-
-export const Blocks = (props: Pages) => {
+const Blocks = (props: Page) => {
   return (
     <>
       {props.blocks
         ? props.blocks.map(function (block, i) {
-            console.log(block.__typename)
-            switch (block.__typename) {
-              case 'PagesBlocksContent':
-                {/*return (
-                  <React.Fragment key={i + block.__typename}>
-                    <Content data={block} />
-                  </React.Fragment>
-                )*/}
-              case 'PagesBlocksHero':
-                return (
-                  <React.Fragment key={i + block.__typename}>
-                    <hero data={block} />
-                  </React.Fragment>
-                )
-              case 'PagesBlocksFeatures':
-                {/*return (
-                  <React.Fragment key={i + block.__typename}>
-                    <Features data={block} />
-                  </React.Fragment>
-                )*/}
-              default:
-                return null
-            }
-          })
-        : null}
+          if (!block || !block.__typename) return null;
+
+          console.log(block)
+
+          const blockType: string = block.__typename;
+
+          console.log(blockType)
+          console.log(blockType == 'PagesBlocksHero')
+
+          switch (blockType) {
+            case 'PagesBlocksHero':
+              return (
+                <React.Fragment key={i + blockType}>
+                  <Hero data={block} />
+                </React.Fragment>
+              )
+              break;
+            default:
+              return null
+          }
+        })
+      : null}
     </>
   )
 }
+
+export { Blocks, Hero };

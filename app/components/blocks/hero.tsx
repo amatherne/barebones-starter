@@ -1,4 +1,4 @@
-// ../components/blocks/gallery.tsx
+// ../components/blocks/hero.tsx
 
 import React from 'react';
 import { TinaMarkdown, TinaMarkdownContent } from 'tinacms/dist/rich-text';
@@ -6,21 +6,23 @@ import ImgOutput from '../utilities/img';
 import { formatUrl } from '../utilities/formatUrl';
 import Link from 'next/link';
 
-const Gallery = ({ settings }) => {
+const Hero = ({ settings }) => {
 
   const height = settings.height;
   const min_height = settings.min_height;
   const max_height = settings.max_height;
 
-  const gallery = settings.item;
+  const hero = settings.item;
 
-  const galleryStyle: any = { 
+  if (!hero) return null;
+
+  const heroStyle: any = { 
     ...(height && { '--height--default': height.replace('%', 'vw') }),
     ...(min_height && { '--height--min': min_height.replace('%', 'vw') }),
     ...(max_height && { '--height--max': max_height.replace('%', 'vw') }),
   };
 
-  const galleryClass = `
+  const heroClass = `
     ${height && min_height && max_height ? 'set-height--clamp' : ''}
     ${height && !min_height && !max_height ? 'set-height--default' : ''}
     ${height && min_height && !max_height ? 'set-height--min' : ''}
@@ -29,10 +31,10 @@ const Gallery = ({ settings }) => {
 
   return (
     <section 
-      className={`gallery ${galleryClass ? 'set-height ' + galleryClass : ''}`} 
-      style={galleryStyle}
+      className={`hero ${heroClass ? 'set-height ' + heroClass : ''}`} 
+      style={heroStyle}
     >
-      {gallery.map((item, index) => {
+      {hero.map((item, index) => {
 
         const image               = item.src || null;
         const imageAlt            = item.alt || null;
@@ -56,7 +58,7 @@ const Gallery = ({ settings }) => {
 
         const hasContent          = title || text || hasButton;
 
-        const itemIDString        = `gallery--item--${image}-${imageAlt}-${title}`;
+        const itemIDString        = `hero--item--${image}-${imageAlt}-${title}`;
         const itemID = 
           itemIDString
             .toLowerCase()
@@ -75,7 +77,7 @@ const Gallery = ({ settings }) => {
         }
 
         return (
-          <div key={index} className={`gallery--item ${itemID}`}>
+          <div key={index} className={`hero--item ${itemID}`}>
             { hasOverlayLink && buttonLink ? (
               <Link 
                 href={buttonLink} 
@@ -84,10 +86,10 @@ const Gallery = ({ settings }) => {
               ></Link>
             ) : null }
 
-            <ImgOutput src={image} alt={imageAlt} className="gallery--image" />
+            <ImgOutput src={image} alt={imageAlt} className="hero--image" />
 
             { hasContent ? (
-              <div className="gallery--text">
+              <div className="hero--text">
                 
                 { title ? (
                   <h2 className="h1">{title}</h2>
@@ -124,4 +126,4 @@ const Gallery = ({ settings }) => {
   );
 };
 
-export default Gallery;
+export default Hero;

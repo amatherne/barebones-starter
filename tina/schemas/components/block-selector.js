@@ -1,7 +1,7 @@
 // ../tina/schemas/components/block-selector.js
 
 import { 
-  hero, 
+  Hero, 
   // content, 
   // ctas 
 } from '../blocks'
@@ -15,7 +15,7 @@ const blockSelector = {
     visualSelector: true,
   },
   templates: [
-    hero, 
+    Hero, 
     // featureBlock, 
     // contentBlock
   ],

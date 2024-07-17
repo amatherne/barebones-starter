@@ -1,8 +1,8 @@
-// ../tina/schemas/components/hero.js
+// ../tina/schemas/blocks/hero.js
 
 import item from '../components/item';
 
-const hero = {
+const Hero = {
   type: 'object',
   label: 'Hero',
   name: 'hero',
@@ -22,8 +22,8 @@ const hero = {
       label: 'Min Height',
       name: 'min_height',
     },
-    item
+    item,
   ],
 };
 
-export default hero;
+export default Hero;
