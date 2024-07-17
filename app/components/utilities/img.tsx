@@ -25,7 +25,7 @@ const Img = ({ src, alt, className }) => {
     <div className={`image--outer ${imageID} ${className ? className : ''}`}>
       <img
         src={src}
-        alt={alt}
+        alt={alt||''}
         className="image--image"
         onLoad={handleImageLoad}
         // style={{ maxWidth: '100%', height: 'auto' }}
