@@ -18,13 +18,6 @@ const PageBlocksCtas = {
       };
     },
   },
-  // defaultItem: () => {
-  //   return {
-  //     desktop_width: 'lg-up--w-33',
-  //     tablet_width: 'md--w-33',
-  //     mobile_width: 'sm--w-50',
-  //   }
-  // },
   fields: [
     {
       type: 'string',

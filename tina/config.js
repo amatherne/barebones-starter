@@ -29,7 +29,13 @@ export const config = defineConfig({
     outputFolder: "admin", // within the public folder
   },
   schema: {
-    collections: [globalSettings, page, website, sounds, post],
+    collections: [
+      globalSettings, 
+      page, 
+      website, 
+      sounds, 
+      post,
+    ],
   },
   client: {
     referenceDepth: 1,

@@ -15,7 +15,6 @@ interface RootLayoutProps {
 const RootLayout = ({ children }: RootLayoutProps) => {
   const cms = useMemo(() => {
     const cms = new TinaCMS();
-    // cms.media.store = new CustomMediaStore();
     return cms;
   }, []);
 

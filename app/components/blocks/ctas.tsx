@@ -10,8 +10,6 @@ const CTAs = ({ settings }) => {
   
   if (!settings) return null;
 
-  // console.log(settings)
-
   const sectionTitle                = settings.title || null;
   let sectionText                   = settings.text;
   if (sectionText && sectionText.children.length === 0) {
@@ -36,8 +34,6 @@ const CTAs = ({ settings }) => {
   const widths                      = `${ctasMobileWidth} ${ctasTabletWidth} ${ctasDesktopWidth}`;
   
   const ctas                        = settings.item;
-
-  // console.log(ctas)
   
   const ctaTitles = ctas ? ctas.map((cta) => {
     return cta.title
@@ -71,19 +67,10 @@ const CTAs = ({ settings }) => {
         .replaceAll(';', '!important;')
         .replaceAll('##', ';')
   }
-
-
-  // const ctasClass = `
-  //   ${height && min_height && max_height ? 'set-height--clamp' : ''}
-  //   ${height && !min_height && !max_height ? 'set-height--default' : ''}
-  //   ${height && min_height && !max_height ? 'set-height--min' : ''}
-  //   ${height && !min_height && max_height ? 'set-height--max' : ''}
-  // `.trim();
-
+  
   return (
     <section
       className={`ctas ${sectionID}`} 
-      // className={`ctas ${ctasClass ? 'set-height ' + ctasClass : ''}`} 
     >
       <div className="page-width">
 
