@@ -9,7 +9,7 @@ const Navigation = ({ menuData, className }) => {
 
   const menuActive = 'menu--link--active';
 
-  const renderMenuItems = (items: MenuItem[]) => {
+  const renderMenuItems = (items) => {
     return (
       <ul className="list-unstyled">
         {items.map((item) => {
