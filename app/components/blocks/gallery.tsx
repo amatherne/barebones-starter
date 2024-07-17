@@ -1,33 +1,18 @@
-// ../components/gallery.tsx
+// ../components/blocks/gallery.tsx
 
 import React from 'react';
 import { TinaMarkdown, TinaMarkdownContent } from 'tinacms/dist/rich-text';
-import ImgOutput from './utilities/img';
-import { formatUrl } from './utilities/formatUrl';
+import ImgOutput from '../utilities/img';
+import { formatUrl } from '../utilities/formatUrl';
 import Link from 'next/link';
 
-interface GalleryItem {
-  src: string;
-  alt: string;
-  title?: string;
-  text?: TinaMarkdownContent | TinaMarkdownContent[];
-  buttonText?: string;
-  buttonUrl?: string;
-  buttonContent?: any;
-  custom_css?: any;
-}
+const Gallery = ({ settings }) => {
 
-interface GalleryProps {
-  gallerySettings: {
-    height?: string | null;
-    min_height?: string | null;
-    max_height?: string | null;
-    gallery: GalleryItem[];
-  };
-}
+  const height = settings.height;
+  const min_height = settings.min_height;
+  const max_height = settings.max_height;
 
-const Gallery: React.FC<GalleryProps> = ({ gallerySettings }) => {
-  const { height, min_height, max_height, gallery } = gallerySettings;
+  const gallery = settings.item;
 
   const galleryStyle: any = { 
     ...(height && { '--height--default': height.replace('%', 'vw') }),
@@ -43,31 +28,35 @@ const Gallery: React.FC<GalleryProps> = ({ gallerySettings }) => {
   `.trim();
 
   return (
-    <section className={`gallery ${galleryClass ? 'set-height ' + galleryClass : ''}`} style={galleryStyle}>
+    <section 
+      className={`gallery ${galleryClass ? 'set-height ' + galleryClass : ''}`} 
+      style={galleryStyle}
+    >
       {gallery.map((item, index) => {
-        const image           = item.src || null;
-        const imageAlt        = item.alt || null;
-        const title           = item.title || null;
-        const text            = item.text || null;
-        const buttonText      = item.buttonText || '';
-        const buttonUrl       = item.buttonUrl || '';
-        const buttonContent   = item.buttonContent || '';
 
-        let buttonLink: string = buttonUrl;
+        const image               = item.src || null;
+        const imageAlt            = item.alt || null;
+        const title               = item.title || null;
+        const text                = item.text || null;
+        const buttonText          = item.button?.text || '';
+        const buttonUrl           = item.button?.url || '';
+        const buttonContent       = item.button?.content || '';
+
+        let buttonLink: string    = buttonUrl;
         if (buttonContent) {
-          buttonLink = formatUrl(buttonContent);  
+          buttonLink              = formatUrl(buttonContent);  
         }
 
-        let customCSS       = item.custom_css || '';
+        let customCSS             = item.custom_css || '';
 
-        const hasButton       = buttonText && buttonLink;
-        const hasOverlayLink  = !hasButton && buttonLink;
+        const hasButton           = buttonText && buttonLink;
+        const hasOverlayLink      = !hasButton && buttonLink;
 
-        const linkTitle: string = title || (typeof text === 'string' ? text : imageAlt || '');
+        const linkTitle: string   = title || (typeof text === 'string' ? text : imageAlt || '');
 
-        const hasContent      = title || text || hasButton;
+        const hasContent          = title || text || hasButton;
 
-        const itemIDString    = `gallery--item--${image}-${imageAlt}-${title}`;
+        const itemIDString        = `gallery--item--${image}-${imageAlt}-${title}`;
         const itemID = 
           itemIDString
             .toLowerCase()

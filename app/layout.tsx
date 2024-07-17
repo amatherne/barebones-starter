@@ -7,8 +7,6 @@ import { TinaCMS, TinaProvider } from 'tinacms';
 import React, { useMemo, useEffect } from 'react';
 import Header from './components/header';
 import Footer from './components/footer';
-// import CustomMediaStore from '../utils/custom-media-store';
-// import TestMedia from './components/test-media';
 
 interface RootLayoutProps {
   children: React.ReactNode;
@@ -22,7 +20,6 @@ const RootLayout = ({ children }: RootLayoutProps) => {
   }, []);
 
   useEffect(() => {
-    // console.log('RootLayout mounted with cms:', cms);
   }, [cms]);
 
   return (
@@ -36,9 +33,6 @@ const RootLayout = ({ children }: RootLayoutProps) => {
           </a>
           <Header key="header" />
           <main id="MainContent" className="focus-none" role="main" tabIndex={-1}>
-            {/*<div style={{ padding: '20px', background: '#f0f0f0' }}>
-              <TestMedia />
-            </div>*/}
             {children}
           </main>
           <Footer key="footer" />
