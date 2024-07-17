@@ -1,38 +1,27 @@
-// ../tina/schemas/gallery.js
+// ../tina/schemas/components/item.js
 
 import React from 'react';
-import link from '../schemas/link';
-import { MediaUploadFieldPlugin } from '@tinacms/fields';
-import { FormBuilderPlugin } from '@tinacms/form-builder';
-import { GlobalStylesheet } from '@tinacms/styles';
-import { IconPlugin } from '@tinacms/icons';
+import link from './link';
 import { useCMS } from '@tinacms/react-core';
-// import CustomCssField from '../schemas/customCSS';
 
 
-const gallery = {
+const item = {
   type: 'object',
   label: 'Gallery',
-  name: 'gallery',
+  name: 'item',
   list: true,
   ui: {
     itemProps: (item) => {
       const imgTitle = item.src ? item.src.substring(item.src.lastIndexOf('/') + 1) : null;
-      const galleryTitle = item.title ? item.title : null;
+      const itemTitle = item.title ? item.title : null;
       const altText = item.alt ? item.alt : null;
 
       return {
-        label: galleryTitle || altText || imgTitle || 'Image',
+        label: itemTitle || altText || imgTitle || 'Image',
         thumbnail: item.src || '',
       };
     },
   },
-  plugins: [
-    MediaUploadFieldPlugin,
-    FormBuilderPlugin,
-    GlobalStylesheet,
-    IconPlugin,
-  ],
   fields: [
     {
       label: 'Image',
@@ -78,9 +67,8 @@ const gallery = {
       label: 'Custom CSS',
       name: 'custom_css',
       component: 'textarea'
-      // component: CustomCssField,
     },
   ],
 };
 
-export default gallery;
+export default item;

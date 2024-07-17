@@ -4,7 +4,7 @@
  * @type {import('tinacms').Collection}
  */
 
-import link from '../schemas/link';
+import link from '../schemas/components/link';
 
 export default {
   label: "Global Settings",

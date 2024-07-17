@@ -1,4 +1,4 @@
-// ../tina/schemas/link.js
+// ../tina/schemas/components/link.js
 
 const link = {
   type: 'object',

@@ -1,6 +1,6 @@
-// ../tina/schemas/gallery.js
+// ../tina/schemas/components/hero.js
 
-import gallery from '../schemas/gallery';
+import item from '../components/item';
 
 const hero = {
   type: 'object',
@@ -22,7 +22,7 @@ const hero = {
       label: 'Min Height',
       name: 'min_height',
     },
-    gallery
+    item
   ],
 };
 

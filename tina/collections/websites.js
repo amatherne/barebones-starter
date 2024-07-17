@@ -2,7 +2,7 @@
  * @type {import('tinacms').Collection}
  */
 
-import hero from '../schemas/hero';
+import hero from '../schemas/blocks/hero';
 
 export default {
   label: "Websites",

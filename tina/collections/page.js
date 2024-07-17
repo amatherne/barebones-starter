@@ -3,7 +3,7 @@
  * @type {import('tinacms').Collection}
  */
 
-import hero from '../schemas/hero';
+import blockSelector from '../schemas/components/block-selector';
 
 export default {
   label: "Pages",
@@ -11,7 +11,7 @@ export default {
   path: "content/page",
   format: "mdx",
   fields: [
-    hero,
+    blockSelector,
     {
       type: "string",
       label: "Title",
