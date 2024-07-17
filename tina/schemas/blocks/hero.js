@@ -2,7 +2,7 @@
 
 import item from '../components/item';
 
-const Hero = {
+const PageBlocksHero = {
   type: 'object',
   label: 'Hero',
   name: 'hero',
@@ -26,4 +26,4 @@ const Hero = {
   ],
 };
 
-export default Hero;
+export default PageBlocksHero;

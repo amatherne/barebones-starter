@@ -59,8 +59,12 @@
       width: 100%;
       height: 100%;
       background: var(--gradient);
-      opacity: 0.75;
+      opacity: 0.65;
       z-index: 1;
+
+      @include mq($md-up) {
+        opacity: 0.85;
+      }
     }
 
     .image--image {
@@ -76,7 +80,8 @@
 
   &--text {
     --text-color: var(--color--foreground);
-    padding: var(--sp--1-2);
+    --text--sp: var(--sp);
+    padding: var(--text--sp) calc(var(--text--sp) * 0.5) 0;
 
     .h1 {
       line-height: 1;
@@ -91,14 +96,27 @@
     }
 
     .h1 + .rte {
-      margin-top: calc(var(--sp--1-2) * -1.35);
+      margin-top: calc(var(--text--sp) * -1.35);
     }
 
     > * {
-      margin-bottom: var(--sp--1-2);
+      margin-bottom: var(--text--sp);
 
       &:last-child {
         margin-bottom: 0;
+      }
+    }
+
+    @include mq($sm) {
+      &:after {
+        content: '';
+        display: block;
+        left: calc(var(--text--sp) * -1);
+        position: relative;
+        width: calc(100% + (var(--text--sp) * 2));
+        height: var(--sp--1-4);
+        margin: var(--text--sp) 0 0;
+        background: var(--gradient);
       }
     }
 

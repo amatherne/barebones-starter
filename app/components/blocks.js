@@ -12,9 +12,13 @@ const Blocks = ({ settings }) => {
   return (
     <>
       {settings.map((block, index) => {
+        
+        if (!block) return null;
+
         // console.log(block.__typename)
+        
         switch (block.__typename) {
-          case 'PageBlocksHero': // Example block type 'hero'
+          case 'PageBlocksHero': 
             return <Hero key={index} settings={block} {...block} />;
           // case 'feature': // Example block type 'feature'
             // return <FeatureBlock key={index} {...block} />;
