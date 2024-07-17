@@ -36,29 +36,40 @@ const CTAs = ({ settings }) => {
   const widths                      = `${ctasMobileWidth} ${ctasTabletWidth} ${ctasDesktopWidth}`;
   
   const ctas                        = settings.item;
+
+  // console.log(ctas)
   
+  const ctaTitles = ctas ? ctas.map((cta) => {
+    return cta.title
+      .toLowerCase()
+      .replaceAll(/[^\w\s-]/gi, '')
+      .replaceAll(/\s+/g, '-')
+      .replaceAll(/-+/g, '-')
+      .replaceAll(/^-|-$/g, '');
+  }).filter(Boolean).join('--') : [];
+
   const sectionTitleHasContent      = sectionTitle || sectionText || sectionHasButton;
 
   const sectionHasContent           = sectionTitleHasContent || ctas;
 
   if (!sectionHasContent) return null;
 
-  const sectionIDString            = `ctas--section--${sectionTitle}--${sectionText}--${sectionButtonText}`;
+  const sectionIDString            = `ctas--section--${sectionTitle}--${sectionText}--${sectionButtonText}--${ctaTitles}`;
   const sectionID = 
     sectionIDString
       .toLowerCase()
-      .replace(/[^\w\s-]/gi, '')
-      .replace(/\s+/g, '-')
-      .replace(/-+/g, '-')
-      .replace(/^-|-$/g, '');
+      .replaceAll(/[^\w\s-]/gi, '')
+      .replaceAll(/\s+/g, '-')
+      .replaceAll(/-+/g, '-')
+      .replaceAll(/^-|-$/g, '');
 
   if (sectionCustomCSS) {
     sectionCustomCSS = 
       sectionCustomCSS
-        .replace('==', '.' + sectionID)
-        .replace(';;', '##')
-        .replace(';', '!important;')
-        .replace('##', ';')
+        .replaceAll('==', '.' + sectionID)
+        .replaceAll(';;', '##')
+        .replaceAll(';', '!important;')
+        .replaceAll('##', ';')
   }
 
 
@@ -71,17 +82,22 @@ const CTAs = ({ settings }) => {
 
   return (
     <section
-      className="ctas" 
+      className={`ctas ${sectionID}`} 
       // className={`ctas ${ctasClass ? 'set-height ' + ctasClass : ''}`} 
     >
       <div className="page-width">
 
+        {sectionCustomCSS ? (
+          <style>{`
+            ${sectionCustomCSS}
+          `}</style>
+        ) : null }
 
         {sectionTitleHasContent ? (
 
           <div className="section--title text-center">
             { sectionTitle ? (
-              <h3 className="h2">{sectionTitle}</h3>
+              <h2 className="h1">{sectionTitle}</h2>
             ) : null }
 
             { sectionText ? (

@@ -62,18 +62,18 @@ const Hero = ({ settings }) => {
         const itemID = 
           itemIDString
             .toLowerCase()
-            .replace(/[^\w\s-]/gi, '')
-            .replace(/\s+/g, '-')
-            .replace(/-+/g, '-')
-            .replace(/^-|-$/g, '');
+            .replaceAll(/[^\w\s-]/gi, '')
+            .replaceAll(/\s+/g, '-')
+            .replaceAll(/-+/g, '-')
+            .replaceAll(/^-|-$/g, '');
 
         if (customCSS) {
           customCSS = 
             customCSS
-              .replace('==', '.' + itemID)
-              .replace(';;', '##')
-              .replace(';', '!important;')
-              .replace('##', ';')
+              .replaceAll('==', '.' + itemID)
+              .replaceAll(';;', '##')
+              .replaceAll(';', '!important;')
+              .replaceAll('##', ';')
         }
 
         return (
@@ -94,7 +94,7 @@ const Hero = ({ settings }) => {
               <div className="hero--text">
                 
                 { title ? (
-                  <h2 className="h1">{title}</h2>
+                  <h2 className="hxl">{title}</h2>
                 ) : null }
 
                 { text ? (
