@@ -2,6 +2,7 @@
 
 import { 
   PageBlocksHero,
+  PageBlocksCtas,
 } from '../blocks'
 
 const blockSelector = { 
@@ -13,7 +14,8 @@ const blockSelector = {
     visualSelector: true,
   },
   templates: [
-    PageBlocksHero, 
+    PageBlocksHero,
+    PageBlocksCtas,
   ],
 };
 

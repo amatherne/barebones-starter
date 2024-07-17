@@ -82,11 +82,13 @@ const Hero = ({ settings }) => {
               <Link 
                 href={buttonLink} 
                 title={linkTitle} 
-                className="overlay-link"
+                className="overlay--link"
               ></Link>
             ) : null }
 
-            <ImgOutput src={image} alt={imageAlt} className="hero--image" />
+            {image ? (
+              <ImgOutput src={image} alt={imageAlt} className="ctas--image" />
+            ) : null }
 
             { hasContent ? (
               <div className="hero--text">

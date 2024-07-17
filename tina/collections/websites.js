@@ -2,25 +2,14 @@
  * @type {import('tinacms').Collection}
  */
 
-// import Hero from '../schemas/blocks/hero';
+import blockSelector from '../schemas/components/block-selector';
+
 
 export default {
   label: "Websites",
   name: "website",
   path: "content/websites",
   format: "mdx",
-  defaultItem: () => {
-    return {
-      published: true,
-      gallery: [
-        {
-          src: '',
-          alt: '',
-          hero: true, // Default the first image as hero
-        },
-      ],
-    };
-  },
   ui: {
     filename: {
       readonly: true,
@@ -41,7 +30,6 @@ export default {
       label: "Publish",
       name: "published",
     },
-    // hero,
     {
       type: "string",
       label: "Title",
@@ -65,7 +53,7 @@ export default {
       label: "Length of Service Provided",
       name: "time_span",
     },
-
+    blockSelector,    
     {
       type: "string",
       label: "SEO Title",

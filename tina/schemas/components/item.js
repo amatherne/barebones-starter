@@ -7,7 +7,7 @@ import { useCMS } from '@tinacms/react-core';
 
 const item = {
   type: 'object',
-  label: 'Gallery',
+  label: 'Item',
   name: 'item',
   list: true,
   ui: {
@@ -17,7 +17,7 @@ const item = {
       const altText = item.alt ? item.alt : null;
 
       return {
-        label: itemTitle || altText || imgTitle || 'Image',
+        label: itemTitle || altText || imgTitle || 'Item',
         thumbnail: item.src || '',
       };
     },

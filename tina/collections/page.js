@@ -11,7 +11,6 @@ export default {
   path: "content/page",
   format: "mdx",
   fields: [
-    blockSelector,
     {
       type: "string",
       label: "Title",
@@ -25,6 +24,7 @@ export default {
       type: "rich-text",
       isBody: true,
     },
+    blockSelector,
   ],
   ui: {
     filename: {

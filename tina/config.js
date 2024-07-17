@@ -31,6 +31,9 @@ export const config = defineConfig({
   schema: {
     collections: [globalSettings, page, website, sounds, post],
   },
+  client: {
+    referenceDepth: 1,
+  },
 });
 
 export default config;
