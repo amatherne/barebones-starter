@@ -14,10 +14,8 @@ const Blocks = ({ settings }) => {
     <>
       {settings.map((block, index) => {
         
-        if (!block) return null;
+        if (!block || !block.published) return null;
 
-        // console.log(block.__typename)
-        
         switch (block.__typename) {
           
           case 'PageBlocksHero': 

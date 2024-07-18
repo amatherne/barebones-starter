@@ -18,18 +18,17 @@ const PageBlocksCtas = {
       };
     },
   },
-  // defaultItem: () => {
-  //   console.log("Setting default item values"); // Check if this is logged
-  //   return {
-  //     widths: {
-  //       desktop_width: "lg-up--w-100",
-  //       tablet_width: "md--w-100",
-  //       mobile_width: "w-100",
-  //     },
-  //     title: 'Default Title', // Add a simple default title for testing
-  //   };
-  // },
+  defaultItem: () => {
+    return {
+      published: true,
+    };
+  },
   fields: [
+    {
+      type: "boolean",
+      label: "Publish",
+      name: "published",
+    },
     {
       type: 'string',
       label: 'Title',

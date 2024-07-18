@@ -8,6 +8,11 @@ const PageBlocksHero = {
   name: 'hero',
   fields: [
     {
+      type: "boolean",
+      label: "Publish",
+      name: "published",
+    },
+    {
       type: 'string',
       label: 'Height',
       name: 'height',

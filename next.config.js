@@ -21,7 +21,13 @@ const nextConfig = {
       },
     ];
   },
-  webpack(config, { isServer }) {
+  webpack: (config, { isServer }) => {
+    
+    // Disable HMR for both client and server builds
+    if (!isServer) {
+      config.resolve.alias['@sentry/node'] = '@sentry/browser'
+    }
+
     // Add SVGR and svgo-loader for SVG handling
     config.module.rules.push({
       test: /\.svg$/,

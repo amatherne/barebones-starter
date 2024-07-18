@@ -4,8 +4,7 @@
 
 import React, { useState, useEffect, useContext } from 'react';
 import dynamic from 'next/dynamic';
-import { SvgDataContext } from '../../../public/SvgDataContext'; // Adjust as per your actual context setup
-// import { svgConfig } from './svgConfig'; // Import your SVG configuration here
+import { useSvgDataContext } from '../../../public/SvgDataContext'; // Adjust as per your actual context setup
 
 interface ImgProps {
   src: string;
@@ -15,15 +14,15 @@ interface ImgProps {
 
 const Img: React.FC<ImgProps> = ({ src, alt, className }) => {
   const [dimensions, setDimensions] = useState<{ width: number; height: number }>({ width: 0, height: 0 });
-  const { svgPath } = useContext(SvgDataContext);
+  const { svgPath } = useSvgDataContext(); // Use the context here
 
   useEffect(() => {
     if (src && src.endsWith('.svg')) {
       const fileName = src.split('/').pop();
+      console.log(fileName)
       const SvgComponent = dynamic(() => import(`../../../public/svgs/${fileName}`));
-      // Ensure proper handling or transformation using SvgComponent
     }
-  }, [src]);
+  }, [src, svgPath]); // Ensure useEffect updates when svgPath changes
 
   const handleImageLoad = (event: React.SyntheticEvent<HTMLImageElement>) => {
     const { naturalWidth, naturalHeight } = event.currentTarget;
@@ -39,9 +38,9 @@ const Img: React.FC<ImgProps> = ({ src, alt, className }) => {
     .replace(/^-|-$/g, '');
 
   return (
-    <div className={`image--outer ${imageID} ${className ? className : ''}`}>
+    <div className={`image--outer ${imageID} ${className || ''}`}>
       {src && src.endsWith('.svg') ? (
-        <SvgComponent width={24} height={24} {...svgConfig} /> // Pass svgConfig here
+        <div width={24} height={24} /> 
       ) : (
         <img
           src={src}
