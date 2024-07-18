@@ -47,6 +47,18 @@
     }
   }
 
+
+  svg {
+    height: auto;
+    width: auto;
+    color:var(--color--foreground);
+  }
+
+  .image--svg {
+    display: inline;
+  }
+
+
   &:not(.background-video) > .video--inner,
   iframe,
   video {
@@ -86,8 +98,6 @@
       transform: translate(-50%,-50%);
       width: 100%;
     }
-
-
 
     svg,
     img {

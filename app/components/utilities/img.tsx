@@ -2,17 +2,29 @@
 
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Img = ({ src, alt, className }) => {
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+  const [svgContent, setSvgContent] = useState(null);
+
+  useEffect(() => {
+    if (src && src.endsWith('.svg')) {
+      fetch(src)
+        .then(response => response.text())
+        .then(data => setSvgContent(data))
+        .catch(error => console.error('Error fetching SVG:', error));
+    }
+  }, [src]);
 
   const handleImageLoad = (event) => {
-    const { naturalWidth, naturalHeight } = event.target;
-    setDimensions({ width: naturalWidth, height: naturalHeight });
+    if (!src.endsWith('.svg')) {
+      const { naturalWidth, naturalHeight } = event.target;
+      setDimensions({ width: naturalWidth, height: naturalHeight });
+    }
   };
 
-  const imageIDString = `image--${src?'--'+src:''}${alt?'--'+alt:''}${className?'--'+className:''}`;
+  const imageIDString = `image--${src ? '--' + src : ''}${alt ? '--' + alt : ''}${className ? '--' + className : ''}`;
   const imageID = 
     imageIDString
       .toLowerCase()
@@ -20,24 +32,31 @@ const Img = ({ src, alt, className }) => {
       .replace(/\s+/g, '-')
       .replace(/-+/g, '-')
       .replace(/^-|-$/g, '');
-      
+
   return (
     <div className={`image--outer ${imageID} ${className ? className : ''}`}>
-      <img
-        src={src}
-        alt={alt||''}
-        className="image--image"
-        onLoad={handleImageLoad}
-        // style={{ maxWidth: '100%', height: 'auto' }}
-      />
-      { dimensions.width && dimensions.height ? (
+      {svgContent ? (
+        <div
+          className="image--svg"
+          dangerouslySetInnerHTML={{ __html: svgContent }}
+          aria-label={alt || ''}
+        />
+      ) : (
+        <img
+          src={src}
+          alt={alt || ''}
+          className="image--image"
+          onLoad={handleImageLoad}
+        />
+      )}
+      {!src.endsWith('.svg') && dimensions.width && dimensions.height ? (
         <style jsx>{`
           .image--${imageID} {
             --image--natural-width: ${dimensions.width}px;
-            --image--natural-height: ${ (1 / ( dimensions.width / dimensions.height )) * 100 }%;
+            --image--natural-height: ${(1 / (dimensions.width / dimensions.height)) * 100}%;
           }
         `}</style>
-      ) : null }
+      ) : null}
     </div>
   );
 };

@@ -11,14 +11,6 @@
   --global--mobile--grid-horizontal : 15px;
   --global--mobile--grid-vertical   : 15px;
 
-  // --global--spacing-sections        : var(--sp--2);
-  // --global--grid-horizontal         : var(--sp);
-  // --global--grid-vertical           : var(--sp);
-
-  // --global--mobile--spacing-sections: var(--sp);
-  // --global--mobile--grid-horizontal : var(--sp--1-2);
-  // --global--mobile--grid-vertical   : var(--sp--1-2);
-
   --page-width--padding: var(--sp--2-3);
 
   @include mq($md-up) {
@@ -104,11 +96,6 @@ $colors: (
   --alt--color--background          : var(--default--color--foreground);
   --alt--color--background-rgb      : var(--default--color--foreground-rgb);
 
-  --color--foreground               : var(--default--color--foreground);
-  --color--foreground-rgb           : var(--default--color--foreground-rgb);
-  --color--background               : var(--default--color--background);
-  --color--background-rgb           : var(--default--color--background-rgb);
-
   --gradient--degree                : 145deg;
   --gradient--color-start           : var(--color--cerise-pink);
   --gradient--color-end             : var(--color--violet-purple);
@@ -119,11 +106,26 @@ $colors: (
   --gradient--text                  : var(--color--white);
 }
 
-.color--alt {
+:root,
+.color--1 {
+  --color--foreground               : var(--default--color--foreground);
+  --color--foreground-rgb           : var(--default--color--foreground-rgb);
+  --color--background               : var(--default--color--background);
+  --color--background-rgb           : var(--default--color--background-rgb);
+}
+
+.color--2 {
   --color--foreground               : var(--alt--color--foreground);
   --color--foreground-rgb           : var(--alt--color--foreground-rgb);
   --color--background               : var(--alt--color--background);
   --color--background-rgb           : var(--alt--color--background-rgb);
+}
+
+.color--gradient {
+  --color--foreground               : var(--alt--color--foreground);
+  --color--foreground-rgb           : var(--alt--color--foreground-rgb);
+  --color--background               : var(--gradient);
+  --color--background-rgb           : var(--color--violet-purple-rgb);
 }
 
 :root {

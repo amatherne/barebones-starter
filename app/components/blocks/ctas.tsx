@@ -10,6 +10,8 @@ const CTAs = ({ settings }) => {
   
   if (!settings) return null;
 
+  // console.log(settings)
+
   const sectionTitle                = settings.title || null;
   let sectionText                   = settings.text;
   if (sectionText && sectionText.children.length === 0) {
@@ -51,6 +53,9 @@ const CTAs = ({ settings }) => {
 
   if (!sectionHasContent) return null;
 
+  const style                       = settings.styles?.style;
+  const color                       = settings.styles?.colors;
+
   const sectionIDString            = `ctas--section${sectionTitle?'-'+sectionTitle:''}${sectionButtonText?'-'+sectionButtonText:''}${ctaTitles?'-'+ctaTitles:''}`;
   const sectionID = 
     sectionIDString
@@ -71,7 +76,7 @@ const CTAs = ({ settings }) => {
   
   return (
     <section
-      className={`ctas ${sectionID}`} 
+      className={`ctas ${sectionID} ${style} ${color}`} 
     >
       <div className="page-width">
 

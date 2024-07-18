@@ -4,26 +4,6 @@ const widths = {
   type: 'object',
   label: 'Widths',
   name: 'widths',
-  // ui: {
-  //   itemProps: (item) => {
-      
-  //     const desktopWidth  = item?.desktop_width.label ? item.desktop_width.label.split(' ')[0] : null;
-  //     const tabletWidth   = item?.tablet_width.label ? item.tablet_width.label.split(' ')[0] : null;
-  //     const mobileWidth   = item?.mobile_width.label ? item.mobile_width.label.split(' ')[0] : null;
-  //     const title         = `Mob:${ctasMobileWidth}; Tblt: ${ctasTabletWidth}; Dsk: ${ctasDesktopWidth};`;
-
-  //     return {
-  //       label: title || 'Widths',
-  //     };
-  //   },
-  // },
-  // defaultItem: () => {
-  //   return {
-  //     desktop_width: 'lg-up--w-33',
-  //     tablet_width: 'md--w-33',
-  //     mobile_width: 'sm--w-50',
-  //   }
-  // },
   fields: [
     {
       type: "string",
@@ -31,14 +11,9 @@ const widths = {
       label: "Desktop Width",
       name: "desktop_width",
       list: true,
-      ui: {
-        itemProps: (item) => ({
-          label: item.label || 'Width',
-        }),
-      },
       options: [
-        { value:"lg-up--w-12",    label:"12% (1 of 8)" },
-        { value:"lg-up--w-16",    label:"16% (1 of 6)" },
+        { value:"lg-up--w-12 ",    label:"12% (1 of 8)" },
+        { value:"lg-up--w-16 ",    label:"16% (1 of 6)" },
         { value:"lg-up--w-25 ",   label:"25% (1 of 4)" },
         { value:"lg-up--w-33 ",   label:"33% (1 of 3)" },
         { value:"lg-up--w-50 ",   label:"50% (1 of 2)" },
@@ -71,11 +46,6 @@ const widths = {
       label: "Tablet Width",
       name: "tablet_width",
       list: true,
-      ui: {
-        itemProps: (item) => ({
-          label: item.label || 'Width',
-        }),
-      },
       options: [
         { value:"md--w-12",    label:"12% (1 of 8)" },
         { value:"md--w-16",    label:"16% (1 of 6)" },
@@ -111,11 +81,6 @@ const widths = {
       label: "Mobile Width",
       name: "mobile_width",
       list: true,
-      ui: {
-        itemProps: (item) => ({
-          label: item.label || 'Width',
-        }),
-      },
       options: [
         { value:"w-12",    label:"12% (1 of 8)" },
         { value:"w-16",    label:"16% (1 of 6)" },
