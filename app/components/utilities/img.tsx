@@ -1,12 +1,18 @@
-// ../app/components/utilities/Img.js
+// ../app/components/utilities/Img.tsx
 
 'use client';
 
 import React, { useState, useEffect } from 'react';
 
-const Img = ({ src, alt, className }) => {
-  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-  const [svgContent, setSvgContent] = useState(null);
+interface ImgProps {
+  src: string;
+  alt?: string;
+  className?: string;
+}
+
+const Img: React.FC<ImgProps> = ({ src, alt, className }) => {
+  const [dimensions, setDimensions] = useState<{ width: number; height: number }>({ width: 0, height: 0 });
+  const [svgContent, setSvgContent] = useState<string | null>(null);
 
   useEffect(() => {
     if (src && src.endsWith('.svg')) {
@@ -17,21 +23,20 @@ const Img = ({ src, alt, className }) => {
     }
   }, [src]);
 
-  const handleImageLoad = (event) => {
+  const handleImageLoad = (event: React.SyntheticEvent<HTMLImageElement>) => {
     if (!src.endsWith('.svg')) {
-      const { naturalWidth, naturalHeight } = event.target;
+      const { naturalWidth, naturalHeight } = event.currentTarget;
       setDimensions({ width: naturalWidth, height: naturalHeight });
     }
   };
 
   const imageIDString = `image--${src ? '--' + src : ''}${alt ? '--' + alt : ''}${className ? '--' + className : ''}`;
-  const imageID = 
-    imageIDString
-      .toLowerCase()
-      .replace(/[^\w\s-]/gi, '')
-      .replace(/\s+/g, '-')
-      .replace(/-+/g, '-')
-      .replace(/^-|-$/g, '');
+  const imageID = imageIDString
+    .toLowerCase()
+    .replace(/[^\w\s-]/gi, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .replace(/^-|-$/g, '');
 
   return (
     <div className={`image--outer ${imageID} ${className ? className : ''}`}>
