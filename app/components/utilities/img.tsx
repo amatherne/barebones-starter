@@ -1,8 +1,9 @@
 // app/components/utilities/img.tsx
+
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import importIcon from '../../../utils/importIcon';
+// import importIcon from '../../../utils/importIcon';
 
 interface ImgProps {
   src: string;
@@ -10,7 +11,6 @@ interface ImgProps {
   className?: string;
 }
 
-// Function to convert a string to camel case
 // Function to convert a string to camel case
 const convertToCamelCase = (str) => {
   return str
@@ -31,23 +31,24 @@ const convertToCamelCase = (str) => {
 };
 
 const Img: React.FC<ImgProps> = ({ src, alt, className }) => {
-  const [SvgComponent, setSvgComponent] = useState<React.FC | null>(null);
+  const SvgComponent = '';
+  // const [SvgComponent, setSvgComponent] = useState<React.FC | null>(null);
   const [dimensions, setDimensions] = useState<{ width: number; height: number }>({ width: 0, height: 0 });
 
-  useEffect(() => {
-    const loadIcon = async () => {
-      if (src.endsWith('.svg')) {
-        const fileName = convertToCamelCase(src.split('/').pop()?.replace('.svg', '')) || '';
+  // useEffect(() => {
+  //   const loadIcon = async () => {
+  //     if (src.endsWith('.svg')) {
+  //       const fileName = convertToCamelCase(src.split('/').pop()?.replace('.svg', '')) || '';
 
-        const IconComponent = await importIcon(fileName);
-        setSvgComponent(() => IconComponent || null);
-      } else {
-        setSvgComponent(null);
-      }
-    };
+  //       const IconComponent = await importIcon(fileName);
+  //       setSvgComponent(() => IconComponent || null);
+  //     } else {
+  //       setSvgComponent(null);
+  //     }
+  //   };
     
-    loadIcon();
-  }, [src]);
+  //   loadIcon();
+  // }, [src]);
 
   const handleImageLoad = (event: React.SyntheticEvent<HTMLImageElement>) => {
     const { naturalWidth, naturalHeight } = event.currentTarget;
@@ -64,8 +65,8 @@ const Img: React.FC<ImgProps> = ({ src, alt, className }) => {
 
   return (
     <div className={`image--outer ${imageID} ${className || ''}`}>
-      {src.endsWith('.svg') ? (
-        SvgComponent ? <SvgComponent /> : <div>Loading...</div>
+      {src.endsWith('.svg') && SvgComponent ? (
+        SvgComponent ? <div className="SvgComponent" /> : <div>Loading...</div>
       ) : (
         <img
           src={src}

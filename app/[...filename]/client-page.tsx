@@ -6,7 +6,6 @@ import React from 'react';
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { tinaField, useTina } from 'tinacms/dist/react';
 import { PageQuery } from '../../tina/__generated__/types';
-// import Gallery from '../components/blocks/gallery';
 import Blocks from '../components/blocks';
 
 interface ClientPageProps {
@@ -25,61 +24,32 @@ const ClientPage = (props: ClientPageProps) => {
     data: props.data,
   });
 
-  const content = data.page.body;
+  // const content = data.page.body;
 
-  const { page } = data;
-  const { body, title } = page || {};
+  // const { page } = data;
+  // const { body, title } = page || {};
   
   const settings = data.page.blocks;
   
   // console.log(settings[0])
-
-  // const gallerySettings = data.page.hero || null;
-
-
-  // const transformedGallerySettings = gallerySettings
-  //   ? {
-  //       height: gallerySettings.height,
-  //       min_height: gallerySettings.min_height,
-  //       max_height: gallerySettings.max_height,
-  //       gallery: gallerySettings.gallery?.map((item) =>
-  //         item?.src ? { 
-  //           src: item.src || '', 
-  //           alt: item.alt || '',
-  //           title: item.title || '',
-  //           text: item.text || '',
-  //           custom_css: item.custom_css || '',
-  //           buttonText: item.button?.text || '',
-  //           buttonUrl: item.button?.url || '',
-  //           buttonContent: item.button?.content || '',
-  //         } : null
-  //       ).filter((item) => item !== null) || [],
-  //     }
-  //   : null;
 
   const showTitle = props.params.filename.join("/") !== "home";
 
   return (
     <>
 
-
-
       {settings && (
         <Blocks settings={settings} />
       )}
 
-      {/*{transformedGallerySettings && (
-        <Gallery gallerySettings={transformedGallerySettings} />
-      )}*/}
-
-      <section className="page page--default">
+      {/*<section className="page page--default">
         <div className="page-width">
           {showTitle && <h1>{title}</h1>}
           <div className="rte" data-tina-field={tinaField(data.page, 'body')}>
             <TinaMarkdown content={content} />
           </div>
         </div>
-      </section>
+      </section>*/}
     </>
   );
 };

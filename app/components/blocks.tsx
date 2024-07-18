@@ -1,4 +1,4 @@
-// ../components/blocks.js
+// ../components/blocks.tsx
 
 import React from 'react';
 import Hero from './blocks/hero'; // Import your block components

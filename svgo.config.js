@@ -13,16 +13,15 @@ module.exports = {
       params: {
         includeLegacy: false
       }
-    }
+    },
     { active: true, name: 'removeXMLNS' },
     { active: true, name: 'removeXMLProcInst' },
-    { active: true, name: 'collapseGroups' }, 
-    { active: true, name: 'convertShapeToPath' }, 
-    { active: true, name: 'convertPathData' }, 
-    { active: true, name: 'reusePaths' }, 
-    { active: true, name: 'removeUselessStrokeAndFill' }, 
-    { active: true, name: 'sortAttrs' }, 
-    { active: true, name: 'cleanupIds' },
+    // { active: true, name: 'collapseGroups' }, 
+    // { active: true, name: 'convertShapeToPath' }, 
+    // { active: true, name: 'convertPathData' }, 
+    // { active: true, name: 'removeUselessStrokeAndFill' }, 
+    // { active: true, name: 'sortAttrs' }, 
+    // { active: true, name: 'cleanupIds' },
     { active: true, name: 'removeComments' },
     { active: true, name: 'removeDoctype' },
     

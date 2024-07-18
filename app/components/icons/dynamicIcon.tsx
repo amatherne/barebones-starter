@@ -1,10 +1,11 @@
-// ../app/components/icons/DynamicIcon.tsx
+import React, { useState, useEffect } from 'react';
 
-import React, { useEffect, useState } from 'react';
-import { loadSvg } from '../../../utils/loadSvg';
+interface DynamicIconProps {
+  fileName: string;
+}
 
-const DynamicIcon = ({ fileName, width, height, color }) => {
-  const [SvgComponent, setSvgComponent] = useState(null);
+const DynamicIcon: React.FC<DynamicIconProps> = ({ fileName }) => {
+  const [SvgComponent, setSvgComponent] = useState<React.FC<any> | null>(null);
 
   useEffect(() => {
     const fetchSvg = async () => {
@@ -15,9 +16,16 @@ const DynamicIcon = ({ fileName, width, height, color }) => {
     fetchSvg();
   }, [fileName]);
 
-  if (!SvgComponent) return <div>Loading...</div>;
-
-  return <SvgComponent width={width} height={height} fill={color} />;
+  return (
+    <div>
+      {SvgComponent ? <SvgComponent /> : <div>Loading...</div>}
+    </div>
+  );
 };
+
+async function loadSvg(fileName: string): Promise<React.FC<any> | null> {
+  // Replace with actual SVG loading logic
+  return null;
+}
 
 export default DynamicIcon;
