@@ -13,13 +13,19 @@ interface ImgProps {
 const Img: React.FC<ImgProps> = ({ src, alt, className }) => {
   const [dimensions, setDimensions] = useState<{ width: number; height: number }>({ width: 0, height: 0 });
   const [svgContent, setSvgContent] = useState<string | null>(null);
+  const [fetchError, setFetchError] = useState<string | null>(null);
 
   useEffect(() => {
     if (src && src.endsWith('.svg')) {
       const fetchSVG = async () => {
         try {
           console.log(`Fetching SVG from: ${src}`);
-          const response = await fetch(src);
+          const response = await fetch(src, {
+            mode: 'cors',
+            headers: {
+              'Content-Type': 'image/svg+xml',
+            },
+          });
           if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
           }
@@ -27,6 +33,7 @@ const Img: React.FC<ImgProps> = ({ src, alt, className }) => {
           setSvgContent(data);
         } catch (error) {
           console.error('Error fetching SVG:', error);
+          setFetchError(`Error fetching SVG: ${error.message}`);
         }
       };
 
@@ -65,6 +72,7 @@ const Img: React.FC<ImgProps> = ({ src, alt, className }) => {
           onLoad={handleImageLoad}
         />
       )}
+      {fetchError && <div className="error-message">{fetchError}</div>}
       {!src.endsWith('.svg') && dimensions.width && dimensions.height ? (
         <style jsx>{`
           .image--${imageID} {
