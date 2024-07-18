@@ -1,3 +1,5 @@
+// ../app/components/icons/DynamicIcon.tsx
+
 import React, { useState, useEffect } from 'react';
 
 interface DynamicIconProps {
