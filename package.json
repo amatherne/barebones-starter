@@ -7,9 +7,7 @@
     "tinaaudit": "tinacms audit",
     "buildNext": "next build",
     "build": "yarn svgs && tinacms build && next build",
-    "svgs": "yarn run svgs-copy && yarn run svgs-optimize",
-    "svgs-copy": "node svgs-copy.js",
-    "svgs-optimize": "node svgs-optimize.js",
+    "svgs": "node utils/svgsOptimizeAndConvert.js",
     "start": "tinacms build && next start",
     "lint": "next lint"
   },
@@ -33,6 +31,7 @@
     "react": "^18.3.1",
     "react-codemirror2": "^8.0.0",
     "react-dom": "^18.3.1",
+    "react-svg": "^16.1.34",
     "react-syntax-highlighter": "^15.5.0",
     "react-tinacms-github": "^0.52.0",
     "sass": "^1.77.8",

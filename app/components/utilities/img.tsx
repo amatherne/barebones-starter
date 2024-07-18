@@ -1,8 +1,8 @@
 // app/components/utilities/img.tsx
 'use client';
 
-import React, { useState, useEffect, useContext } from 'react';
-import dynamic from 'next/dynamic';
+import React, { useState, useEffect } from 'react';
+import importIcon from '../../../utils/importIcon';
 
 interface ImgProps {
   src: string;
@@ -10,19 +10,31 @@ interface ImgProps {
   className?: string;
 }
 
+// Function to convert a string to camel case
+const convertToCamelCase = (str) => {
+  return str
+    .split('-')
+    .map((word, index) => (index === 0 ? word.toLowerCase() : word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()))
+    .join('');
+};
+
 const Img: React.FC<ImgProps> = ({ src, alt, className }) => {
   const [SvgComponent, setSvgComponent] = useState<React.FC | null>(null);
   const [dimensions, setDimensions] = useState<{ width: number; height: number }>({ width: 0, height: 0 });
 
   useEffect(() => {
-    if (src && src.endsWith('.svg')) {
-      const fileName = src.split('/').pop();
-      const DynamicSvg = dynamic(() => import(`../../../public/svgs/${fileName}`));
-      console.log(fileName)
-      setSvgComponent(() => DynamicSvg);
-    } else {
-      setSvgComponent(null);
-    }
+    const loadIcon = async () => {
+      if (src.endsWith('.svg')) {
+        const fileName = convertToCamelCase(src.split('/').pop()?.replace('.svg', '')) || '';
+
+        const IconComponent = await importIcon(fileName);
+        setSvgComponent(() => IconComponent || null);
+      } else {
+        setSvgComponent(null);
+      }
+    };
+    
+    loadIcon();
   }, [src]);
 
   const handleImageLoad = (event: React.SyntheticEvent<HTMLImageElement>) => {
@@ -40,8 +52,8 @@ const Img: React.FC<ImgProps> = ({ src, alt, className }) => {
 
   return (
     <div className={`image--outer ${imageID} ${className || ''}`}>
-      {SvgComponent ? (
-        <SvgComponent className={className} />
+      {src.endsWith('.svg') ? (
+        SvgComponent ? <SvgComponent /> : <div>Loading...</div>
       ) : (
         <img
           src={src}
