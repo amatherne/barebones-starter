@@ -33,6 +33,7 @@ const Img: React.FC<ImgProps> = ({ src, alt, className }) => {
           setSvgContent(data);
         } catch (error) {
           console.error('Error fetching SVG:', error);
+          console.error('missing svg:', src);
           setFetchError(`Error fetching SVG: ${error.message}`);
         }
       };
