@@ -16,10 +16,21 @@ const Img: React.FC<ImgProps> = ({ src, alt, className }) => {
 
   useEffect(() => {
     if (src && src.endsWith('.svg')) {
-      fetch(src)
-        .then(response => response.text())
-        .then(data => setSvgContent(data))
-        .catch(error => console.error('Error fetching SVG:', error));
+      const fetchSVG = async () => {
+        try {
+          console.log(`Fetching SVG from: ${src}`);
+          const response = await fetch(src);
+          if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+          }
+          const data = await response.text();
+          setSvgContent(data);
+        } catch (error) {
+          console.error('Error fetching SVG:', error);
+        }
+      };
+
+      fetchSVG();
     }
   }, [src]);
 
