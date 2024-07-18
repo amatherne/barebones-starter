@@ -140,7 +140,7 @@
       > * { // should be only direct child
         // display: flex;
         // flex-direction: column;
-        display: grid;
+        // display: grid; // is this needed?
         height: 100%;
         width: 100%;
       }

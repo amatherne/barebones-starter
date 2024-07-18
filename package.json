@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.10.8",
+    "@svgr/webpack": "^8.1.0",
     "@tinacms/fields": "^0.43.3",
     "@tinacms/form-builder": "^0.43.3",
     "@tinacms/icons": "^0.42.1",

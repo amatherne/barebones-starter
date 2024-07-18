@@ -68,6 +68,14 @@
     --grid--mobile: var(--sp);
     --grid-bottom--mobile: var(--sp);
 
+    // display: flex;
+    // flex-wrap: wrap;
+    // align-items: center;
+
+    // @extend .match-height;
+
+
+
     .cell__item {
       --width: fit-content;
       --font-heading--family: var(--font-body--family);
@@ -104,6 +112,10 @@
 
     .ctas--text {
       --theme--font-size--h2: var(--theme--font-size--h3);
+
+      h3 {
+        white-space: nowrap;
+      }
     }
   }
 
