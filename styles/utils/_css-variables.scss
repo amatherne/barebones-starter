@@ -18,26 +18,16 @@
   // --global--mobile--spacing-sections: var(--sp);
   // --global--mobile--grid-horizontal : var(--sp--1-2);
   // --global--mobile--grid-vertical   : var(--sp--1-2);
-}
 
-$colors: (
-  mineshaft-black: #212121,
-  white: #ffffff,
-  mandy-pink: #EE5C6C,
-  windsor-purple: #6a0d83,
-  gradient-midpoint: midpoint-color(#EE5C6C, #6a0d83)
-);
+  --page-width--padding: var(--sp--2-3);
 
-// $colors2: (
-//   mineshaft-black: #212121,
-//   white: #ffffff,
-//   mandy-pink: #EE5C6C,
-//   windsor-purple: #6a0d83
-//   gradient-midpoint: midpoint-color(#EE5C6C, #6a0d83)
-// );
+  @include mq($md-up) {
+    --page-width--padding: var(--sp);
+  }
 
-:root {
-  @include generate-color-variables($colors);
+  @include mq($lg-up) {
+    --page-width--padding: var(--sp--2);
+  }
 }
 
 :root {
@@ -91,15 +81,37 @@ $colors: (
   --header--width--open             : min(400px,100vw);
 }
 
+$colors: (
+  mineshaft-black: #212121,
+  cod-black: #131313,
+  white: #ffffff,
+  mandy-pink: #EE5C6C,
+  cerise-pink: #e32b72,
+  violet-purple: #1D063B,
+  gradient-midpoint: midpoint-color(#EE5C6C, #6a0d83)
+);
+
 :root {
-  --color--foreground               : var(--color--mineshaft-black);
-  --color--foreground-rgb           : var(--color--mineshaft-black-rgb);
-  --color--background               : var(--color--white);
-  --color--background-rgb           : var(--color--white-rgb);
+  @include generate-color-variables($colors);
+
+  --default--color--foreground      : var(--color--cod-black);
+  --default--color--foreground-rgb  : var(--color--cod-black-rgb);
+  --default--color--background      : var(--color--white);
+  --default--color--background-rgb  : var(--color--white-rgb);
+
+  --alt--color--foreground          : var(--default--color--background);
+  --alt--color--foreground-rgb      : var(--default--color--background-rgb);
+  --alt--color--background          : var(--default--color--foreground);
+  --alt--color--background-rgb      : var(--default--color--foreground-rgb);
+
+  --color--foreground               : var(--default--color--foreground);
+  --color--foreground-rgb           : var(--default--color--foreground-rgb);
+  --color--background               : var(--default--color--background);
+  --color--background-rgb           : var(--default--color--background-rgb);
 
   --gradient--degree                : 145deg;
-  --gradient--color-start           : var(--color--mandy-pink);
-  --gradient--color-end             : var(--color--windsor-purple);
+  --gradient--color-start           : var(--color--cerise-pink);
+  --gradient--color-end             : var(--color--violet-purple);
   --gradient                        : linear-gradient(var(--gradient--degree), var(--gradient--color-start), var(--gradient--color-end));
   --gradient--reverse               : linear-gradient(var(--gradient--degree), var(--gradient--color-end), var(--gradient--color-start));
 
@@ -108,10 +120,10 @@ $colors: (
 }
 
 .color--alt {
-  --color--foreground               : var(--color--white);
-  --color--foreground-rgb           : var(--color--white-rgb);
-  --color--background               : var(--color--mineshaft-black);
-  --color--background-rgb           : var(--color--mineshaft-black-rgb);
+  --color--foreground               : var(--alt--color--foreground);
+  --color--foreground-rgb           : var(--alt--color--foreground-rgb);
+  --color--background               : var(--alt--color--background);
+  --color--background-rgb           : var(--alt--color--background-rgb);
 }
 
 :root {

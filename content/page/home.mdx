@@ -40,7 +40,7 @@ blocks:
       - title: GraphQL
     custom_css: |
       == {
-        --page-width: var(--page-width--text);
+        //--page-width: var(--page-width--text);
         border-bottom: 0;
         --cta-set--padding-bottom: 0;
       }
@@ -90,7 +90,7 @@ blocks:
     custom_css: |
       @media screen and (min-width: 750px) {
         == {
-          --page-width: var(--page-width--text);
+          //--page-width: var(--page-width--text);
           --cta-set--padding-top: calc(var(--page--padding) * 0.66);
         }
       }
@@ -140,7 +140,11 @@ blocks:
       - title: TinaCMS
     custom_css: |
       == {
-        --page-width: var(--page-width--text);
+        --color--foreground: var(--alt--color--foreground);
+        --color--foreground-rgb: var(--alt--color--foreground-rgb);
+        --color--background: var(--alt--color--background);
+        --color--background-rgb: var(--alt--color--background-rgb);
+        //--page-width: var(--page-width--text);
         border-bottom: 0;
         --cta-set--padding-bottom: 0;
       }
@@ -186,14 +190,18 @@ blocks:
       - title: Figma
     custom_css: |
       == {
-        --page-width: var(--page-width--text);
+        --color--foreground: var(--alt--color--foreground);
+        --color--foreground-rgb: var(--alt--color--foreground-rgb);
+        --color--background: var(--alt--color--background);
+        --color--background-rgb: var(--alt--color--background-rgb);
+        //--page-width: var(--page-width--text);
         border-bottom: 0;
         --cta-set--padding-bottom: 0;
       }
 
       @media screen and (min-width: 750px) {
         == {
-          --page-width: var(--page-width--text);
+          //--page-width: var(--page-width--text);
           --cta-set--padding-top: calc(var(--page--padding) * 0.66);
         }
       }
@@ -234,9 +242,16 @@ blocks:
       - title: Unreal Engine
       - title: Blender
     custom_css: |
+      == {
+        --color--foreground: var(--alt--color--foreground);
+        --color--foreground-rgb: var(--alt--color--foreground-rgb);
+        --color--background: var(--alt--color--background);
+        --color--background-rgb: var(--alt--color--background-rgb);
+      }
+
       @media screen and (min-width: 750px) {
         == {
-          --page-width: var(--page-width--text);
+          //--page-width: var(--page-width--text);
           --cta-set--padding-top: calc(var(--page--padding) * 0.66);
         }
       }

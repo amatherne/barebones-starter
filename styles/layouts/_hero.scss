@@ -80,8 +80,10 @@
 
   &--text {
     --color--text: var(--color--foreground);
-    --text--sp: var(--sp);
-    padding: var(--text--sp) calc(var(--text--sp) * 0.5) 0;
+    --text--sp: var(--page-width--padding);
+    --text--margin: var(--text--sp);
+    --text--rte-negative: calc(var(--text--sp) * -1.35);
+    padding: var(--text--sp) var(--text--sp) 0;
     position: relative;
 
     .hxl {
@@ -97,11 +99,11 @@
     }
 
     .hxl + .rte {
-      margin-top: calc(var(--text--sp) * -1.35);
+      margin-top: var(--text--rte-negative);
     }
 
     > * {
-      margin-bottom: var(--text--sp);
+      margin-bottom: var(--text--margin);
 
       &:last-child {
         margin-bottom: 0;
@@ -127,7 +129,7 @@
       z-index: 2;
       bottom: 0;
       left: 0;
-      padding: var(--sp);
+      padding: var(--text--sp);
 
       .button {
         --color--btn-bg: var(--color--btn-primary-bg);
@@ -144,7 +146,8 @@
     }
 
     @include mq($lg-up) {
-      padding: var(--sp--2);
+      --text--margin: calc(var(--text--sp) * 0.4);
+      --text--rte-negative: calc(var(--text--sp) * -0.5);
     }
   }
 }

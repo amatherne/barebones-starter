@@ -36,24 +36,17 @@ const HeadElement: React.FC<HeadProps> = ({ seoTitle, seoText }) => {
   return (
     <>
       <head>
+        
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width,initial-scale=1" />
         <meta name="theme-color" content="" />
+        
         <title>{finalSeoTitle}</title>
         <meta name="description" content={escapeHtml(finalSeoText)} />
         
         <link rel="stylesheet" href="https://use.typekit.net/akz3yrt.css" {...({ precedence: "default" } as any)} />
-
-        <style>{`
-          @media screen and (min-width: 450px) {
-            .header {
-              position: fixed;
-              top: 0;
-            }
-          }
-        `}</style>
-
+      
       </head>
     </>
   );

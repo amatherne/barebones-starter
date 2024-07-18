@@ -250,7 +250,6 @@
 }
 
 .page-width {
-  --page-width--padding: var(--sp--2-3);
   width: 100%;
   max-width: var(--page-width);
   margin: 0 auto;
@@ -259,15 +258,12 @@
     right: var(--page-width--padding);
   }
 
-  @include mq($md-up) {
-    --page-width--padding: var(--sp);
-  }
-
   &.no-padding {  
     padding: 0;
   }
+  
   &.page-width--narrow {
-    max-width: $grid-md;
+    max-width: var(--page-width--text);
   }
 }
 

@@ -37,8 +37,8 @@
     will-change: var(--properties);
     transition: {
       property: var(--properties);
-      duration: 0.1s;
-      timing-function: linear;
+      duration: 0.3s;
+      timing-function: ease;
     }
   }
 
@@ -82,7 +82,7 @@
       background: var(--gradient--reverse);
       z-index: 0;
       --properties: opacity;
-      transition-duration: .2s;
+      // transition-duration: .2s;
     }
 
     &:hover, 

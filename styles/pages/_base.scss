@@ -91,6 +91,7 @@ img {
   --cta--padding-top: var(--cta-set--padding-top,var(--page--padding));
   --cta--padding-bottom: var(--cta-set--padding-bottom,var(--page--padding));
   padding: var(--cta--padding-top) 0 var(--cta--padding-bottom);
+  background: var(--color--background);
 
   @include mq($md-up) {
     --page--padding: var(--global--spacing-sections);
