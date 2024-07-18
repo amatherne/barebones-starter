@@ -51,7 +51,7 @@ const CTAs = ({ settings }) => {
 
   if (!sectionHasContent) return null;
 
-  const sectionIDString            = `ctas--section--${sectionTitle}--${sectionText}--${sectionButtonText}--${ctaTitles}`;
+  const sectionIDString            = `ctas--section${sectionTitle?'-'+sectionTitle:''}${sectionButtonText?'-'+sectionButtonText:''}${ctaTitles?'-'+ctaTitles:''}`;
   const sectionID = 
     sectionIDString
       .toLowerCase()
@@ -136,7 +136,7 @@ const CTAs = ({ settings }) => {
 
               const hasContent          = title || text || hasButton;
 
-              const itemIDString        = `ctas--item--${image}-${imageAlt}-${title}`;
+              const itemIDString        = `ctas--item${image?'-'+image:''}${imageAlt?'-'+imageAlt:''}${title?'-'+title:''}-${index}`;
               const itemID = 
                 itemIDString
                   .toLowerCase()
@@ -155,8 +155,8 @@ const CTAs = ({ settings }) => {
               }
 
               return (
-                <div key={index} className={`cell__item ${widths} text-center`}>
-                  <div className={`ctas--item ${itemID}`}>
+                <div key={index} className={`cell__item text-center ${widths} ${itemID}`}>
+                  <div className={`ctas--item`}>
                     { hasOverlayLink && buttonLink ? (
                       <Link 
                         href={buttonLink} 

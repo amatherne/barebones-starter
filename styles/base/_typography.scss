@@ -300,6 +300,6 @@ ol {
   }
 
   @include mq($sm) {
-    --title--outer-padding: var(--sp);
+    --title--outer-padding: var(--title-set--outer-padding,var(--sp));
   }
 }

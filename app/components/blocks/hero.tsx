@@ -39,7 +39,10 @@ const Hero = ({ settings }) => {
         const image               = item.src || null;
         const imageAlt            = item.alt || null;
         const title               = item.title || null;
-        const text                = item.text || null;
+        let text                  = item.text;
+        if (text && text.children.length === 0) {
+          text                     = null; 
+        }
         const buttonText          = item.button?.text || '';
         const buttonUrl           = item.button?.url || '';
         const buttonContent       = item.button?.content || '';
@@ -58,7 +61,7 @@ const Hero = ({ settings }) => {
 
         const hasContent          = title || text || hasButton;
 
-        const itemIDString        = `hero--item--${image}-${imageAlt}-${title}`;
+        const itemIDString        = `hero--item${image?'--'+image:''}${imageAlt?'--'+imageAlt:''}-${title?'--'+title:''}`;
         const itemID = 
           itemIDString
             .toLowerCase()

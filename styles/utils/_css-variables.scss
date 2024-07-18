@@ -1,6 +1,7 @@
 
 :root {
   --page-width                      : 1600px;
+  --page-width--text                : 90ch;
 
   --global--spacing-sections        : 60px;
   --global--grid-horizontal         : 30px;
@@ -8,7 +9,15 @@
 
   --global--mobile--spacing-sections: 30px;
   --global--mobile--grid-horizontal : 15px;
-  --global--mobile--grid-vertical   : 15px
+  --global--mobile--grid-vertical   : 15px;
+
+  // --global--spacing-sections        : var(--sp--2);
+  // --global--grid-horizontal         : var(--sp);
+  // --global--grid-vertical           : var(--sp);
+
+  // --global--mobile--spacing-sections: var(--sp);
+  // --global--mobile--grid-horizontal : var(--sp--1-2);
+  // --global--mobile--grid-vertical   : var(--sp--1-2);
 }
 
 $colors: (

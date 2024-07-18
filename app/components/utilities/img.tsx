@@ -12,7 +12,7 @@ const Img = ({ src, alt, className }) => {
     setDimensions({ width: naturalWidth, height: naturalHeight });
   };
 
-  const imageIDString = `image--${src}-${alt}-${className}`;
+  const imageIDString = `image--${src?'--'+src:''}${alt?'--'+alt:''}${className?'--'+className:''}`;
   const imageID = 
     imageIDString
       .toLowerCase()

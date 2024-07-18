@@ -87,15 +87,12 @@ img {
 
 .page,
 .section {
-  --cta--padding-top: var(--cta-set--padding-top,var(--global--mobile--spacing-sections));
-  --cta--padding-bottom: var(--cta-set--padding-bottom,var(--global--mobile--spacing-sections));
-
-  --page--padding: var(--sp);
-  padding: var(--page--padding) 0;
+  --page--padding: var(--global--mobile--spacing-sections);
+  --cta--padding-top: var(--cta-set--padding-top,var(--page--padding));
+  --cta--padding-bottom: var(--cta-set--padding-bottom,var(--page--padding));
+  padding: var(--cta--padding-top) 0 var(--cta--padding-bottom);
 
   @include mq($md-up) {
-    --page--padding: var(--sp--2);
-    --cta--padding-top: var(--cta-set--padding-top,var(--global--spacing-sections));
-    --cta--padding-bottom: var(--cta-set--padding-bottom,var(--global--spacing-sections));
+    --page--padding: var(--global--spacing-sections);
   }
 }
