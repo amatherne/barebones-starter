@@ -4,7 +4,7 @@
 import React from 'react';
 
 const indesignSvgrepoCom = () => (
-  <svg fill="currentColor" version="1.1" width="800px" height="800px" viewBox="0 0 512 512" enable-background="new 0 0 512 512"  className="icon--svg" role="image">
+  <svg fill="currentColor" version="1.1" width="800px" height="800px" viewBox="0 0 512 512" enableBackground="new 0 0 512 512"  className="icon--svg" role="image">
   <g id="2069a460dcf28295e231f3111e035a9d">
     <path display="inline" d="M337.803,268.126c0.728,3.618,1.085,7.964,1.085,11.586v26.423c0,4.708-0.357,9.05-1.447,13.033
     c-4.341,19.188-20.269,31.492-38.37,31.492c-28.232,0-44.162-23.528-44.162-55.745c0-32.943,15.93-58.281,44.523-58.281

@@ -4,7 +4,7 @@
 import React from 'react';
 
 const rubySvgrepoCom = () => (
-  <svg fill="currentColor" version="1.1" width="800px" height="800px" viewBox="0 0 512 512" enable-background="new 0 0 512 512"  className="icon--svg" role="image">
+  <svg fill="currentColor" version="1.1" width="800px" height="800px" viewBox="0 0 512 512" enableBackground="new 0 0 512 512"  className="icon--svg" role="image">
   <g id="5151e0c8492e5103c096af88a51e4c6f">
     <path display="inline" d="M365.281,386.936l108.635,96.416l-213.754-16.794c41.878-25.3,76.426-55.513,102.294-79.567
     		c0.426,0.083,0.879,0.129,1.332,0.129C364.283,387.119,364.782,387.06,365.281,386.936z M485.518,444.55l20.008-262.045

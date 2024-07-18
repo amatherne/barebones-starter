@@ -2,13 +2,14 @@ const fs = require('fs-extra');
 const path = require('path');
 const glob = require('glob');
 const { optimize } = require('svgo');
+const { parseStringPromise, Builder } = require('xml2js');
 const svgoConfig = require('../svgo.config');
 
 const srcDir = path.resolve(__dirname, '../public/uploads');
 const outputDir = path.resolve(__dirname, '../app/components/icons/uploads');
 
 // Function to convert a string to camel case
-const convertToCamelCase = (str) => {
+const convertFileNameToCamelCase = (str) => {
   return str
     .replace(/[^\w\s-]/g, '') // Remove special characters
     .replace(/\s+/g, '-')    // Replace spaces with hyphens
@@ -44,7 +45,7 @@ const checkForSimilarFileNames = (files) => {
 
   files.forEach((file) => {
     const fileName = path.basename(file, '.svg');
-    const componentName = convertToCamelCase(fileName);
+    const componentName = convertFileNameToCamelCase(fileName);
     const normalized = componentName.toLowerCase();
 
     if (normalizedMap.has(normalized)) {
@@ -54,6 +55,17 @@ const checkForSimilarFileNames = (files) => {
       normalizedMap.set(normalized, file);
     }
   });
+};
+
+// Function to convert SVG attributes to camel case
+const convertAttributesToCamelCase = (svgString) => {
+  return svgString
+    // Convert SVG attribute names to camel case
+    .replace(/(\w+)-(\w+)(?=\s*=\s*['"])/g, (match, p1, p2) => `${p1}${p2.charAt(0).toUpperCase() + p2.slice(1)}`)
+    // Specific attributes that need camel casing
+    .replace(/fill-rule/g, 'fillRule')
+    .replace(/stroke-linecap/g, 'strokeLinecap')
+    .replace(/stroke-linejoin/g, 'strokeLinejoin');
 };
 
 // Function to process SVG files and generate React components
@@ -82,10 +94,13 @@ async function processSVGs() {
         try {
           const svgData = await fs.readFile(file, 'utf8');
           const fileName = path.basename(file, '.svg');
-          const componentName = convertToCamelCase(fileName);
+          const componentName = convertFileNameToCamelCase(fileName);
 
           // Optimize SVG data
           const { data: optimizedSvg } = optimize(svgData, { ...svgoConfig });
+
+          // Convert attributes to camel case
+          const svgWithCamelCaseAttributes = await convertAttributesToCamelCase(optimizedSvg);
 
           // Generate React component
           const componentTemplate = 
@@ -95,7 +110,7 @@ async function processSVGs() {
 import React from 'react';
 
 const ${componentName} = () => (
-  ${optimizedSvg.replace(/xml:space="preserve"/g, '')}
+  ${svgWithCamelCaseAttributes.replace(/xml:space="preserve"/g, '')}
 );
 
 export default ${componentName};

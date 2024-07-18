@@ -4,7 +4,7 @@
 import React from 'react';
 
 const blenderSvgrepoCom = () => (
-  <svg fill="currentColor" version="1.1" width="800px" height="800px" viewBox="0 0 512 512" enable-background="new 0 0 512 512"  className="icon--svg" role="image">
+  <svg fill="currentColor" version="1.1" width="800px" height="800px" viewBox="0 0 512 512" enableBackground="new 0 0 512 512"  className="icon--svg" role="image">
   <g id="2069a460dcf28295e231f3111e0426ac">
     <path display="inline" d="M510.003,279.642c-2.998-21.097-10.305-41.104-21.724-59.459c-9.96-16.019-22.739-30.266-37.992-42.375
     l0.041-0.038L290.133,54.731c-0.133-0.116-0.27-0.224-0.361-0.287c-5.327-4.08-12.538-6.325-20.298-6.325

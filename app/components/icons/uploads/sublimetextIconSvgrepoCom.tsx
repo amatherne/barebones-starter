@@ -7,9 +7,9 @@ const sublimetextIconSvgrepoCom = () => (
   <svg width="800px" height="800px" viewBox="-38 0 332 332" version="1.1" preserveAspectRatio="xMidYMid" className="icon--svg" role="image">
   <defs>
     <linearGradient x1="55.1170996%" y1="58.6795405%" x2="63.6801778%" y2="39.5971572%" id="linearGradient-1">
-      <stop stop-color="#FF9700" offset="0%"/>
-      <stop stop-color="#F48E00" offset="53%"/>
-      <stop stop-color="#D06F00" offset="100%"/>
+      <stop stopColor="#FF9700" offset="0%"/>
+      <stop stopColor="#F48E00" offset="53%"/>
+      <stop stopColor="#D06F00" offset="100%"/>
     </linearGradient>
   </defs>
   <g>

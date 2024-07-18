@@ -24,11 +24,11 @@ const nextConfig = {
   },
 
 
-  // webpack: (config, { isServer }) => {
+  webpack: (config, { isServer }) => {
   //   // Disable HMR for both client and server builds
-  //   if (!isServer) {
-  //     config.resolve.alias['@sentry/node'] = '@sentry/browser';
-  //   }
+    if (!isServer) {
+      config.resolve.alias['@sentry/node'] = '@sentry/browser';
+    }
 
   //   // Add SVGR for SVG handling
   //   config.module.rules.push({
@@ -88,8 +88,8 @@ const nextConfig = {
   //     },
   //   });
 
-  //   return config;
-  // },
+    return config;
+  },
   
 };
 

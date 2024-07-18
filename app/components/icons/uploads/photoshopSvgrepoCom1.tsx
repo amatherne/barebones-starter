@@ -4,7 +4,7 @@
 import React from 'react';
 
 const photoshopSvgrepoCom1 = () => (
-  <svg fill="currentColor" version="1.1" width="800px" height="800px" viewBox="0 0 512 512" enable-background="new 0 0 512 512"  className="icon--svg" role="image">
+  <svg fill="currentColor" version="1.1" width="800px" height="800px" viewBox="0 0 512 512" enableBackground="new 0 0 512 512"  className="icon--svg" role="image">
   <g id="2069a460dcf28295e231f3111e037552">
     <path display="inline" d="M426.333,0.5H85.667C38.825,0.5,0.5,38.825,0.5,85.667v340.667c0,46.842,38.325,85.167,85.167,85.167
     h340.667c46.842,0,85.167-38.325,85.167-85.167V85.667C511.5,38.825,473.175,0.5,426.333,0.5z M245.329,260.524

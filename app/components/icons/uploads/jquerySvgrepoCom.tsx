@@ -4,7 +4,7 @@
 import React from 'react';
 
 const jquerySvgrepoCom = () => (
-  <svg fill="currentColor" version="1.1" width="800px" height="800px" viewBox="0 0 512 512" enable-background="new 0 0 512 512"  className="icon--svg" role="image">
+  <svg fill="currentColor" version="1.1" width="800px" height="800px" viewBox="0 0 512 512" enableBackground="new 0 0 512 512"  className="icon--svg" role="image">
   <g id="5151e0c8492e5103c096af88a51ef0ed">
     <path display="inline" d="M499.161,364.63c0,0-63.554,171.386-282.354,131.488c-3.443-0.641-6.745-1.838-10.089-2.849
     c-0.782-0.229-1.572-0.479-2.354-0.703c-3.285-1.022-6.537-2.07-9.769-3.197c-0.37-0.129-0.723-0.25-1.098-0.383

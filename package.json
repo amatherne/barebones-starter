@@ -39,7 +39,8 @@
     "sharp": "^0.33.4",
     "styled-components": "^6.1.11",
     "tinacms": "^1.6.5",
-    "typescript": "5.5.2"
+    "typescript": "5.5.2",
+    "xml2js": "^0.6.2"
   },
   "devDependencies": {
     "@tinacms/cli": "^1.5.46",
