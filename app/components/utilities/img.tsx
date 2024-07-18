@@ -2,7 +2,10 @@
 
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import dynamic from 'next/dynamic';
+import { SvgDataContext } from '../../../public/SvgDataContext'; // Adjust as per your actual context setup
+// import { svgConfig } from './svgConfig'; // Import your SVG configuration here
 
 interface ImgProps {
   src: string;
@@ -12,34 +15,19 @@ interface ImgProps {
 
 const Img: React.FC<ImgProps> = ({ src, alt, className }) => {
   const [dimensions, setDimensions] = useState<{ width: number; height: number }>({ width: 0, height: 0 });
-  const [svgContent, setSvgContent] = useState<string | null>(null);
-  const [fetchError, setFetchError] = useState<string | null>(null);
+  const { svgPath } = useContext(SvgDataContext);
 
   useEffect(() => {
     if (src && src.endsWith('.svg')) {
-      const fetchSVG = async () => {
-        try {
-          const response = await fetch(src);
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          const data = await response.text();
-          setSvgContent(data);
-        } catch (error) {
-          console.error('Error fetching SVG:', error);
-          setFetchError(`Error fetching SVG: ${error.message}`);
-        }
-      };
-
-      fetchSVG();
+      const fileName = src.split('/').pop();
+      const SvgComponent = dynamic(() => import(`../../../public/svgs/${fileName}`));
+      // Ensure proper handling or transformation using SvgComponent
     }
   }, [src]);
 
   const handleImageLoad = (event: React.SyntheticEvent<HTMLImageElement>) => {
-    if (!src.endsWith('.svg')) {
-      const { naturalWidth, naturalHeight } = event.currentTarget;
-      setDimensions({ width: naturalWidth, height: naturalHeight });
-    }
+    const { naturalWidth, naturalHeight } = event.currentTarget;
+    setDimensions({ width: naturalWidth, height: naturalHeight });
   };
 
   const imageIDString = `image--${src ? '--' + src : ''}${alt ? '--' + alt : ''}${className ? '--' + className : ''}`;
@@ -52,12 +40,8 @@ const Img: React.FC<ImgProps> = ({ src, alt, className }) => {
 
   return (
     <div className={`image--outer ${imageID} ${className ? className : ''}`}>
-      {svgContent ? (
-        <div
-          className="image--svg"
-          dangerouslySetInnerHTML={{ __html: svgContent }}
-          aria-label={alt || ''}
-        />
+      {src && src.endsWith('.svg') ? (
+        <SvgComponent width={24} height={24} {...svgConfig} /> // Pass svgConfig here
       ) : (
         <img
           src={src}
@@ -66,7 +50,6 @@ const Img: React.FC<ImgProps> = ({ src, alt, className }) => {
           onLoad={handleImageLoad}
         />
       )}
-      {fetchError && <div className="error-message">{fetchError}</div>}
       {!src.endsWith('.svg') && dimensions.width && dimensions.height ? (
         <style jsx>{`
           .image--${imageID} {

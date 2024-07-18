@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@public/*": ["public/*"]
+    },
     "lib": [
       "dom",
       "dom.iterable",

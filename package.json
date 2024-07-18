@@ -6,7 +6,10 @@
     "dev": "tinacms dev -c \"next dev\"",
     "tinaaudit": "tinacms audit",
     "buildNext": "next build",
-    "build": "tinacms build && next build",
+    "build": "yarn svgs && tinacms build && next build",
+    "svgs": "yarn run svgs-copy && yarn run svgs-optimize",
+    "svgs-copy": "node svgs-copy.js",
+    "svgs-optimize": "node svgs-optimize.js",
     "start": "tinacms build && next start",
     "lint": "next lint"
   },
@@ -44,6 +47,8 @@
     "eslint-config-next": "^14.2.4",
     "next-transpile-modules": "^10.0.1",
     "node-sass": "^9.0.0",
-    "sass-loader": "^14.2.1"
+    "sass-loader": "^14.2.1",
+    "svgo": "^3.3.2",
+    "svgo-loader": "^4.0.0"
   }
 }
