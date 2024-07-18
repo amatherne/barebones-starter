@@ -10,7 +10,6 @@ const outputDir = path.resolve(__dirname, '../app/components/icons/uploads');
 // Function to convert a string to camel case
 const convertToCamelCase = (str) => {
   return str
-    // Replace spaces and special characters with hyphens
     .replace(/[^\w\s-]/g, '') // Remove special characters
     .replace(/\s+/g, '-')    // Replace spaces with hyphens
     .replace(/-+/g, '-')     // Replace multiple hyphens with a single hyphen
@@ -41,17 +40,18 @@ const clearOutputDir = async () => {
 
 // Function to check for closely named files
 const checkForSimilarFileNames = (files) => {
-  const fileMap = new Map();
+  const normalizedMap = new Map();
 
   files.forEach((file) => {
-    const fileName = path.basename(file);
-    const normalized = fileName.toLowerCase();
+    const fileName = path.basename(file, '.svg');
+    const componentName = convertToCamelCase(fileName);
+    const normalized = componentName.toLowerCase();
 
-    if (fileMap.has(normalized)) {
-      console.error(`Error: Found closely named files: ${fileMap.get(normalized)} and ${file}`);
+    if (normalizedMap.has(normalized)) {
+      console.error(`\n\nError: Found closely named files: \n1: ${normalizedMap.get(normalized)} \n2: ${file}\n\n`);
       process.exit(1);
     } else {
-      fileMap.set(normalized, file);
+      normalizedMap.set(normalized, file);
     }
   });
 };
