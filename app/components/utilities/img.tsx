@@ -8,37 +8,19 @@ interface ImgProps {
   src: string;
   alt?: string;
   className?: string;
+  svgContent?: string; // Add an optional prop for SVG content
 }
 
-const Img: React.FC<ImgProps> = ({ src, alt, className }) => {
+const Img: React.FC<ImgProps> = ({ src, alt, className, svgContent }) => {
   const [dimensions, setDimensions] = useState<{ width: number; height: number }>({ width: 0, height: 0 });
-  const [svgContent, setSvgContent] = useState<string | null>(null);
-  const [fetchError, setFetchError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (src && src.endsWith('.svg')) {
-      const fetchSVG = async () => {
-        try {
-          console.log(`Fetching SVG from: ${src}`);
-          const response = await fetch(src, {
-            mode: 'cors',
-            headers: {
-              'Content-Type': 'image/svg+xml',
-            },
-          });
-          if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-          }
-          const data = await response.text();
-          setSvgContent(data);
-        } catch (error) {
-          console.error('Error fetching SVG:', error);
-          console.error('missing svg:', src);
-          setFetchError(`Error fetching SVG: ${error.message}`);
-        }
+    if (src && !src.endsWith('.svg')) {
+      const image = new Image();
+      image.src = src;
+      image.onload = () => {
+        setDimensions({ width: image.naturalWidth, height: image.naturalHeight });
       };
-
-      fetchSVG();
     }
   }, [src]);
 
@@ -59,7 +41,7 @@ const Img: React.FC<ImgProps> = ({ src, alt, className }) => {
 
   return (
     <div className={`image--outer ${imageID} ${className ? className : ''}`}>
-      {svgContent ? (
+      {src.endsWith('.svg') && svgContent ? (
         <div
           className="image--svg"
           dangerouslySetInnerHTML={{ __html: svgContent }}
@@ -73,7 +55,6 @@ const Img: React.FC<ImgProps> = ({ src, alt, className }) => {
           onLoad={handleImageLoad}
         />
       )}
-      {fetchError && <div className="error-message">{fetchError}</div>}
       {!src.endsWith('.svg') && dimensions.width && dimensions.height ? (
         <style jsx>{`
           .image--${imageID} {
