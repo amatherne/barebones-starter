@@ -18,9 +18,9 @@ const card = ({object}) => {
 
       <Link href={`/${handle}/${object.node._sys.filename}`} title={object.node.title} className="overlay--link"></Link>
 
-      {imgSrc ? (
-        <ImgOutput src={imgSrc} alt={imgAlt} className />
-      ) : null}
+      {/*{imgSrc ? (
+        <ImgOutput src={imgSrc} alt={imgAlt} className="card--image" />
+      ) : null}*/}
 
       <h2 className="h2">
         {object.node.title}
