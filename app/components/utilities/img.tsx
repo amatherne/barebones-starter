@@ -11,11 +11,23 @@ interface ImgProps {
 }
 
 // Function to convert a string to camel case
+// Function to convert a string to camel case
 const convertToCamelCase = (str) => {
   return str
-    .split('-')
-    .map((word, index) => (index === 0 ? word.toLowerCase() : word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()))
-    .join('');
+    // Replace spaces and special characters with hyphens
+
+    .replace(/[^\w\s-]/g, '') // Remove special characters
+    .replace(/\s+/g, '-')    // Replace spaces with hyphens
+    .replace(/-+/g, '-')     // Replace multiple hyphens with a single hyphen
+    .toLowerCase()           // Convert to lowercase
+    .split('-')              // Split by hyphens
+    
+    .map((word, index) =>     // Capitalize first letter of each word except the first one
+      index === 0
+        ? word
+        : word.charAt(0).toUpperCase() + word.slice(1)
+    )
+    .join('');               // Join words to form camel case
 };
 
 const Img: React.FC<ImgProps> = ({ src, alt, className }) => {

@@ -8,9 +8,13 @@ module.exports = {
   plugins: [
 
     // { active: true, name: '' }, 
-
+    {
+      name: "removeXlink",
+      params: {
+        includeLegacy: false
+      }
+    }
     { active: true, name: 'removeXMLNS' },
-    { active: true, name: 'removeXlink' },
     { active: true, name: 'removeXMLProcInst' },
     { active: true, name: 'collapseGroups' }, 
     { active: true, name: 'convertShapeToPath' }, 

@@ -6,34 +6,52 @@ const glob = require('glob');
 const { optimize } = require('svgo');
 const svgoConfig = require('../svgo.config');
 
-const srcDir = path.join(__dirname, '../public/uploads');
+const srcDir = path.resolve(__dirname, '../public/uploads');
 const outputDir = path.resolve(__dirname, '../app/components/icons/uploads');
 
 // Function to convert a string to camel case
 const convertToCamelCase = (str) => {
   return str
-    .split('-')
-    .map((word, index) => (index === 0 ? word.toLowerCase() : word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()))
-    .join('');
+    // Replace spaces and special characters with hyphens
+
+    .replace(/[^\w\s-]/g, '') // Remove special characters
+    .replace(/\s+/g, '-')    // Replace spaces with hyphens
+    .replace(/-+/g, '-')     // Replace multiple hyphens with a single hyphen
+    .toLowerCase()           // Convert to lowercase
+    .split('-')              // Split by hyphens
+    
+    .map((word, index) =>     // Capitalize first letter of each word except the first one
+      index === 0
+        ? word
+        : word.charAt(0).toUpperCase() + word.slice(1)
+    )
+    .join('');               // Join words to form camel case
 };
 
 // Function to process SVG files and generate React components
 async function processSVGs() {
   try {
+    console.log('Start processing SVGs');
 
     // Ensure output directory exists
     await fs.ensureDir(outputDir);
+    console.log('Ensured output directory exists');
 
     // Find all SVG files in the source directory
-    const files = glob.sync(`${srcDir}/**/*.svg`);
+    const pattern = `${srcDir}/**/*.svg`;
+    console.log('Using pattern:', pattern);
+    const files = glob.sync(pattern);
+    console.log('Found SVG files:', files);
 
     if (files.length === 0) {
+      console.log('No SVG files found.');
       return;
     }
 
     // Process each SVG file
     await Promise.all(
       files.map(async (file) => {
+        console.log('Processing file:', file);
 
         try {
           const svgData = await fs.readFile(file, 'utf8');
@@ -51,7 +69,7 @@ async function processSVGs() {
 import React from 'react';
 
 const ${componentName} = () => (
-  ${optimizedSvg}
+  ${optimizedSvg.replace(/xml:space="preserve"/g, '')}
 );
 
 export default ${componentName};

@@ -22,31 +22,10 @@ const nextConfig = {
     ];
   },
   webpack: (config, { isServer }) => {
-    
     // Disable HMR for both client and server builds
     if (!isServer) {
-      config.resolve.alias['@sentry/node'] = '@sentry/browser'
+      config.resolve.alias['@sentry/node'] = '@sentry/browser';
     }
-
-  //   // Add SVGR and svgo-loader for SVG handling
-  //   config.module.rules.push({
-  //     test: /\.svg$/,
-  //     issuer: {
-  //       and: [/\.(ts|tsx|js|jsx)$/],
-  //     },
-  //     use: [
-  //       {
-  //         loader: '@svgr/webpack',
-  //         options: {
-  //           svgoConfig,
-  //         },
-  //       },
-  //       {
-  //         loader: 'svgo-loader',
-  //         options: svgoConfig,
-  //       },
-  //     ],
-  //   });
 
     // Add SVGR for SVG handling
     config.module.rules.push({
@@ -58,12 +37,12 @@ const nextConfig = {
             svgo: {
               plugins: [
                 { removeViewBox: false },
-                { removeDimensions: true }
+                { removeDimensions: true },
               ],
-              floatPrecision: 2
-            }
-          }
-        }
+              floatPrecision: 2,
+            },
+          },
+        },
       ],
     });
 
@@ -85,6 +64,25 @@ const nextConfig = {
           },
         },
       ],
+    });
+
+    // Ensure JSX namespace issues are handled
+    config.module.rules.push({
+      test: /\.tsx?$/,
+      loader: 'babel-loader',
+      options: {
+        presets: ['next/babel'],
+        plugins: [
+          [
+            '@babel/plugin-transform-react-jsx',
+            {
+              pragma: 'React',
+              pragmaFrag: 'React.Fragment',
+              throwIfNamespace: false, // Allow JSX namespaces
+            },
+          ],
+        ],
+      },
     });
 
     return config;
