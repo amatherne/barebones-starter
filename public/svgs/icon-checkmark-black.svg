@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="10" height="8" xmlns:xlink="http://www.w3.org/1999/xlink" class="icon--svg">
-  <path fill="none" fill-rule="evenodd" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 3.605l2.506 2.743L8.854 1"/>
+<svg width="10" height="8" class="icon--svg" role="image">
+  <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 3.6 2.5 2.75L8.86 1"/>
 </svg>

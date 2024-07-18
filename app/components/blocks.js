@@ -14,6 +14,7 @@ const Blocks = ({ settings }) => {
     <>
       {settings.map((block, index) => {
         
+        // if (!block) return null;
         if (!block || !block.published) return null;
 
         switch (block.__typename) {

@@ -1,10 +1,8 @@
-// ../app/components/utilities/img.tsx
-
+// app/components/utilities/img.tsx
 'use client';
 
 import React, { useState, useEffect, useContext } from 'react';
 import dynamic from 'next/dynamic';
-import { useSvgDataContext } from '../../../public/SvgDataContext'; // Adjust as per your actual context setup
 
 interface ImgProps {
   src: string;
@@ -13,16 +11,19 @@ interface ImgProps {
 }
 
 const Img: React.FC<ImgProps> = ({ src, alt, className }) => {
+  const [SvgComponent, setSvgComponent] = useState<React.FC | null>(null);
   const [dimensions, setDimensions] = useState<{ width: number; height: number }>({ width: 0, height: 0 });
-  const { svgPath } = useSvgDataContext(); // Use the context here
 
   useEffect(() => {
     if (src && src.endsWith('.svg')) {
       const fileName = src.split('/').pop();
+      const DynamicSvg = dynamic(() => import(`../../../public/svgs/${fileName}`));
       console.log(fileName)
-      const SvgComponent = dynamic(() => import(`../../../public/svgs/${fileName}`));
+      setSvgComponent(() => DynamicSvg);
+    } else {
+      setSvgComponent(null);
     }
-  }, [src, svgPath]); // Ensure useEffect updates when svgPath changes
+  }, [src]);
 
   const handleImageLoad = (event: React.SyntheticEvent<HTMLImageElement>) => {
     const { naturalWidth, naturalHeight } = event.currentTarget;
@@ -39,8 +40,8 @@ const Img: React.FC<ImgProps> = ({ src, alt, className }) => {
 
   return (
     <div className={`image--outer ${imageID} ${className || ''}`}>
-      {src && src.endsWith('.svg') ? (
-        <div width={24} height={24} /> 
+      {SvgComponent ? (
+        <SvgComponent className={className} />
       ) : (
         <img
           src={src}

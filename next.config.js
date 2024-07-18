@@ -28,17 +28,61 @@ const nextConfig = {
       config.resolve.alias['@sentry/node'] = '@sentry/browser'
     }
 
-    // Add SVGR and svgo-loader for SVG handling
+  //   // Add SVGR and svgo-loader for SVG handling
+  //   config.module.rules.push({
+  //     test: /\.svg$/,
+  //     issuer: {
+  //       and: [/\.(ts|tsx|js|jsx)$/],
+  //     },
+  //     use: [
+  //       {
+  //         loader: '@svgr/webpack',
+  //         options: {
+  //           svgoConfig,
+  //         },
+  //       },
+  //       {
+  //         loader: 'svgo-loader',
+  //         options: svgoConfig,
+  //       },
+  //     ],
+  //   });
+
+    // Add SVGR for SVG handling
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: [
+        {
+          loader: '@svgr/webpack',
+          options: {
+            svgo: {
+              plugins: [
+                { removeViewBox: false },
+                { removeDimensions: true }
+              ],
+              floatPrecision: 2
+            }
+          }
+        }
+      ],
+    });
+
+    // Optionally handle SVGs as URLs
     config.module.rules.push({
       test: /\.svg$/,
       issuer: {
         and: [/\.(ts|tsx|js|jsx)$/],
       },
       use: [
-        '@svgr/webpack', // Handles SVG as React components
         {
-          loader: 'svgo-loader', // Optimizes SVG files
-          options: svgoConfig, // Config file for svgo-loader options
+          loader: 'url-loader',
+          options: {
+            limit: 10000,
+            fallback: 'file-loader',
+            name: '[name].[ext]',
+            outputPath: 'static/svg/',
+            publicPath: '/_next/static/svg/',
+          },
         },
       ],
     });
