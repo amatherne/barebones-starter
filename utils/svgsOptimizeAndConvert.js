@@ -1,5 +1,3 @@
-// ../svgsOptimizeAndConvert.js
-
 const fs = require('fs-extra');
 const path = require('path');
 const glob = require('glob');
@@ -41,6 +39,23 @@ const clearOutputDir = async () => {
   }
 };
 
+// Function to check for closely named files
+const checkForSimilarFileNames = (files) => {
+  const fileMap = new Map();
+
+  files.forEach((file) => {
+    const fileName = path.basename(file);
+    const normalized = fileName.toLowerCase();
+
+    if (fileMap.has(normalized)) {
+      console.error(`Error: Found closely named files: ${fileMap.get(normalized)} and ${file}`);
+      process.exit(1);
+    } else {
+      fileMap.set(normalized, file);
+    }
+  });
+};
+
 // Function to process SVG files and generate React components
 async function processSVGs() {
   try {
@@ -51,20 +66,19 @@ async function processSVGs() {
 
     // Find all SVG files in the source directory
     const pattern = `${srcDir}/**/*.svg`;
-    // console.log('Using pattern:', pattern);
     const files = glob.sync(pattern);
-    // console.log('Found SVG files:', files);
 
     if (files.length === 0) {
-      // console.log('No SVG files found.');
+      console.log('No SVG files found.');
       return;
     }
+
+    // Check for closely named files before processing
+    checkForSimilarFileNames(files);
 
     // Process each SVG file
     await Promise.all(
       files.map(async (file) => {
-        // console.log('Processing file:', file);
-
         try {
           const svgData = await fs.readFile(file, 'utf8');
           const fileName = path.basename(file, '.svg');
@@ -90,7 +104,6 @@ export default ${componentName};
           // Write component file
           const outputPath = path.join(outputDir, `${componentName}.tsx`);
           await fs.writeFile(outputPath, componentTemplate);
-          // console.log(`Processed: ${file}`);
         } catch (fileError) {
           console.error('Error processing file:', file, fileError);
         }
