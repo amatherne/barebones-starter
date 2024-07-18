@@ -6,7 +6,8 @@ module.exports = {
   floatPrecision: 2, // Set floating-point precision for coordinate values
   datauri: false, // Disable converting images into data URIs
   plugins: [
-    { active: true, name: 'reusePaths' }, 
+
+    // { active: true, name: '' }, 
 
     { active: true, name: 'removeXMLNS' },
     { active: true, name: 'removeXlink' },
