@@ -26,7 +26,7 @@ const ClientPage: React.FC<ClientPageProps> = (props) => {
   
   // console.log(props)
 
-  const settings = data.page.blocks;
+  const settings = data.page.blocks || [];
 
   return (
     <>

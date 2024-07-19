@@ -7,7 +7,7 @@ import MainContent from './blocks/main-content-section';
 
 
 interface BlockProps {
-  content: any[]; 
+  content: any; 
   settings: any[]; 
 }
 
