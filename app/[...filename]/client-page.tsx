@@ -1,5 +1,3 @@
-// ../app/[...filename]/client-page.tsx
-
 'use client';
 
 import React from 'react';
@@ -17,22 +15,18 @@ interface ClientPageProps {
 }
 
 const ClientPage: React.FC<ClientPageProps> = (props) => {
-  
   const { data } = useTina({
     query: props.query,
     variables: props.variables,
     data: props.data,
   });
   
-  // console.log(props)
-
+  // Ensure blocks is an array
   const settings = data.page.blocks || [];
-
+  
   return (
     <>
-      {settings && (
-        <Blocks settings={settings} content={data} />
-      )}
+      <Blocks settings={settings} content={data.page} />
     </>
   );
 };

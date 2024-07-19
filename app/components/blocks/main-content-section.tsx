@@ -29,19 +29,17 @@ interface MainContentProps {
 
 const MainContent: React.FC<MainContentProps> = ({ settings, content }) => {
 
-  const pageContent         = content.page;
+  if (!settings && !content) return null;
 
-  if (!settings && !content.page) return null;
-
-  const title               = settings?.title || pageContent?.title || null;
-  const bodyText            = pageContent?.body;
+  const title               = settings?.title || content?.title || null;
+  const bodyText            = content?.body;
   const sectionText         = settings?.text;
  
   let text                  = null;
   if (bodyText && bodyText.children.length !== 0) text = bodyText;
   if (sectionText && sectionText.children.length !== 0) text = sectionText;
 
-  const showTitle           = content.page._sys.filename !== "home";
+  const showTitle           = content._sys.filename !== "home";
 
   const sectionHasContent   = title || text;
 
