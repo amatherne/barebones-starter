@@ -8,7 +8,7 @@ const Footer = () => {
 
   return (
     <>
-      <footer className="footer section color--2">
+      <footer className="footer section color--gradient">
         <div className="page-width">
           <div className="footer--sticky-section">
 

@@ -1,10 +1,17 @@
 // ../components/blocks.tsx
 
 import React from 'react';
-import Hero from './blocks/hero'; // Import your block components
-import CTAs from './blocks/ctas'; // Import other block components as needed
+import Hero from './blocks/hero'; 
+import CTAs from './blocks/ctas'; 
+import MainContent from './blocks/main-content-section'; 
 
-const Blocks = ({ settings }) => {
+
+interface BlockProps {
+  content: any[]; 
+  settings: any[]; 
+}
+
+const Blocks: React.FC<BlockProps> = ({ settings, content }) => {
  
  // console.log(settings)
 
@@ -15,7 +22,7 @@ const Blocks = ({ settings }) => {
       {settings.map((block, index) => {
         
         // if (!block) return null;
-        if (!block || !block.published) return null;
+        if (!block || (!block.published && block.__typename !==  'PageBlocksMain')) return null;
 
         switch (block.__typename) {
           
@@ -24,6 +31,9 @@ const Blocks = ({ settings }) => {
           
           case 'PageBlocksCtas': 
             return <CTAs key={index} settings={block} {...block} />;
+
+          case 'PageBlocksMain': 
+            return <MainContent key={index} settings={block} content={content} {...block} />;
           
           // Add more cases for other block types as needed
           default:

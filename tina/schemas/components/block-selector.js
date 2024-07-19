@@ -1,6 +1,7 @@
 // ../tina/schemas/components/block-selector.js
 
 import { 
+  PageBlocksMain,
   PageBlocksHero,
   PageBlocksCtas,
 } from '../blocks'
@@ -14,6 +15,7 @@ const blockSelector = {
     visualSelector: true,
   },
   templates: [
+    PageBlocksMain,
     PageBlocksHero,
     PageBlocksCtas,
   ],

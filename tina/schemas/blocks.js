@@ -3,6 +3,7 @@
 import React from 'react';
 import PageBlocksHero from './blocks/hero'; 
 import PageBlocksCtas from './blocks/ctas'; 
+import PageBlocksMain from './blocks/main-content-section'; 
 
 const Blocks = ({ blocks, ...props }) => {
   
@@ -18,9 +19,18 @@ const Blocks = ({ blocks, ...props }) => {
         
         if (!block || !block.__typename) return null;
 
-        // const blockType = block.__typename;
-
         switch (block.__typename) {
+
+          case 'PageBlocksMain':
+            return 
+              <PageBlocksMain
+                key={index}
+                index={index}
+                data={block}
+                fields={PageBlocksMain.fields}
+                {...props} // Spread props if needed
+              />
+            ;
           
           case 'PageBlocksHero':
             return 
@@ -57,6 +67,7 @@ const Blocks = ({ blocks, ...props }) => {
 
 export { 
   Blocks, 
+  PageBlocksMain,
   PageBlocksHero, 
-  PageBlocksCtas 
+  PageBlocksCtas,
 };

@@ -2,17 +2,6 @@
 title: Home
 blocks:
   - published: true
-    title: Testing
-    text: ''
-    styles:
-      style:
-        - inline
-    item:
-      - src: /uploads/icons/adobe-indesign-svgrepo-com.svg
-        title: Testing
-        text: ''
-    _template: ctas
-  - published: true
     height: 45vw
     max_height: 900px
     min_height: 200px
@@ -29,6 +18,12 @@ blocks:
             object-position: 50% 30%;
           }
     _template: hero
+  - text: ''
+    styles:
+      colors:
+        - ''
+    custom_css: '== {}'
+    _template: main
   - published: true
     title: Skills
     text: |
@@ -39,12 +34,6 @@ blocks:
       colors:
         - ''
     item:
-      - src: /uploads/icon-checkmark-black.svg
-        title: Boom Boom
-        text: ''
-      - src: /uploads/icons/eslint-16-svgrepo-com.svg
-        title: Testing the Title
-        text: ''
       - src: /uploads/icons/html-16-svgrepo-com.svg
         title: HTML
         text: ''
@@ -124,7 +113,8 @@ blocks:
         }
       }
     _template: ctas
-  - title: Tools
+  - published: true
+    title: Tools
     text: |
       Development
     styles:
