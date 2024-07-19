@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { TinaMarkdown, TinaMarkdownContent } from 'tinacms/dist/rich-text';
-import { PageQuery, WebsiteQuery, SoundsQuery, PostQuery } from '../../tina/types';
+import { PageQuery, WebsiteQuery, SoundsQuery, PostQuery } from '../../../tina/__generated__/types';
 
 type MainContentType = 
   PageQuery['page'] | 
@@ -59,10 +59,10 @@ const MainContent: React.FC<MainContentProps> = ({ settings, content }) => {
   if (bodyText && bodyText.children.length !== 0) text = bodyText;
 
   // Determine if the title should be shown
-  const showTitle = settings.show_title !== '' ? settings?.show_title : true;
+  const showTitle = settings?.show_title !== false;
 
-  console.log('showTitle: ',showTitle)
-  console.log('settings?.show_title: ',settings?.show_title)
+  // console.log('showTitle: ',showTitle)
+  // console.log('settings?.show_title: ',settings?.show_title)
 
   // Check if the section has any content
   const sectionHasContent = title || text;
