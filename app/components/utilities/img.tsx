@@ -2,7 +2,7 @@
 
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo, Suspense } from 'react';
 import importIcon from '../../../utils/importIcon';
 
 interface ImgProps {
@@ -12,16 +12,13 @@ interface ImgProps {
 }
 
 // Function to convert a string to camel case
-const convertToCamelCase = (str) => {
+const convertToCamelCase = (str: string) => {
   return str
-    // Replace spaces and special characters with hyphens
-
     .replace(/[^\w\s-]/g, '') // Remove special characters
     .replace(/\s+/g, '-')    // Replace spaces with hyphens
     .replace(/-+/g, '-')     // Replace multiple hyphens with a single hyphen
     .toLowerCase()           // Convert to lowercase
     .split('-')              // Split by hyphens
-    
     .map((word, index) =>     // Capitalize first letter of each word except the first one
       index === 0
         ? word
@@ -37,10 +34,10 @@ const Img: React.FC<ImgProps> = ({ src, alt, className }) => {
   useEffect(() => {
     const loadIcon = async () => {
       if (src.endsWith('.svg')) {
-        const fileName = convertToCamelCase(src.split('/').pop()?.replace('.svg', '')) || '';
+        const fileName = convertToCamelCase(src.split('/').pop()?.replace('.svg', '') || '');
 
         const IconComponent = await importIcon(fileName);
-        setSvgComponent(() => IconComponent || null);
+        setSvgComponent(() => IconComponent);
       } else {
         setSvgComponent(null);
       }
@@ -65,7 +62,9 @@ const Img: React.FC<ImgProps> = ({ src, alt, className }) => {
   return (
     <div className={`image--outer ${imageID} ${className || ''}`}>
       {src.endsWith('.svg') && SvgComponent ? (
-        SvgComponent ? <SvgComponent /> : <div>Loading...</div>
+        <Suspense fallback={<div>Loading...</div>}>
+          <SvgComponent />
+        </Suspense>
       ) : (
         <img
           src={src}

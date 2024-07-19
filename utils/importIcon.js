@@ -2,11 +2,10 @@
 
 const importIcon = async (iconName) => {
   try {
-    // Adjust the path to your actual icon directory
-    const { default: IconComponent } = await import(`../app/components/icons/uploads/${iconName}`);
-    return IconComponent;
+    const icon = await import(`../app/components/icons/uploads/${iconName}.tsx`);
+    return icon.default;
   } catch (error) {
-    console.error(`Error loading icon ${iconName}:`, error);
+    console.error(`Error importing icon: ${iconName}`, error);
     return null;
   }
 };
