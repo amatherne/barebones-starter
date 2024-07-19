@@ -1,3 +1,5 @@
+// ../app/[...filename]/client-page.tsx
+
 'use client';
 
 import React from 'react';

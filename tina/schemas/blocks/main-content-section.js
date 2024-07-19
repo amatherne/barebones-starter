@@ -11,6 +11,11 @@ const PageBlocksMain = {
       name: 'title',
     },
     {
+      type: "boolean",
+      label: "Show Title",
+      name: "show_title",
+    },
+    {
       type: 'rich-text',
       label: 'Text (optional)',
       name: 'text',
@@ -37,7 +42,6 @@ const PageBlocksMain = {
             { value:"color--gradient",    label:"Gradient BG" },
           ]
         },
-
       ],
     },
     {

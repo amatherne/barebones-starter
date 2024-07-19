@@ -1,3 +1,5 @@
+// ../components/blocks.tsx
+
 import React from 'react';
 import Hero from './blocks/hero'; 
 import CTAs from './blocks/ctas'; 
