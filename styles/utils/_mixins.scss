@@ -22,6 +22,7 @@ $screen-md: 1000px;
 $screen-lg: 1300px;
 
 $grid-x-sm: 475px;
+$grid-sm-md: 600px;
 $grid-md: 750px;
 $grid-lg: 990px;
 $grid-x-lg: 1200px;
@@ -40,6 +41,8 @@ $x-sm-up: 'x-sm-up';
 $not-x-sm: 'not-x-sm';
 $sm: 'sm';
 
+$sm-md: 'sm-md';
+
 $md: 'md';
 $md-down: 'md-down';
 $md-up: 'md-up';
@@ -57,7 +60,7 @@ $wide: 'wide';
     - Default column widths: $grid-breakpoint-has-widths: ($sm, $md-up);
     - Default is no push classes
 ==============================================================================*/
-$grid-breakpoint-has-widths: ($x-sm, $not-x-sm, $x-sm-up, $sm, $md-up, $md, $md-down, $lg, $lg-up, $lg-down, $x-lg, $x-lg-up);
+$grid-breakpoint-has-widths: ($x-sm, $not-x-sm, $x-sm-up, $sm, $sm-md, $md-up, $md, $md-down, $lg, $lg-up, $lg-down, $x-lg, $x-lg-up);
 $grid-breakpoint-has-push: $grid-breakpoint-has-widths;
 
 
@@ -78,6 +81,8 @@ $grid-breakpoints: (
   $x-sm-up '(min-width: #{$grid-x-sm})',
   $not-x-sm '(min-width: #{$grid-x-sm}) and (max-width: #{$grid-md - 1})',
   $sm '(max-width: #{$grid-md - 1})',
+  
+  $sm-md '(min-width: #{$grid-x-sm}) and (max-width: #{$grid-md - 1})',
 
   $md '(min-width: #{$grid-md}) and (max-width: #{$grid-lg - 1})',
   $md-down '(max-width: #{$grid-lg - 1})',

@@ -108,6 +108,10 @@ blocks:
         title: PHP
         text: ''
     custom_css: |
+      == {
+         --cta-set--padding-top: var(--sp);
+      }
+
       @media screen and (min-width: 750px) {
         == {
           --cta-set--padding-top: calc(var(--page--padding) * 0.66);
@@ -180,12 +184,15 @@ blocks:
         text: ''
     custom_css: |
       == {
+         --cta-set--padding-top: var(--sp);
         --cta-set--padding-bottom: 0;
       }
+
 
       @media screen and (min-width: 750px) {
         == {
           --cta-set--padding-top: calc(var(--page--padding) * 0.66);
+
         }
       }
     _template: ctas
@@ -205,6 +212,11 @@ blocks:
         title: Blender
         text: ''
     custom_css: |
+      == {
+         --cta-set--padding-top: var(--sp);
+      }
+
+
       @media screen and (min-width: 750px) {
         == {
           --cta-set--padding-top: calc(var(--page--padding) * 0.66);

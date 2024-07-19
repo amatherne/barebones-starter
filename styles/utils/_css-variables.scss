@@ -3,13 +3,16 @@
   --page-width                      : 1600px;
   --page-width--text                : 90ch;
 
-  --global--spacing-sections        : 60px;
-  --global--grid-horizontal         : 30px;
-  --global--grid-vertical           : 30px;
+  --global--spacing-sections        : var(--sp--2);
 
-  --global--mobile--spacing-sections: 30px;
-  --global--mobile--grid-horizontal : 15px;
-  --global--mobile--grid-vertical   : 15px;
+  // Only for setting via CMS
+  // --global--grid-horizontal         : 30px;
+  // --global--grid-vertical           : 30px;
+  // Only for setting via CMS
+
+  --global--mobile--spacing-sections: var(--sp--6);
+  --global--mobile--grid-horizontal : var(--sp--1-2);
+  --global--mobile--grid-vertical   : var(--sp--1-2);
 
   --page-width--padding: var(--sp--2-3);
 
@@ -68,9 +71,20 @@
 }
 
 :root {
-  --header--width--mobile           : 90px;
+  --header--width--mobile           : 70px;
+  --header--width--tablet           : 90px;
   --header--width--desktop          : 125px;
+
   --header--width--open             : min(400px,100vw);
+
+  --header--width                   : var(--header--width--mobile);
+
+  @include mq($md-up) {
+    --header--width                 : var(--header--width--tablet);
+  }
+  @include mq($lg-up) {
+    --header--width                 : var(--header--width--desktop);
+  }
 }
 
 $colors: (

@@ -63,10 +63,15 @@ img {
 
   @include mq($x-sm-up) {
     padding-left: var(--content--width);
+    --content--width: var(--header--width);
+  }
+
+  @include mq($sm-md) {
+    // --content--width: var(--header--width--mobile);
   }
 
   @include mq($sm) {
-    --content--width: var(--header--width--mobile);
+    // --content--width: var(--header--width--tablet);
   }
 }
 
