@@ -1,5 +1,3 @@
-// app/components/utilities/img.tsx
-
 'use client';
 
 import React, { useState, useEffect, Suspense } from 'react';
@@ -9,9 +7,9 @@ interface ImgProps {
   src: string;
   alt?: string;
   className?: string;
+  sizes?: string; // New prop for responsive sizes
 }
 
-// Function to convert a string to camel case
 const convertToCamelCase = (str: string) => {
   return str
     .replace(/[^\w\s-]/g, '') // Remove special characters
@@ -27,7 +25,7 @@ const convertToCamelCase = (str: string) => {
     .join('');               // Join words to form camel case
 };
 
-const Img: React.FC<ImgProps> = ({ src, alt, className }) => {
+const Img: React.FC<ImgProps> = ({ src, alt, className, sizes }) => {
   const [SvgComponent, setSvgComponent] = useState<React.FC | null>(null);
   const [dimensions, setDimensions] = useState<{ width: number; height: number }>({ width: 0, height: 0 });
 
@@ -58,6 +56,8 @@ const Img: React.FC<ImgProps> = ({ src, alt, className }) => {
     .replace(/-+/g, '-')
     .replace(/^-|-$/g, '');
 
+  const imgSrcSet = `${src}?w=500&h=250 500w, ${src}?w=1000&h=500 1000w`; // Example srcSet for responsive images
+
   return (
     <div className={`image--outer ${imageID} ${className || ''}`}>
       {src.endsWith('.svg') && SvgComponent ? (
@@ -69,6 +69,9 @@ const Img: React.FC<ImgProps> = ({ src, alt, className }) => {
           src={src}
           alt={alt || ''}
           className="image--image"
+          srcSet={imgSrcSet}
+          sizes={sizes || '100vw'} // Use sizes prop or default to 100vw
+          loading="lazy" // Lazy load images
           onLoad={handleImageLoad}
         />
       )}

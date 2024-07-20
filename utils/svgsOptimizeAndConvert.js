@@ -8,59 +8,12 @@ const svgoConfig = require('../svgo.config');
 const srcDir = path.resolve(__dirname, '../public/uploads');
 const outputDir = path.resolve(__dirname, '../app/components/icons/uploads');
 
-// Function to convert a string to camel case
-const convertFileNameToCamelCase = (str) => {
-  return str
-    .replace(/[^\w\s-]/g, '') // Remove special characters
-    .replace(/\s+/g, '-')    // Replace spaces with hyphens
-    .replace(/-+/g, '-')     // Replace multiple hyphens with a single hyphen
-    .toLowerCase()           // Convert to lowercase
-    .split('-')              // Split by hyphens
-    .map((word, index) =>     // Capitalize first letter of each word except the first one
-      index === 0
-        ? word
-        : word.charAt(0).toUpperCase() + word.slice(1)
-    )
-    .join('');               // Join words to form camel case
-};
-
-// Function to clear the output directory
-const clearOutputDir = async () => {
-  try {
-    if (fs.existsSync(outputDir)) {
-      await fs.emptyDir(outputDir); // Remove all files and directories inside outputDir
-      console.log('Output directory cleared.');
-    } else {
-      console.log('Output directory does not exist. Creating it.');
-      await fs.ensureDir(outputDir); // Create directory if it does not exist
-    }
-  } catch (error) {
-    console.error('Error clearing output directory:', error);
-  }
-};
-
-// Function to check for closely named files
-const checkForSimilarFileNames = (files) => {
-  const normalizedMap = new Map();
-
-  files.forEach((file) => {
-    const fileName = path.basename(file, '.svg');
-    const componentName = convertFileNameToCamelCase(fileName);
-    const normalized = componentName.toLowerCase();
-
-    if (normalizedMap.has(normalized)) {
-      console.error(`\n\nError: Found closely named files: \n1: ${normalizedMap.get(normalized)} \n2: ${file}\n\n`);
-      process.exit(1);
-    } else {
-      normalizedMap.set(normalized, file);
-    }
-  });
-};
+const { convertFileNameToCamelCase, clearOutputDir, checkForSimilarFileNames } = require('./helpers');
 
 // Function to convert SVG attributes to camel case
 const convertAttributesToCamelCase = (svgString) => {
 
-  console.log(svgString)
+  // console.log(svgString)
 
   // Regular expression to check for fill or stroke attributes in the entire SVG
   const hasFillOrStroke = /(fill|stroke)="[^"]*"/.test(svgString);
@@ -95,7 +48,7 @@ async function processSVGs() {
     console.log('Start processing SVGs');
 
     // Clear the output directory
-    await clearOutputDir();
+    await clearOutputDir(outputDir);
 
     // Find all SVG files in the source directory
     const pattern = `${srcDir}/**/*.svg`;

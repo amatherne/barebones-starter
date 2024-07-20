@@ -1,7 +1,8 @@
-// ../utils/helpers.js
+const React = require('react');
+const path = require('path');
+const fs = require('fs-extra');
 
-import React from 'react';
-
+// Function to wrap characters in span elements
 function wrapCharactersInSpan(text) {
   // Split the text into an array of characters
   const characters = text.split('');
@@ -14,6 +15,58 @@ function wrapCharactersInSpan(text) {
   return wrappedText;
 }
 
+// Function to convert a string to camel case
+const convertFileNameToCamelCase = (str) => {
+  return str
+    .replace(/[^\w\s-]/g, '') // Remove special characters
+    .replace(/\s+/g, '-')    // Replace spaces with hyphens
+    .replace(/-+/g, '-')     // Replace multiple hyphens with a single hyphen
+    .toLowerCase()           // Convert to lowercase
+    .split('-')              // Split by hyphens
+    .map((word, index) =>     // Capitalize first letter of each word except the first one
+      index === 0
+        ? word
+        : word.charAt(0).toUpperCase() + word.slice(1)
+    )
+    .join('');               // Join words to form camel case
+};
+
+// Function to check for closely named files
+const checkForSimilarFileNames = (files) => {
+  const normalizedMap = new Map();
+
+  files.forEach((file) => {
+    const fileName = path.basename(file, path.extname(file));
+    const componentName = convertFileNameToCamelCase(fileName);
+    const normalized = componentName.toLowerCase();
+
+    if (normalizedMap.has(normalized)) {
+      console.error(`\n\nError: Found closely named files: \n1: ${normalizedMap.get(normalized)} \n2: ${file}\n\n`);
+      process.exit(1);
+    } else {
+      normalizedMap.set(normalized, file);
+    }
+  });
+};
+
+// Function to clear the output directory
+const clearOutputDir = async (outputDir) => {
+  try {
+    if (fs.existsSync(outputDir)) {
+      await fs.emptyDir(outputDir); // Remove all files and directories inside outputDir
+      // console.log('Output directory cleared.');
+    } else {
+      console.log('Output directory does not exist. Creating it.');
+      await fs.ensureDir(outputDir); // Create directory if it does not exist
+    }
+  } catch (error) {
+    console.error('Error clearing output directory:', error);
+  }
+};
+
 module.exports = {
   wrapCharactersInSpan,
+  convertFileNameToCamelCase,
+  checkForSimilarFileNames,
+  clearOutputDir,
 };

@@ -1,52 +1,34 @@
+'use strict';
+
 const fs = require('fs-extra');
 const path = require('path');
 const glob = require('glob');
-const sharp = require('sharp');
 
-const srcDir = path.resolve(__dirname, '../public/uploads');
-const outputDir = path.resolve(__dirname, '../app/components/images/uploads');
+const inputDir = './public/uploads';
+const outputDir = './public/images';
 
-// Function to convert a string to camel case
-const convertFileNameToCamelCase = (str) => {
-  return str
-    .replace(/[^\w\s-]/g, '') // Remove special characters
-    .replace(/\s+/g, '-')    // Replace spaces with hyphens
-    .replace(/-+/g, '-')     // Replace multiple hyphens with a single hyphen
-    .toLowerCase()           // Convert to lowercase
-    .split('-')              // Split by hyphens
-    .map((word, index) =>     // Capitalize first letter of each word except the first one
-      index === 0
-        ? word
-        : word.charAt(0).toUpperCase() + word.slice(1)
-    )
-    .join('');               // Join words to form camel case
-};
+const { convertFileNameToCamelCase, clearOutputDir, checkForSimilarFileNames } = require('./helpers');
 
-// Function to clear the output directory
-const clearOutputDir = async () => {
+if (!fs.existsSync(outputDir)) {
+  fs.mkdirSync(outputDir, { recursive: true });
+}
+
+// Function to optimize and rename image files
+const optimizeAndRenameImage = async (filePath) => {
+  const extname = path.extname(filePath).toLowerCase();
+  const fileName = path.basename(filePath);
+  const fileNameWithoutExt = path.basename(filePath, extname);
+  const newFileName = convertFileNameToCamelCase(fileNameWithoutExt) + extname;
+  const outputFilePath = path.join(outputDir, newFileName);
+
   try {
-    if (fs.existsSync(outputDir)) {
-      await fs.emptyDir(outputDir); // Remove all files and directories inside outputDir
-      console.log('Output directory cleared.');
-    } else {
-      console.log('Output directory does not exist. Creating it.');
-      await fs.ensureDir(outputDir); // Create directory if it does not exist
-    }
-  } catch (error) {
-    console.error('Error clearing output directory:', error);
-  }
-};
-
-// Function to process image files and generate a JSON file with image metadata
-async function processImages() {
-  try {
-    console.log('Start processing images');
+    console.log(`Start processing ${fileName}`);
 
     // Clear the output directory
-    await clearOutputDir();
+    await clearOutputDir(outputDir);
 
     // Find all image files in the source directory
-    const pattern = `${srcDir}/**/*.{jpg,jpeg,png,gif}`;
+    const pattern = `${inputDir}/**/*.{jpg,jpeg,png,webp}`;
     const files = glob.sync(pattern);
 
     if (files.length === 0) {
@@ -54,42 +36,45 @@ async function processImages() {
       return;
     }
 
-    // Initialize an array to hold image metadata
-    const imageMetadata = [];
+    // Check for closely named files before processing
+    checkForSimilarFileNames(files);
 
-    // Process each image file
-    await Promise.all(
-      files.map(async (file) => {
-        try {
-          const fileName = path.basename(file);
-          const componentName = convertFileNameToCamelCase(fileName);
-          const image = sharp(file);
+    // Dynamically import the ES modules for image optimization
+    const { default: imagemin } = await import('imagemin');
+    const imageminMozjpeg = (await import('imagemin-mozjpeg')).default;
+    const imageminPngquant = (await import('imagemin-pngquant')).default;
+    const imageminWebp = (await import('imagemin-webp')).default;
 
-          // Get image metadata
-          const metadata = await image.metadata();
+    const plugins = [];
 
-          // Add image metadata to array
-          imageMetadata.push({
-            componentName,
-            src: file.replace(srcDir, '/uploads'), // Adjust the path as needed
-            width: metadata.width,
-            height: metadata.height,
-          });
-          
-        } catch (fileError) {
-          console.error('Error processing file:', file, fileError);
-        }
-      })
-    );
+    if (['.jpg', '.jpeg'].includes(extname)) {
+      plugins.push(imageminMozjpeg({ quality: 75 }));
+    } else if (extname === '.png') {
+      plugins.push(imageminPngquant({ quality: [0.6, 0.8] }));
+    } else if (extname === '.webp') {
+      plugins.push(imageminWebp({ quality: 75 }));
+    }
 
-    // Write image metadata to a JSON file
-    const outputPath = path.join(outputDir, 'imageMetadata.json');
-    await fs.writeJson(outputPath, imageMetadata, { spaces: 2 });
+    if (plugins.length > 0) {
+      await imagemin([filePath], {
+        destination: outputDir,
+        plugins,
+      });
 
-    console.log('Image files processed and metadata generated successfully!');
+      // Rename the optimized file to camel case
+      await fs.rename(path.join(outputDir, fileName), outputFilePath);
+
+      // console.log(`Optimized and renamed ${fileName} to ${newFileName}`);
+    }
   } catch (error) {
-    console.error('Error processing image files:', error);
+    console.error(`Error optimizing ${filePath}:`, error);
   }
-}
+};
 
-processImages();
+// Process all image files in the input directory
+fs.readdirSync(inputDir).forEach(file => {
+  const filePath = path.join(inputDir, file);
+  if (fs.statSync(filePath).isFile() && ['.jpg', '.jpeg', '.png', '.webp'].includes(path.extname(filePath).toLowerCase())) {
+    optimizeAndRenameImage(filePath);
+  }
+});
