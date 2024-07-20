@@ -4,10 +4,10 @@
 import React from 'react';
 
 const sketchSvgrepoCom = () => (
-  <svg width="800px" height="800px" viewBox="0 0 24 24" className="icon--svg" role="image">
+  <svg width="800px" height="800px" className="icon--svg" role="image" viewBox="0 0 24 24">
   <title>sketch</title>
-  <rect width="24" height="24" fill="none"/>
-  <path d="M16,9h3l-5,7M10,9h4l-2,8M5,9H8l2,7M15,4h2l2,3H16M11,4h2l1,3H10M7,4H9L8,7H5M6,2,2,8,12,22,22,8,18,2Z"/>
+  <path fill="none" d="M0 0h24v24H0z"/>
+  <path d="M16 9h3l-5 7m-4-7h4l-2 8M5 9h3l2 7m5-12h2l2 3h-3m-5-3h2l1 3h-4M7 4h2L8 7H5m1-5L2 8l10 14L22 8l-4-6Z"/>
 </svg>
 
 );
