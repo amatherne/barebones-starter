@@ -44,24 +44,27 @@ const checkForSimilarFileNames = (files) => {
     const normalized = componentName.toLowerCase();
 
     if (normalizedMap.has(normalized)) {
-      errors.push({
-        original: normalizedMap.get(normalized),
-        duplicate: file,
-      });
+      // errors.push({
+      //   original: normalizedMap.get(normalized),
+      //   duplicate: file,
+      // });
+
+      console.error(`\n\nError: Found closely named files: \n1: ${normalizedMap.get(normalized)} \n2: ${file}\n\n`);
+      process.exit(1);
     } else {
       normalizedMap.set(normalized, file);
     }
   });
 
-  if (errors.length > 0) {
-    console.error('\n\nError: Found closely named files:');
-    errors.forEach((error, index) => {
-      console.error(`\n${index + 1}: ${error.original}\n${index + 2}: ${error.duplicate}`);
-    });
-    process.exit(1); // Optional: exit if errors are found
-  } else {
-    console.log('No closely named files found.');
-  }
+  // if (errors.length > 0) {
+  //   console.error('\n\nError: Found closely named files:');
+  //   errors.forEach((error, index) => {
+  //     console.error(`\n${index + 1}: ${error.original}\n${index + 2}: ${error.duplicate}`);
+  //   });
+  //   process.exit(1); // Optional: exit if errors are found
+  // } else {
+  //   console.log('No closely named files found.');
+  // }
 };
 
 module.exports = {

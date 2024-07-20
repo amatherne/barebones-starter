@@ -61,15 +61,17 @@ async function processSVGs() {
     }
 
     // Check for closely named files before processing
-    checkForSimilarFileNames(files);
+    // checkForSimilarFileNames(files);
 
     // Process each SVG file
     await Promise.all(
       files.map(async (file) => {
         try {
           const svgData = await fs.readFile(file, 'utf8');
-          const fileName = path.basename(file, '.svg');
+          const fileName = path.basename(file);
           const componentName = convertFileNameToCamelCase(fileName);
+          
+          console.log(componentName);
 
           // Optimize SVG data
           const { data: optimizedSvg } = optimize(svgData, { ...svgoConfig });

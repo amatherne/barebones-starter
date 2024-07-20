@@ -20,10 +20,10 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes }) => {
   useEffect(() => {
     const loadIcon = async () => {
       if (isSvg) {
-        // const fileName = convertFileNameToCamelCase(src.split('/').pop() || '');
-        // console.log(src.split('/').pop())
-        // const IconComponent = await importIcon(fileName);
-        // setSvgComponent(() => IconComponent);
+        const fileName = convertFileNameToCamelCase(src.split('/').pop() || '');
+        console.log(src.split('/').pop())
+        const IconComponent = await importIcon(fileName);
+        setSvgComponent(() => IconComponent);
       } else {
         setSvgComponent(null);
       }

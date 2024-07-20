@@ -6,8 +6,12 @@ module.exports = {
   floatPrecision: 2, // Set floating-point precision for coordinate values
   datauri: false, // Disable converting images into data URIs
   plugins: [
+    'preset-default',
+    'inlineStyles',
+    'convertStyleToAttrs',
 
     // { active: true, name: '' }, 
+    
     {
       name: "removeXlink",
       params: {

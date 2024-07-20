@@ -4,7 +4,7 @@
 import React from 'react';
 
 const terminalSvgrepoCom = () => (
-  <svg width="800px" height="800px" fill="none" className="icon--svg" role="image" viewBox="0 0 24 24">
+  <svg width="800" height="800" fill="none" viewBox="0 0 24 24" className="icon--svg" role="image">
   <path stroke="var(--color--foreground)" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 19h9M3 5l8 7-8 7"/>
 </svg>
 
