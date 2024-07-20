@@ -1,7 +1,11 @@
+// app/components/utilities/img.tsx
+
 'use client';
 
 import React, { useState, useEffect, Suspense } from 'react';
 import importIcon from '../../../utils/importIcon';
+
+import { convertFileNameToCamelCase } from '../../../utils/helpers';
 
 interface ImgProps {
   src: string;
@@ -10,21 +14,6 @@ interface ImgProps {
   sizes?: string; // New prop for responsive sizes
 }
 
-const convertToCamelCase = (str: string) => {
-  return str
-    .replace(/[^\w\s-]/g, '') // Remove special characters
-    .replace(/\s+/g, '-')    // Replace spaces with hyphens
-    .replace(/-+/g, '-')     // Replace multiple hyphens with a single hyphen
-    .toLowerCase()           // Convert to lowercase
-    .split('-')              // Split by hyphens
-    .map((word, index) =>     // Capitalize first letter of each word except the first one
-      index === 0
-        ? word
-        : word.charAt(0).toUpperCase() + word.slice(1)
-    )
-    .join('');               // Join words to form camel case
-};
-
 const Img: React.FC<ImgProps> = ({ src, alt, className, sizes }) => {
   const [SvgComponent, setSvgComponent] = useState<React.FC | null>(null);
   const [dimensions, setDimensions] = useState<{ width: number; height: number }>({ width: 0, height: 0 });
@@ -32,7 +21,7 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes }) => {
   useEffect(() => {
     const loadIcon = async () => {
       if (src.endsWith('.svg')) {
-        const fileName = convertToCamelCase(src.split('/').pop()?.replace('.svg', '') || '');
+        const fileName = convertFileNameToCamelCase(src.split('/').pop()?.replace('.svg', '') || '');
         const IconComponent = await importIcon(fileName);
         setSvgComponent(() => IconComponent);
       } else {
@@ -48,7 +37,10 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes }) => {
     setDimensions({ width: naturalWidth, height: naturalHeight });
   };
 
-  const imageIDString = `image--${src ? '--' + src : ''}${alt ? '--' + alt : ''}${className ? '--' + className : ''}`;
+  const formatedSrc = src.split('/').pop().split('.').slice(0, -1).join('.');
+  const newSrc = '/images/'+convertFileNameToCamelCase(formatedSrc || '')+'.webp';
+
+  const imageIDString = `image--${newSrc ? '--' + newSrc : ''}${alt ? '--' + alt : ''}${className ? '--' + className : ''}`;
   const imageID = imageIDString
     .toLowerCase()
     .replace(/[^\w\s-]/gi, '')
@@ -56,7 +48,7 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes }) => {
     .replace(/-+/g, '-')
     .replace(/^-|-$/g, '');
 
-  const imgSrcSet = `${src}?w=500&h=250 500w, ${src}?w=1000&h=500 1000w`; // Example srcSet for responsive images
+  const imgSrcSet = `${newSrc}?w=500&h=250 500w, ${newSrc}?w=1000&h=500 1000w`; // Example srcSet for responsive images
 
   return (
     <div className={`image--outer ${imageID} ${className || ''}`}>
@@ -66,7 +58,7 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes }) => {
         </Suspense>
       ) : (
         <img
-          src={src}
+          src={newSrc}
           alt={alt || ''}
           className="image--image"
           srcSet={imgSrcSet}

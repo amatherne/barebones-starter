@@ -8,7 +8,8 @@ const svgoConfig = require('../svgo.config');
 const srcDir = path.resolve(__dirname, '../public/uploads');
 const outputDir = path.resolve(__dirname, '../app/components/icons/uploads');
 
-const { convertFileNameToCamelCase, clearOutputDir, checkForSimilarFileNames } = require('./helpers');
+const { convertFileNameToCamelCase, checkForSimilarFileNames } = require('./helpers');
+const { clearOutputDir } = require('./helpers--build-only');
 
 // Function to convert SVG attributes to camel case
 const convertAttributesToCamelCase = (svgString) => {
