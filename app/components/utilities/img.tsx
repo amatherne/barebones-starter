@@ -21,7 +21,6 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes }) => {
     const loadIcon = async () => {
       if (isSvg) {
         const fileName = convertFileNameToCamelCase(src.split('/').pop() || '');
-        console.log(src.split('/').pop())
         const IconComponent = await importIcon(fileName);
         setSvgComponent(() => IconComponent);
       } else {
@@ -30,7 +29,7 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes }) => {
     };
 
     loadIcon();
-  }, [src]);
+  }, [src,isSvg]);
 
   const handleImageLoad = (event: React.SyntheticEvent<HTMLImageElement>) => {
     const { naturalWidth, naturalHeight } = event.currentTarget;

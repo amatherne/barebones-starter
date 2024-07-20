@@ -4,7 +4,7 @@
 import React from 'react';
 
 const icons8LogicProX = () => (
-  <svg width="800" height="800" className="icon--svg" role="image">
+  <svg width="800" height="800" viewBox="0 0 50 50" className="icon--svg" role="image">
   <g strokeOpacity="0">
     <path fill="#eceff1" d="M34.13 3.97 8.08 8.09a2 2 0 0 0-1.66 2.29l5.06 31.93a2 2 0 0 0 2.29 1.67l26.05-4.13a2 2 0 0 0 1.66-2.29L36.42 5.63a2 2 0 0 0-2.29-1.66"/>
     <path fill="#37474f" d="M9.39 9.91 33.46 6.1a1 1 0 0 1 1.14.83l4.75 29.96a1 1 0 0 1-.83 1.14l-24.08 3.81a1 1 0 0 1-1.14-.83L8.55 11.05a1 1 0 0 1 .83-1.14"/>

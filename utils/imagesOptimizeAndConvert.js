@@ -65,7 +65,7 @@ const optimizeAndRenameImage = async (filePath) => {
     // Resize and convert to webp format
     await promisify(gmInstance.quality(75).write.bind(gmInstance))(resizedFilePath);
 
-    console.log(`Created ${resizedFileName}`);
+    // console.log(`Created ${resizedFileName}`);
 
     // Resize and optimize each size
     for (const size of sizes) {
@@ -80,7 +80,7 @@ const optimizeAndRenameImage = async (filePath) => {
 
       // console.log(`Created ${resizedFileNameSizes}`);
     }
-    console.log(`And all ${resizedFileName} alternates`);
+    // console.log(`And all ${resizedFileName} alternates`);
 
   } catch (error) {
     console.error(`Error processing ${filePath}:`, error);

@@ -71,7 +71,7 @@ async function processSVGs() {
           const fileName = path.basename(file);
           const componentName = convertFileNameToCamelCase(fileName);
           
-          console.log(componentName);
+          // console.log(componentName);
 
           // Optimize SVG data
           const { data: optimizedSvg } = optimize(svgData, { ...svgoConfig });
