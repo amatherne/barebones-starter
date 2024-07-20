@@ -2,7 +2,6 @@
 
 import React from 'react';
 import link from './link';
-import { useCMS } from '@tinacms/react-core';
 
 
 const item = {

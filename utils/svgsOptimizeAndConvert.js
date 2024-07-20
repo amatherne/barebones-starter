@@ -46,7 +46,7 @@ const convertAttributesToCamelCase = (svgString) => {
 // Function to process SVG files and generate React components
 async function processSVGs() {
   try {
-    console.log('Start processing SVGs');
+    console.log('\n\n\n\nStart processing SVGs\n\n\n\n');
 
     // Clear the output directory
     await clearOutputDir(outputDir);
@@ -102,7 +102,7 @@ export default ${componentName};
       })
     );
 
-    console.log('SVG files processed and React components generated successfully!');
+    console.log('SVG files processed and React components generated successfully!\n\n\n\n');
   } catch (error) {
     console.error('Error processing SVG files:', error);
   }
