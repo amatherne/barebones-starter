@@ -2,7 +2,9 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@public/*": ["public/*"]
+      "@public/*": [
+        "public/*"
+      ]
     },
     "lib": [
       "dom",
@@ -25,7 +27,8 @@
         "name": "next"
       }
     ],
-    "strictNullChecks": true
+    "strictNullChecks": true,
+    "forceConsistentCasingInFileNames": true
   },
   "include": [
     "next-env.d.ts",
