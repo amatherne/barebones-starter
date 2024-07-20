@@ -141,12 +141,12 @@
     }
 
     @include mq($x-sm-up) {
-      width: var(--header--width--mobile);
+      width: var(--header--width--tablet);
     }
 
     @include mq($sm) {
       font-size: var(--theme--font-size--h0);
-      width: var(--header--width--tablet);
+      width: var(--header--width--mobile);
     }
 
     @include mq($md) {

@@ -15,9 +15,11 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes }) => {
   const [SvgComponent, setSvgComponent] = useState<React.FC | null>(null);
   const [dimensions, setDimensions] = useState<{ width: number; height: number }>({ width: 0, height: 0 });
 
+  const isSvg = src.endsWith('.svg');
+
   useEffect(() => {
     const loadIcon = async () => {
-      if (src.endsWith('.svg')) {
+      if (isSvg) {
         const fileName = convertFileNameToCamelCase(src.split('/').pop().replace('.svg', '') || '');
         const IconComponent = await importIcon(fileName);
         setSvgComponent(() => IconComponent);
@@ -34,12 +36,10 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes }) => {
     setDimensions({ width: naturalWidth, height: naturalHeight });
   };
 
-  // console.log(src)
-
   const baseFileName = src.split('/').pop();
   const camelSrc = convertFileNameToCamelCase(baseFileName);
-  const newSrc = '/uploads/images/'+camelSrc;
-  const ext = '.webp';
+  const newPath = 'images/';
+  const newSrc = newPath+camelSrc;
 
   const imageIDString = `image--${camelSrc ? '--' + camelSrc : ''}${alt ? '--' + alt : ''}${className ? '--' + className : ''}`;
   const imageID = imageIDString
@@ -49,22 +49,25 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes }) => {
     .replace(/-+/g, '-')
     .replace(/^-|-$/g, '');
 
+  let imgSrc = src;
+
   // Image paths for different sizes
   const imgSrcSet = `
-    /images/${camelSrc}-500x250.webp 500w, 
-    /images/${camelSrc}-1000x500.webp 1000w, 
-    /images/${camelSrc}-2000x1000.webp 2000w,
-    /images/${camelSrc}-3000x1300.webp 3000w
+    ${newSrc}-500x250.webp 750w, 
+    ${newSrc}-1000x500.webp 1500w, 
+    ${newSrc}-2000x1000.webp 3000w,
+    ${newSrc}-3000x1500.webp 4500w
   `;
 
-  let imgSrc = `/images/${camelSrc}-500x250.webp`;
-  if (src.endsWith('.svg')) {
+  const imgSizes = '100vw';
+
+  if (!isSvg) {
+    imgSrc = `${newSrc}-500x250.webp`;
   }
-    imgSrc = src;
 
   return (
     <div className={`image--outer ${imageID} ${className || ''}`}>
-      {src.endsWith('.svg') && SvgComponent ? (
+      {isSvg && SvgComponent ? (
         <Suspense fallback={<div>Loading...</div>}>
           <SvgComponent />
         </Suspense>
@@ -73,13 +76,13 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes }) => {
           src={imgSrc} // Default image
           alt={alt || ''}
           className="image--image"
-          srcSet={imgSrcSet}
-          sizes={sizes || '100vw'} // Use sizes prop or default to 100vw
-          loading="lazy" // Lazy load images
+          srcSet={!isSvg ? imgSrcSet : undefined}
+          sizes={!isSvg ? imgSizes || '100vw' : undefined}
+          loading={!isSvg ? 'lazy' : undefined}
           onLoad={handleImageLoad}
         />
       )}
-      {!src.endsWith('.svg') && dimensions.width && dimensions.height ? (
+      {!isSvg && dimensions.width && dimensions.height ? (
         <style jsx>{`
           .image--${imageID} {
             --image--natural-width: ${dimensions.width}px;
