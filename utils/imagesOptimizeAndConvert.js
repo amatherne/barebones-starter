@@ -3,6 +3,8 @@
 const fs = require('fs-extra');
 const path = require('path');
 const gm = require('gm').subClass({ imageMagick: true });
+
+
 const glob = require('glob');
 const { convertFileNameToCamelCase, checkForSimilarFileNames } = require('./helpers');
 const { clearOutputDir } = require('./helpers--build-only');
@@ -23,9 +25,7 @@ const write = promisify(gm().write.bind(gm()));
 const optimizeAndRenameImage = async (filePath) => {
   const extname = path.extname(filePath).toLowerCase();
   const fileName = path.basename(filePath);
-  const fileNameWithoutExt = path.basename(filePath, extname);
-  const newFileName = convertFileNameToCamelCase(fileNameWithoutExt) + '.webp'; // Convert to .webp
-  const outputFilePath = path.join(outputDir, newFileName);
+  const fileNameWithoutExt = path.basename(convertFileNameToCamelCase(filePath), extname);
 
   try {
     console.log(`Start processing ${fileName}`);
@@ -33,18 +33,17 @@ const optimizeAndRenameImage = async (filePath) => {
     // Clear the output directory
     await clearOutputDir(outputDir);
 
-    // Find all SVG files in the source directory
+    // Find all image files in the source directory
     const pattern = `${inputDir}/**/*.{jpg,jpeg,png,webp}`;
     const files = glob.sync(pattern);
 
     if (files.length === 0) {
-      console.log('No SVG files found.');
+      console.log('No image files found.');
       return;
     }
 
     // Check for closely named files before processing
     checkForSimilarFileNames(files);
-
 
     // Define sizes to create
     const sizes = [
@@ -57,9 +56,11 @@ const optimizeAndRenameImage = async (filePath) => {
       const resizedFileName = `${fileNameWithoutExt}-${size.width}x${size.height}.webp`;
       const resizedFilePath = path.join(outputDir, resizedFileName);
 
-      await resize(filePath, size.width, size.height)
-        .quality(75)
-        .write(resizedFilePath);
+      // Create a new gm instance for each size
+      const gmInstance = gm(filePath);
+
+      // Resize and convert to webp format
+      await promisify(gmInstance.resize(size.width, size.height).quality(75).write.bind(gmInstance))(resizedFilePath);
 
       console.log(`Created ${resizedFileName}`);
     }
@@ -67,7 +68,6 @@ const optimizeAndRenameImage = async (filePath) => {
     console.error(`Error processing ${filePath}:`, error);
   }
 };
-
 
 // Process all image files in the input directory
 fs.readdirSync(inputDir).forEach(file => {
