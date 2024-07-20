@@ -4,11 +4,12 @@
   "private": true,
   "scripts": {
     "dev": "tinacms dev -c \"next dev\"",
-    "tinaaudit": "tinacms audit",
-    "buildNext": "next build",
     "build": "yarn svgs && tinacms build && next build",
+    "buildNext": "next build",
+    "imgs": "node utils/imagesOptimizeAndConvert.js",
     "svgs": "node utils/svgsOptimizeAndConvert.js",
     "start": "tinacms build && next start",
+    "tinaaudit": "tinacms audit",
     "lint": "next lint"
   },
   "dependencies": {
@@ -26,6 +27,7 @@
     "es6-promise": "^4.2.8",
     "express": "^4.19.2",
     "file-loader": "^6.2.0",
+    "fs-extra": "^11.2.0",
     "next": "^14.2.5",
     "prismjs": "^1.29.0",
     "promise-polyfill": "^8.3.0",

@@ -2,7 +2,7 @@
 
 'use client';
 
-import React, { useState, useEffect, useMemo, Suspense } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import importIcon from '../../../utils/importIcon';
 
 interface ImgProps {
@@ -35,14 +35,13 @@ const Img: React.FC<ImgProps> = ({ src, alt, className }) => {
     const loadIcon = async () => {
       if (src.endsWith('.svg')) {
         const fileName = convertToCamelCase(src.split('/').pop()?.replace('.svg', '') || '');
-
         const IconComponent = await importIcon(fileName);
         setSvgComponent(() => IconComponent);
       } else {
         setSvgComponent(null);
       }
     };
-    
+
     loadIcon();
   }, [src]);
 
@@ -77,7 +76,8 @@ const Img: React.FC<ImgProps> = ({ src, alt, className }) => {
         <style jsx>{`
           .image--${imageID} {
             --image--natural-width: ${dimensions.width}px;
-            --image--natural-height: ${(1 / (dimensions.width / dimensions.height)) * 100}%;
+            --image--natural-height: ${dimensions.height}px;
+            --image--aspect-ratio: ${(dimensions.width / dimensions.height).toFixed(2)};
           }
         `}</style>
       ) : null}
