@@ -3,6 +3,8 @@
 const fs = require('fs-extra');
 const path = require('path');
 const gm = require('gm').subClass({ imageMagick: true });
+
+
 const glob = require('glob');
 const { convertFileNameToCamelCase, checkForSimilarFileNames } = require('./helpers');
 const { clearOutputDir } = require('./helpers--build-only');
@@ -16,86 +18,80 @@ if (!fs.existsSync(outputDir)) {
 }
 
 // Promisify gm methods
-const readMetadata = promisify(gm().identify.bind(gm()));
 const resize = promisify(gm().resize.bind(gm()));
 const write = promisify(gm().write.bind(gm()));
 
 // Function to process and resize image files
 const optimizeAndRenameImage = async (filePath) => {
-  const filePathAdjusted = filePath;
-  const fileName = path.basename(filePathAdjusted);
-  const newSrc = path.basename(convertFileNameToCamelCase(filePathAdjusted));
+  const extname = path.extname(filePath).toLowerCase();
+  const fileName = path.basename(filePath);
+  const fileNameWithoutExt = path.basename(convertFileNameToCamelCase(fileName), extname);
+
+
 
   try {
     console.log(`Start processing ${fileName}`);
 
-    // console.log(`File: ${filePathAdjusted}`);
-    // Check if the file exists
-    if (!fs.existsSync(filePathAdjusted)) {
-      console.error(`File does not exist: ${filePathAdjusted}`);
+    // Clear the output directory
+    await clearOutputDir(outputDir);
+
+    // Find all image files in the source directory
+    const pattern = `${inputDir}/**/*.{jpg,jpeg,png,webp}`;
+    const files = glob.sync(pattern);
+
+    if (files.length === 0) {
+      console.log('No image files found.');
       return;
     }
 
-    console.log(filePathAdjusted)
+    // Check for closely named files before processing
+    // checkForSimilarFileNames(files);
 
-    // Get image dimensions
-    const metadata = await readMetadata(filePathAdjusted);
-    const { width, height } = metadata[''][0] || {};
-
-    if (!width || !height) {
-      console.error(`Unable to retrieve dimensions for ${filePathAdjusted}`);
-      return;
-    }
-
-    // Define sizes to create based on original dimensions
+    // Define sizes to create
     const sizes = [
-      { width: Math.floor(width * 0.25), height: Math.floor(height * 0.25) },
-      { width: Math.floor(width * 0.5), height: Math.floor(height * 0.5) },
+      { width: 500, height: 250 },
+      { width: 1000, height: 500 },
+      { width: 2000, height: 1000 },
+      { width: 3000, height: 1500 },
     ];
+
+    // create default
+    const resizedFileName = `${fileNameWithoutExt}.webp`;
+    const resizedFilePath = path.join(outputDir, resizedFileName);
+
+    // Create a new gm instance for each size
+    const gmInstance = gm(filePath);
+
+    // Resize and convert to webp format
+    await promisify(gmInstance.quality(75).write.bind(gmInstance))(resizedFilePath);
+
+    console.log(`Created ${resizedFileName}`);
 
     // Resize and optimize each size
     for (const size of sizes) {
-      const resizedFileName = `${newSrc}-${size.width}x${size.height}.webp`;
-      const resizedFilePath = path.join(outputDir, resizedFileName);
+      const resizedFileNameSizes = `${fileNameWithoutExt}-${size.width}x${size.height}.webp`;
+      const resizedFilePathSizes = path.join(outputDir, resizedFileNameSizes);
 
       // Create a new gm instance for each size
-      const gmInstance = gm(filePathAdjusted);
+      const gmInstanceSize = gm(filePath);
 
       // Resize and convert to webp format
-      // await gmInstance.resize(size.width, size.height).quality(75).write(resizedFilePath);
-      await promisify(gmInstance.resize(size.width, size.height).quality(75).write.bind(gmInstance))(resizedFilePath);
+      await promisify(gmInstanceSize.resize(size.width, size.height).quality(75).write.bind(gmInstanceSize))(resizedFilePathSizes);
 
-      // console.log(`Created ${resizedFileName}`);
+      // console.log(`Created ${resizedFileNameSizes}`);
     }
+    console.log(`And all ${resizedFileName} alternates`);
+
   } catch (error) {
-    console.error(`Error processing ${filePathAdjusted}:`, error);
+    console.error(`Error processing ${filePath}:`, error);
   }
 };
 
-// Function to process all image files
-const processAllImages = async () => {
-  const pattern = `${inputDir}/**/*.{jpg,jpeg,png,webp}`;
-  // const pattern = `${inputDir}/**/*.{jpg,jpeg,png,webp}`;
-  const files = glob.sync(pattern);
 
-  // Clear the output directory
-  await clearOutputDir(outputDir);
-
-  if (files.length === 0) {
-    console.log('No image files found.');
-    return;
+// Process all image files in the input directory
+fs.readdirSync(inputDir).forEach(file => {
+  const filePath = path.join(inputDir, file);
+  if (fs.statSync(filePath).isFile() && ['.jpg', '.jpeg', '.png', '.webp'].includes(path.extname(filePath).toLowerCase())) {
+    optimizeAndRenameImage(filePath);
   }
-
-  // Check for closely named files before processing
-  // checkForSimilarFileNames(files);
-
-  // Process each image file found
-  for (const filePath of files) {
-    await optimizeAndRenameImage(filePath);
-  }
-};
-
-// Run the image processing
-processAllImages().catch(error => {
-  console.error('Error during image processing:', error);
 });
