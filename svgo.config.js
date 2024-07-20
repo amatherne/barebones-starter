@@ -35,7 +35,7 @@ module.exports = {
       params: {
         attributes: [
           { className: "icon--svg" },
-          { role: "image" },
+          { role: "presentation" },
         ]
       }
     },
