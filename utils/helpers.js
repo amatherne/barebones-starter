@@ -19,12 +19,13 @@ function wrapCharactersInSpan(text) {
 // Function to convert a string to camel case
 const convertFileNameToCamelCase = (str) => {
   return str
-    .replace(/[^\w\s-]/g, '') // Remove special characters
-    .replace(/\s+/g, '-')    // Replace spaces with hyphens
-    .replace(/-+/g, '-')     // Replace multiple hyphens with a single hyphen
-    .toLowerCase()           // Convert to lowercase
-    .split('-')              // Split by hyphens
-    .map((word, index) =>     // Capitalize first letter of each word except the first one
+    .split('.').slice(0, -1).join('.')  // remove .ext
+    .replace(/[^\w\s-]/g, '')           // Remove special characters
+    .replace(/\s+/g, '-')               // Replace spaces with hyphens
+    .replace(/-+/g, '-')                // Replace multiple hyphens with a single hyphen
+    .toLowerCase()                      // Convert to lowercase
+    .split('-')                         // Split by hyphens
+    .map((word, index) =>               // Capitalize first letter of each word except the first one
       index === 0
         ? word
         : word.charAt(0).toUpperCase() + word.slice(1)

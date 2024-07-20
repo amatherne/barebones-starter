@@ -3,8 +3,6 @@
 const fs = require('fs-extra');
 const path = require('path');
 const gm = require('gm').subClass({ imageMagick: true });
-
-
 const glob = require('glob');
 const { convertFileNameToCamelCase, checkForSimilarFileNames } = require('./helpers');
 const { clearOutputDir } = require('./helpers--build-only');
@@ -18,6 +16,7 @@ if (!fs.existsSync(outputDir)) {
 }
 
 // Promisify gm methods
+const readMetadata = promisify(gm().identify.bind(gm()));
 const resize = promisify(gm().resize.bind(gm()));
 const write = promisify(gm().write.bind(gm()));
 
@@ -25,10 +24,27 @@ const write = promisify(gm().write.bind(gm()));
 const optimizeAndRenameImage = async (filePath) => {
   const extname = path.extname(filePath).toLowerCase();
   const fileName = path.basename(filePath);
-  const fileNameWithoutExt = path.basename(convertFileNameToCamelCase(filePath), extname);
+  const newSrc = path.basename(convertFileNameToCamelCase(filePath));
 
   try {
     console.log(`Start processing ${fileName}`);
+
+    console.log(`filePath: ${filePath}`);
+    // Check if the file exists
+    if (!fs.existsSync(filePath)) {
+      console.error(`File does not exist: ${filePath}`);
+      return;
+    }
+    console.log(`filePath must exist? ${filePath}`);
+
+    // Get image dimensions
+    const metadata = await readMetadata(filePath);
+    const { width, height } = metadata[''][0] || {};
+
+    if (!width || !height) {
+      console.error(`Unable to retrieve dimensions for ${filePath}`);
+      return;
+    }
 
     // Clear the output directory
     await clearOutputDir(outputDir);
@@ -45,22 +61,22 @@ const optimizeAndRenameImage = async (filePath) => {
     // Check for closely named files before processing
     checkForSimilarFileNames(files);
 
-    // Define sizes to create
+    // Define sizes to create based on original dimensions
     const sizes = [
-      { width: 500, height: 250 },
-      { width: 1000, height: 500 },
+      { width: Math.floor(width * 0.25), height: Math.floor(height * 0.25) },
+      { width: Math.floor(width * 0.5), height: Math.floor(height * 0.5) },
     ];
 
     // Resize and optimize each size
     for (const size of sizes) {
-      const resizedFileName = `${fileNameWithoutExt}-${size.width}x${size.height}.webp`;
+      const resizedFileName = `${newSrc}-${size.width}x${size.height}.webp`;
       const resizedFilePath = path.join(outputDir, resizedFileName);
 
       // Create a new gm instance for each size
       const gmInstance = gm(filePath);
 
       // Resize and convert to webp format
-      await promisify(gmInstance.resize(size.width, size.height).quality(75).write.bind(gmInstance))(resizedFilePath);
+      await gmInstance.resize(size.width, size.height).quality(75).write(resizedFilePath);
 
       console.log(`Created ${resizedFileName}`);
     }
