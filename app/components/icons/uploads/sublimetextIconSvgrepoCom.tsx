@@ -4,7 +4,7 @@
 import React from 'react';
 
 const sublimetextIconSvgrepoCom = () => (
-  <svg width="800" height="800" preserveAspectRatio="xMidYMid" viewBox="-38 0 332 332" className="icon--svg" role="image">
+  <svg width="800" height="800" preserveAspectRatio="xMidYMid" viewBox="-38 0 332 332" className="icon--svg" role="presentation">
   <defs>
     <linearGradient id="a" x1="55.12%" x2="63.68%" y1="58.68%" y2="39.6%">
       <stop offset="0%" stopColor="#FF9700"/>

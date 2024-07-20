@@ -19,7 +19,7 @@ if (!fs.existsSync(outputDir)) {
 const resize = promisify(gm().resize.bind(gm()));
 const write = promisify(gm().write.bind(gm()));
 
-console.log('\n\n\n\nStart processing Imgs\n\n\n\n');
+console.log('\n\nStart processing Imgs\n\n');
 
 // Function to process and resize image files
 const optimizeAndRenameImage = async (filePath) => {
@@ -87,7 +87,7 @@ const processAllImages = async () => {
   });
 
   await Promise.all(processingPromises);
-  console.log('Img files processed and responsive versions created.\n\n\n\n');
+  console.log('Img files processed and responsive versions created.\n\n');
 };
 
 // Start processing
