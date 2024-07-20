@@ -113,7 +113,7 @@ const CTAs = ({ settings }) => {
         
 
         {ctas ? (
-          <div className="cell center ">
+          <ul className="cell ">
             {ctas.map((item, index) => {
 
               const image               = item.src || null;
@@ -160,7 +160,7 @@ const CTAs = ({ settings }) => {
               }
 
               return (
-                <div key={index} className={`cell__item text-center ${widths} ${itemID}`}>
+                <li key={index} className={`cell__item text-center ${widths} ${itemID}`}>
                   <div className={`ctas--item`}>
                     { hasOverlayLink && buttonLink ? (
                       <Link 
@@ -206,10 +206,10 @@ const CTAs = ({ settings }) => {
                     ) : null }
 
                   </div>
-                </div>
+                </li>
               );
             })}
-          </div>
+          </ul>
         ) : null }
 
       </div>

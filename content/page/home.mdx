@@ -109,7 +109,7 @@ blocks:
         text: ''
     custom_css: |
       == {
-         --cta-set--padding-top: var(--sp);
+        --cta-set--padding-top: var(--sp);
       }
 
       @media screen and (min-width: 750px) {
@@ -182,11 +182,9 @@ blocks:
       - src: /uploads/icons/figma-svgrepo-com.svg
         title: Figma
         text: ''
-      - src: /uploads/icons/icons8-logic-pro-x-outline.svg
-        title: Logic Pro X / 11
     custom_css: |
       == {
-         --cta-set--padding-top: var(--sp);
+        --cta-set--padding-top: var(--sp);
         --cta-set--padding-bottom: 0;
       }
 
@@ -194,7 +192,6 @@ blocks:
       @media screen and (min-width: 750px) {
         == {
           --cta-set--padding-top: calc(var(--page--padding) * 0.66);
-
         }
       }
     _template: ctas
@@ -215,9 +212,73 @@ blocks:
         text: ''
     custom_css: |
       == {
-         --cta-set--padding-top: var(--sp);
+        --cta-set--padding-top: var(--sp);
+        //--cta-set--padding-bottom: 0;
       }
 
+      @media screen and (min-width: 750px) {
+        == {
+          --cta-set--padding-top: calc(var(--page--padding) * 0.66);
+        }
+      }
+    _template: ctas
+  - published: true
+    title: Sounds
+    text: |
+      Gear
+    styles:
+      style:
+        - inline
+      colors:
+        - color--1
+    item:
+      - title: DW Drums
+        text: ''
+      - title: DW9000 Hardware
+        text: ''
+      - title: Zildjian Cymbals
+        text: ''
+      - title: Meinl Cymbals
+        text: ''
+      - title: Vater Drumsticks
+        text: ''
+      - title: Roc N Soc Thrones
+        text: ''
+      - title: Shure In-Ears
+        text: ''
+      - title: Shure Microphones
+        text: ''
+      - title: Rode Microphones
+        text: ''
+      - title: Focusrite 18i20
+        text: ''
+      - title: Focusrite OptoPre
+        text: ''
+    custom_css: |
+      == {
+        --cta-set--padding-bottom: 0;
+      }
+    _template: ctas
+  - published: true
+    text: |
+      Audio Production
+    styles:
+      style:
+        - inline
+      colors:
+        - color--1
+    item:
+      - src: /uploads/icons/icons8-logic-pro-x-solid.svg
+        title: Logic Pro X / 11
+        text: ''
+      - title: Slate Digital
+        text: ''
+      - title: Drum Leveler
+        text: ''
+    custom_css: |
+      == {
+         --cta-set--padding-top: var(--sp);
+      }
 
       @media screen and (min-width: 750px) {
         == {

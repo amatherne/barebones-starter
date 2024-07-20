@@ -59,6 +59,27 @@ const checkForSimilarFileNames = (files) => {
 
 // Function to convert SVG attributes to camel case
 const convertAttributesToCamelCase = (svgString) => {
+
+  console.log(svgString)
+
+  // Regular expression to check for fill or stroke attributes in the entire SVG
+  const hasFillOrStroke = /(fill|stroke)="[^"]*"/.test(svgString);
+
+  const colorForeground = 'var(--color--foreground)';
+  const colorBackground = 'var(--color--background)';
+
+  // If neither fill nor stroke is found, add fill="colorForeground" to the main <svg> element
+  if (!hasFillOrStroke) {
+    svgString = svgString.replace(/<svg([^>]*?)(>)/, `<svg$1 fill="${colorForeground}"$2`);
+  }
+
+  // Replace #000000, #000, or black with ${colorForeground}
+  svgString = svgString.replace(/(fill|stroke)="(black|#000000|#000|currentColor)"/g, `$1="${colorForeground}"`);
+
+  // Replace #000000, #000, or black with ${colorBackground}
+  svgString = svgString.replace(/(fill|stroke)="(white|#ffffff|#fff)"/g, `$1="${colorBackground}"`);
+
+
   return svgString
     // Convert SVG attribute names to camel case
     .replace(/(\w+)-(\w+)(?=\s*=\s*['"])/g, (match, p1, p2) => `${p1}${p2.charAt(0).toUpperCase() + p2.slice(1)}`)
@@ -100,7 +121,7 @@ async function processSVGs() {
           const { data: optimizedSvg } = optimize(svgData, { ...svgoConfig });
 
           // Convert attributes to camel case
-          const svgWithCamelCaseAttributes = await convertAttributesToCamelCase(optimizedSvg);
+          const svgWithCamelCaseAttributes = convertAttributesToCamelCase(optimizedSvg);
 
           // Generate React component
           const componentTemplate = 

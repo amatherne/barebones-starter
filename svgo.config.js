@@ -14,6 +14,7 @@ module.exports = {
         includeLegacy: false
       }
     },
+    
     { active: true, name: 'removeXMLNS' },
     { active: true, name: 'removeXMLProcInst' },
     { active: true, name: 'collapseGroups' }, 
@@ -25,8 +26,6 @@ module.exports = {
     { active: true, name: 'removeComments' },
     { active: true, name: 'removeDoctype' },
     
-    { active: false, name: 'removeViewBox' },
-
     {
       name: 'addAttributesToSVGElement',
       params: {
@@ -35,7 +34,11 @@ module.exports = {
           { role: "image" },
         ]
       }
-    }
+    },
+
+    // DO NOT USE.
+    // Leaving for reference
+    // { active: false, name: 'removeViewBox' },
   ],
 };
 
