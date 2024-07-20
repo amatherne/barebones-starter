@@ -3,15 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "1______": "",
     "dev": "tinacms dev -c \"next dev\"",
-    "build": "buildAssets && tinacms build && next build",
-    "2______": "",
+    "build": "yarn buildAssets && tinacms build && next build",
     "buildNext": "next build",
     "buildAssets": "yarn svgs && yarn imgs",
     "imgs": "node utils/imagesOptimizeAndConvert.js",
     "svgs": "node utils/svgsOptimizeAndConvert.js",
-    "3______": "",
     "start": "tinacms build && next start",
     "tinaaudit": "tinacms audit",
     "lint": "next lint"
