@@ -53,7 +53,7 @@ blocks:
     text: ''
     widths:
       desktop_width:
-        - 'lg-up--w-25 '
+        - 'lg-up--w-50 '
       tablet_width:
         - 'md--w-50 '
       mobile_width:
@@ -68,6 +68,7 @@ blocks:
         title: Peacock Alley
         text: ''
         button:
+          content: content/websites/peacock-alley.mdx
           desktop_button:
             - md-up--button--primary
           mobile_button:
@@ -83,6 +84,7 @@ blocks:
         title: 100Percent
         text: ''
         button:
+          content: content/websites/100percent.mdx
           desktop_button:
             - md-up--button--primary
           mobile_button:
@@ -124,6 +126,10 @@ blocks:
           mobile_opacity: 0.01
           mobile_colors:
             - color--1
+    custom_css: |-
+      == .image--outer {
+        border: 0.1rem solid var(--color--foreground);
+      }
     _template: ctas
   - published: true
     title: Skills
