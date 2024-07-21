@@ -28,6 +28,7 @@ const write = promisify(gm().write.bind(gm()));
 
 console.log('\n{Image Optimize :: Start}\n');
 
+const normalizeFileName = (fileName) => fileName.toLowerCase().replace(/[^a-z0-9]/g, '');
 
 // Function to get a list of files using glob patterns
 const getFilesInDirectories = (inputDir) => {
@@ -45,26 +46,19 @@ const getFilesInDirectories = (inputDir) => {
 // Function to check for closely named files
 const checkFileName = async (files, fileNameWithoutExt) => {
   const normalizedMap = new Map();
-  const lowerCaseFileName = fileNameWithoutExt.toLowerCase();
 
   for (const file of files) {
     const fileName = path.basename(file, path.extname(file));
-    // const componentName = convertFileNameToCamelCase(fileName);
-    // const normalized = componentName.toLowerCase();
+    const normalizedFileName = normalizeFileName(fileName);
 
-    // console.log('Normalized:', normalized,' // Current:', lowerCaseFileName);
-    // console.log(`lowerCaseFileName`, lowerCaseFileName);
-    // console.log(`fileName`, fileName);
-    // console.log(`fileName === ''`, fileName === '');
-    // console.log(`fileName === null`, fileName === null);
+    // Add to the map
+    normalizedMap.set(normalizedFileName, file);
 
-    if (fileName !== '' && fileName === lowerCaseFileName) {
+    // Check if the normalized file name matches
+    if (normalizedFileName === normalizeFileName(fileNameWithoutExt)) {
       console.log(`{Image Optimize :: Check File Name} -- Already Exists: '${fileNameWithoutExt}' / Existing: '${fileName}'`);
       return false; // Similar file found, return false
     }
-
-    // Update the map if no similar file is found
-    normalizedMap.set(fileName, file);
   }
 
   console.log(normalizedMap)
@@ -113,7 +107,7 @@ const createImages = async (filePath) => {
       const resizedFilePathSizes = path.join(outputDir, resizedFileNameSizes);
       const gmInstanceSize = gm(filePath);
       await promisify(gmInstanceSize.resize(size.width, size.height).quality(75).write.bind(gmInstanceSize))(resizedFilePathSizes);
-      console.log(`{Image Optimize :: Create Images}   -- Resizing.......`);
+      // console.log(`{Image Optimize :: Create Images}   -- Resizing.......`);
     });
 
     // Wait for all resize promises to complete
