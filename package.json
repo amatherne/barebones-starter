@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "1dev": "tinacms dev -c \"next dev\"",
-    "dev": "concurrently \"yarn watchAssets\" \"tinacms dev -c \\\"next dev\\\"\"",
+    "dev": "tinacms dev -c \"next dev\"",
+    "1dev": "concurrently \"yarn watchAssets\" \"tinacms dev -c \\\"next dev\\\"\"",
     "build": "yarn buildAssets && tinacms build && next build",
     "buildNext": "next build",
     "watchAssets": "WATCHING=true yarn buildAssets",
