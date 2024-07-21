@@ -13,12 +13,16 @@ interface HeadProps {
 
 const HeadElement: React.FC<HeadProps> = ({ seoTitle, seoText }) => {
   useEffect(() => {
-    
     // Microsoft Clarity
     const clarityScript = document.createElement('script');
     clarityScript.type = 'text/javascript';
     clarityScript.async = true;
     clarityScript.src = 'https://www.clarity.ms/tag/naukwulsi8';
+
+    // Handle script loading and error
+    clarityScript.onload = () => console.log('Microsoft Clarity script loaded successfully');
+    clarityScript.onerror = () => console.error('Error loading Microsoft Clarity script');
+
     document.head.appendChild(clarityScript);
 
     return () => {
