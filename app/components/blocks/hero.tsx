@@ -9,9 +9,9 @@ import Link from 'next/link';
 const Hero = ({ settings }) => {
 
   const styles            = settings.styles;
-  const height            = styles.height;
-  const min_height        = styles.min_height;
-  const max_height        = styles.max_height;
+  const height            = styles?.height || '';
+  const min_height        = styles?.min_height || '';
+  const max_height        = styles?.max_height || '';
 
   const hero              = settings.item;
 
