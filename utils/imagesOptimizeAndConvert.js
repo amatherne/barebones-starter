@@ -12,8 +12,7 @@ const { convertFileNameToCamelCase } = require('./helpers');
 const { promisify } = require('util');
 
 const inputDir = './public/uploads';
-// const outputDir = './public/images';
-const outputDir = './public/imagesTest';
+const outputDir = './public/images';
 const parentDir = path.dirname(outputDir);
 
 require('dotenv').config();
@@ -27,6 +26,7 @@ const resize = promisify(gm().resize.bind(gm()));
 const write = promisify(gm().write.bind(gm()));
 
 console.log('\n{Image Optimize :: Start}\n');
+
 
 const normalizeFileName = (fileName) => fileName.toLowerCase().replace(/[^a-z0-9]/g, '');
 
@@ -42,6 +42,7 @@ const getFilesInDirectories = (inputDir) => {
     });
   });
 };
+
 
 // Function to check for closely named files
 const checkFileName = async (files, fileNameWithoutExt) => {
@@ -121,6 +122,7 @@ const createImages = async (filePath) => {
 const processImage = async (filePath) => {
   await createImages(filePath);
 };
+
 
 // Process all image files in the input directory and its subdirectories
 const processAllImages = async () => {
