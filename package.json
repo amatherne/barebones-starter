@@ -6,6 +6,7 @@
     "dev": "tinacms dev -c \"next dev\"",
     "build": "yarn buildAssets && tinacms build && next build",
     "buildNext": "next build",
+    "watchAssets": "WATCHING=true yarn buildAssets",
     "buildAssets": "yarn svgs && yarn imgs",
     "imgs": "node utils/imagesOptimizeAndConvert.js",
     "svgs": "node utils/svgsOptimizeAndConvert.js",
@@ -39,6 +40,7 @@
   "devDependencies": {
     "@tinacms/cli": "^1.5.49",
     "@types/node": "^20.14.9",
+    "dotenv": "^16.4.5",
     "eslint": "^8.0.0",
     "eslint-config-next": "^14.2.4",
     "sass-loader": "^14.2.1",

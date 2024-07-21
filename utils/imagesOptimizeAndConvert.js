@@ -4,12 +4,15 @@ const fs = require('fs-extra');
 const path = require('path');
 const gm = require('gm').subClass({ imageMagick: true });
 const glob = require('glob');
+// const chokidar = require('chokidar');
 const { convertFileNameToCamelCase, checkForSimilarFileNames } = require('./helpers');
 const { clearOutputDir } = require('./helpers--build-only');
 const { promisify } = require('util');
 
 const inputDir = './public/uploads';
 const outputDir = './public/images';
+
+require('dotenv').config();
 
 if (!fs.existsSync(outputDir)) {
   fs.mkdirSync(outputDir, { recursive: true });
@@ -63,6 +66,11 @@ const optimizeAndRenameImage = async (filePath) => {
   }
 };
 
+// Function to process a single image file
+const processImage = async (filePath) => {
+  await optimizeAndRenameImage(filePath);
+};
+
 // Process all image files in the input directory and its subdirectories
 const processAllImages = async () => {
   // Find all image files in the source directory and its subdirectories
@@ -84,6 +92,36 @@ const processAllImages = async () => {
   await Promise.all(processingPromises);
   console.log('Img files processed and responsive versions created.\n\n');
 };
+  
+// // Conditionally start the file watcher based on environment
+// if (process.env.WATCHING === 'true') {
 
-// Start processing
-processAllImages();
+//   // Watch for file changes and process new files
+//   const watcher = chokidar.watch(inputDir, {
+//     ignored: [/^\./, /\.svg$/],  // Ignore SVG files
+//     persistent: true,
+//   });
+
+//   watcher
+//     .on('add', filePath => {
+//       if (filePath.match(/\.(jpg|jpeg|png|webp)$/)) {
+//         console.log(`File ${filePath} has been added.`);
+//         processImage(filePath);
+//       }
+//     })
+//     .on('error', error => {
+//       console.error('Error watching files:', error);
+//     });
+
+//   console.log('Watching for new files...');
+
+//   process.on('SIGINT', () => {
+//     console.log('\n\nStopping file watcher...\n\n');
+//     watcher.close();
+//     process.exit();
+//   });
+
+// } else {
+//   // In production or other environments, process existing files
+// }
+  processAllImages();

@@ -4131,17 +4131,17 @@ ajv@^8.0.0, ajv@^8.9.0:
     require-from-string "^2.0.2"
 
 altair-express-middleware@^7.2.1:
-  version "7.2.4"
-  resolved "https://registry.yarnpkg.com/altair-express-middleware/-/altair-express-middleware-7.2.4.tgz#3355f5966f0dccd9cfb921c94f41fec8901084d1"
-  integrity sha512-lIEUbsg/+jfuDj5vlDr+kOwKhfba3nqNLAeAzWYRVFNiZGooUy0JjFn35VD/MA5mZ1U8+gac3NqoKxsR4ANHhA==
+  version "7.3.0"
+  resolved "https://registry.yarnpkg.com/altair-express-middleware/-/altair-express-middleware-7.3.0.tgz#aa02c96e5853db733b86327ce9385a36e4ec70f6"
+  integrity sha512-wHieD//yUUY6Re7y130ol2sq2en/tsLZeenSUg+MMCQxnzCtTJRhFxNceG7SwW8yW2YgDXtbdnu4+1Ll/oPJWw==
   dependencies:
-    altair-static "^7.2.4"
-    express "^4.16.2"
+    altair-static "^7.3.0"
+    express "^4.19.2"
 
-altair-static@^7.2.4:
-  version "7.2.4"
-  resolved "https://registry.yarnpkg.com/altair-static/-/altair-static-7.2.4.tgz#83385d3e4feb6a90e54ed3329d0f48cf49358e2b"
-  integrity sha512-zpZATY7NPcPMM0akuy/aKSOiWW9Rs5X9676nGQq6EYaeeSDN1reOL6NLRog3dv9Nq7iDiTkJxea0RCy0HmWbkQ==
+altair-static@^7.3.0:
+  version "7.3.0"
+  resolved "https://registry.yarnpkg.com/altair-static/-/altair-static-7.3.0.tgz#c91715ad47ae9179c734d437876532582958d02f"
+  integrity sha512-5b2kCdKojJ+99iVaYTIS7taeLJmbyRd8UC2vXPUQv3uvsckYWhOfqgd0LSVcxgH2HtHIYCcqPBvKRDHTSID5Nw==
 
 ansi-regex@^5.0.1:
   version "5.0.1"
@@ -5468,7 +5468,7 @@ dot-case@^3.0.4:
     no-case "^3.0.4"
     tslib "^2.0.3"
 
-dotenv@^16.0.1:
+dotenv@^16.0.1, dotenv@^16.4.5:
   version "16.4.5"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-16.4.5.tgz#cdd3b3b604cb327e286b4762e13502f717cb099f"
   integrity sha512-ZmdL2rui+eB2YwhsWzjInR8LldtZHGDoQ1ugH85ppHKwpUHL7j7rN0Ti9NCnGiQbhaZ11FpR+7ao1dNsmduNUg==
@@ -6019,7 +6019,7 @@ expand-template@^2.0.3:
   resolved "https://registry.yarnpkg.com/expand-template/-/expand-template-2.0.3.tgz#6e14b3fcee0f3a6340ecb57d2e8918692052a47c"
   integrity sha512-XYfuKMvj4O35f/pOXLObndIRvyQ+/+6AhODh+OKWj9S9498pHHn/IMszH+gt0fBCRWMNfk1ZSp5x3AifmnI2vg==
 
-express@^4.16.2, express@^4.17.1, express@^4.19.2:
+express@^4.17.1, express@^4.19.2:
   version "4.19.2"
   resolved "https://registry.yarnpkg.com/express/-/express-4.19.2.tgz#e25437827a3aa7f2a827bc8171bbbb664a356465"
   integrity sha512-5T6nhjsT+EOMzuck8JjBHARTHfMht0POzlA60WV2pMD3gyXw2LZnZ+ueGdNxG+0calOJcWKbpFcuzLZ91YWq9Q==
