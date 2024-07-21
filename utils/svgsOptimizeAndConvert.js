@@ -4,7 +4,7 @@ const glob = require('glob');
 // const chokidar = require('chokidar');
 const { optimize } = require('svgo');
 const { convertFileNameToCamelCase, checkForSimilarFileNames } = require('./helpers');
-const { clearOutputDir } = require('./helpers--build-only');
+// const { clearOutputDir } = require('./helpers--build-only');
 const svgoConfig = require('../svgo.config');
 
 const srcDir = path.resolve(__dirname, '../public/uploads');
@@ -71,7 +71,7 @@ const processAllSVGs = async () => {
     console.log(`{svgsOptimizeAndConvert} -- process.env.WATCHING: ${process.env.WATCHING}`);
     if (process.env.WATCHING !== 'true') {
       // Clear the output directory
-      await clearOutputDir(outputDir);
+      // await clearOutputDir(outputDir);
     }
 
     const pattern = `${srcDir}/**/*.svg`;
