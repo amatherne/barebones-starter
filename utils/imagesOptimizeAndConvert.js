@@ -31,18 +31,6 @@ const optimizeAndRenameImage = async (filePath) => {
     // Clear the output directory
     await clearOutputDir(outputDir);
 
-    // Find all image files in the source directory
-    const pattern = `${inputDir}/**/*.{jpg,jpeg,png,webp}`;
-    const files = glob.sync(pattern);
-
-    if (files.length === 0) {
-      console.log('No image files found.');
-      return;
-    }
-
-    // Check for closely named files before processing
-    // checkForSimilarFileNames(files);
-
     // Define sizes to create
     const sizes = [
       { width: 500, height: 250 },
@@ -75,15 +63,22 @@ const optimizeAndRenameImage = async (filePath) => {
   }
 };
 
-// Process all image files in the input directory
+// Process all image files in the input directory and its subdirectories
 const processAllImages = async () => {
-  const files = fs.readdirSync(inputDir).filter(file => 
-    fs.statSync(path.join(inputDir, file)).isFile() && ['.jpg', '.jpeg', '.png', '.webp'].includes(path.extname(file).toLowerCase())
-  );
+  // Find all image files in the source directory and its subdirectories
+  const pattern = `${inputDir}/**/*.{jpg,jpeg,png,webp}`;
+  const files = glob.sync(pattern);
+
+  if (files.length === 0) {
+    console.log('No image files found.');
+    return;
+  }
+
+  // Check for closely named files before processing
+  // checkForSimilarFileNames(files);
 
   const processingPromises = files.map(file => {
-    const filePath = path.join(inputDir, file);
-    return optimizeAndRenameImage(filePath);
+    return optimizeAndRenameImage(file);
   });
 
   await Promise.all(processingPromises);
