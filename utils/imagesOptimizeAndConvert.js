@@ -4,7 +4,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const gm = require('gm').subClass({ imageMagick: true });
 const glob = require('glob');
-const chokidar = require('chokidar');
+// const chokidar = require('chokidar');
 const { convertFileNameToCamelCase, checkForSimilarFileNames } = require('./helpers');
 const { clearOutputDir } = require('./helpers--build-only');
 const { promisify } = require('util');
@@ -68,12 +68,6 @@ const processImage = async (filePath) => {
   await optimizeAndRenameImage(filePath);
 };
 
-// Function to process SVG files (placeholder if needed)
-const processSVG = async (filePath) => {
-  // Handle SVG processing here if needed
-  console.log(`{imagesOptimizeAndConvert} -- SVG file '${filePath}' found and will be processed.`);
-};
-
 // Process all image files in the input directory and its subdirectories
 const processAllImages = async () => {
   // Find all image files in the source directory and its subdirectories
@@ -89,7 +83,7 @@ const processAllImages = async () => {
   if (process.env.WATCHING !== 'true') {
     // Clear the output directory only if not watching
     console.log('{imagesOptimizeAndConvert} -- Clearing output directory because WATCHING is not true...');
-    await clearOutputDir(outputDir);
+    // await clearOutputDir(outputDir);
   } else {
     console.log('{imagesOptimizeAndConvert} -- WATCHING mode is true. Output directory will not be cleared.');
   }
@@ -109,30 +103,30 @@ const processAllImages = async () => {
 // Conditionally start the file watcher based on environment
 if (process.env.WATCHING === 'true') {
   // Watch for file changes and process new files
-  const watcher = chokidar.watch(inputDir, {
-    ignored: [/^\./, /\.svg$/], // Ignore SVG files
-    persistent: true,
-    awaitWriteFinish: true, // Wait for the file to be fully written before triggering events
-  });
+  // const watcher = chokidar.watch(inputDir, {
+  //   ignored: [/^\./, /\.svg$/], // Ignore SVG files
+  //   persistent: true,
+  //   awaitWriteFinish: true, // Wait for the file to be fully written before triggering events
+  // });
 
-  watcher
-    .on('add', filePath => {
-      if (filePath.match(/\.(jpg|jpeg|png|webp)$/)) {
-        console.log(`{imagesOptimizeAndConvert} -- Watcher Image '${filePath}' has been added.`);
-        processImage(filePath);
-      } 
-    })
-    .on('error', error => {
-      console.error('{imagesOptimizeAndConvert} -- Error watching images:', error);
-    });
+  // watcher
+  //   .on('add', filePath => {
+  //     if (filePath.match(/\.(jpg|jpeg|png|webp)$/)) {
+  //       console.log(`{imagesOptimizeAndConvert} -- Watcher Image '${filePath}' has been added.`);
+  //       processImage(filePath);
+  //     } 
+  //   })
+  //   .on('error', error => {
+  //     console.error('{imagesOptimizeAndConvert} -- Error watching images:', error);
+  //   });
 
-  console.log('{imagesOptimizeAndConvert} -- Watching for new images...');
+  // console.log('{imagesOptimizeAndConvert} -- Watching for new images...');
 
-  process.on('SIGINT', () => {
-    console.log('\n{imagesOptimizeAndConvert} -- Image watcher stopped...\n');
-    watcher.close();
-    process.exit();
-  });
+  // process.on('SIGINT', () => {
+  //   console.log('\n{imagesOptimizeAndConvert} -- Image watcher stopped...\n');
+  //   watcher.close();
+  //   process.exit();
+  // });
 
 } else {
   // In production or other environments, process existing files

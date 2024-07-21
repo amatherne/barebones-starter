@@ -1,7 +1,7 @@
 const fs = require('fs-extra');
 const path = require('path');
 const glob = require('glob');
-const chokidar = require('chokidar');
+// const chokidar = require('chokidar');
 const { optimize } = require('svgo');
 const { convertFileNameToCamelCase, checkForSimilarFileNames } = require('./helpers');
 const { clearOutputDir } = require('./helpers--build-only');
@@ -57,17 +57,18 @@ export default ${componentName};
 
     const outputPath = path.join(outputDir, `${componentName}.tsx`);
     await fs.writeFile(outputPath, componentTemplate);
-    console.log(`SVG: '${fileName}' has been added.`)
+    console.log(`{svgsOptimizeAndConvert} -- SVG: '${fileName}' has been added.`)
   } catch (fileError) {
-    console.error('Error processing SVG:', filePath, fileError);
+    console.error('{svgsOptimizeAndConvert} -- Error processing SVG:', filePath, fileError);
   }
 };
 
 // Function to process all SVG files
 const processAllSVGs = async () => {
   try {
-    console.log('\nStart processing SVGs\n');
+    console.log('\n{svgsOptimizeAndConvert} -- Start processing SVGs\n');
 
+    console.log(`{svgsOptimizeAndConvert} -- process.env.WATCHING: ${process.env.WATCHING}`);
     if (process.env.WATCHING !== 'true') {
       // Clear the output directory
       await clearOutputDir(outputDir);
@@ -77,7 +78,7 @@ const processAllSVGs = async () => {
     const files = glob.sync(pattern);
 
     if (files.length === 0) {
-      console.log('No SVG files found.');
+      console.log('{svgsOptimizeAndConvert} -- No SVG files found.');
       return;
     }
 
@@ -86,45 +87,45 @@ const processAllSVGs = async () => {
 
     await Promise.all(files.map(processSingleSVG));
 
-    console.log('SVG files processed and React components generated successfully!\n');
+    console.log('{svgsOptimizeAndConvert} -- SVG files processed and React components generated successfully!\n');
   } catch (error) {
-    console.error('Error processing SVG files:', error);
+    console.error('{svgsOptimizeAndConvert} -- Error processing SVG files:', error);
   }
 };
 
-// // Conditionally start the file watcher based on environment
-// if (process.env.WATCHING === 'true') {
-//   const watcher = chokidar.watch(srcDir, {
-//     ignored: [/^\./, /\.svg$/],
-//     persistent: true,
-//     awaitWriteFinish: true,
-//   });
+// Conditionally start the file watcher based on environment
+if (process.env.WATCHING === 'true') {
+  // const watcher = chokidar.watch(srcDir, {
+  //   ignored: [/^\./, /\.svg$/],
+  //   persistent: true,
+  //   awaitWriteFinish: true,
+  // });
 
-//   watcher
-//     .on('add', filePath => {
-//       if (filePath.match(/\.svg$/)) {
-//         console.log(`SVG '${filePath}' has been added.`);
-//         processSingleSVG(filePath); // Process the single added file
-//       }
-//     })
-//     .on('change', filePath => {
-//       if (filePath.match(/\.svg$/)) {
-//         console.log(`SVG '${filePath}' has been changed.`);
-//         processSingleSVG(filePath); // Process the single changed file
-//       }
-//     })
-//     .on('error', error => {
-//       console.error('Error watching SVGs:', error);
-//     });
+  // watcher
+  //   .on('add', filePath => {
+  //     if (filePath.match(/\.svg$/)) {
+  //       console.log(`{svgsOptimizeAndConvert} -- SVG '${filePath}' has been added.`);
+  //       processSingleSVG(filePath); // Process the single added file
+  //     }
+  //   })
+  //   .on('change', filePath => {
+  //     if (filePath.match(/\.svg$/)) {
+  //       console.log(`{svgsOptimizeAndConvert} -- SVG '${filePath}' has been changed.`);
+  //       processSingleSVG(filePath); // Process the single changed file
+  //     }
+  //   })
+  //   .on('error', error => {
+  //     console.error('{svgsOptimizeAndConvert} -- Error watching SVGs:', error);
+  //   });
 
-//   console.log('Watching for new and changed SVGs...');
+  // console.log('{svgsOptimizeAndConvert} -- Watching for new and changed SVGs...');
 
-//   process.on('SIGINT', () => {
-//     console.log('\nSVG watcher stopped...\n');
-//     watcher.close();
-//     process.exit();
-//   });
+  // process.on('SIGINT', () => {
+  //   console.log('\n{svgsOptimizeAndConvert} -- SVG watcher stopped...\n');
+  //   watcher.close();
+  //   process.exit();
+  // });
 
-// } else {
-// }
+} else {
   processAllSVGs();
+}
