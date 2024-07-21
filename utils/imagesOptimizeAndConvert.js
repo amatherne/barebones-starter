@@ -8,7 +8,7 @@ const chokidar = require('chokidar');
 const gm = require('gm').subClass({ imageMagick: true });
 const glob = require('glob');
 const { convertFileNameToCamelCase } = require('./helpers');
-const { clearOutputDir } = require('./helpers--build-only');
+// const { clearOutputDir } = require('./helpers--build-only');
 const { promisify } = require('util');
 
 const inputDir = './public/uploads';
@@ -49,22 +49,27 @@ const checkFileName = async (files, fileNameWithoutExt) => {
 
   for (const file of files) {
     const fileName = path.basename(file, path.extname(file));
-    const componentName = convertFileNameToCamelCase(fileName);
-    const normalized = componentName.toLowerCase();
+    // const componentName = convertFileNameToCamelCase(fileName);
+    // const normalized = componentName.toLowerCase();
 
-    // console.log('Normalized:', normalized);
-    // console.log('Current:', lowerCaseFileName);
+    // console.log('Normalized:', normalized,' // Current:', lowerCaseFileName);
+    // console.log(`lowerCaseFileName`, lowerCaseFileName);
+    // console.log(`fileName`, fileName);
+    // console.log(`fileName === ''`, fileName === '');
+    // console.log(`fileName === null`, fileName === null);
 
-    if (normalized === lowerCaseFileName) {
-      console.log(`{Image Optimize :: Check File Name} -- Already Exists: ${fileNameWithoutExt}`);
+    if (fileName !== '' && fileName === lowerCaseFileName) {
+      console.log(`{Image Optimize :: Check File Name} -- Already Exists: '${fileNameWithoutExt}' / Existing: '${fileName}'`);
       return false; // Similar file found, return false
     }
 
     // Update the map if no similar file is found
-    normalizedMap.set(normalized, file);
+    normalizedMap.set(fileName, file);
   }
 
-  console.log(`{Image Optimize :: Check File Name} -- Does Not Exist: ${fileNameWithoutExt}`);
+  console.log(normalizedMap)
+
+  console.log(`{Image Optimize :: Check File Name} -- Does Not Exist: '${fileNameWithoutExt}'`);
   return true; // No similar file found
 };
 
@@ -76,11 +81,11 @@ const createImages = async (filePath) => {
 
   // Get a list of all files in outputDir and parentDir
   const outputFiles = await getFilesInDirectories(outputDir);
-  const parentFiles = await getFilesInDirectories(parentDir);
-  const allFiles = [...outputFiles, ...parentFiles];
+  // const parentFiles = await getFilesInDirectories(parentDir);
+  // const allFiles = [...outputFiles, ...parentFiles];
 
   // Check for closely named files in the output directory and its parent directory
-  if (!checkFileName(allFiles, fileNameWithoutExt)) {
+  if (!checkFileName(outputFiles, fileNameWithoutExt)) {
     return; // Skip processing if a similar file is found
   }
 
@@ -100,7 +105,7 @@ const createImages = async (filePath) => {
     const resizedFileName = `${fileNameWithoutExt}.webp`;
     const resizedFilePath = path.join(outputDir, resizedFileName);
     await promisify(gmInstance.quality(75).write.bind(gmInstance))(resizedFilePath);
-    console.log(`{Image Optimize :: Create Images}   -- File added: '${resizedFileName}'.`);
+    console.log(`{Image Optimize :: Create Images}   -- File added:     '${resizedFileName}'`);
 
     // Resize and optimize each size
     const resizePromises = sizes.map(async (size) => {
@@ -108,12 +113,12 @@ const createImages = async (filePath) => {
       const resizedFilePathSizes = path.join(outputDir, resizedFileNameSizes);
       const gmInstanceSize = gm(filePath);
       await promisify(gmInstanceSize.resize(size.width, size.height).quality(75).write.bind(gmInstanceSize))(resizedFilePathSizes);
-      console.log(`{Image Optimize :: Create Images}   -- Resizing......`);
+      console.log(`{Image Optimize :: Create Images}   -- Resizing.......`);
     });
 
     // Wait for all resize promises to complete
     await Promise.all(resizePromises);
-    console.log(`{Image Optimize :: Create Images}   -- Done: '${resizedFileName}'.`);
+    console.log(`{Image Optimize :: Create Images}   -- Done:           '${resizedFileName}'`);
 
   } catch (error) {
     console.error(`{Image Optimize :: Create Images}   -- Error: ${filePath}:`, error);
