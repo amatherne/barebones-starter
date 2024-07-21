@@ -47,8 +47,8 @@ const widths = {
       name: "tablet_width",
       list: true,
       options: [
-        { value:"md--w-12",    label:"12% (1 of 8)" },
-        { value:"md--w-16",    label:"16% (1 of 6)" },
+        { value:"md--w-12 ",    label:"12% (1 of 8)" },
+        { value:"md--w-16 ",    label:"16% (1 of 6)" },
         { value:"md--w-25 ",   label:"25% (1 of 4)" },
         { value:"md--w-33 ",   label:"33% (1 of 3)" },
         { value:"md--w-50 ",   label:"50% (1 of 2)" },
@@ -82,8 +82,8 @@ const widths = {
       name: "mobile_width",
       list: true,
       options: [
-        { value:"w-12",    label:"12% (1 of 8)" },
-        { value:"w-16",    label:"16% (1 of 6)" },
+        { value:"w-12 ",    label:"12% (1 of 8)" },
+        { value:"w-16 ",    label:"16% (1 of 6)" },
         { value:"w-25 ",   label:"25% (1 of 4)" },
         { value:"w-33 ",   label:"33% (1 of 3)" },
         { value:"w-50 ",   label:"50% (1 of 2)" },

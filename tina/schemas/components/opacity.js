@@ -12,6 +12,8 @@ const opacity = {
 
     // wrapping our component in wrapFieldsWithMeta renders our label & description.
     component: wrapFieldsWithMeta(({ field, input, meta }) => {
+
+      
       return (
         <div>
           <input

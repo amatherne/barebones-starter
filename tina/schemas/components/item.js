@@ -4,7 +4,6 @@ import React from 'react';
 import link from './link';
 import opacity from './opacity';
 
-
 const item = {
   type: 'object',
   label: 'Item',
@@ -14,10 +13,11 @@ const item = {
     itemProps: (item) => {
       const imgTitle = item.src ? item.src.substring(item.src.lastIndexOf('/') + 1) : null;
       const itemTitle = item.title ? item.title : null;
+      const itemText = item.text?.children?.[0]?.children?.[0]?.text || null;
       const altText = item.alt ? item.alt : null;
 
       return {
-        label: itemTitle || altText || imgTitle || 'Item',
+        label: itemTitle || itemText || altText || imgTitle || 'Item',
         thumbnail: item.src || '',
       };
     },

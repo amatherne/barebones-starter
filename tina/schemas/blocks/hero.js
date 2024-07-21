@@ -8,6 +8,18 @@ const PageBlocksHero = {
   label: 'Hero',
   name: 'hero',
   ui: {
+    itemProps: (item) => {
+      // const itemTitle = item.title ? item.title : null;
+
+      const itemTitle  = item.item?.[0]?.title || null;
+      const itemText   = item.item?.[0]?.text?.children?.[0]?.children?.[0]?.text || null;
+
+      return {
+        label: itemTitle || itemText || 'Hero',
+        thumbnail: item.src || '',
+      };
+    },
+
     defaultItem: () => ({
       published: true, 
       styles: {

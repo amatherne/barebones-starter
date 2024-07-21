@@ -11,9 +11,13 @@ const PageBlocksCtas = {
   ui: {
     itemProps: (item) => {
       const itemTitle = item.title ? item.title : null;
+      const itemText = item.text?.children?.[0]?.children?.[0]?.text || null;
+
+      const firstItemTitle  = item.item?.[0]?.title || null;
+      const firstItemText   = item.item?.[0]?.text?.children?.[0]?.children?.[0]?.text || null;
 
       return {
-        label: itemTitle || 'CTA',
+        label: itemTitle || itemText || firstItemTitle || firstItemText || 'CTA',
         thumbnail: item.src || '',
       };
     },
@@ -22,6 +26,11 @@ const PageBlocksCtas = {
       published: true, 
       styles: {
         colors: 'color--1',  
+      },
+      widths: {
+        desktop_width: 'lg-up--w-33 ',
+        tablet_width: 'md--w-50 ',
+        mobile_width: 'w-50 ',
       },
       // Ensure all other required fields or items are included
       ...(item.defaultItem ? item.defaultItem() : {}), // Use defaultItem if it exists
