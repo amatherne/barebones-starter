@@ -10,3 +10,4 @@ const config = {
 
 const optimizedSvg = optimize(svgContent, config);
 // console.log(optimizedSvg.data); // Output optimized SVG data
+export {}
