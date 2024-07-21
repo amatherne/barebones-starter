@@ -22,7 +22,7 @@ if (!fs.existsSync(outputDir)) {
 const resize = promisify(gm().resize.bind(gm()));
 const write = promisify(gm().write.bind(gm()));
 
-console.log('\nStart processing images\n');
+console.log('\n{imagesOptimizeAndConvert} -- Start processing images\n');
 
 // Function to process and resize image files
 const optimizeAndRenameImage = async (filePath) => {
@@ -46,7 +46,6 @@ const optimizeAndRenameImage = async (filePath) => {
     const resizedFileName = `${fileNameWithoutExt}.webp`;
     const resizedFilePath = path.join(outputDir, resizedFileName);
     await promisify(gmInstance.quality(75).write.bind(gmInstance))(resizedFilePath);
-    console.log(`Image: '${fileName}' has been added.`);
 
     // Resize and optimize each size
     const resizePromises = sizes.map(async (size) => {
@@ -60,7 +59,7 @@ const optimizeAndRenameImage = async (filePath) => {
     await Promise.all(resizePromises);
 
   } catch (error) {
-    console.error(`Error processing ${filePath}:`, error);
+    console.error(`{imagesOptimizeAndConvert} -- Error processing ${filePath}:`, error);
   }
 };
 
@@ -72,7 +71,7 @@ const processImage = async (filePath) => {
 // Function to process SVG files (placeholder if needed)
 const processSVG = async (filePath) => {
   // Handle SVG processing here if needed
-  console.log(`SVG file '${filePath}' found and will be processed.`);
+  console.log(`{imagesOptimizeAndConvert} -- SVG file '${filePath}' found and will be processed.`);
 };
 
 // Process all image files in the input directory and its subdirectories
@@ -82,25 +81,29 @@ const processAllImages = async () => {
   const files = glob.sync(pattern);
 
   if (files.length === 0) {
-    console.log('No image files found.');
+    console.log('{imagesOptimizeAndConvert} -- No image files found.');
     return;
   }
 
+  console.log(`{imagesOptimizeAndConvert} -- process.env.WATCHING: ${process.env.WATCHING}`);
   if (process.env.WATCHING !== 'true') {
     // Clear the output directory only if not watching
-    console.log('Clearing output directory because WATCHING is not true...');
+    console.log('{imagesOptimizeAndConvert} -- Clearing output directory because WATCHING is not true...');
     await clearOutputDir(outputDir);
   } else {
-    console.log('WATCHING mode is true. Output directory will not be cleared.');
+    console.log('{imagesOptimizeAndConvert} -- WATCHING mode is true. Output directory will not be cleared.');
   }
 
   // Check for closely named files before processing
   // checkForSimilarFileNames(files);
 
-  const processingPromises = files.map(file => optimizeAndRenameImage(file));
+  const processingPromises = files.map(file => {
+    optimizeAndRenameImage(file)
+    console.log(`{imagesOptimizeAndConvert} -- processAllImages Image: '${file}' has been added.`);
+  });
 
   await Promise.all(processingPromises);
-  console.log('Image files processed and responsive versions created.\n');
+  console.log('{imagesOptimizeAndConvert} -- Image files processed and responsive versions created.\n');
 };
 
 // Conditionally start the file watcher based on environment
@@ -115,21 +118,18 @@ if (process.env.WATCHING === 'true') {
   watcher
     .on('add', filePath => {
       if (filePath.match(/\.(jpg|jpeg|png|webp)$/)) {
-        console.log(`Image '${filePath}' has been added.`);
+        console.log(`{imagesOptimizeAndConvert} -- Watcher Image '${filePath}' has been added.`);
         processImage(filePath);
-      } else if (filePath.match(/\.svg$/)) {
-        // Add handling for SVG files if necessary
-        processSVG(filePath);
-      }
+      } 
     })
     .on('error', error => {
-      console.error('Error watching images:', error);
+      console.error('{imagesOptimizeAndConvert} -- Error watching images:', error);
     });
 
-  console.log('Watching for new images...');
+  console.log('{imagesOptimizeAndConvert} -- Watching for new images...');
 
   process.on('SIGINT', () => {
-    console.log('\nImage watcher stopped...\n');
+    console.log('\n{imagesOptimizeAndConvert} -- Image watcher stopped...\n');
     watcher.close();
     process.exit();
   });
