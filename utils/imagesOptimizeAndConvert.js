@@ -4,13 +4,12 @@ const fs = require('fs-extra');
 const path = require('path');
 const gm = require('gm').subClass({ imageMagick: true });
 const glob = require('glob');
-// const chokidar = require('chokidar');
 const { convertFileNameToCamelCase, checkForSimilarFileNames } = require('./helpers');
 const { clearOutputDir } = require('./helpers--build-only');
 const { promisify } = require('util');
 
 const inputDir = './public/uploads';
-const outputDir = './public/uploads/images';
+const outputDir = './public/images';
 
 require('dotenv').config();
 
@@ -74,7 +73,10 @@ const processAllImages = async () => {
   const pattern = `${inputDir}/**/*.{jpg,jpeg,png,webp}`;
   const files = glob.sync(pattern);
 
-  if (files.length === 0) {
+  // Filter out files that are in the outputDir
+  const filteredFiles = files.filter(file => !file.startsWith(path.resolve(outputDir)));
+
+  if (filteredFiles.length === 0) {
     console.log('{imagesOptimizeAndConvert} -- No image files found.');
     return;
   }
@@ -89,10 +91,10 @@ const processAllImages = async () => {
   }
 
   // Check for closely named files before processing
-  // checkForSimilarFileNames(files);
+  // checkForSimilarFileNames(filteredFiles);
 
-  const processingPromises = files.map(file => {
-    optimizeAndRenameImage(file)
+  const processingPromises = filteredFiles.map(file => {
+    processImage(file);
     console.log(`{imagesOptimizeAndConvert} -- processAllImages Image: '${file}' has been added.`);
   });
 
@@ -102,31 +104,31 @@ const processAllImages = async () => {
 
 // Conditionally start the file watcher based on environment
 if (process.env.WATCHING === 'true') {
-  Watch for file changes and process new files
-  const watcher = chokidar.watch(inputDir, {
-    ignored: [/^\./, /\.svg$/], // Ignore SVG files
-    persistent: true,
-    awaitWriteFinish: true, // Wait for the file to be fully written before triggering events
-  });
+  // Watch for file changes and process new files
+  // const watcher = chokidar.watch(inputDir, {
+  //   ignored: [/^\./, /\.svg$/], // Ignore SVG files
+  //   persistent: true,
+  //   awaitWriteFinish: true, // Wait for the file to be fully written before triggering events
+  // });
 
-  watcher
-    .on('add', filePath => {
-      if (filePath.match(/\.(jpg|jpeg|png|webp)$/)) {
-        console.log(`{imagesOptimizeAndConvert} -- Watcher Image '${filePath}' has been added.`);
-        processImage(filePath);
-      } 
-    })
-    .on('error', error => {
-      console.error('{imagesOptimizeAndConvert} -- Error watching images:', error);
-    });
+  // watcher
+  //   .on('add', filePath => {
+  //     if (filePath.match(/\.(jpg|jpeg|png|webp)$/)) {
+  //       console.log(`{imagesOptimizeAndConvert} -- Watcher Image '${filePath}' has been added.`);
+  //       processImage(filePath);
+  //     } 
+  //   })
+  //   .on('error', error => {
+  //     console.error('{imagesOptimizeAndConvert} -- Error watching images:', error);
+  //   });
 
-  console.log('{imagesOptimizeAndConvert} -- Watching for new images...');
+  // console.log('{imagesOptimizeAndConvert} -- Watching for new images...');
 
-  process.on('SIGINT', () => {
-    console.log('\n{imagesOptimizeAndConvert} -- Image watcher stopped...\n');
-    watcher.close();
-    process.exit();
-  });
+  // process.on('SIGINT', () => {
+  //   console.log('\n{imagesOptimizeAndConvert} -- Image watcher stopped...\n');
+  //   watcher.close();
+  //   process.exit();
+  // });
 
 } else {
   // In production or other environments, process existing files
