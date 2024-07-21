@@ -64,7 +64,7 @@ const optimizeAndRenameImage = async (filePath) => {
 
 // Function to process a single image file
 const processImage = async (filePath) => {
-  await optimizeAndRenameImage(filePath);
+  // await optimizeAndRenameImage(filePath);
 };
 
 // Process all image files in the input directory and its subdirectories
