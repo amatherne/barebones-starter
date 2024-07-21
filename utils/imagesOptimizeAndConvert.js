@@ -22,7 +22,7 @@ if (!fs.existsSync(outputDir)) {
 const resize = promisify(gm().resize.bind(gm()));
 const write = promisify(gm().write.bind(gm()));
 
-console.log('\n\nStart processing Imgs\n\n');
+console.log('\nStart processing images\n');
 
 // Function to process and resize image files
 const optimizeAndRenameImage = async (filePath) => {
@@ -31,9 +31,6 @@ const optimizeAndRenameImage = async (filePath) => {
   const fileNameWithoutExt = path.basename(convertFileNameToCamelCase(fileName), extname);
 
   try {
-    // Clear the output directory
-    await clearOutputDir(outputDir);
-
     // Define sizes to create
     const sizes = [
       { width: 500, height: 250 },
@@ -49,6 +46,7 @@ const optimizeAndRenameImage = async (filePath) => {
     const resizedFileName = `${fileNameWithoutExt}.webp`;
     const resizedFilePath = path.join(outputDir, resizedFileName);
     await promisify(gmInstance.quality(75).write.bind(gmInstance))(resizedFilePath);
+    console.log(`Image: '${fileName}' has been added.`);
 
     // Resize and optimize each size
     const resizePromises = sizes.map(async (size) => {
@@ -71,6 +69,12 @@ const processImage = async (filePath) => {
   await optimizeAndRenameImage(filePath);
 };
 
+// Function to process SVG files (placeholder if needed)
+const processSVG = async (filePath) => {
+  // Handle SVG processing here if needed
+  console.log(`SVG file '${filePath}' found and will be processed.`);
+};
+
 // Process all image files in the input directory and its subdirectories
 const processAllImages = async () => {
   // Find all image files in the source directory and its subdirectories
@@ -82,41 +86,50 @@ const processAllImages = async () => {
     return;
   }
 
+  if (process.env.WATCHING !== 'true') {
+    // Clear the output directory only if not watching
+    console.log('Clearing output directory because WATCHING is not true...');
+    await clearOutputDir(outputDir);
+  } else {
+    console.log('WATCHING mode is true. Output directory will not be cleared.');
+  }
+
   // Check for closely named files before processing
   // checkForSimilarFileNames(files);
 
-  const processingPromises = files.map(file => {
-    return optimizeAndRenameImage(file);
-  });
+  const processingPromises = files.map(file => optimizeAndRenameImage(file));
 
   await Promise.all(processingPromises);
-  console.log('Img files processed and responsive versions created.\n\n');
+  console.log('Image files processed and responsive versions created.\n');
 };
-  
+
 // Conditionally start the file watcher based on environment
 if (process.env.WATCHING === 'true') {
-
   // Watch for file changes and process new files
   const watcher = chokidar.watch(inputDir, {
-    ignored: [/^\./, /\.svg$/],  // Ignore SVG files
+    ignored: [/^\./, /\.svg$/], // Ignore SVG files
     persistent: true,
+    awaitWriteFinish: true, // Wait for the file to be fully written before triggering events
   });
 
   watcher
     .on('add', filePath => {
       if (filePath.match(/\.(jpg|jpeg|png|webp)$/)) {
-        console.log(`File ${filePath} has been added.`);
+        console.log(`Image '${filePath}' has been added.`);
         processImage(filePath);
+      } else if (filePath.match(/\.svg$/)) {
+        // Add handling for SVG files if necessary
+        processSVG(filePath);
       }
     })
     .on('error', error => {
-      console.error('Error watching files:', error);
+      console.error('Error watching images:', error);
     });
 
-  console.log('Watching for new files...');
+  console.log('Watching for new images...');
 
   process.on('SIGINT', () => {
-    console.log('\n\nStopping file watcher...\n\n');
+    console.log('\nImage watcher stopped...\n');
     watcher.close();
     process.exit();
   });

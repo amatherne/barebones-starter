@@ -1,86 +1,48 @@
 const fs = require('fs-extra');
 const path = require('path');
 const glob = require('glob');
+const chokidar = require('chokidar');
 const { optimize } = require('svgo');
-const { parseStringPromise, Builder } = require('xml2js');
+const { convertFileNameToCamelCase, checkForSimilarFileNames } = require('./helpers');
+const { clearOutputDir } = require('./helpers--build-only');
 const svgoConfig = require('../svgo.config');
 
 const srcDir = path.resolve(__dirname, '../public/uploads');
 const outputDir = path.resolve(__dirname, '../app/components/icons/uploads');
 
-const { convertFileNameToCamelCase, checkForSimilarFileNames } = require('./helpers');
-const { clearOutputDir } = require('./helpers--build-only');
-
 // Function to convert SVG attributes to camel case
 const convertAttributesToCamelCase = (svgString) => {
-
-  // console.log(svgString)
-
-  // Regular expression to check for fill or stroke attributes in the entire SVG
   const hasFillOrStroke = /(fill|stroke)="[^"]*"/.test(svgString);
 
   const colorForeground = 'var(--color--foreground)';
   const colorBackground = 'var(--color--background)';
 
-  // If neither fill nor stroke is found, add fill="colorForeground" to the main <svg> element
   if (!hasFillOrStroke) {
     svgString = svgString.replace(/<svg([^>]*?)(>)/, `<svg$1 fill="${colorForeground}"$2`);
   }
 
-  // Replace #000000, #000, or black with ${colorForeground}
   svgString = svgString.replace(/(fill|stroke)="(black|#000000|#000|currentColor)"/g, `$1="${colorForeground}"`);
-
-  // Replace #000000, #000, or black with ${colorBackground}
   svgString = svgString.replace(/(fill|stroke)="(white|#ffffff|#fff)"/g, `$1="${colorBackground}"`);
 
-
   return svgString
-    // Convert SVG attribute names to camel case
     .replace(/(\w+)-(\w+)(?=\s*=\s*['"])/g, (match, p1, p2) => `${p1}${p2.charAt(0).toUpperCase() + p2.slice(1)}`)
-    // Specific attributes that need camel casing
     .replace(/fill-rule/g, 'fillRule')
     .replace(/stroke-linecap/g, 'strokeLinecap')
     .replace(/stroke-linejoin/g, 'strokeLinejoin');
 };
 
-// Function to process SVG files and generate React components
-async function processSVGs() {
+// Function to process a single SVG file
+const processSingleSVG = async (filePath) => {
   try {
-    console.log('\n\nStart processing SVGs\n\n');
+    const svgData = await fs.readFile(filePath, 'utf8');
+    const fileName = path.basename(filePath);
+    const componentName = convertFileNameToCamelCase(fileName);
 
-    // Clear the output directory
-    await clearOutputDir(outputDir);
+    const { data: optimizedSvg } = optimize(svgData, { ...svgoConfig });
 
-    // Find all SVG files in the source directory
-    const pattern = `${srcDir}/**/*.svg`;
-    const files = glob.sync(pattern);
+    const svgWithCamelCaseAttributes = convertAttributesToCamelCase(optimizedSvg);
 
-    if (files.length === 0) {
-      console.log('No SVG files found.');
-      return;
-    }
-
-    // Check for closely named files before processing
-    // checkForSimilarFileNames(files);
-
-    // Process each SVG file
-    await Promise.all(
-      files.map(async (file) => {
-        try {
-          const svgData = await fs.readFile(file, 'utf8');
-          const fileName = path.basename(file);
-          const componentName = convertFileNameToCamelCase(fileName);
-          
-          // console.log(componentName);
-
-          // Optimize SVG data
-          const { data: optimizedSvg } = optimize(svgData, { ...svgoConfig });
-
-          // Convert attributes to camel case
-          const svgWithCamelCaseAttributes = convertAttributesToCamelCase(optimizedSvg);
-
-          // Generate React component
-          const componentTemplate = 
+    const componentTemplate = 
 `
 // ../app/components/icons/uploads/${componentName}.tsx
 
@@ -93,19 +55,76 @@ const ${componentName} = () => (
 export default ${componentName};
 `;
 
-          // Write component file
-          const outputPath = path.join(outputDir, `${componentName}.tsx`);
-          await fs.writeFile(outputPath, componentTemplate);
-        } catch (fileError) {
-          console.error('Error processing file:', file, fileError);
-        }
-      })
-    );
+    const outputPath = path.join(outputDir, `${componentName}.tsx`);
+    await fs.writeFile(outputPath, componentTemplate);
+    console.log(`SVG: '${fileName}' has been added.`)
+  } catch (fileError) {
+    console.error('Error processing SVG:', filePath, fileError);
+  }
+};
 
-    console.log('SVG files processed and React components generated successfully!\n\n');
+// Function to process all SVG files
+const processAllSVGs = async () => {
+  try {
+    console.log('\nStart processing SVGs\n');
+
+    if (process.env.WATCHING !== 'true') {
+      // Clear the output directory
+      await clearOutputDir(outputDir);
+    }
+
+    const pattern = `${srcDir}/**/*.svg`;
+    const files = glob.sync(pattern);
+
+    if (files.length === 0) {
+      console.log('No SVG files found.');
+      return;
+    }
+
+    // Check for closely named files before processing
+    // checkForSimilarFileNames(files);
+
+    await Promise.all(files.map(processSingleSVG));
+
+    console.log('SVG files processed and React components generated successfully!\n');
   } catch (error) {
     console.error('Error processing SVG files:', error);
   }
-}
+};
 
-processSVGs();
+// // Conditionally start the file watcher based on environment
+// if (process.env.WATCHING === 'true') {
+//   const watcher = chokidar.watch(srcDir, {
+//     ignored: [/^\./, /\.svg$/],
+//     persistent: true,
+//     awaitWriteFinish: true,
+//   });
+
+//   watcher
+//     .on('add', filePath => {
+//       if (filePath.match(/\.svg$/)) {
+//         console.log(`SVG '${filePath}' has been added.`);
+//         processSingleSVG(filePath); // Process the single added file
+//       }
+//     })
+//     .on('change', filePath => {
+//       if (filePath.match(/\.svg$/)) {
+//         console.log(`SVG '${filePath}' has been changed.`);
+//         processSingleSVG(filePath); // Process the single changed file
+//       }
+//     })
+//     .on('error', error => {
+//       console.error('Error watching SVGs:', error);
+//     });
+
+//   console.log('Watching for new and changed SVGs...');
+
+//   process.on('SIGINT', () => {
+//     console.log('\nSVG watcher stopped...\n');
+//     watcher.close();
+//     process.exit();
+//   });
+
+// } else {
+// }
+  processAllSVGs();
