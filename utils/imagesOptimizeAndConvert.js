@@ -68,7 +68,6 @@ const checkFileName = async (files, fileNameWithoutExt) => {
 
 
 // Function to process and resize image files
-// Function to process and resize image files
 const createImages = async (filePath) => {
   const extname = path.extname(filePath).toLowerCase();
   const fileName = path.basename(filePath);
@@ -99,7 +98,7 @@ const createImages = async (filePath) => {
     const resizedFileName = `${fileNameWithoutExt}.webp`;
     const resizedFilePath = path.join(outputDir, resizedFileName);
     await promisify(gmInstance.quality(75).write.bind(gmInstance))(resizedFilePath);
-    console.log(`{Image Optimize :: Create Images}   -- File added:     '${resizedFileName}'`);
+    console.log(`{Image Optimize :: Create Images}   -- Creating Image: '${resizedFileName}'`);
 
     // Resize and optimize each size
     const resizePromises = sizes.map(async (size) => {
@@ -111,7 +110,7 @@ const createImages = async (filePath) => {
 
     // Wait for all resize promises to complete
     await Promise.all(resizePromises);
-    console.log(`{Image Optimize :: Create Images}   -- Done:           '${resizedFileName}'`);
+    console.log(`{Image Optimize :: Create Images}   -- Image Created:  '${resizedFileName}'`);
 
   } catch (error) {
     console.error(`{Image Optimize :: Create Images}   -- Error: ${filePath}:`, error);
