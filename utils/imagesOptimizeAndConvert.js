@@ -44,6 +44,7 @@ const getFilesInDirectories = (inputDir) => {
 };
 
 // Function to check for closely named files
+// Function to check for closely named files
 const checkFileName = async (files, fileNameWithoutExt) => {
   const normalizedMap = new Map();
 
@@ -55,31 +56,30 @@ const checkFileName = async (files, fileNameWithoutExt) => {
     normalizedMap.set(normalizedFileName, file);
 
     // Check if the normalized file name matches
-    if (normalizedFileName === normalizeFileName(fileNameWithoutExt)) {
+    if (normalizedFileName !== '' && normalizedFileName === normalizeFileName(fileNameWithoutExt)) {
       console.log(`{Image Optimize :: Check File Name} -- Already Exists: '${fileNameWithoutExt}' / Existing: '${fileName}'`);
       return false; // Similar file found, return false
     }
   }
 
-  console.log(normalizedMap)
-
   console.log(`{Image Optimize :: Check File Name} -- Does Not Exist: '${fileNameWithoutExt}'`);
   return true; // No similar file found
 };
 
+
+// Function to process and resize image files
 // Function to process and resize image files
 const createImages = async (filePath) => {
   const extname = path.extname(filePath).toLowerCase();
   const fileName = path.basename(filePath);
   const fileNameWithoutExt = path.basename(convertFileNameToCamelCase(fileName), extname);
 
-  // Get a list of all files in outputDir and parentDir
+  // Get a list of all files in outputDir
   const outputFiles = await getFilesInDirectories(outputDir);
-  // const parentFiles = await getFilesInDirectories(parentDir);
-  // const allFiles = [...outputFiles, ...parentFiles];
 
-  // Check for closely named files in the output directory and its parent directory
-  if (!checkFileName(outputFiles, fileNameWithoutExt)) {
+  // Check for closely named files in the output directory
+  const isUnique = await checkFileName(outputFiles, fileNameWithoutExt);
+  if (!isUnique) {
     return; // Skip processing if a similar file is found
   }
 
@@ -107,7 +107,6 @@ const createImages = async (filePath) => {
       const resizedFilePathSizes = path.join(outputDir, resizedFileNameSizes);
       const gmInstanceSize = gm(filePath);
       await promisify(gmInstanceSize.resize(size.width, size.height).quality(75).write.bind(gmInstanceSize))(resizedFilePathSizes);
-      // console.log(`{Image Optimize :: Create Images}   -- Resizing.......`);
     });
 
     // Wait for all resize promises to complete
@@ -118,6 +117,7 @@ const createImages = async (filePath) => {
     console.error(`{Image Optimize :: Create Images}   -- Error: ${filePath}:`, error);
   }
 };
+
 
 // Function to process a single image file
 const processImage = async (filePath) => {
