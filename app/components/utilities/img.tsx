@@ -38,7 +38,7 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes }) => {
 
   const baseFileName = src.split('/').pop();
   const camelSrc = convertFileNameToCamelCase(baseFileName);
-  const newPath = 'images/';
+  const newPath = './imagesTest/';
   const newSrc = newPath+camelSrc;
 
   const imageIDString = `image--${camelSrc ? '--' + camelSrc : ''}${alt ? '--' + alt : ''}${className ? '--' + className : ''}`;

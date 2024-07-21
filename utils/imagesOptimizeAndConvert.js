@@ -1,3 +1,5 @@
+// ../utils/imagesOptimizeAndConvert
+
 'use strict';
 
 const fs = require('fs-extra');
@@ -10,7 +12,8 @@ const { clearOutputDir } = require('./helpers--build-only');
 const { promisify } = require('util');
 
 const inputDir = './public/uploads';
-const outputDir = './public/images';
+// const outputDir = './public/images';
+const outputDir = './public/imagesTest';
 
 require('dotenv').config();
 
