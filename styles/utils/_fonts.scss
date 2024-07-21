@@ -1,37 +1,95 @@
+
+@import url("https://use.typekit.net/akz3yrt.css");
+
+// @font-face {
+//   font-family: 'Butler';
+//   src: 
+//     url('/fonts/Butler_Regular.otf') format('opentype'),
+//     url('/fonts/Butler_Medium.otf') format('opentype'),
+//     url('/fonts/Butler_Bold.otf') format('opentype'),
+//     url('/fonts/Butler_Black.otf') format('opentype');
+//   font-display: swap;
+// }
+
 @font-face {
   font-family: 'Butler';
-  src: url('/uploads/fonts/Butler_Regular.otf') format("opentype");
+  src: url('/fonts/Butler_Regular.otf') format("opentype");
   font-weight: 400;
   font-display: swap;
 }
+
 @font-face {
   font-family: 'Butler';
-  src: url('/uploads/fonts/Butler_Medium.otf') format("opentype");
+  src: url('/fonts/Butler_Medium.otf') format("opentype");
   font-weight: 500;
   font-display: swap;
 }
+
 @font-face {
   font-family: 'Butler';
-  src: url('/uploads/fonts/Butler_Bold.otf') format("opentype");
+  src: url('/fonts/Butler_Bold.otf') format("opentype");
   font-weight: 600;
   font-display: swap;
 }
 
 @font-face {
   font-family: 'Butler';
-  src: url('/uploads/fonts/Butler_Black.otf') format("opentype");
+  src: url('/fonts/Butler_Black.otf') format("opentype");
   font-weight: 900;
   font-display: swap;
 }
 
-@font-face {
-  font-family: 'Oswald';
-  src: url('/uploads/fonts/Oswald-VariableFont_wght.ttf') format("truetype");
-  font-display: swap;
+// @font-face {
+//   font-family: 'Oswald';
+//   src: url('/fonts/Oswald-VariableFont_wght.ttf') format("truetype");
+//   font-display: swap;
+// }
+
+// @font-face {
+//   font-family: 'Quicksand';
+//   src: url('/fonts/Quicksand-VariableFont_wght.ttf') format("truetype");
+//   font-display: swap;
+// }
+
+
+
+
+:root {
+  --font-body--scale                : 1.0;
+  --font-body--family               : Quicksand, sans-serif;
+  --font-body--family               : neuzeit-grotesk, sans-serif;
+  --font-body--family-condensed     : neuzeit-grotesk-condensed, sans-serif;
+  --font-body--style                : normal;
+  --font-body--weight               : 400;
+  --font-body--weight-bold          : 700;
+
+  --font-heading--scale             : 1.0;
+  --font-heading--family            : Butler, Georgia, serif;
+  --font-heading--style             : normal;
+  --font-heading--weight            : 900
 }
 
-@font-face {
-  font-family: 'Quicksand';
-  src: url('/uploads/fonts/Quicksand-VariableFont_wght.ttf') format("truetype");
-  font-display: swap;
+:root {
+  --theme--font-size--xlg           : calc(var(--font-heading--scale) * 5rem);
+  --theme--font-size--h0            : calc(var(--font-heading--scale) * 4rem);
+  --theme--font-size--h1            : calc(var(--font-heading--scale) * 3rem);
+  --theme--font-size--h2            : calc(var(--font-heading--scale) * 2rem);
+  --theme--font-size--h3            : calc(var(--font-heading--scale) * 1.7rem);
+  --theme--font-size--h4            : calc(var(--font-heading--scale) * 1.5rem);
+  --theme--font-size--h5            : calc(var(--font-heading--scale) * 1.2rem);
+  --theme--font-size--h6            : calc(var(--font-heading--scale) * 1rem);
+  --theme--font-size--rte           : 1.5rem;
+
+  // theme default
+  --font-size                       : var(--theme--font-size--rte);
+
+  @include mq($md-up) {
+    --theme--font-size--xlg         : calc(var(--font-heading--scale) * 6.2rem);
+    --theme--font-size--h0          : calc(var(--font-heading--scale) * 5.2rem);
+    --theme--font-size--h1          : calc(var(--font-heading--scale) * 4rem);
+    --theme--font-size--h2          : calc(var(--font-heading--scale) * 2.4rem);
+    --theme--font-size--h3          : calc(var(--font-heading--scale) * 1.8rem);
+    --theme--font-size--h5          : calc(var(--font-heading--scale) * 1.3rem);
+    --theme--font-size--rte         : 1.6rem;
+  }
 }

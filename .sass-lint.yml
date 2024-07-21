@@ -1,0 +1,7 @@
+files:
+  include:
+    - 'styles/**/*.scss'  # Adjust the path to your SCSS files
+
+rules:
+  ColorNameFormat:
+    - 0

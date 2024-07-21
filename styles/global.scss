@@ -1,17 +1,18 @@
 @import './utils/mixins';
-@import './utils/fonts';
 @import './utils/css-variables';
+@import './utils/colors';
+@import './utils/fonts';
 
 @import './base/reset';
 @import './base/grid';
 @import './base/typography';
+@import './base/base';
 
-@import './components/media';
-@import './components/buttons';
-@import './components/card';
+// @import './components/media';
+// @import './components/buttons';
+// @import './components/card';
 
-@import './layouts/header';
-@import './layouts/hero';
-@import './layouts/ctas';
-@import './pages/base';
-@import './layouts/footer';
+// @import './sections/header';
+// @import './sections/hero';
+// @import './sections/ctas';
+// @import './sections/footer';

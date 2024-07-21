@@ -18,56 +18,12 @@
 
   @include mq($md-up) {
     --page-width--padding: var(--sp);
+    --page--padding: var(--global--spacing-sections);
   }
 
   @include mq($lg-up) {
     --page-width--padding: var(--sp--2);
   }
-}
-
-:root {
-  /* Primary Button */
-  --color--btn-primary-txt          : var(--color--foreground);
-  --color--btn-primary-bg           : var(--color--background);
-  --color--btn-primary-bdr          : var(--color--background);
-  --color--btn-primary-txt-hover    : var(--color--background);
-  --color--btn-primary-bg-hover     : var(--color--foreground);
-  --color--btn-primary-bdr-hover    : var(--color--foreground);
-}
-
-:root {
-  /* Secondary Button */
-  --color--btn-secondary-txt        : var(--color--background);
-  --color--btn-secondary-bg         : var(--color--foreground);
-  --color--btn-secondary-bdr        : var(--color--foreground);
-  --color--btn-secondary-txt-hover  : var(--color--foreground);
-  --color--btn-secondary-bg-hover   : var(--color--background);
-  --color--btn-secondary-bdr-hover  : var(--color--foreground);
-}
-
-:root {
-  /* Set Button Defaults, Secondary is set in file */
-  --color--btn-bg                   : var(--color--btn-primary-bg);
-  --color--btn-bdr                  : var(--color--btn-primary-bdr);
-  --color--btn-txt                  : var(--color--btn-primary-txt);
-  --color--btn-bg-hover             : var(--color--btn-primary-bg-hover);
-  --color--btn-bdr-hover            : var(--color--btn-primary-bdr-hover);
-  --color--btn-txt-hover            : var(--color--btn-primary-txt-hover);
-}
-
-:root {
-  --font-body--scale                : 1.0;
-  --font-body--family               : Quicksand, sans-serif;
-  --font-body--family               : neuzeit-grotesk, sans-serif;
-  --font-body--family-condensed     : neuzeit-grotesk-condensed, sans-serif;
-  --font-body--style                : normal;
-  --font-body--weight               : 400;
-  --font-body--weight-bold          : 700;
-
-  --font-heading--scale             : 1.0;
-  --font-heading--family            : Butler, Georgia, serif;
-  --font-heading--style             : normal;
-  --font-heading--weight            : 900
 }
 
 :root {
@@ -84,106 +40,6 @@
   }
   @include mq($lg-up) {
     --header--width                 : var(--header--width--desktop);
-  }
-}
-
-$colors: (
-  mineshaft-black: #212121,
-  cod-black: #131313,
-  white: #ffffff,
-  mandy-pink: #EE5C6C,
-  cerise-pink: #e32b72,
-  violet-purple: #1D063B,
-  gradient-midpoint: midpoint-color(#EE5C6C, #6a0d83)
-);
-
-:root {
-  @include generate-color-variables($colors);
-
-  --default--color--foreground      : var(--color--cod-black);
-  --default--color--foreground-rgb  : var(--color--cod-black-rgb);
-  --default--color--background      : var(--color--white);
-  --default--color--background-rgb  : var(--color--white-rgb);
-
-  --alt--color--foreground          : var(--default--color--background);
-  --alt--color--foreground-rgb      : var(--default--color--background-rgb);
-  --alt--color--background          : var(--default--color--foreground);
-  --alt--color--background-rgb      : var(--default--color--foreground-rgb);
-
-  --gradient--degree                : 145deg;
-  --gradient--color-start           : var(--color--cerise-pink);
-  --gradient--color-end             : var(--color--violet-purple);
-  --gradient                        : linear-gradient(var(--gradient--degree), var(--gradient--color-start), var(--gradient--color-end));
-  --gradient--reverse               : linear-gradient(var(--gradient--degree), var(--gradient--color-end), var(--gradient--color-start));
-
-  // for text over a gradient
-  --gradient--text                  : var(--color--white);
-  --gradient--text-rgb              : var(--color--white-rgb);
-}
-
-@mixin responsive-colors($grid-breakpoint-type: '', $showRoot: false) {
-  // sass-lint:disable no-important
-  @if $showRoot {
-    :root {
-      --color--foreground             : var(--default--color--foreground);
-      --color--foreground-rgb         : var(--default--color--foreground-rgb);
-      --color--background             : var(--default--color--background);
-      --color--background-rgb         : var(--default--color--background-rgb);
-    }
-  }
-  .#{$grid-breakpoint-type}color--1 {
-    --color--foreground               : var(--default--color--foreground);
-    --color--foreground-rgb           : var(--default--color--foreground-rgb);
-    --color--background               : var(--default--color--background);
-    --color--background-rgb           : var(--default--color--background-rgb);
-  }
-
-  .#{$grid-breakpoint-type}color--2 {
-    --color--foreground               : var(--alt--color--foreground);
-    --color--foreground-rgb           : var(--alt--color--foreground-rgb);
-    --color--background               : var(--alt--color--background);
-    --color--background-rgb           : var(--alt--color--background-rgb);
-  }
-
-  .#{$grid-breakpoint-type}color--gradient {
-    --color--foreground               : var(--gradient--text);
-    --color--foreground-rgb           : var(--gradient--text-rgb);
-    --color--background               : var(--gradient);
-    --color--background-rgb           : var(--color--violet-purple-rgb);
-  }
-}
-
-
-@include responsive-colors('',true);
-@each $breakpoint in $grid-breakpoint-has-widths {
-  @include mq($breakpoint) {
-    @include responsive-colors('#{$breakpoint}--');
-  }
-}
-
-
-:root {
-  --theme--font-size--xlg           : calc(var(--font-heading--scale) * 5rem);
-  --theme--font-size--h0            : calc(var(--font-heading--scale) * 4rem);
-  --theme--font-size--h1            : calc(var(--font-heading--scale) * 3rem);
-  --theme--font-size--h2            : calc(var(--font-heading--scale) * 2rem);
-  --theme--font-size--h3            : calc(var(--font-heading--scale) * 1.7rem);
-  --theme--font-size--h4            : calc(var(--font-heading--scale) * 1.5rem);
-  --theme--font-size--h5            : calc(var(--font-heading--scale) * 1.2rem);
-  --theme--font-size--h6            : calc(var(--font-heading--scale) * 1rem);
-  --theme--font-size--rte           : 1.5rem;
-
-  // theme default
-  --font-size                       : var(--theme--font-size--rte);
-
-  @include mq($md-up) {
-    --theme--font-size--xlg         : calc(var(--font-heading--scale) * 6.2rem);
-    --theme--font-size--h0          : calc(var(--font-heading--scale) * 5.2rem);
-    --theme--font-size--h1          : calc(var(--font-heading--scale) * 4rem);
-    --theme--font-size--h2          : calc(var(--font-heading--scale) * 2.4rem);
-    --theme--font-size--h3          : calc(var(--font-heading--scale) * 1.8rem);
-    --theme--font-size--h5          : calc(var(--font-heading--scale) * 1.3rem);
-    --theme--font-size--rte         : 1.6rem;
   }
 }
 

@@ -74,31 +74,3 @@ img {
     // --content--width: var(--header--width--tablet);
   }
 }
-
-.overlay {
-  display: block;
-  position: absolute;
-  top:0;
-  left:0;
-  width: 100%;
-  height: 100%;
-
-
-  &--link {
-    @extend .overlay;
-    z-index: 2;
-  }
-}
-
-.page,
-.section {
-  --page--padding: var(--global--mobile--spacing-sections);
-  --cta--padding-top: var(--cta-set--padding-top,var(--page--padding));
-  --cta--padding-bottom: var(--cta-set--padding-bottom,var(--page--padding));
-  padding: var(--cta--padding-top) 0 var(--cta--padding-bottom);
-  background: var(--color--background);
-
-  @include mq($md-up) {
-    --page--padding: var(--global--spacing-sections);
-  }
-}

@@ -1,0 +1,105 @@
+
+$colors: (
+  mineshaft-black: #212121,
+  cod-black: #131313,
+  white: #ffffff,
+  mandy-pink: #EE5C6C,
+  cerise-pink: #e32b72,
+  violet-purple: #1D063B,
+  gradient-midpoint: midpoint-color(#EE5C6C, #6a0d83)
+);
+
+:root {
+  @include generate-color-variables($colors);
+
+  --default--color--foreground      : var(--color--cod-black);
+  --default--color--foreground-rgb  : var(--color--cod-black-rgb);
+  --default--color--background      : var(--color--white);
+  --default--color--background-rgb  : var(--color--white-rgb);
+
+  --alt--color--foreground          : var(--default--color--background);
+  --alt--color--foreground-rgb      : var(--default--color--background-rgb);
+  --alt--color--background          : var(--default--color--foreground);
+  --alt--color--background-rgb      : var(--default--color--foreground-rgb);
+
+  --gradient--degree                : 145deg;
+  --gradient--color-start           : var(--color--cerise-pink);
+  --gradient--color-end             : var(--color--violet-purple);
+  --gradient                        : linear-gradient(var(--gradient--degree), var(--gradient--color-start), var(--gradient--color-end));
+  --gradient--reverse               : linear-gradient(var(--gradient--degree), var(--gradient--color-end), var(--gradient--color-start));
+
+  // for text over a gradient
+  --gradient--text                  : var(--color--white);
+  --gradient--text-rgb              : var(--color--white-rgb);
+}
+
+@mixin responsive-colors($grid-breakpoint-type: '', $showRoot: false) {
+  // sass-lint:disable no-important
+  @if $showRoot {
+    :root {
+      --color--foreground             : var(--default--color--foreground);
+      --color--foreground-rgb         : var(--default--color--foreground-rgb);
+      --color--background             : var(--default--color--background);
+      --color--background-rgb         : var(--default--color--background-rgb);
+    }
+  }
+  .#{$grid-breakpoint-type}color--1 {
+    --color--foreground               : var(--default--color--foreground);
+    --color--foreground-rgb           : var(--default--color--foreground-rgb);
+    --color--background               : var(--default--color--background);
+    --color--background-rgb           : var(--default--color--background-rgb);
+  }
+
+  .#{$grid-breakpoint-type}color--2 {
+    --color--foreground               : var(--alt--color--foreground);
+    --color--foreground-rgb           : var(--alt--color--foreground-rgb);
+    --color--background               : var(--alt--color--background);
+    --color--background-rgb           : var(--alt--color--background-rgb);
+  }
+
+  .#{$grid-breakpoint-type}color--gradient {
+    --color--foreground               : var(--gradient--text);
+    --color--foreground-rgb           : var(--gradient--text-rgb);
+    --color--background               : var(--gradient);
+    --color--background-rgb           : var(--color--violet-purple-rgb);
+  }
+}
+
+
+@include responsive-colors('',true);
+@each $breakpoint in $grid-breakpoint-has-widths {
+  @include mq($breakpoint) {
+    @include responsive-colors('#{$breakpoint}--');
+  }
+}
+
+
+:root {
+  /* Primary Button */
+  --color--btn-primary-txt          : var(--color--foreground);
+  --color--btn-primary-bg           : var(--color--background);
+  --color--btn-primary-bdr          : var(--color--background);
+  --color--btn-primary-txt-hover    : var(--color--background);
+  --color--btn-primary-bg-hover     : var(--color--foreground);
+  --color--btn-primary-bdr-hover    : var(--color--foreground);
+}
+
+:root {
+  /* Secondary Button */
+  --color--btn-secondary-txt        : var(--color--background);
+  --color--btn-secondary-bg         : var(--color--foreground);
+  --color--btn-secondary-bdr        : var(--color--foreground);
+  --color--btn-secondary-txt-hover  : var(--color--foreground);
+  --color--btn-secondary-bg-hover   : var(--color--background);
+  --color--btn-secondary-bdr-hover  : var(--color--foreground);
+}
+
+:root {
+  /* Set Button Defaults, Secondary is set in file */
+  --color--btn-bg                   : var(--color--btn-primary-bg);
+  --color--btn-bdr                  : var(--color--btn-primary-bdr);
+  --color--btn-txt                  : var(--color--btn-primary-txt);
+  --color--btn-bg-hover             : var(--color--btn-primary-bg-hover);
+  --color--btn-bdr-hover            : var(--color--btn-primary-bdr-hover);
+  --color--btn-txt-hover            : var(--color--btn-primary-txt-hover);
+}
