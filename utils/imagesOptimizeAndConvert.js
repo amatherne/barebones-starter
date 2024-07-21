@@ -44,7 +44,6 @@ const getFilesInDirectories = (inputDir) => {
 };
 
 // Function to check for closely named files
-// Function to check for closely named files
 const checkFileName = async (files, fileNameWithoutExt) => {
   const normalizedMap = new Map();
 
@@ -57,7 +56,7 @@ const checkFileName = async (files, fileNameWithoutExt) => {
 
     // Check if the normalized file name matches
     if (normalizedFileName !== '' && normalizedFileName === normalizeFileName(fileNameWithoutExt)) {
-      console.log(`{Image Optimize :: Check File Name} -- Already Exists: '${fileNameWithoutExt}' / Existing: '${fileName}'`);
+      console.log(`{Image Optimize :: Check File Name} -- Already Exists: '${fileNameWithoutExt}'`);
       return false; // Similar file found, return false
     }
   }
