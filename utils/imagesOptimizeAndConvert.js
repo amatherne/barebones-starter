@@ -4,7 +4,7 @@ const fs = require('fs-extra');
 const path = require('path');
 const gm = require('gm').subClass({ imageMagick: true });
 const glob = require('glob');
-// const chokidar = require('chokidar');
+const chokidar = require('chokidar');
 const { convertFileNameToCamelCase, checkForSimilarFileNames } = require('./helpers');
 const { clearOutputDir } = require('./helpers--build-only');
 const { promisify } = require('util');
@@ -93,35 +93,35 @@ const processAllImages = async () => {
   console.log('Img files processed and responsive versions created.\n\n');
 };
   
-// // Conditionally start the file watcher based on environment
-// if (process.env.WATCHING === 'true') {
+// Conditionally start the file watcher based on environment
+if (process.env.WATCHING === 'true') {
 
-//   // Watch for file changes and process new files
-//   const watcher = chokidar.watch(inputDir, {
-//     ignored: [/^\./, /\.svg$/],  // Ignore SVG files
-//     persistent: true,
-//   });
+  // Watch for file changes and process new files
+  const watcher = chokidar.watch(inputDir, {
+    ignored: [/^\./, /\.svg$/],  // Ignore SVG files
+    persistent: true,
+  });
 
-//   watcher
-//     .on('add', filePath => {
-//       if (filePath.match(/\.(jpg|jpeg|png|webp)$/)) {
-//         console.log(`File ${filePath} has been added.`);
-//         processImage(filePath);
-//       }
-//     })
-//     .on('error', error => {
-//       console.error('Error watching files:', error);
-//     });
+  watcher
+    .on('add', filePath => {
+      if (filePath.match(/\.(jpg|jpeg|png|webp)$/)) {
+        console.log(`File ${filePath} has been added.`);
+        processImage(filePath);
+      }
+    })
+    .on('error', error => {
+      console.error('Error watching files:', error);
+    });
 
-//   console.log('Watching for new files...');
+  console.log('Watching for new files...');
 
-//   process.on('SIGINT', () => {
-//     console.log('\n\nStopping file watcher...\n\n');
-//     watcher.close();
-//     process.exit();
-//   });
+  process.on('SIGINT', () => {
+    console.log('\n\nStopping file watcher...\n\n');
+    watcher.close();
+    process.exit();
+  });
 
-// } else {
-//   // In production or other environments, process existing files
-// }
+} else {
+  // In production or other environments, process existing files
   processAllImages();
+}
