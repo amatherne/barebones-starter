@@ -2,27 +2,50 @@
 title: Home
 blocks:
   - published: true
-    height: 45vw
-    max_height: 900px
-    min_height: 200px
     item:
-      - src: /uploads/Behind the scenes shots - @theuncannydom-33.jpg
+      - src: /uploads/2024-07-20--main-hero.png
         title: Portfolio
         text: |
           I'll let my work speak for itself
         button:
           text: See my Work
           url: /websites
-        custom_css: |-
-          == .image--image {
-            object-position: 50% 30%;
-          }
+          desktop_button:
+            - md-up--button--secondary
+          mobile_button:
+            - sm--button--gradient
+        styles:
+          desktop_opacity: 0.35
+          desktop_colors:
+            - md-up--color--gradient
+          mobile_opacity: 0.01
+          custom_css: |-
+            == .image--image {
+              object-position: 0% 0%;
+            }
+
+            @media screen and (min-width: 750px) {  
+              == .image--outer::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(215deg, rgb(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.35) 100%);
+                z-index: 1;
+              }
+            }
+    styles:
+      height: 45%
+      max_height: 900px
+      min_height: 200px
     _template: hero
   - show_title: false
     text: ''
     styles:
       colors:
-        - color--2
+        - color--1
     custom_css: '== {}'
     _template: main
   - published: true
@@ -33,7 +56,7 @@ blocks:
       style:
         - inline
       colors:
-        - ''
+        - color--2
     item:
       - src: /uploads/icons/html-16-svgrepo-com.svg
         title: HTML
@@ -97,6 +120,8 @@ blocks:
     styles:
       style:
         - inline
+      colors:
+        - color--2
     item:
       - src: /uploads/icons/c-plusplus-16-svgrepo-com.svg
         title: C++
@@ -126,7 +151,7 @@ blocks:
       style:
         - inline
       colors:
-        - color--2
+        - color--1
     item:
       - src: /uploads/icons/terminal-svgrepo-com.svg
         title: iTerm
@@ -162,7 +187,7 @@ blocks:
       style:
         - inline
       colors:
-        - color--2
+        - color--1
     item:
       - src: /uploads/icons/photoshop-svgrepo-com.svg
         title: Photoshop
@@ -202,7 +227,7 @@ blocks:
       style:
         - inline
       colors:
-        - color--2
+        - color--1
     item:
       - src: /uploads/icons/unreal-engine-svgrepo-com.svg
         title: Unreal Engine
@@ -230,7 +255,7 @@ blocks:
       style:
         - inline
       colors:
-        - color--1
+        - color--2
     item:
       - title: DW Drums
         text: ''
@@ -266,7 +291,7 @@ blocks:
       style:
         - inline
       colors:
-        - color--1
+        - color--2
     item:
       - src: /uploads/icons/icons8-logic-pro-x-solid.svg
         title: Logic Pro X / 11

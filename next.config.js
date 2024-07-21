@@ -49,26 +49,6 @@ const nextConfig = {
       ],
     });
 
-    // Optionally handle SVGs as URLs
-    config.module.rules.push({
-      test: /\.svg$/,
-      issuer: {
-        and: [/\.(ts|tsx|js|jsx)$/],
-      },
-      use: [
-        {
-          loader: 'url-loader',
-          options: {
-            limit: 10000,
-            fallback: 'file-loader',
-            name: '[name].[ext]',
-            outputPath: 'static/svg/',
-            publicPath: '/_next/static/svg/',
-          },
-        },
-      ],
-    });
-
     return config;
   },
 

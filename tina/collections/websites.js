@@ -23,6 +23,12 @@ export default {
     router: ({ document }) => {
       return `/websites/${document._sys.filename}`;
     },
+
+    defaultItem: () => ({
+      published: true, 
+      // Ensure all other required fields or items are included
+      ...(item.defaultItem ? item.defaultItem() : {}), // Use defaultItem if it exists
+    }),
   },
   fields: [
     {

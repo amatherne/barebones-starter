@@ -37,7 +37,7 @@ const PageBlocksMain = {
             }),
           },
           options: [
-            { value:"",                   label:"Colors 1" },
+            { value:"color--1",           label:"Colors 1" },
             { value:"color--2",           label:"Colors 2" },
             { value:"color--gradient",    label:"Gradient BG" },
           ]

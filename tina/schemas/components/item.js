@@ -2,6 +2,7 @@
 
 import React from 'react';
 import link from './link';
+import opacity from './opacity';
 
 
 const item = {
@@ -20,6 +21,20 @@ const item = {
         thumbnail: item.src || '',
       };
     },
+    defaultItem: () => ({
+      styles: {
+        mobile_colors: 'color--1',  
+        mobile_opacity: 0.01,  
+        desktop_colors: 'color--gradient',  
+        desktop_opacity: 0.85,  
+      },
+      button: {
+        mobile_button: 'sm--button--primary',
+        desktop_button: 'md-up--button--primary',
+      },
+      // Ensure all other required fields or items are included
+      ...(item.defaultItem ? item.defaultItem() : {}), // Use defaultItem if it exists
+    }),
   },
   fields: [
     {
@@ -62,10 +77,61 @@ const item = {
       fields: link.fields,
     },
     {
-      type: 'string',
-      label: 'Custom CSS',
-      name: 'custom_css',
-      component: 'textarea'
+      type: 'object',
+      label: 'Styles',
+      name: 'styles',
+      fields: [
+        {
+          ...opacity, 
+          label: 'Desktop Opacity', 
+          name: 'desktop_opacity', 
+        },
+        {
+          type: "string",
+          component: 'select',
+          label: "Desktop Colors",
+          name: "desktop_colors",
+          list: true,
+          ui: {
+            itemProps: (item) => ({
+              label: item.label || 'Style',
+            }),
+          },
+          options: [
+            { value:"md-up--color--1",           label:"Colors 1" },
+            { value:"md-up--color--2",           label:"Colors 2" },
+            { value:"md-up--color--gradient",    label:"Gradient BG" },
+          ]
+        },
+        {
+          ...opacity, 
+          label: 'Mobile Opacity', 
+          name: 'mobile_opacity', 
+        },
+        {
+          type: "string",
+          component: 'select',
+          label: "Mobile Colors",
+          name: "mobile_colors",
+          list: true,
+          ui: {
+            itemProps: (item) => ({
+              label: item.label || 'Style',
+            }),
+          },
+          options: [
+            { value:"sm--color--1",           label:"Colors 1" },
+            { value:"sm--color--2",           label:"Colors 2" },
+            { value:"sm--color--gradient",    label:"Gradient BG" },
+          ]
+        },
+        {
+          type: 'string',
+          label: 'Custom CSS',
+          name: 'custom_css',
+          component: 'textarea'
+        },
+      ],
     },
   ],
 };

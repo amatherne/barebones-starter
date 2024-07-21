@@ -4,19 +4,6 @@ const link = {
   type: 'object',
   label: 'Link',
   name: 'link',
-  // ui: {
-  //   itemProps: (item) => {
-      
-  //     const linkTitle = item?.text ? item.text : null;
-
-  //     console.log('Button itemProps:', item?.button);
-
-  //     return {
-  //       label: linkTitle || 'FUCK',
-  //       // thumbnail: item.src || '',
-  //     };
-  //   },
-  // },
   fields: [
     {
       type: 'string',
@@ -38,6 +25,40 @@ const link = {
         'sounds',
         'post',
       ],
+    },
+    {
+      type: "string",
+      component: 'select',
+      label: "Desktop Button",
+      name: "desktop_button",
+      list: true,
+      ui: {
+        itemProps: (item) => ({
+          label: item.label || 'Style',
+        }),
+      },
+      options: [
+        { value:"md-up--button--primary",   label:"Primary" },
+        { value:"md-up--button--secondary", label:"Secondary" },
+        { value:"md-up--button--gradient",  label:"Gradient" },
+      ]
+    },
+    {
+      type: "string",
+      component: 'select',
+      label: "Mobile Button",
+      name: "mobile_button",
+      list: true,
+      ui: {
+        itemProps: (item) => ({
+          label: item.label || 'Style',
+        }),
+      },
+      options: [
+        { value:"sm--button--primary",      label:"Primary" },
+        { value:"sm--button--secondary",    label:"Secondary" },
+        { value:"sm--button--gradient",     label:"Gradient" },
+      ]
     },
   ],
 };

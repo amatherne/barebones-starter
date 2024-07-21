@@ -1,122 +1,131 @@
 
+@mixin responsive-button($grid-breakpoint-type: '') {
+  // sass-lint:disable no-important
 
-.btn,
-.button {
-  position: relative;
-  overflow: hidden;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  padding: var(--sp--1-4) var(--sp--2);
-  cursor: pointer;
-  text-decoration: none;
-  appearance: none;
-  font: {
-    size: var(--font-size);
-    weight: 600;
-    family: var(--font-body--family);
-  }
-  border: {
-    radius: var(--sp--1-8);
-    width: 0.1rem;
-    style: solid;
-    color: var(--color--btn-bdr);
-  }
-  color: var(--color--btn-txt);
-  background: var(--color--btn-bg);
-  --properties: color, background, border-color;
-
-  span {
+  .#{$grid-breakpoint-type}btn,
+  .#{$grid-breakpoint-type}button {
     position: relative;
-    z-index: 2;
-  }
-  
-  &,
-  &:before, 
-  &:after {
-    will-change: var(--properties);
-    transition: {
-      property: var(--properties);
-      duration: 0.3s;
-      timing-function: ease;
+    overflow: hidden;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--sp--1-4) var(--sp--2);
+    cursor: pointer;
+    text-decoration: none;
+    appearance: none;
+    font: {
+      size: var(--font-size);
+      weight: 600;
+      family: var(--font-body--family);
     }
-  }
+    border: {
+      radius: var(--sp--1-8);
+      width: 0.1rem;
+      style: solid;
+      color: var(--color--btn-bdr);
+    }
+    color: var(--color--btn-txt);
+    background: var(--color--btn-bg);
+    --properties: color, background, border-color;
 
-  &:hover, 
-  &:focus,
-  &.active {
-    color: var(--color--btn-txt-hover);
-    border-color: var(--color--btn-bdr-hover);
-    background: var(--color--btn-bg-hover);
-  }
-
-  &.secondary,
-  &--secondary {
-    --color--btn-bg: var(--color--btn-secondary-bg);
-    --color--btn-bdr: var(--color--btn-secondary-bdr);
-    --color--btn-txt: var(--color--btn-secondary-txt);
-    --color--btn-bg-hover: var(--color--btn-secondary-bg-hover);
-    --color--btn-bdr-hover: var(--color--btn-secondary-bdr-hover);
-    --color--btn-txt-hover: var(--color--btn-secondary-txt-hover);
-  }
-
-  &.gradient,
-  &--gradient {
-    --color--btn-txt: var(--color--background);
-    --color--btn-bg: var(--gradient);
-    --color--btn-bdr: transparent;
-    --color--btn-txt-hover:var(--color--background); 
-    --color--btn-bg-hover: var(--gradient);
-    --color--btn-bdr-hover: transparent;
-    border: none;
-
-    // &:before,
+    span {
+      position: relative;
+      z-index: 2;
+    }
+    
+    &,
+    &:before, 
     &:after {
-      content:'';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 101%;
-      height: 101%;
-      opacity: 1;
-      background: var(--gradient--reverse);
-      z-index: 0;
-      --properties: opacity;
-      // transition-duration: .2s;
+      will-change: var(--properties);
+      transition: {
+        property: var(--properties);
+        duration: 0.3s;
+        timing-function: ease;
+      }
     }
 
     &:hover, 
     &:focus,
     &.active {
+      color: var(--color--btn-txt-hover);
+      border-color: var(--color--btn-bdr-hover);
+      background: var(--color--btn-bg-hover);
+    }
+
+    &--secondary {
+      --color--btn-txt: var(--color--btn-secondary-txt);
+      --color--btn-bg: var(--color--btn-secondary-bg);
+      --color--btn-bdr: var(--color--btn-secondary-bdr);
+      --color--btn-txt-hover: var(--color--btn-secondary-txt-hover);
+      --color--btn-bg-hover: var(--color--btn-secondary-bg-hover);
+      --color--btn-bdr-hover: var(--color--btn-secondary-bdr-hover);
+    }
+
+    &--gradient {
+      --color--btn-txt: var(--gradient--text);
+      --color--btn-bg: var(--gradient);
+      --color--btn-bdr: transparent;
+      --color--btn-txt-hover:var(--gradient--text); 
+      --color--btn-bg-hover: var(--gradient);
+      --color--btn-bdr-hover: transparent;
+      border: none;
+
+      // &:before,
       &:after {
-        opacity: 0;
+        content:'';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 101%;
+        height: 101%;
+        opacity: 1;
+        background: var(--gradient--reverse);
+        z-index: 0;
+        --properties: opacity;
+        // transition-duration: .2s;
+      }
+
+      &:hover, 
+      &:focus,
+      &.active {
+        &:after {
+          opacity: 0;
+        }
+      }
+    }
+
+    &--link,
+    &--underline {
+      padding: 0;
+      min-width: 0;
+      min-height: 0;
+      text-decoration: underline !important;
+      text-underline-offset: var(--sp--1-4);
+      text-underline-position: from-font;
+      line-height: 2;
+      --color--btn-bg: transparent;
+      --color--btn-bdr: transparent;
+      --color--btn-txt: rgb(var(--color-base-text));
+      --color--btn-bg-hover: transparent;
+      --color--btn-bdr-hover: transparent;
+      --color--btn-txt-hover: var(--color--btn-txt);
+      opacity: 1;
+
+      &:hover, 
+      &:focus,
+      &.active {
+        opacity: 0.5;
       }
     }
   }
 
-  &.link,
-  &--link,
-  &.underline,
-  &--underline {
-    padding: 0;
-    min-width: 0;
-    min-height: 0;
-    text-decoration: underline !important;
-    text-underline-offset: var(--sp--1-4);
-    text-underline-position: from-font;
-    line-height: 2;
-    --color--btn-bg: transparent;
-    --color--btn-bdr: transparent;
-    --color--btn-txt: rgb(var(--color-base-text));
-    --color--btn-bg-hover: transparent;
-    --color--btn-bdr-hover: transparent;
-    --color--btn-txt-hover: var(--color--btn-txt);
-    opacity: 1;
+}
 
-    &:hover, 
-    &:focus,
-    &.active {
-      opacity: 0.5;
-    }
+
+@include responsive-button();
+
+@each $breakpoint in $grid-breakpoint-has-widths {
+  @include mq($breakpoint) {
+    @include responsive-button('#{$breakpoint}--');
   }
 }

@@ -17,6 +17,15 @@ const PageBlocksCtas = {
         thumbnail: item.src || '',
       };
     },
+
+    defaultItem: () => ({
+      published: true, 
+      styles: {
+        colors: 'color--1',  
+      },
+      // Ensure all other required fields or items are included
+      ...(item.defaultItem ? item.defaultItem() : {}), // Use defaultItem if it exists
+    }),
   },
   defaultItem: () => {
     return {
@@ -79,7 +88,7 @@ const PageBlocksCtas = {
             }),
           },
           options: [
-            { value:"",                   label:"Colors 1" },
+            { value:"color--1",           label:"Colors 1" },
             { value:"color--2",           label:"Colors 2" },
             { value:"color--gradient",    label:"Gradient BG" },
           ]

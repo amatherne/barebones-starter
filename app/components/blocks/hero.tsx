@@ -8,11 +8,12 @@ import Link from 'next/link';
 
 const Hero = ({ settings }) => {
 
-  const height = settings.height;
-  const min_height = settings.min_height;
-  const max_height = settings.max_height;
+  const styles            = settings.styles;
+  const height            = styles.height;
+  const min_height        = styles.min_height;
+  const max_height        = styles.max_height;
 
-  const hero = settings.item;
+  const hero              = settings.item;
 
   if (!hero) return null;
 
@@ -46,13 +47,23 @@ const Hero = ({ settings }) => {
         const buttonText          = item.button?.text || '';
         const buttonUrl           = item.button?.url || '';
         const buttonContent       = item.button?.content || '';
+        const buttonMobile        = item.button?.mobile_button || '';
+        const buttonDesktop       = item.button?.desktop_button || '';
 
         let buttonLink: string    = buttonUrl;
         if (buttonContent) {
           buttonLink              = formatUrl(buttonContent);  
         }
 
-        let customCSS             = item.custom_css || '';
+        const blockStyles         = item.styles;
+
+        const mobileColors        = blockStyles?.mobile_colors;
+        const mobileOpacity       = blockStyles?.mobile_opacity;
+
+        const desktopColors       = blockStyles?.desktop_colors;
+        const desktopOpacity      = blockStyles?.desktop_opacity;
+
+        let customCSS             = blockStyles?.custom_css || '';
 
         const hasButton           = buttonText && buttonLink;
         const hasOverlayLink      = !hasButton && buttonLink;
@@ -79,8 +90,23 @@ const Hero = ({ settings }) => {
               .replaceAll('##', ';')
         }
 
+        const blockStyle: any = { 
+          ...(mobileOpacity && { '--mobile--image--overlay-opacity': mobileOpacity }),
+          ...(desktopOpacity && { '--desktop--image--overlay-opacity': desktopOpacity }),
+        };
+
+        const blockClass = `
+          ${itemID} 
+          ${mobileColors ? mobileColors : ''}
+          ${desktopColors ? desktopColors : ''}
+        `.trim();
+
         return (
-          <div key={index} className={`hero--item ${itemID}`}>
+          <div 
+            key={index} 
+            className={`hero--item ${blockClass}`}
+            style={blockStyle}
+          >
             { hasOverlayLink && buttonLink ? (
               <Link 
                 href={buttonLink} 
@@ -109,7 +135,7 @@ const Hero = ({ settings }) => {
                 { hasButton ? (
                   <Link 
                     href={buttonLink} 
-                    className="button button--gradient"
+                    className={`button ${buttonMobile} ${buttonDesktop}`}
                   >
                     <span>{buttonText}</span>
                   </Link>
@@ -119,9 +145,7 @@ const Hero = ({ settings }) => {
             ) : null }
 
             {customCSS ? (
-              <style>{`
-                ${customCSS}
-              `}</style>
+              <style dangerouslySetInnerHTML={{ __html: customCSS }} />
             ) : null }
 
           </div>
