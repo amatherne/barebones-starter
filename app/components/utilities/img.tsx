@@ -53,10 +53,10 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes }) => {
 
   // Image paths for different sizes
   const imgSrcSet = `
-    ${newSrc}-500x250.webp 750w, 
-    ${newSrc}-1000x500.webp 1500w, 
-    ${newSrc}-2000x1000.webp 3000w,
-    ${newSrc}-3000x1500.webp 4500w
+    ${newSrc}-500x250.webp 500w, 
+    ${newSrc}-1000x500.webp 1000w, 
+    ${newSrc}-2000x1000.webp 2000w,
+    ${newSrc}-3000x1500.webp 3000w
   `;
 
   const imgSizes = '100vw';
