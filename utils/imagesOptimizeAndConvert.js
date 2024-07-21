@@ -7,13 +7,14 @@ const path = require('path');
 const chokidar = require('chokidar');
 const gm = require('gm').subClass({ imageMagick: true });
 const glob = require('glob');
-const { convertFileNameToCamelCase, checkForSimilarFileNames } = require('./helpers');
+const { convertFileNameToCamelCase } = require('./helpers');
 const { clearOutputDir } = require('./helpers--build-only');
 const { promisify } = require('util');
 
 const inputDir = './public/uploads';
 // const outputDir = './public/images';
 const outputDir = './public/imagesTest';
+const parentDir = path.dirname(outputDir);
 
 require('dotenv').config();
 
@@ -25,13 +26,63 @@ if (!fs.existsSync(outputDir)) {
 const resize = promisify(gm().resize.bind(gm()));
 const write = promisify(gm().write.bind(gm()));
 
-console.log('\n{imagesOptimizeAndConvert} -- Start processing images\n');
+console.log('\n{Image Optimize :: Start}\n');
+
+
+// Function to get a list of files using glob patterns
+const getFilesInDirectories = (inputDir) => {
+  return new Promise((resolve, reject) => {
+    glob(`${inputDir}/**/*.{jpg,jpeg,png,webp,gif}`, (err, files) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(files);
+      }
+    });
+  });
+};
+
+// Function to check for closely named files
+const checkFileName = async (files, fileNameWithoutExt) => {
+  const normalizedMap = new Map();
+  const lowerCaseFileName = fileNameWithoutExt.toLowerCase();
+
+  for (const file of files) {
+    const fileName = path.basename(file, path.extname(file));
+    const componentName = convertFileNameToCamelCase(fileName);
+    const normalized = componentName.toLowerCase();
+
+    // console.log('Normalized:', normalized);
+    // console.log('Current:', lowerCaseFileName);
+
+    if (normalized === lowerCaseFileName) {
+      console.log(`{Image Optimize :: Check File Name} -- Already Exists: ${fileNameWithoutExt}`);
+      return false; // Similar file found, return false
+    }
+
+    // Update the map if no similar file is found
+    normalizedMap.set(normalized, file);
+  }
+
+  console.log(`{Image Optimize :: Check File Name} -- Does Not Exist: ${fileNameWithoutExt}`);
+  return true; // No similar file found
+};
 
 // Function to process and resize image files
-const optimizeAndRenameImage = async (filePath) => {
+const createImages = async (filePath) => {
   const extname = path.extname(filePath).toLowerCase();
   const fileName = path.basename(filePath);
   const fileNameWithoutExt = path.basename(convertFileNameToCamelCase(fileName), extname);
+
+  // Get a list of all files in outputDir and parentDir
+  const outputFiles = await getFilesInDirectories(outputDir);
+  const parentFiles = await getFilesInDirectories(parentDir);
+  const allFiles = [...outputFiles, ...parentFiles];
+
+  // Check for closely named files in the output directory and its parent directory
+  if (!checkFileName(allFiles, fileNameWithoutExt)) {
+    return; // Skip processing if a similar file is found
+  }
 
   try {
     // Define sizes to create
@@ -49,7 +100,7 @@ const optimizeAndRenameImage = async (filePath) => {
     const resizedFileName = `${fileNameWithoutExt}.webp`;
     const resizedFilePath = path.join(outputDir, resizedFileName);
     await promisify(gmInstance.quality(75).write.bind(gmInstance))(resizedFilePath);
-    console.log(`{imagesOptimizeAndConvert} -- optimizeAndRenameImage -- resizedFileName: '${resizedFileName}' has been added.`);
+    console.log(`{Image Optimize :: Create Images}   -- File added: '${resizedFileName}'.`);
 
     // Resize and optimize each size
     const resizePromises = sizes.map(async (size) => {
@@ -57,21 +108,21 @@ const optimizeAndRenameImage = async (filePath) => {
       const resizedFilePathSizes = path.join(outputDir, resizedFileNameSizes);
       const gmInstanceSize = gm(filePath);
       await promisify(gmInstanceSize.resize(size.width, size.height).quality(75).write.bind(gmInstanceSize))(resizedFilePathSizes);
-      console.log(`{imagesOptimizeAndConvert} -- optimizeAndRenameImage -- resizing ..........`);
+      console.log(`{Image Optimize :: Create Images}   -- Resizing......`);
     });
 
     // Wait for all resize promises to complete
     await Promise.all(resizePromises);
-    console.log(`{imagesOptimizeAndConvert} -- optimizeAndRenameImage -- '${resizedFileName}' resizing done.`);
+    console.log(`{Image Optimize :: Create Images}   -- Done: '${resizedFileName}'.`);
 
   } catch (error) {
-    console.error(`{imagesOptimizeAndConvert} -- optimizeAndRenameImage -- Error processing ${filePath}:`, error);
+    console.error(`{Image Optimize :: Create Images}   -- Error: ${filePath}:`, error);
   }
 };
 
 // Function to process a single image file
 const processImage = async (filePath) => {
-  await optimizeAndRenameImage(filePath);
+  await createImages(filePath);
 };
 
 // Process all image files in the input directory and its subdirectories
@@ -84,28 +135,16 @@ const processAllImages = async () => {
   const filteredFiles = files.filter(file => !file.startsWith(path.resolve(outputDir)));
 
   if (filteredFiles.length === 0) {
-    console.log('{imagesOptimizeAndConvert} -- processAllImages -- No image files found.');
+    console.log('{Image Optimize :: Process All Images} -- No image files found.');
     return;
   }
-
-  console.log(`{imagesOptimizeAndConvert} -- processAllImages -- process.env.WATCHING: ${process.env.WATCHING}`);
-  if (process.env.WATCHING !== 'true') {
-    // Clear the output directory only if not watching
-    console.log('{imagesOptimizeAndConvert} -- processAllImages -- Clearing output directory because WATCHING is not true...');
-    await clearOutputDir(outputDir);
-  } else {
-    console.log('{imagesOptimizeAndConvert} -- processAllImages -- WATCHING mode is true. Output directory will not be cleared.');
-  }
-
-  // Check for closely named files before processing
-  // checkForSimilarFileNames(filteredFiles);
 
   const processingPromises = filteredFiles.map(file => {
     processImage(file);
   });
 
   await Promise.all(processingPromises);
-  console.log('{imagesOptimizeAndConvert} -- processAllImages -- Image files processed and responsive versions created.\n');
+  console.log('{Image Optimize :: Process All Images} -- All Images Processed.\n');
 };
 
 // Conditionally start the file watcher based on environment
@@ -121,20 +160,19 @@ if (process.env.WATCHING === 'true') {
   watcher
     .on('add', filePath => {
       if (filePath.match(/\.(jpg|jpeg|png|webp|gif)$/)) {
-        console.log(`{imagesOptimizeAndConvert} -- watcher -- Image '${filePath}' has been added.`);
         processImage(filePath);
       } 
     })
     .on('error', error => {
-      console.error('{imagesOptimizeAndConvert} -- watcher -- Error watching images:', error);
+      console.error('{Image Optimize :: Watcher} -- Error:', error);
     });
 
-  console.log('{imagesOptimizeAndConvert} -- watcher -- Watching for new images...');
+  console.log('{Image Optimize :: Watcher} -- Watching...');
 
   process.on('SIGINT', () => {
-    console.log('\n{imagesOptimizeAndConvert} -- watcher -- Image watcher stopped...\n');
+    console.log('\n{Image Optimize :: Watcher} -- Watcher stopped...\n');
     watcher.close();
-    process.exit();
+    process.exit(1);
   });
 
 } else {
