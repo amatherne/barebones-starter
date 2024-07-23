@@ -44,8 +44,8 @@ const HeadElement: React.FC<HeadProps> = ({ seoTitle, seoText }) => {
   return (
     <>
 
-      <Head></Head>
-
+      <Head><span /></Head>
+  
       <meta charSet="utf-8" />
       <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
       <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -53,7 +53,7 @@ const HeadElement: React.FC<HeadProps> = ({ seoTitle, seoText }) => {
       
       <title>{finalSeoTitle}</title>
       <meta name="description" content={escapeHtml(finalSeoText)} />  
-      
+
     </>
   );
 };
