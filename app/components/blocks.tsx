@@ -10,8 +10,7 @@ interface BlockProps {
   settings: any[]; // Ensure this is an array of blocks
 }
 
-function getSubstring(typename, string) {
-  const keyword = string || 'Blocks';
+function getSubstring(typename: string, keyword: string = 'Blocks'): string | null {
   if (typename.includes(keyword)) {
     return typename.substring(typename.indexOf(keyword));
   } else {
