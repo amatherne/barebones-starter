@@ -44,7 +44,7 @@ const isPostQuery = (content: MainContentType): content is PostQuery['post'] => 
 
 
 
-const MainContent: React.FC<MainContentProps> = ({ settings, content }) => {
+const MainContent: React.FC<MainContentProps> = ({ settings, content, index }) => {
 
   if (!settings || !content) return null;
 

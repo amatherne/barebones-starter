@@ -7,8 +7,8 @@ import { formatUrl } from '../utilities/formatUrl';
 import Link from 'next/link';
 import { convertFileNameToCamelCase, customCSS } from '../../../utils/helpers';
 
-const CTAs = ({ settings }) => {
-  
+const CTAs = ({ settings, index }) => {
+
   if (!settings) return null;
 
   // console.log(settings)

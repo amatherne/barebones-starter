@@ -7,7 +7,7 @@ import { formatUrl } from '../utilities/formatUrl';
 import Link from 'next/link';
 import { convertFileNameToCamelCase, customCSS } from '../../../utils/helpers';
 
-const Hero = ({ settings }) => {
+const Hero = ({ settings, index }) => {
 
   const styles            = settings.styles;
   const height            = styles?.height || '';
@@ -15,6 +15,8 @@ const Hero = ({ settings }) => {
   const max_height        = styles?.max_height || '';
 
   const hero              = settings.item;
+
+  const sectionIndex      = index;
 
   if (!hero) return null;
 
@@ -54,6 +56,11 @@ const Hero = ({ settings }) => {
         let buttonLink: string    = buttonUrl;
         if (buttonContent) {
           buttonLink              = formatUrl(buttonContent);  
+        }
+
+        let titleElement          = 'h2';
+        if (index == 0 && sectionIndex == 0) {
+          titleElement            = 'h1';
         }
 
         const blockStyles         = item.styles;
@@ -112,9 +119,9 @@ const Hero = ({ settings }) => {
             { hasContent ? (
               <div className="hero--text">
                 
-                { title ? (
-                  <h2 className="hxl">{title}</h2>
-                ) : null }
+                {title ? (
+                  React.createElement(titleElement, { className: "hxl" }, title)
+                ) : null}
 
                 { text ? (
                   <div className="rte">

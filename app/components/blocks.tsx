@@ -34,13 +34,13 @@ const Blocks: React.FC<BlockProps> = ({ settings, content }) => {
         switch (blockType) {
           
           case 'BlocksMain':
-            return <MainContent key={index} settings={block} content={content} {...block} />;
+            return <MainContent key={index} settings={block} index={index} content={content} {...block} />;
           
           case 'BlocksHero':
-            return <Hero key={index} settings={block} {...block} />;
+            return <Hero key={index} settings={block} index={index} {...block} />;
           
           case 'BlocksCtas':
-            return <CTAs key={index} settings={block} {...block} />;
+            return <CTAs key={index} settings={block} index={index} {...block} />;
 
           default:
             return null;
