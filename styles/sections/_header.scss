@@ -56,11 +56,14 @@
   &--menu-panel {
     background: var(--color--background);
     z-index: 3;
-    will-change: width, box-shadow;
-    transition: {
-      property: width, box-shadow;
-      duration: var(--header--transition-duration);
-      timing-function: var(--header--transition-ease);
+
+    body.site-loaded & {
+      will-change: width, box-shadow;
+      transition: {
+        property: width, box-shadow;
+        duration: var(--header--transition-duration);
+        timing-function: var(--header--transition-ease);
+      }
     }
     
     body:not(.header-menu-is-open) & {

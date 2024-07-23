@@ -49,12 +49,16 @@ img {
   z-index: 1;
   filter: blur(0);
   padding-left: 0;
-  will-change: filter, padding-left;
-  transition: {
-    property: filter, padding-left;
-    duration: var(--content--transition);
-    timing-function: ease-out;
+
+  body.site-loaded & {
+    will-change: filter, padding-left;
+    transition: {
+      property: filter, padding-left;
+      duration: var(--content--transition);
+      timing-function: ease-out;
+    }
   }
+
 
   body.header-menu-is-open & {
     --content--transition: .85s;
