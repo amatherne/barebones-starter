@@ -14,6 +14,7 @@ type MainContentType =
 
 interface MainContentProps {
   content: MainContentType;
+  index?: number;
   settings?: {
     title?: string;
     show_title?: boolean;
