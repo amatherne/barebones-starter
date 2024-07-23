@@ -39,7 +39,10 @@ export default {
     router: ({ document }) => {
       if (document._sys.filename === "home") {
         return `/`;
+      } else {
+        return document._sys.filename;
       }
+
       return undefined;
     },
   },

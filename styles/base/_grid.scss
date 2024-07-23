@@ -142,7 +142,7 @@
       > * { // should be only direct child
         // display: flex;
         // flex-direction: column;
-        // display: grid; // is this needed?
+        display: grid; // is this needed? used to center items
         height: 100%;
         width: 100%;
       }
