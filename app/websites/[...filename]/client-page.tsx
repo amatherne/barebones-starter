@@ -17,7 +17,7 @@ interface ClientPageProps {
   params: { filename: string[] };
 }
 
-const Website = (props: ClientPageProps) => {
+const Website: React.FC<ClientPageProps> = (props) => {
 
   const { data } = useTina({
     query: props.query,

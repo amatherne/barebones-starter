@@ -4,8 +4,8 @@ import Website from "./client-page";
 import client from "../../../tina/__generated__/client";
 
 export async function generateStaticParams() {
-  const pages = await client.queries.websiteConnection();
-  const paths = pages.data?.websiteConnection?.edges?.map((edge) => ({
+  const websites = await client.queries.websiteConnection();
+  const paths = websites.data?.websiteConnection?.edges?.map((edge) => ({
     filename: edge?.node?._sys.breadcrumbs,
   }));
 
@@ -24,6 +24,11 @@ export default async function PostPage({
   });
 
   return (
-    <Website {...data}></Website>
+    <Website
+      query={data.query}
+      variables={{ relativePath: `${params.filename.join("/")}.mdx` }}
+      data={data.data}
+      params={params}
+    />
   );
 }
