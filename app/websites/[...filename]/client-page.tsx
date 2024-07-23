@@ -6,15 +6,15 @@ import React from "react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
 import { tinaField, useTina } from "tinacms/dist/react";
 import { WebsiteQuery } from "../../../tina/__generated__/types";
-// import { Img } from '../../../components/Utilities/Img';
-// import Head from '../../../components/head/head';
+import Blocks from '../../components/blocks';
 
 interface ClientPageProps {
   query: string;
   variables: {
     relativePath: string;
   };
-  data: WebsiteQuery;
+  data: { page: WebsiteQuery['website'] };
+  params: { filename: string[] };
 }
 
 const Website = (props: ClientPageProps) => {
@@ -25,42 +25,14 @@ const Website = (props: ClientPageProps) => {
     data: props.data,
   });
 
-  const { website } = data;
-  const { body, title } = website || {};
-  // const images = gallery || [];
-  // const hero = images.find(item => item?.hero) || null;
-
-  const pageSeoTitle = data?.website?.seo_title || ""; 
-  const pageSeoText = data?.website?.seo_text || "";   
+  // Ensure blocks is an array
+  const settings = data.website.blocks || [];
 
   return (
     <>
       
-      {/*<Head seoTitle={pageSeoTitle} seoText={pageSeoText} />*/}
+      <Blocks settings={settings} content={data.website} />
 
-      <section className="page page--default">
-        <div className="page-width">
-        
-        
-          {/*{hero && hero.src !== '' && (
-            <Img src={hero.src} alt={hero.alt} className="hero-image" />
-          )}*/}
-
-          <h1>{title}</h1>
-
-          {body && (
-            <div data-tina-field={tinaField(website, "body")}>
-              <TinaMarkdown content={body} />
-            </div>
-          )}
-
-         {/* <code>
-            <pre style={{ backgroundColor: "lightgray" }}>
-              {JSON.stringify(website, null, 2)}
-            </pre>
-          </code>*/}
-        </div>
-      </section>
     </>
   );
 };

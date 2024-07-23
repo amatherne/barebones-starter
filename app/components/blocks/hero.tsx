@@ -5,6 +5,7 @@ import { TinaMarkdown, TinaMarkdownContent } from 'tinacms/dist/rich-text';
 import ImgOutput from '../utilities/img';
 import { formatUrl } from '../utilities/formatUrl';
 import Link from 'next/link';
+import { convertFileNameToCamelCase, customCSS } from '../../../utils/helpers';
 
 const Hero = ({ settings }) => {
 
@@ -63,7 +64,7 @@ const Hero = ({ settings }) => {
         const desktopColors       = blockStyles?.desktop_colors;
         const desktopOpacity      = blockStyles?.desktop_opacity;
 
-        let customCSS             = blockStyles?.custom_css || '';
+        let blockCustomCSS        = blockStyles?.custom_css || '';
 
         const hasButton           = buttonText && buttonLink;
         const hasOverlayLink      = !hasButton && buttonLink;
@@ -73,21 +74,10 @@ const Hero = ({ settings }) => {
         const hasContent          = title || text || hasButton;
 
         const itemIDString        = `hero--item${image?'--'+image:''}${imageAlt?'--'+imageAlt:''}-${title?'--'+title:''}`;
-        const itemID = 
-          itemIDString
-            .toLowerCase()
-            .replaceAll(/[^\w\s-]/gi, '')
-            .replaceAll(/\s+/g, '-')
-            .replaceAll(/-+/g, '-')
-            .replaceAll(/^-|-$/g, '');
+        const itemID              = convertFileNameToCamelCase(itemIDString);
 
-        if (customCSS) {
-          customCSS = 
-            customCSS
-              .replaceAll('==', '.' + itemID)
-              .replaceAll(';;', '##')
-              .replaceAll(';', '!important;')
-              .replaceAll('##', ';')
+        if (blockCustomCSS) {
+          blockCustomCSS          = customCSS(blockCustomCSS,itemID);
         }
 
         const blockStyle: any = { 
@@ -144,8 +134,8 @@ const Hero = ({ settings }) => {
               </div>
             ) : null }
 
-            {customCSS ? (
-              <style dangerouslySetInnerHTML={{ __html: customCSS }} />
+            {blockCustomCSS ? (
+              <style dangerouslySetInnerHTML={{ __html: blockCustomCSS }} />
             ) : null }
 
           </div>

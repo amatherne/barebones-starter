@@ -37,15 +37,15 @@
 @mixin responsive-text-align-helper($grid-breakpoint-type: '') {
   // sass-lint:disable no-important
   .#{$grid-breakpoint-type}text-left {
-    text-align: left !important;
+    text-align: left;
   }
 
   .#{$grid-breakpoint-type}text-right {
-    text-align: right !important;
+    text-align: right;
   }
 
   .#{$grid-breakpoint-type}text-center {
-    text-align: center !important;
+    text-align: center;
   }
 }
 

@@ -5,6 +5,7 @@ import { TinaMarkdown, TinaMarkdownContent } from 'tinacms/dist/rich-text';
 import ImgOutput from '../utilities/img';
 import { formatUrl } from '../utilities/formatUrl';
 import Link from 'next/link';
+import { convertFileNameToCamelCase, customCSS } from '../../../utils/helpers';
 
 const CTAs = ({ settings }) => {
   
@@ -39,12 +40,7 @@ const CTAs = ({ settings }) => {
   
   const ctaTitles = ctas ? ctas.map((cta) => {
     const title = cta.title || '';
-    return title
-      .toLowerCase()
-      .replaceAll(/[^\w\s-]/gi, '')
-      .replaceAll(/\s+/g, '-')
-      .replaceAll(/-+/g, '-')
-      .replaceAll(/^-|-$/g, '');
+    return convertFileNameToCamelCase(title);
   }).filter(Boolean).join('--') : [];
 
   const sectionTitleHasContent      = sectionTitle || sectionText || sectionHasButton;
@@ -56,22 +52,11 @@ const CTAs = ({ settings }) => {
   const style                       = settings.styles?.style;
   const color                       = settings.styles?.colors;
 
-  const sectionIDString            = `ctas--section${sectionTitle?'-'+sectionTitle:''}${sectionButtonText?'-'+sectionButtonText:''}${ctaTitles?'-'+ctaTitles:''}`;
-  const sectionID = 
-    sectionIDString
-      .toLowerCase()
-      .replaceAll(/[^\w\s-]/gi, '')
-      .replaceAll(/\s+/g, '-')
-      .replaceAll(/-+/g, '-')
-      .replaceAll(/^-|-$/g, '');
+  const sectionIDString             = `ctas--section${sectionTitle?'-'+sectionTitle:''}${sectionButtonText?'-'+sectionButtonText:''}${ctaTitles?'-'+ctaTitles:''}`;
+  const sectionID                   = convertFileNameToCamelCase(sectionIDString);
 
   if (sectionCustomCSS) {
-    sectionCustomCSS = 
-      sectionCustomCSS
-        .replaceAll('==', '.' + sectionID)
-        .replaceAll(';;', '##')
-        .replaceAll(';', '!important;')
-        .replaceAll('##', ';')
+    sectionCustomCSS                = customCSS(sectionCustomCSS,sectionID);
   }
   
   return (
@@ -81,9 +66,7 @@ const CTAs = ({ settings }) => {
       <div className="page-width">
 
         {sectionCustomCSS ? (
-          <style>{`
-            ${sectionCustomCSS}
-          `}</style>
+          <style dangerouslySetInnerHTML={{ __html: sectionCustomCSS }} />
         ) : null }
 
         {sectionTitleHasContent ? (
@@ -132,7 +115,7 @@ const CTAs = ({ settings }) => {
                 buttonLink              = formatUrl(buttonContent);  
               }
 
-              let customCSS             = item.custom_css || '';
+              let blockCustomCSS        = item.custom_css || '';
 
               const hasButton           = buttonText && buttonLink;
               const hasOverlayLink      = !hasButton && buttonLink;
@@ -142,21 +125,10 @@ const CTAs = ({ settings }) => {
               const hasContent          = title || text || hasButton;
 
               const itemIDString        = `ctas--item${image?'-'+image:''}${imageAlt?'-'+imageAlt:''}${title?'-'+title:''}-${index}`;
-              const itemID = 
-                itemIDString
-                  .toLowerCase()
-                  .replace(/[^\w\s-]/gi, '')
-                  .replace(/\s+/g, '-')
-                  .replace(/-+/g, '-')
-                  .replace(/^-|-$/g, '');
+              const itemID              = convertFileNameToCamelCase(itemIDString);
 
-              if (customCSS) {
-                customCSS = 
-                  customCSS
-                    .replace('==', '.' + itemID)
-                    .replace(';;', '##')
-                    .replace(';', '!important;')
-                    .replace('##', ';')
+              if (blockCustomCSS) {
+                blockCustomCSS          = customCSS(blockCustomCSS);
               }
 
               return (
@@ -199,10 +171,8 @@ const CTAs = ({ settings }) => {
                       </div>
                     ) : null }
 
-                    {customCSS ? (
-                      <style>{`
-                        ${customCSS}
-                      `}</style>
+                    {blockCustomCSS ? (
+                      <style dangerouslySetInnerHTML={{ __html: blockCustomCSS }} />
                     ) : null }
 
                   </div>

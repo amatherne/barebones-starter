@@ -47,8 +47,10 @@ You can check out [Tina Github repository](https://github.com/tinacms/tinacms) -
 ## Reset
 
 ```
+
 yarn cache clean
 rm -rf node_modules
 rm yarn.lock
+rm -r .next
 yarn install
 ```

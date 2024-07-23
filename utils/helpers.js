@@ -18,8 +18,13 @@ function wrapCharactersInSpan(text) {
 
 // Function to convert a string to camel case
 const convertFileNameToCamelCase = (str) => {
-  return str
-    .split('.').slice(0, -1).join('.')  // remove .ext
+  let string = str;
+  if (string.includes('.')) {
+    string = string.split('.').slice(0, -1).join('.');  // remove .ext
+  }
+  return string
+    .replace('--', '-')                 // Remove special characters
+    .replace('_', '-')                  // Remove special characters
     .replace(/[^\w\s-]/g, '')           // Remove special characters
     .replace(/\s+/g, '-')               // Replace spaces with hyphens
     .replace(/-+/g, '-')                // Replace multiple hyphens with a single hyphen
@@ -51,8 +56,41 @@ const checkForSimilarFileNames = (files, fileNameWithoutExt) => {
   return false; // No similar file found
 };
 
+
+const cleanBlockName = (typename, string) => {
+  const keyword = string || 'Blocks';
+  if (typename.includes(keyword)) {
+    return typename.substring(typename.indexOf(keyword));
+  } else {
+    return null;
+  }
+};
+
+
+const customCSS = (css,className) => {
+  try {
+    if (typeof className !== 'string' || typeof css !== 'string') {
+      throw new Error('Invalid input types. Both className and CSS should be strings.');
+    }
+    const modifiedCSS = 
+      css
+        .replaceAll('==', '.' + className)
+        .replaceAll(';;', '##')
+        .replaceAll(';', '!important;')
+        .replaceAll('##', ';');
+    return modifiedCSS;
+  } catch (error) {
+    console.error('Error in customCSS function:', error);
+    return ''; // Return an empty string or handle the error as needed
+  }
+};
+
+
+
 module.exports = {
   wrapCharactersInSpan,
   convertFileNameToCamelCase,
   checkForSimilarFileNames,
+  cleanBlockName,
+  customCSS,
 };

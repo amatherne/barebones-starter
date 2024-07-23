@@ -8,11 +8,10 @@ const chokidar = require('chokidar');
 const gm = require('gm').subClass({ imageMagick: true });
 const glob = require('glob');
 const { convertFileNameToCamelCase } = require('./helpers');
-// const { clearOutputDir } = require('./helpers--build-only');
 const { promisify } = require('util');
 
 const inputDir = './public/uploads';
-const outputDir = './public/images';
+const outputDir = './public/media'; // cannot be /public/images. it gets deleted every time for some reason.
 const parentDir = path.dirname(outputDir);
 
 require('dotenv').config();
@@ -21,7 +20,6 @@ if (!fs.existsSync(outputDir)) {
   fs.mkdirSync(outputDir, { recursive: true });
 }
 
-// Promisify gm methods
 const resize = promisify(gm().resize.bind(gm()));
 const write = promisify(gm().write.bind(gm()));
 
@@ -30,7 +28,6 @@ console.log('\n{Image Optimize :: Start}\n');
 
 const normalizeFileName = (fileName) => fileName.toLowerCase().replace(/[^a-z0-9]/g, '');
 
-// Function to get a list of files using glob patterns
 const getFilesInDirectories = (inputDir) => {
   return new Promise((resolve, reject) => {
     glob(`${inputDir}/**/*.{jpg,jpeg,png,webp,gif}`, (err, files) => {
@@ -43,8 +40,6 @@ const getFilesInDirectories = (inputDir) => {
   });
 };
 
-
-// Function to check for closely named files
 const checkFileName = async (files, fileNameWithoutExt) => {
   const normalizedMap = new Map();
 
@@ -52,38 +47,31 @@ const checkFileName = async (files, fileNameWithoutExt) => {
     const fileName = path.basename(file, path.extname(file));
     const normalizedFileName = normalizeFileName(fileName);
 
-    // Add to the map
     normalizedMap.set(normalizedFileName, file);
 
-    // Check if the normalized file name matches
     if (normalizedFileName !== '' && normalizedFileName === normalizeFileName(fileNameWithoutExt)) {
       console.log(`{Image Optimize :: Check File Name} -- Already Exists: '${fileNameWithoutExt}'`);
-      return false; // Similar file found, return false
+      return false; 
     }
   }
 
   console.log(`{Image Optimize :: Check File Name} -- Does Not Exist: '${fileNameWithoutExt}'`);
-  return true; // No similar file found
+  return true; 
 };
 
-
-// Function to process and resize image files
 const createImages = async (filePath) => {
   const extname = path.extname(filePath).toLowerCase();
   const fileName = path.basename(filePath);
   const fileNameWithoutExt = path.basename(convertFileNameToCamelCase(fileName), extname);
 
-  // Get a list of all files in outputDir
   const outputFiles = await getFilesInDirectories(outputDir);
 
-  // Check for closely named files in the output directory
   const isUnique = await checkFileName(outputFiles, fileNameWithoutExt);
   if (!isUnique) {
-    return; // Skip processing if a similar file is found
+    return; 
   }
 
   try {
-    // Define sizes to create
     const sizes = [
       { width: 500, height: 250 },
       { width: 1000, height: 500 },
@@ -91,16 +79,13 @@ const createImages = async (filePath) => {
       { width: 3000, height: 1500 },
     ];
 
-    // Create a new gm instance for each size
     const gmInstance = gm(filePath);
 
-    // Resize and convert to webp format
     const resizedFileName = `${fileNameWithoutExt}.webp`;
     const resizedFilePath = path.join(outputDir, resizedFileName);
     await promisify(gmInstance.quality(75).write.bind(gmInstance))(resizedFilePath);
     console.log(`{Image Optimize :: Create Images}   -- Creating Image: '${resizedFileName}'`);
 
-    // Resize and optimize each size
     const resizePromises = sizes.map(async (size) => {
       const resizedFileNameSizes = `${fileNameWithoutExt}-${size.width}x${size.height}.webp`;
       const resizedFilePathSizes = path.join(outputDir, resizedFileNameSizes);
@@ -108,7 +93,6 @@ const createImages = async (filePath) => {
       await promisify(gmInstanceSize.resize(size.width, size.height).quality(75).write.bind(gmInstanceSize))(resizedFilePathSizes);
     });
 
-    // Wait for all resize promises to complete
     await Promise.all(resizePromises);
     console.log(`{Image Optimize :: Create Images}   -- Image Created:  '${resizedFileName}'`);
 
@@ -117,20 +101,14 @@ const createImages = async (filePath) => {
   }
 };
 
-
-// Function to process a single image file
 const processImage = async (filePath) => {
   await createImages(filePath);
 };
 
-
-// Process all image files in the input directory and its subdirectories
 const processAllImages = async () => {
-  // Find all image files in the source directory and its subdirectories
   const pattern = `${inputDir}/**/*.{jpg,jpeg,png,webp,gif}`;
   const files = glob.sync(pattern);
 
-  // Filter out files that are in the outputDir
   const filteredFiles = files.filter(file => !file.startsWith(path.resolve(outputDir)));
 
   if (filteredFiles.length === 0) {
@@ -146,14 +124,12 @@ const processAllImages = async () => {
   console.log('{Image Optimize :: Process All Images} -- All Images Processed.\n');
 };
 
-// Conditionally start the file watcher based on environment
 if (process.env.WATCHING === 'true') {
-  // Watch for file changes and process new files
   
   const watcher = chokidar.watch(inputDir, {
-    ignored: [/^\./, /\.svg$/], // Ignore SVG files
+    ignored: [/^\./, /\.svg$/], 
     persistent: true,
-    awaitWriteFinish: true, // Wait for the file to be fully written before triggering events
+    awaitWriteFinish: true, 
   });
 
   watcher
@@ -175,6 +151,5 @@ if (process.env.WATCHING === 'true') {
   });
 
 } else {
-  // In production or other environments, process existing files
   processAllImages();
 }

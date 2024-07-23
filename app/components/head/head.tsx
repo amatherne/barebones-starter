@@ -3,9 +3,11 @@
 import React from 'react';
 import Head from 'next/head';
 import Globals from '../../../content/global_settings/global.json';
+
 import '../../../styles/global.scss';
 import '../../../styles/components.scss';
 import '../../../styles/sections.scss';
+
 import { finishedLoading } from '../../../utils/index.js'; 
 
 interface HeadProps {

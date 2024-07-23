@@ -8,7 +8,7 @@ interface ImgProps {
   src: string;
   alt?: string;
   className?: string;
-  sizes?: string; // Prop for responsive sizes
+  sizes?: string;
 }
 
 const Img: React.FC<ImgProps> = ({ src, alt, className, sizes }) => {
@@ -38,20 +38,14 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes }) => {
 
   const baseFileName = src.split('/').pop();
   const camelSrc = convertFileNameToCamelCase(baseFileName);
-  const newPath = './images/';
+  const newPath = '/media/';
   const newSrc = newPath+camelSrc;
 
   const imageIDString = `image--${camelSrc ? '--' + camelSrc : ''}${alt ? '--' + alt : ''}${className ? '--' + className : ''}`;
-  const imageID = imageIDString
-    .toLowerCase()
-    .replace(/[^\w\s-]/gi, '')
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-')
-    .replace(/^-|-$/g, '');
+  const imageID = convertFileNameToCamelCase(imageIDString);
 
   let imgSrc = src;
 
-  // Image paths for different sizes
   const imgSrcSet = `
     ${newSrc}-500x250.webp 500w, 
     ${newSrc}-1000x500.webp 1000w, 
@@ -73,7 +67,7 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes }) => {
         </Suspense>
       ) : (
         <img
-          src={imgSrc} // Default image
+          src={imgSrc} 
           alt={alt || ''}
           className="image--image"
           srcSet={!isSvg ? imgSrcSet : undefined}
@@ -84,7 +78,7 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes }) => {
       )}
       {!isSvg && dimensions.width && dimensions.height ? (
         <style jsx>{`
-          .image--${imageID} {
+          .${imageID} {
             --image--natural-width: ${dimensions.width}px;
             --image--natural-height: ${dimensions.height}px;
             --image--aspect-ratio: ${(dimensions.width / dimensions.height).toFixed(2)};

@@ -1,42 +1,35 @@
 // ../components/utilities/card.tsx
 
 import ImgOutput from './img';
-
+import { cleanBlockName } from '../../../utils/helpers';
 import Link from "next/link";
 
 const card = ({object}) => {
 
   const type      = object.node.__typename;
   const handle    = `${type.toLowerCase()}${type.slice(-1)==='s'?'':'s'}`;
-  const hero      = object.node.hero || null;
+  let imgSrc      = object.node.blocks || '';
+  let imgAlt      = '';
 
-  const imgSrc    = object.node.hero?.gallery?.[0].src || null;
-  const imgAlt    = object.node.hero?.gallery?.[0].alt || null;
+  if (imgSrc) {
+    const img     = object.node.blocks.find(block => cleanBlockName(block.__typename) === 'BlocksHero').item?.[0] || '';
+    imgSrc        = img.src || '';
+    imgAlt        = img.alt || '';
+  }
 
   return (
     <div className="card">
 
       <Link href={`/${handle}/${object.node._sys.filename}`} title={object.node.title} className="overlay--link"></Link>
 
-      {/*{imgSrc ? (
+      {imgSrc ? (
         <ImgOutput src={imgSrc} alt={imgAlt} className="card--image" />
-      ) : null}*/}
+      ) : null}
 
       <h2 className="h2">
         {object.node.title}
       </h2>
 
-      {/*<div>
-        <code>
-          <pre
-            style={{ 
-              backgroundColor: "lightgray",
-            }}
-          >
-            {JSON.stringify(object, null, 2)}
-          </pre>
-        </code>
-      </div>*/}
     </div>
   );
 }

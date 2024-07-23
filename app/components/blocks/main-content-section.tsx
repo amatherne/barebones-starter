@@ -3,6 +3,8 @@
 import React from 'react';
 import { TinaMarkdown, TinaMarkdownContent } from 'tinacms/dist/rich-text';
 import { PageQuery, WebsiteQuery, SoundsQuery, PostQuery } from '../../../tina/__generated__/types';
+import { convertFileNameToCamelCase, customCSS } from '../../../utils/helpers';
+
 
 type MainContentType = 
   PageQuery['page'] | 
@@ -23,7 +25,7 @@ interface MainContentProps {
   } | null;
 }
 
-// Type guard functions
+
 const isPageQuery = (content: MainContentType): content is PageQuery['page'] => {
   return (content as PageQuery['page']).__typename === 'Page';
 };
@@ -40,55 +42,33 @@ const isPostQuery = (content: MainContentType): content is PostQuery['post'] => 
   return (content as PostQuery['post']).__typename === 'Post';
 };
 
-const MainContent: React.FC<MainContentProps> = ({ settings, content }) => {
 
-  // console.log(settings)
+
+const MainContent: React.FC<MainContentProps> = ({ settings, content }) => {
 
   if (!settings || !content) return null;
 
-  const checkMain = isPageQuery(content) || isWebsiteQuery(content) || isSoundsQuery(content) || isPostQuery(content);
+  const checkMain                                       = isPageQuery(content) || isWebsiteQuery(content) || isSoundsQuery(content) || isPostQuery(content);
 
-  // Title can be taken from settings or content
-  const title = settings?.title || (checkMain ? content.title : null);
+  const title                                           = settings?.title || (checkMain ? content.title : null);
+  const bodyText                                        = settings?.title || (checkMain) ? content.body : null;
 
-  // Determine the text source
-  const bodyText = settings?.title || (checkMain) ? content.body : null;
+  let text: TinaMarkdownContent | null                  = null;
+  if (bodyText && bodyText.children.length !== 0) text  = bodyText;
 
-  // Combine text sources if available
-  let text: TinaMarkdownContent | null = null;
-  if (bodyText && bodyText.children.length !== 0) text = bodyText;
+  const showTitle                                       = settings?.show_title !== false;
 
-  // Determine if the title should be shown
-  const showTitle = settings?.show_title !== false;
-
-  // console.log('showTitle: ',showTitle)
-  // console.log('settings?.show_title: ',settings?.show_title)
-
-  // Check if the section has any content
-  const sectionHasContent = title || text;
-
+  const sectionHasContent                               = title || text;
   if (!sectionHasContent) return null;
 
-  // Handle custom styles
-  const color = settings?.styles?.colors || '';
+  const color                                           = settings?.styles?.colors || '';
 
-  const sectionIDString = `ctas--section${title ? '-' + title : ''}`;
-  const sectionID = 
-    sectionIDString
-      .toLowerCase()
-      .replaceAll(/[^\w\s-]/gi, '')
-      .replaceAll(/\s+/g, '-')
-      .replaceAll(/-+/g, '-')
-      .replaceAll(/^-|-$/g, '');
+  const sectionIDString                                 = `ctas--section${title ? '-' + title : ''}`;
+  const sectionID                                       = convertFileNameToCamelCase(sectionIDString);
 
-  let sectionCustomCSS = settings?.custom_css || '';
+  let sectionCustomCSS                                  = settings?.custom_css || '';
   if (sectionCustomCSS) {
-    sectionCustomCSS = 
-      sectionCustomCSS
-        .replaceAll('==', '.' + sectionID)
-        .replaceAll(';;', '##')
-        .replaceAll(';', '!important;')
-        .replaceAll('##', ';');
+    sectionCustomCSS                                    = customCSS(sectionCustomCSS,sectionID);
   }
 
   return (
