@@ -13,7 +13,7 @@ interface ClientPageProps {
   variables: {
     relativePath: string;
   };
-  data: { page: WebsiteQuery['website'] };
+  data: { website: WebsiteQuery['website'] };
   params: { filename: string[] };
 }
 
@@ -25,7 +25,6 @@ const Website = (props: ClientPageProps) => {
     data: props.data,
   });
 
-  // Ensure blocks is an array
   const settings = data.website.blocks || [];
 
   return (
