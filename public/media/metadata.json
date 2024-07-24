@@ -610,5 +610,39 @@
         "height": 250
       }
     ]
+  },
+  "vintage10820571280": {
+    "original": {
+      "fileName": "vintage10820571280.webp",
+      "path": "public/media/vintage10820571280.webp",
+      "width": 1280,
+      "height": 853
+    },
+    "sizes": [
+      {
+        "fileName": "vintage10820571280-500x250.webp",
+        "path": "public/media/vintage10820571280-500x250.webp",
+        "width": 500,
+        "height": 250
+      },
+      {
+        "fileName": "vintage10820571280-1000x500.webp",
+        "path": "public/media/vintage10820571280-1000x500.webp",
+        "width": 1000,
+        "height": 500
+      },
+      {
+        "fileName": "vintage10820571280-2000x1000.webp",
+        "path": "public/media/vintage10820571280-2000x1000.webp",
+        "width": 2000,
+        "height": 1000
+      },
+      {
+        "fileName": "vintage10820571280-3000x1500.webp",
+        "path": "public/media/vintage10820571280-3000x1500.webp",
+        "width": 3000,
+        "height": 1500
+      }
+    ]
   }
 }
