@@ -48,20 +48,13 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes }) => {
     fetchMetadata();
   }, [src, isSvg]);
 
-  const handleImageLoad = (event: React.SyntheticEvent<HTMLImageElement>) => {
-    const { naturalWidth, naturalHeight } = event.currentTarget;
-    setDimensions({ width: naturalWidth, height: naturalHeight });
-  };
-
   const baseFileName = src.split('/').pop();
   const camelSrc = convertFileNameToCamelCase(baseFileName);
   const newPath = '/media/';
   const newSrc = newPath + camelSrc;
 
   const imageIDString = `image--${camelSrc ? '--' + camelSrc : ''}${alt ? '--' + alt : ''}${className ? '--' + className : ''}`;
-  console.log(imageIDString)
   const imageID = convertFileNameToCamelCase(imageIDString);
-  console.log(imageID)
 
   let imgSrc = src;
   let imgSrcSet = '';
@@ -73,29 +66,37 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes }) => {
   let originalSrc = '';
 
   if (metadata[camelSrc]) {
-
     const original = metadata[camelSrc].original;
     const sizes = metadata[camelSrc].sizes;
-    // console.log(original)
 
     imgSrc = `${newPath}${original.fileName}`;
     imgSrcSet = sizes.map((size: any) => `${newPath}${size.fileName} ${size.width}w`).join(', ');
     imgSizes = sizes.map((size: any) => `(max-width: ${size.width}px) ${size.width}px`).join(', ');
 
-    originalSrc = original.path;
     aspectRatio = original.aspectRatio;
     imgWidth = original.width;
     imgHeight = original.height;
+    originalSrc = `${newPath}${original.fileName}`;
   }
 
   return (
-    <div className={`image--outer ${imageID} ${className || ''}`}>
+    <div
+      className={`image--outer ${imageID} ${className || ''}`}
+    >
       {isSvg && SvgComponent ? (
         <Suspense fallback={<div>Loading...</div>}>
           <SvgComponent />
         </Suspense>
       ) : (
-        <div className="image--inner">
+        <div 
+          className="image--inner"
+          style={{
+            '--image--aspect-ratio': aspectRatio ? `calc(${aspectRatio} * 100%)` : '56.6%', // Fallback ratio
+            '--image--max-source': `url('${originalSrc}')`,
+            '--image--natural-width': `${imgWidth}px`,
+            '--image--natural-height': `${imgHeight}px`,
+          }}
+        >
           <img
             src={imgSrc}
             alt={alt || ''}
@@ -103,26 +104,10 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes }) => {
             srcSet={!isSvg ? imgSrcSet : undefined}
             sizes={!isSvg ? imgSizes || '100vw' : undefined}
             loading={!isSvg ? 'lazy' : undefined}
-            onLoad={handleImageLoad}
+            // onLoad={handleImageLoad}
           />
         </div>
       )}
-      {!isSvg && aspectRatio ? (
-        <style jsx global>{`
-          .${imageID} {
-            --image--max-source: url('${originalSrc}');
-            --image--natural-width: ${imgWidth}px;
-            --image--natural-height: ${imgHeight}px;
-            --image--set-width:var(--image--natural-width);
-            --image--set-height:var(--image--natural-height);
-            --image--aspect-ratio: calc(${aspectRatio} * 100%);
-            max-width:var(--image--set-width,100%);
-          }
-          .${imageID} .image--inner {
-            padding-top:var(--image--aspect-ratio,56.6%);
-          }
-        `}</style>
-      ) : null}
     </div>
   );
 };
