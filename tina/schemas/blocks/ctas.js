@@ -99,7 +99,10 @@ const PageBlocksCtas = {
           options: [
             { value:"color--1",           label:"Colors 1" },
             { value:"color--2",           label:"Colors 2" },
-            { value:"color--gradient",    label:"Gradient BG" },
+            { value:"color--3",           label:"Colors 3" },
+            { value:"color--4",           label:"Colors 4" },
+            { value:"color--gradient",    label:"Gradient 1" },
+            { value:"color--gradient-2",  label:"Gradient 2" },
           ]
         },
 

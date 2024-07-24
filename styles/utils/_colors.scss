@@ -1,46 +1,65 @@
 
 $colors: (
-  mineshaft-black: #212121,
-  cod-black: #131313,
+  black: #000000,
+  mineshaft-black: #222222,
+  cod-black: #1c1c1c,
+  tundora-black: #3b3b3b,
   white: #ffffff,
+  alabaster-white: #FAFAFA,
+  wildsand-white: #F5F5F5,
+  alto-white: #E0E0E0,
   mandy-pink: #EE5C6C,
   cerise-pink: #e32b72,
   violet-purple: #1D063B,
   gradient-midpoint: midpoint-color(#EE5C6C, #6a0d83)
 );
 
-:root {
+:root,
+*,
+*:before,
+*:after {
+
   @include generate-color-variables($colors);
 
-  --default--color--foreground      : var(--color--cod-black);
-  --default--color--foreground-rgb  : var(--color--cod-black-rgb);
-  --default--color--background      : var(--color--white);
-  --default--color--background-rgb  : var(--color--white-rgb);
+  --default--color--foreground              : var(--color--cod-black);
+  --default--color--foreground-rgb          : var(--color--cod-black-rgb);
+  --default--color--background              : var(--color--alabaster-white);
+  --default--color--background-rgb          : var(--color--alabaster-white-rgb);
 
-  --alt--color--foreground          : var(--default--color--background);
-  --alt--color--foreground-rgb      : var(--default--color--background-rgb);
-  --alt--color--background          : var(--default--color--foreground);
-  --alt--color--background-rgb      : var(--default--color--foreground-rgb);
+  --alt--color--foreground                  : var(--default--color--background);
+  --alt--color--foreground-rgb              : var(--default--color--background-rgb);
+  --alt--color--background                  : var(--default--color--foreground);
+  --alt--color--background-rgb              : var(--default--color--foreground-rgb);
 
-  --gradient--degree                : 145deg;
-  --gradient--color-start           : var(--color--cerise-pink);
-  --gradient--color-end             : var(--color--violet-purple);
-  --gradient                        : linear-gradient(var(--gradient--degree), var(--gradient--color-start), var(--gradient--color-end));
-  --gradient--reverse               : linear-gradient(var(--gradient--degree), var(--gradient--color-end), var(--gradient--color-start));
+  --gradient--degree                        : 145deg;
+  --gradient--color-start                   : var(--color--cerise-pink);
+  --gradient--color-point-start             : 0%;
+  --gradient--color-end                     : var(--color--violet-purple);
+  --gradient--color-point-end               : 100%;
+  --gradient                                : linear-gradient(var(--gradient--degree), var(--gradient--color-start) var(--gradient--color-point-start), var(--gradient--color-end) var(--gradient--color-point-end));
+  --gradient--reverse                       : linear-gradient(var(--gradient--degree), var(--gradient--color-end) var(--gradient--color-point-start), var(--gradient--color-start) var(--gradient--color-point-end));
+
+  --gradient-2--degree                      : 160deg;
+  --gradient-2--color-start                 : var(--color--mineshaft-black);
+  --gradient-2--color-point-start           : 30%;
+  --gradient-2--color-end                   : var(--color--black);
+  --gradient-2--color-point-end             : 100%;
+  --gradient-2                              : linear-gradient(var(--gradient-2--degree), var(--gradient-2--color-start) var(--gradient-2--color-point-start), var(--gradient-2--color-end) var(--gradient-2--color-point-end));
+  --gradient-2--reverse                     : linear-gradient(var(--gradient-2--degree), var(--gradient-2--color-end) var(--gradient-2--color-point-start), var(--gradient-2--color-start) var(--gradient-2--color-point-end));
 
   // for text over a gradient
-  --gradient--text                  : var(--color--white);
-  --gradient--text-rgb              : var(--color--white-rgb);
+  --gradient--text                          : var(--default--color--background);
+  --gradient--text-rgb                      : var(--default--color--background-rgb);
 }
 
 @mixin responsive-colors($grid-breakpoint-type: '', $showRoot: false) {
   // sass-lint:disable no-important
   @if $showRoot {
     :root {
-      --color--foreground             : var(--default--color--foreground);
-      --color--foreground-rgb         : var(--default--color--foreground-rgb);
-      --color--background             : var(--default--color--background);
-      --color--background-rgb         : var(--default--color--background-rgb);
+      --color--foreground                   : var(--default--color--foreground);
+      --color--foreground-rgb               : var(--default--color--foreground-rgb);
+      --color--background                   : var(--default--color--background);
+      --color--background-rgb               : var(--default--color--background-rgb);
     }
 
     // @media (prefers-color-scheme: dark) {
@@ -58,24 +77,45 @@ $colors: (
     // }
   }
   .#{$grid-breakpoint-type}color--1 {
-    --color--foreground               : var(--default--color--foreground);
-    --color--foreground-rgb           : var(--default--color--foreground-rgb);
-    --color--background               : var(--default--color--background);
-    --color--background-rgb           : var(--default--color--background-rgb);
+    --color--foreground                     : var(--default--color--foreground);
+    --color--foreground-rgb                 : var(--default--color--foreground-rgb);
+    --color--background                     : var(--default--color--background);
+    --color--background-rgb                 : var(--default--color--background-rgb);
   }
 
   .#{$grid-breakpoint-type}color--2 {
-    --color--foreground               : var(--alt--color--foreground);
-    --color--foreground-rgb           : var(--alt--color--foreground-rgb);
-    --color--background               : var(--alt--color--background);
-    --color--background-rgb           : var(--alt--color--background-rgb);
+    --color--foreground                     : var(--alt--color--foreground);
+    --color--foreground-rgb                 : var(--alt--color--foreground-rgb);
+    --color--background                     : var(--alt--color--background);
+    --color--background-rgb                 : var(--alt--color--background-rgb);
+  }
+
+  .#{$grid-breakpoint-type}color--3 {
+    --color--foreground                     : var(--default--color--background);
+    --color--foreground-rgb                 : var(--default--color--background-rgb);
+    --color--background                     : var(--color--violet-purple);
+    --color--background-rgb                 : var(--color--violet-purple-rgb);
+  }
+
+  .#{$grid-breakpoint-type}color--4 {
+    --color--foreground                     : var(--default--color--background);
+    --color--foreground-rgb                 : var(--default--color--background-rgb);
+    --color--background                     : var(--color--cerise-pink);
+    --color--background-rgb                 : var(--color--cerise-pink-rgb);
   }
 
   .#{$grid-breakpoint-type}color--gradient {
-    --color--foreground               : var(--gradient--text);
-    --color--foreground-rgb           : var(--gradient--text-rgb);
-    --color--background               : var(--gradient);
-    --color--background-rgb           : var(--color--violet-purple-rgb);
+    --color--foreground                     : var(--gradient--text);
+    --color--foreground-rgb                 : var(--gradient--text-rgb);
+    --color--background                     : var(--gradient);
+    --color--background-rgb                 : var(--gradient-2--color-end-rgb);
+  }
+
+  .#{$grid-breakpoint-type}color--gradient-2 {
+    --color--foreground                     : var(--gradient--text);
+    --color--foreground-rgb                 : var(--gradient--text-rgb);
+    --color--background                     : var(--gradient-2);
+    --color--background-rgb                 : var(--color--cod-black-rgb);
   }
 }
 
@@ -88,32 +128,57 @@ $colors: (
 }
 
 
-:root {
+:root,
+*,
+*:before,
+*:after {
   /* Primary Button */
-  --color--btn-primary-txt          : var(--color--foreground);
-  --color--btn-primary-bg           : var(--color--background);
-  --color--btn-primary-bdr          : var(--color--background);
-  --color--btn-primary-txt-hover    : var(--color--background);
-  --color--btn-primary-bg-hover     : var(--color--foreground);
-  --color--btn-primary-bdr-hover    : var(--color--foreground);
+  --color--btn-primary-txt                  : var(--color--foreground);
+  --color--btn-primary-bg                   : var(--color--background);
+  --color--btn-primary-bdr                  : var(--color--background);
+  --color--btn-primary-txt-hover            : var(--color--background);
+  --color--btn-primary-bg-hover             : var(--color--foreground);
+  --color--btn-primary-bdr-hover            : var(--color--foreground);
 }
 
-:root {
+:root,
+*,
+*:before,
+*:after {
   /* Secondary Button */
-  --color--btn-secondary-txt        : var(--color--background);
-  --color--btn-secondary-bg         : var(--color--foreground);
-  --color--btn-secondary-bdr        : var(--color--foreground);
-  --color--btn-secondary-txt-hover  : var(--color--foreground);
-  --color--btn-secondary-bg-hover   : var(--color--background);
-  --color--btn-secondary-bdr-hover  : var(--color--foreground);
+  --color--btn-secondary-txt                : var(--color--background);
+  --color--btn-secondary-bg                 : var(--color--foreground);
+  --color--btn-secondary-bdr                : var(--color--foreground);
+  --color--btn-secondary-txt-hover          : var(--color--foreground);
+  --color--btn-secondary-bg-hover           : var(--color--background);
+  --color--btn-secondary-bdr-hover          : var(--color--foreground);
 }
 
-:root {
+:root,
+*,
+*:before,
+*:after {
   /* Set Button Defaults, Secondary is set in file */
-  --color--btn-bg                   : var(--color--btn-primary-bg);
-  --color--btn-bdr                  : var(--color--btn-primary-bdr);
-  --color--btn-txt                  : var(--color--btn-primary-txt);
-  --color--btn-bg-hover             : var(--color--btn-primary-bg-hover);
-  --color--btn-bdr-hover            : var(--color--btn-primary-bdr-hover);
-  --color--btn-txt-hover            : var(--color--btn-primary-txt-hover);
+  --color--btn-bg                           : var(--color--btn-primary-bg);
+  --color--btn-bdr                          : var(--color--btn-primary-bdr);
+  --color--btn-txt                          : var(--color--btn-primary-txt);
+  --color--btn-bg-hover                     : var(--color--btn-primary-bg-hover);
+  --color--btn-bdr-hover                    : var(--color--btn-primary-bdr-hover);
+  --color--btn-txt-hover                    : var(--color--btn-primary-txt-hover);
+}
+
+
+:root,
+*,
+*:before,
+*:after {
+  --card--box-shadow--offsets               : var(--set--box-shadow--offsets,0px 10px 10px 0px);
+  --card--box-shadow--rgb              : var(--set--box-shadow--rgb, var(--color--foreground-rgb));
+  --card--box-shadow--opacity               : var(--set--box-shadow--opacity, 0);
+  --card--box-shadow                        : var(--card--box-shadow--offsets) rgba(var(--card--box-shadow--rgb), var(--card--box-shadow--opacity));
+
+  --card--box-shadow--offsets--active       : var(--set--box-shadow--offsets--active,var(--card--box-shadow--offsets));
+  --card--box-shadow--rgb--active      : var(--set--box-shadow--rgb--active, var(--card--box-shadow--rgb));
+  --card--box-shadow--opacity--active       : var(--set--box-shadow--opacity--active, 0.25);
+  --card--box-shadow--active                : var(--card--box-shadow--offsets--active) rgba(var(--card--box-shadow--rgb--active), var(--card--box-shadow--opacity--active));
 }

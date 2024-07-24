@@ -40,7 +40,8 @@ const link = {
       options: [
         { value:"md-up--button--primary",   label:"Primary" },
         { value:"md-up--button--secondary", label:"Secondary" },
-        { value:"md-up--button--gradient",  label:"Gradient" },
+        { value:"md-up--button--gradient",  label:"Gradient 1" },
+        { value:"md-up--button--gradient-2",label:"Gradient 2" },
       ]
     },
     {
@@ -57,7 +58,8 @@ const link = {
       options: [
         { value:"sm--button--primary",      label:"Primary" },
         { value:"sm--button--secondary",    label:"Secondary" },
-        { value:"sm--button--gradient",     label:"Gradient" },
+        { value:"sm--button--gradient",     label:"Gradient 1" },
+        { value:"sm--button--gradient-2",   label:"Gradient 2" },
       ]
     },
   ],

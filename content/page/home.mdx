@@ -12,7 +12,7 @@ blocks:
           text: Contact Me
           content: content/page/contact-me.mdx
           desktop_button:
-            - md-up--button--primary
+            - md-up--button--gradient-2
           mobile_button:
             - sm--button--secondary
         styles:
@@ -228,10 +228,26 @@ blocks:
           mobile_opacity: 0.01
           mobile_colors:
             - color--1
-    custom_css: |-
+    custom_css: |+
+
       == .image--outer {
-        border: 0.1rem solid var(--color--foreground);
+        --set--box-shadow--opacity: 0.2;
+        --set--box-shadow--opacity-active: 0.4;
+        --properties: box-shadow;
+        box-shadow: var(--card--box-shadow);
+        will-change: var(--properties);
+        transition-property: var(--properties);
+        transition-duration: 0.3s;
+        transition-timing-function: linear;
       }
+
+      == .ctas--item:hover .image--outer,
+      == .ctas--item:focus-within .image--outer,
+      == .ctas--item:focus .image--outer {
+        box-shadow: var(--card--box-shadow--active);
+      }
+
+
     _template: ctas
   - published: true
     title: Testimonials
@@ -245,7 +261,7 @@ blocks:
         - 'w-100 '
     styles:
       colors:
-        - color--2
+        - color--gradient-2
     item:
       - title: Peacock Alley
         text: "Several transmissions were beamed to this ship by Rebel spies.\_I want to know what happened to the plans they sent you.\n\n**–\_Chachi**\n"

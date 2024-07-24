@@ -1,6 +1,6 @@
 
 :root {
-  --image--blur-start: 10px;
+  --image--blur-start: 30px;
   --image--scale-start: 1.025;
 
   --image--blur-end: 0px;
@@ -96,9 +96,8 @@
     svg,
     img {
       position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%,-50%);
+      top: 0%;
+      left: 0%;
       width: 100%;
     }
 
@@ -109,6 +108,7 @@
       object-position: var(--image--focal-point,center);
 
       &.lazyloaded {
+        filter: blur(var(--image--blur-start));
         animation: {
           name: progressiveReveal;
           duration: var(--image--animation-rate);
@@ -131,44 +131,6 @@
   }
 }
 
-.bg_image {
-  position: relative;
-  width: 100%;
-  margin: 0 auto;
-  overflow: hidden;
-
-  svg,
-  img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: var(--image--focal-point,center);
-    &.lazyloaded {
-      will-change: transform, filter;
-      // animation: progressiveReveal var(--image--animation-rate) var(--image--animation-delay) ease-out;
-      animation: {
-        name: progressiveReveal;
-        duration: var(--image--animation-rate);
-        delay: var(--image--animation-delay);
-        timing-function: ease-out;
-        direction: normal;
-        fill-mode: forwards;
-      } 
-    }
-    &.lazyloaded,
-    &.lazyload {
-      will-change: transform, filter;
-      filter: blur(var(--image--blur-start));
-      transform: scale(var(--image--scale-start));
-    }
-  }
-}
-
-.bg_image, 
 .image--outer, 
 .image-content__image-container {
   &.image--contain {
@@ -181,14 +143,14 @@
 
 @keyframes progressiveReveal {
   0% {
-    transform: scale(var(--image--scale-start));
+    // transform: scale(var(--image--scale-start));
     filter: blur(var(--image--blur-start));
   }
   // 50% {
   //   filter: blur(var(--image--blur-end));
   // }
   100% {
-    transform: scale(var(--image--scale-end));
+    // transform: scale(var(--image--scale-end));
     filter: blur(var(--image--blur-end));
   }
 }

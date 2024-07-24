@@ -98,9 +98,12 @@ const item = {
             }),
           },
           options: [
-            { value:"md-up--color--1",           label:"Colors 1" },
-            { value:"md-up--color--2",           label:"Colors 2" },
-            { value:"md-up--color--gradient",    label:"Gradient BG" },
+            { value:"md-up--color--1",            label:"Colors 1" },
+            { value:"md-up--color--2",            label:"Colors 2" },
+            { value:"md-up--color--3",            label:"Colors 3" },
+            { value:"md-up--color--4",            label:"Colors 4" },
+            { value:"color--gradient",            label:"Gradient 1" },
+            { value:"color--gradient-2",          label:"Gradient 2" },
           ]
         },
         {
@@ -122,7 +125,10 @@ const item = {
           options: [
             { value:"sm--color--1",           label:"Colors 1" },
             { value:"sm--color--2",           label:"Colors 2" },
-            { value:"sm--color--gradient",    label:"Gradient BG" },
+            { value:"sm--color--3",           label:"Colors 3" },
+            { value:"sm--color--4",           label:"Colors 4" },
+            { value:"color--gradient",        label:"Gradient 1" },
+            { value:"color--gradient-2",      label:"Gradient 2" },
           ]
         },
         {

@@ -61,25 +61,28 @@
       --color--btn-bdr-hover: var(--color--btn-secondary-bdr-hover);
     }
 
-    &--gradient {
+    &--gradient,
+    &--gradient-2 {
       --color--btn-txt: var(--gradient--text);
       --color--btn-bg: var(--gradient);
-      --color--btn-bdr: transparent;
+      --color--btn-bdr: white;
       --color--btn-txt-hover:var(--gradient--text); 
-      --color--btn-bg-hover: var(--gradient);
-      --color--btn-bdr-hover: transparent;
+      --color--btn-bg-hover: var(--color--btn-bg);
+      --color--btn-bdr-hover: var(--color--btn-bdr);
+      --hover--gradient: var(--gradient--reverse);
       border: none;
 
       // &:before,
-      &:after {
+      &:after,
+      &-2:after {
         content:'';
         position: absolute;
         top: 0;
         left: 0;
         width: 101%;
         height: 101%;
-        opacity: 1;
-        background: var(--gradient--reverse);
+        opacity: 0;
+        background: var(--hover--gradient);
         z-index: 0;
         --properties: opacity;
         // transition-duration: .2s;
@@ -89,8 +92,18 @@
       &:focus,
       &.active {
         &:after {
-          opacity: 0;
+          opacity: 1;
         }
+      }
+    }
+
+    &--gradient-2 {
+      --color--btn-bg: var(--gradient-2);
+      --hover--gradient: var(--gradient-2--reverse);
+      --gradient-2--color-point-start: 0%;
+
+      &:after {
+        --gradient-2--color-point-start: 0%;
       }
     }
 
