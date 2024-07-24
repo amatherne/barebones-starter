@@ -12,7 +12,8 @@ const { promisify } = require('util');
 
 const inputDir = './public/uploads';
 const outputDir = './public/media'; // cannot be /public/images. it gets deleted every time for some reason.
-const parentDir = path.dirname(outputDir);
+const metadataFilePath = './public/media/metadata.json'; // Path to the JSON metadata file
+let metadata = {}; // Object to store metadata
 
 require('dotenv').config();
 
@@ -20,11 +21,15 @@ if (!fs.existsSync(outputDir)) {
   fs.mkdirSync(outputDir, { recursive: true });
 }
 
+// Read existing metadata
+if (fs.existsSync(metadataFilePath)) {
+  metadata = fs.readJsonSync(metadataFilePath, { throws: false }) || {};
+}
+
 const resize = promisify(gm().resize.bind(gm()));
 const write = promisify(gm().write.bind(gm()));
 
 console.log('\n{Image Optimize :: Start}\n');
-
 
 const normalizeFileName = (fileName) => fileName.toLowerCase().replace(/[^a-z0-9]/g, '');
 
@@ -86,15 +91,46 @@ const createImages = async (filePath) => {
     await promisify(gmInstance.quality(75).write.bind(gmInstance))(resizedFilePath);
     console.log(`{Image Optimize :: Create Images}   -- Creating Image: '${resizedFileName}'`);
 
+    // Store metadata for original image
+    metadata[fileNameWithoutExt] = {
+      original: {
+        fileName: resizedFileName,
+        path: resizedFilePath,
+        width: null, // Will be set later
+        height: null // Will be set later
+      },
+      sizes: []
+    };
+
     const resizePromises = sizes.map(async (size) => {
       const resizedFileNameSizes = `${fileNameWithoutExt}-${size.width}x${size.height}.webp`;
       const resizedFilePathSizes = path.join(outputDir, resizedFileNameSizes);
       const gmInstanceSize = gm(filePath);
       await promisify(gmInstanceSize.resize(size.width, size.height).quality(75).write.bind(gmInstanceSize))(resizedFilePathSizes);
+      
+      // Store metadata for resized image
+      metadata[fileNameWithoutExt].sizes.push({
+        fileName: resizedFileNameSizes,
+        path: resizedFilePathSizes,
+        width: size.width,
+        height: size.height
+      });
     });
 
     await Promise.all(resizePromises);
-    console.log(`{Image Optimize :: Create Images}   -- Image Created:  '${resizedFileName}'`);
+
+    // Get dimensions for the original image and store them in metadata
+    gm(resizedFilePath).size((err, size) => {
+      if (!err) {
+        metadata[fileNameWithoutExt].original.width = size.width;
+        metadata[fileNameWithoutExt].original.height = size.height;
+      }
+      console.log(`{Image Optimize :: Create Images}   -- Image Created:  '${resizedFileName}'`);
+
+      // Write metadata to JSON file after all operations are completed
+      fs.writeJsonSync(metadataFilePath, metadata, { spaces: 2 });
+      console.log(`{Image Optimize :: Create Images}   -- Metadata written to: '${metadataFilePath}'`);
+    });
 
   } catch (error) {
     console.error(`{Image Optimize :: Create Images}   -- Error: ${filePath}:`, error);
@@ -122,6 +158,10 @@ const processAllImages = async () => {
 
   await Promise.all(processingPromises);
   console.log('{Image Optimize :: Process All Images} -- All Images Processed.\n');
+
+  // Write metadata to JSON file
+  fs.writeJsonSync(metadataFilePath, metadata, { spaces: 2 });
+  console.log(`{Image Optimize :: Process All Images} -- Metadata written to: '${metadataFilePath}'`);
 };
 
 if (process.env.WATCHING === 'true') {
