@@ -113,7 +113,7 @@ const createImages = async (filePath) => {
       const newHeight = Math.round(size.height * scaleRatio);
 
       const resizedFileName = `${fileNameWithoutExt}.webp`;
-      const resizedFilePath = path.join('/media', resizedFileName);
+      const resizedFilePath = path.join(outputDir, resizedFileName);
 
       let setWidth = size.width;
       let setHeight = size.height;

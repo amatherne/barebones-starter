@@ -23,6 +23,12 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes, lazy }) => {
 
   const isLazy = lazy || true;
 
+  const handleImageLoad = (event: React.SyntheticEvent<HTMLImageElement>) => {
+    if (!isLazy) return;
+    event.currentTarget.classList.remove('lazyload');
+    event.currentTarget.classList.add('lazyloaded');
+  };
+
   useEffect(() => {
     const loadIcon = async () => {
       if (isSvg) {
@@ -54,12 +60,12 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes, lazy }) => {
   const baseFileName = src.split('/').pop();
   const camelSrc = convertFileNameToCamelCase(baseFileName);
   const newPath = '/media/';
-  const newSrc = newPath + camelSrc;
+  const newSrc = newPath + camelSrc + '-400x200.webp';
 
   const imageIDString = `image--${camelSrc ? '--' + camelSrc : ''}${alt ? '--' + alt : ''}${className ? '--' + className : ''}`;
   const imageID = convertFileNameToCamelCase(imageIDString);
 
-  let imgSrc = src;
+  let imgSrc = isSvg ? src : newSrc;
   let imgSrcSet = '';
   let imgSizes = '100vw';
 
@@ -72,10 +78,11 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes, lazy }) => {
     const original = metadata[camelSrc].original;
     const sizes = metadata[camelSrc].sizes;
 
-    
-    imgSrcSet = [
-      `${original.path} ${original.width}w`,
-      ...sizes.map(size => `${size.path} ${size.width}w`)
+    const removePublicPath = (path) => path.replace(/^\/public\//, '');
+
+    const srcSet = [
+      `${removePublicPath(original.path)} ${original.width}w`,
+      ...sizes.map(size => `${removePublicPath(size.path)} ${size.width}w`)
     ].join(', ');
 
     imgSizes = [
@@ -90,7 +97,6 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes, lazy }) => {
     imgHeight = original.height;
 
   }
-    console.log(imgSrc)
 
   return (
     <div
@@ -115,11 +121,11 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes, lazy }) => {
           <img
             src={imgSrc}
             alt={alt || ''}
-            className="image--image"
+            className={`image--image ${isLazy ? 'lazyload' : ''}`}
             srcSet={!isSvg ? imgSrcSet : undefined}
             sizes={!isSvg ? imgSizes || '100vw' : undefined}
             loading={!isSvg && isLazy ? 'lazy' : undefined}
-            // onLoad={handleImageLoad}
+            onLoad={handleImageLoad}
           />
         </div>
       )}
