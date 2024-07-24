@@ -34,7 +34,6 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes }) => {
     const fetchMetadata = async () => {
       try {
         const response = await fetch('/api/metadata');
-        console.log(response)
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -67,12 +66,16 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes }) => {
   let imgSizes = '100vw';
 
   if (metadata[camelSrc]) {
+
     const original = metadata[camelSrc].original;
     const sizes = metadata[camelSrc].sizes;
+    console.log(original)
 
     imgSrc = `${newPath}${original.fileName}`;
     imgSrcSet = sizes.map((size: any) => `${newPath}${size.fileName} ${size.width}w`).join(', ');
     imgSizes = sizes.map((size: any) => `(max-width: ${size.width}px) ${size.width}px`).join(', ');
+
+    // aspectRatio
   }
 
   return (

@@ -112,13 +112,17 @@ const createImages = async (filePath) => {
           }
           console.log(`{Image Optimize :: Create Images}   -- Creating Image: '${resizedFileName}'`);
 
+          const aspectRatio = size.width / size.height;
+          
           // Store metadata for original image
           metadata[fileNameWithoutExt] = {
             original: {
               fileName: resizedFileName,
               path: resizedFilePath,
               width: size.width, // Store natural width
-              height: size.height // Store natural height
+              height: size.height, // Store natural height
+              aspectRatio: aspectRatio
+              // aspectRatio: `${size.width}:${size.height}`
             },
             sizes: []
           };
@@ -136,16 +140,17 @@ const createImages = async (filePath) => {
               fileName: resizedFileNameSizes,
               path: resizedFilePathSizes,
               width: size.width,
-              height: size.height
+              height: size.height,
             });
             // console.log(`{Image Optimize :: Create Images}   -- Resized Image Created: '${resizedFileNameSizes}'`);
+            console.log(`resizing...`);
           });
 
           Promise.all(resizePromises)
             .then(() => {
               // Write metadata to JSON file after all operations are completed
               fs.writeJsonSync(metadataFilePath, metadata, { spaces: 2 });
-              console.log(`{Image Optimize :: Create Images}   -- Metadata written to: '${metadataFilePath}'`);
+              // console.log(`{Image Optimize :: Create Images}   -- Metadata written to: '${metadataFilePath}'`);
             })
             .catch(error => {
               console.error(`Error processing resized images for ${filePath}:`, error);
