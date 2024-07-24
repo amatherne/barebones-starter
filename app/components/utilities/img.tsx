@@ -60,7 +60,7 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes, lazy }) => {
   const baseFileName = src.split('/').pop();
   const camelSrc = convertFileNameToCamelCase(baseFileName);
   const newPath = '/media/';
-  const newSrc = newPath + camelSrc + '-400x200.webp';
+  const newSrc = newPath + camelSrc + '-100x50.webp';
 
   const imageIDString = `image--${camelSrc ? '--' + camelSrc : ''}${alt ? '--' + alt : ''}${className ? '--' + className : ''}`;
   const imageID = convertFileNameToCamelCase(imageIDString);

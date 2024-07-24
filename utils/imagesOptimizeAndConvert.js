@@ -142,6 +142,7 @@ const createImages = async (filePath) => {
       };
 
       const sizes = [
+        { width: 100, height: 50 },
         { width: 400, height: 200 },
         { width: 750, height: 375 },
         { width: 1000, height: 500 },
