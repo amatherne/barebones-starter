@@ -11,14 +11,17 @@ interface ImgProps {
   alt?: string;
   className?: string;
   sizes?: string;
+  lazy?: string;
 }
 
-const Img: React.FC<ImgProps> = ({ src, alt, className, sizes }) => {
+const Img: React.FC<ImgProps> = ({ src, alt, className, sizes, lazy }) => {
   const [SvgComponent, setSvgComponent] = useState<React.FC | null>(null);
   const [dimensions, setDimensions] = useState<{ width: number; height: number }>({ width: 0, height: 0 });
   const [metadata, setMetadata] = useState<any>({});
 
   const isSvg = src.endsWith('.svg');
+
+  const isLazy = lazy || true;
 
   useEffect(() => {
     const loadIcon = async () => {
@@ -105,7 +108,7 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes }) => {
             className="image--image"
             srcSet={!isSvg ? imgSrcSet : undefined}
             sizes={!isSvg ? imgSizes || '100vw' : undefined}
-            loading={!isSvg ? 'lazy' : undefined}
+            loading={!isSvg && isLazy ? 'lazy' : undefined}
             // onLoad={handleImageLoad}
           />
         </div>

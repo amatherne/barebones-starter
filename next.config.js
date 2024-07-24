@@ -6,6 +6,11 @@ const path = require('path');
 const es6Promise = require('es6-promise');
 const svgoConfig = require('./svgo.config');
 
+
+// TODO: inspect bundles
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
+
 // Polyfill ES6 Promise for older browsers
 es6Promise.polyfill();
 
@@ -76,6 +81,10 @@ const nextConfig = {
 
     return config;
   },
+
+  // plugins: [
+  //   new BundleAnalyzerPlugin()
+  // ]
 };
 
 module.exports = nextConfig;

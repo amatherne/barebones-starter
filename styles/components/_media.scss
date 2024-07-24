@@ -16,9 +16,7 @@
   position: relative;
   margin: 0 auto;
   overflow: hidden;
-  --image--set-width:var(--image--natural-width);
-  --image--set-height:var(--image--natural-height);
-  max-width:var(--image--set-width,100%);
+
   
   &:not(.absolute) {
     position: relative;
@@ -69,7 +67,10 @@
 
   .video--inner,
   .image--inner {
+    --image--set-width:var(--image--natural-width);
+    --image--set-height:var(--image--natural-height);
     display: block;
+    max-width:var(--image--set-width,100%);
     padding-top:var(--image--aspect-ratio,56.6%);
 
     .video-placeholder {
