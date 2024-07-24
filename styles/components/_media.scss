@@ -1,13 +1,13 @@
 
 :root {
-  --image--blur-start: 30px;
+  --image--blur-start: 20px;
   --image--scale-start: 1.025;
 
   --image--blur-end: 0px;
   --image--scale-end: 1;
 
-  --image--animation-rate: 1.5s;
-  --image--animation-delay: 0.5s;
+  --image--animation-rate: 0.75s;
+  --image--animation-delay: 0.1s;
 }
 
 .video--outer,
@@ -70,7 +70,7 @@
     --image--set-width:var(--image--natural-width);
     --image--set-height:var(--image--natural-height);
     display: block;
-    max-width:var(--image--set-width,100%);
+    // max-width:var(--image--set-width,100%);
     padding-top:var(--image--aspect-ratio,56.6%);
 
     .video-placeholder {

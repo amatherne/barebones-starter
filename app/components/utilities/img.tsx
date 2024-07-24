@@ -5,6 +5,7 @@
 import React, { useState, useEffect, Suspense } from 'react';
 import importIcon from '../../../utils/importIcon';
 import { convertFileNameToCamelCase } from '../../../utils/helpers';
+import { useImageMetadata } from '../contexts/imageMetadataContext';
 
 interface ImgProps {
   src: string;
@@ -16,12 +17,10 @@ interface ImgProps {
 
 const Img: React.FC<ImgProps> = ({ src, alt, className, sizes, lazy }) => {
   const [SvgComponent, setSvgComponent] = useState<React.FC | null>(null);
-  const [dimensions, setDimensions] = useState<{ width: number; height: number }>({ width: 0, height: 0 });
-  const [metadata, setMetadata] = useState<any>({});
-
+  const metadata = useImageMetadata();
+  
   const isSvg = src.endsWith('.svg');
-
-  const isLazy = lazy || true;
+  const isLazy = lazy !== undefined ? lazy : true;
 
   const handleImageLoad = (event: React.SyntheticEvent<HTMLImageElement>) => {
     if (!isLazy) return;
@@ -40,21 +39,7 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes, lazy }) => {
       }
     };
 
-    const fetchMetadata = async () => {
-      try {
-        const response = await fetch('/api/metadata');
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        setMetadata(data);
-      } catch (error) {
-        console.error('Error fetching metadata:', error);
-      }
-    };
-
     loadIcon();
-    fetchMetadata();
   }, [src, isSvg]);
 
   const baseFileName = src.split('/').pop();

@@ -24,8 +24,8 @@ const PageBlocksHero = {
       published: true, 
       styles: {
         height: '56%',       
-        max_height: '',      
-        min_height: '',
+        max_height: 'calc(95vh - var(--sp--8))',      
+        min_height: '200px',
       },
       // Ensure all other required fields or items are included
       ...(item.defaultItem ? item.defaultItem() : {}), // Use defaultItem if it exists

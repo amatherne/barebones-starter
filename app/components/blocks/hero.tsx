@@ -116,28 +116,31 @@ const Hero = ({ settings, index }) => {
               <ImgOutput src={image} alt={imageAlt} className="ctas--image" />
             ) : null }
 
+            
             { hasContent ? (
-              <div className="hero--text">
-                
-                {title ? (
-                  React.createElement(titleElement, { className: "hxl" }, title)
-                ) : null}
+              <div className="page-width">
+                <div className="hero--text">
+                  
+                  {title ? (
+                    React.createElement(titleElement, { className: "hxl" }, title)
+                  ) : null}
 
-                { text ? (
-                  <div className="rte">
-                    <TinaMarkdown content={text} />
-                  </div>
-                ) : null }
+                  { text ? (
+                    <div className="rte">
+                      <TinaMarkdown content={text} />
+                    </div>
+                  ) : null }
 
-                { hasButton ? (
-                  <Link 
-                    href={buttonLink} 
-                    className={`button ${buttonMobile} ${buttonDesktop}`}
-                  >
-                    <span>{buttonText}</span>
-                  </Link>
-                ) : null }
+                  { hasButton ? (
+                    <Link 
+                      href={buttonLink} 
+                      className={`button ${buttonMobile} ${buttonDesktop}`}
+                    >
+                      <span>{buttonText}</span>
+                    </Link>
+                  ) : null }
 
+                </div>
               </div>
             ) : null }
 
