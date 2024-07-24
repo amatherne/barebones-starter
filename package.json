@@ -37,7 +37,7 @@
     "run-p": "^0.0.0",
     "sass": "~1.32.6",
     "styled-components": "^6.1.11",
-    "tinacms": "^1.6.7",
+    "tinacms": "^2.0.0",
     "typescript": "5.5.2",
     "xml2js": "^0.6.2"
   },
