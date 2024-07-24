@@ -1,3 +1,5 @@
+// ../components/utilities/img.tsx
+
 'use client';
 
 import React, { useState, useEffect, Suspense } from 'react';
@@ -14,6 +16,7 @@ interface ImgProps {
 const Img: React.FC<ImgProps> = ({ src, alt, className, sizes }) => {
   const [SvgComponent, setSvgComponent] = useState<React.FC | null>(null);
   const [dimensions, setDimensions] = useState<{ width: number; height: number }>({ width: 0, height: 0 });
+  const [metadata, setMetadata] = useState<any>({});
 
   const isSvg = src.endsWith('.svg');
 
@@ -28,8 +31,23 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes }) => {
       }
     };
 
+    const fetchMetadata = async () => {
+      try {
+        const response = await fetch('/api/metadata');
+        console.log(response)
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        setMetadata(data);
+      } catch (error) {
+        console.error('Error fetching metadata:', error);
+      }
+    };
+
     loadIcon();
-  }, [src,isSvg]);
+    fetchMetadata();
+  }, [src, isSvg]);
 
   const handleImageLoad = (event: React.SyntheticEvent<HTMLImageElement>) => {
     const { naturalWidth, naturalHeight } = event.currentTarget;
@@ -39,24 +57,22 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes }) => {
   const baseFileName = src.split('/').pop();
   const camelSrc = convertFileNameToCamelCase(baseFileName);
   const newPath = '/media/';
-  const newSrc = newPath+camelSrc;
+  const newSrc = newPath + camelSrc;
 
   const imageIDString = `image--${camelSrc ? '--' + camelSrc : ''}${alt ? '--' + alt : ''}${className ? '--' + className : ''}`;
   const imageID = convertFileNameToCamelCase(imageIDString);
 
   let imgSrc = src;
+  let imgSrcSet = '';
+  let imgSizes = '100vw';
 
-  const imgSrcSet = `
-    ${newSrc}-500x250.webp 500w, 
-    ${newSrc}-1000x500.webp 1000w, 
-    ${newSrc}-2000x1000.webp 2000w,
-    ${newSrc}-3000x1500.webp 3000w
-  `;
+  if (metadata[camelSrc]) {
+    const original = metadata[camelSrc].original;
+    const sizes = metadata[camelSrc].sizes;
 
-  const imgSizes = '100vw';
-
-  if (!isSvg) {
-    imgSrc = `${newSrc}-500x250.webp`;
+    imgSrc = `${newPath}${original.fileName}`;
+    imgSrcSet = sizes.map((size: any) => `${newPath}${size.fileName} ${size.width}w`).join(', ');
+    imgSizes = sizes.map((size: any) => `(max-width: ${size.width}px) ${size.width}px`).join(', ');
   }
 
   return (
@@ -67,7 +83,7 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes }) => {
         </Suspense>
       ) : (
         <img
-          src={imgSrc} 
+          src={imgSrc}
           alt={alt || ''}
           className="image--image"
           srcSet={!isSvg ? imgSrcSet : undefined}

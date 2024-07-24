@@ -82,6 +82,9 @@ const createImages = async (filePath) => {
       { width: 1000, height: 500 },
       { width: 2000, height: 1000 },
       { width: 3000, height: 1500 },
+      { width: 4000, height: 2000 },
+      { width: 5000, height: 2500 },
+      { width: 6000, height: 3000 },
     ];
 
     const gmInstance = gm(filePath);
