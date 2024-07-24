@@ -5,7 +5,7 @@
       "path": "public/media/screenshot20240301At100827Am.webp",
       "width": 1195,
       "height": 571,
-      "aspectRatio": "1195:571"
+      "aspectRatio": 0.47782426778242676
     },
     "sizes": [
       {
@@ -21,16 +21,16 @@
         "height": 500
       },
       {
-        "fileName": "screenshot20240301At100827Am-2000x1000.webp",
-        "path": "public/media/screenshot20240301At100827Am-2000x1000.webp",
-        "width": 2000,
-        "height": 1000
-      },
-      {
         "fileName": "screenshot20240301At100827Am-3000x1500.webp",
         "path": "public/media/screenshot20240301At100827Am-3000x1500.webp",
         "width": 3000,
         "height": 1500
+      },
+      {
+        "fileName": "screenshot20240301At100827Am-2000x1000.webp",
+        "path": "public/media/screenshot20240301At100827Am-2000x1000.webp",
+        "width": 2000,
+        "height": 1000
       }
     ]
   },
@@ -40,7 +40,7 @@
       "path": "public/media/vintage10820571280.webp",
       "width": 1280,
       "height": 853,
-      "aspectRatio": "1280:853"
+      "aspectRatio": 0.66640625
     },
     "sizes": [
       {
@@ -50,16 +50,16 @@
         "height": 250
       },
       {
-        "fileName": "vintage10820571280-1000x500.webp",
-        "path": "public/media/vintage10820571280-1000x500.webp",
-        "width": 1000,
-        "height": 500
-      },
-      {
         "fileName": "vintage10820571280-2000x1000.webp",
         "path": "public/media/vintage10820571280-2000x1000.webp",
         "width": 2000,
         "height": 1000
+      },
+      {
+        "fileName": "vintage10820571280-1000x500.webp",
+        "path": "public/media/vintage10820571280-1000x500.webp",
+        "width": 1000,
+        "height": 500
       },
       {
         "fileName": "vintage10820571280-3000x1500.webp",
@@ -75,7 +75,7 @@
       "path": "public/media/cb57.webp",
       "width": 2000,
       "height": 2500,
-      "aspectRatio": "2000:2500"
+      "aspectRatio": 1.25
     },
     "sizes": [
       {
@@ -110,7 +110,7 @@
       "path": "public/media/cb63.webp",
       "width": 2000,
       "height": 2500,
-      "aspectRatio": "2000:2500"
+      "aspectRatio": 1.25
     },
     "sizes": [
       {
@@ -118,12 +118,6 @@
         "path": "public/media/cb63-1000x500.webp",
         "width": 1000,
         "height": 500
-      },
-      {
-        "fileName": "cb63-2000x1000.webp",
-        "path": "public/media/cb63-2000x1000.webp",
-        "width": 2000,
-        "height": 1000
       },
       {
         "fileName": "cb63-500x250.webp",
@@ -136,6 +130,12 @@
         "path": "public/media/cb63-3000x1500.webp",
         "width": 3000,
         "height": 1500
+      },
+      {
+        "fileName": "cb63-2000x1000.webp",
+        "path": "public/media/cb63-2000x1000.webp",
+        "width": 2000,
+        "height": 1000
       }
     ]
   },
@@ -145,7 +145,7 @@
       "path": "public/media/cb59.webp",
       "width": 2000,
       "height": 2500,
-      "aspectRatio": "2000:2500"
+      "aspectRatio": 1.25
     },
     "sizes": [
       {
@@ -180,7 +180,7 @@
       "path": "public/media/cb52.webp",
       "width": 2000,
       "height": 2500,
-      "aspectRatio": "2000:2500"
+      "aspectRatio": 1.25
     },
     "sizes": [
       {
@@ -215,7 +215,7 @@
       "path": "public/media/cb45.webp",
       "width": 2738,
       "height": 1826,
-      "aspectRatio": "2738:1826"
+      "aspectRatio": 0.6669101533966398
     },
     "sizes": [
       {
@@ -250,7 +250,7 @@
       "path": "public/media/rohitTandon9wg5jcepbswUnsplash.webp",
       "width": 3000,
       "height": 1987,
-      "aspectRatio": "3000:1987"
+      "aspectRatio": 0.6623333333333333
     },
     "sizes": [
       {
@@ -285,7 +285,7 @@
       "path": "public/media/johnTownerJgoerugdY4Unsplash.webp",
       "width": 3000,
       "height": 2001,
-      "aspectRatio": "3000:2001"
+      "aspectRatio": 0.667
     },
     "sizes": [
       {
@@ -320,20 +320,20 @@
       "path": "public/media/renatoPozziG4ogyyZcsqUnsplash.webp",
       "width": 3000,
       "height": 1876,
-      "aspectRatio": "3000:1876"
+      "aspectRatio": 0.6253333333333333
     },
     "sizes": [
-      {
-        "fileName": "renatoPozziG4ogyyZcsqUnsplash-500x250.webp",
-        "path": "public/media/renatoPozziG4ogyyZcsqUnsplash-500x250.webp",
-        "width": 500,
-        "height": 250
-      },
       {
         "fileName": "renatoPozziG4ogyyZcsqUnsplash-1000x500.webp",
         "path": "public/media/renatoPozziG4ogyyZcsqUnsplash-1000x500.webp",
         "width": 1000,
         "height": 500
+      },
+      {
+        "fileName": "renatoPozziG4ogyyZcsqUnsplash-500x250.webp",
+        "path": "public/media/renatoPozziG4ogyyZcsqUnsplash-500x250.webp",
+        "width": 500,
+        "height": 250
       },
       {
         "fileName": "renatoPozziG4ogyyZcsqUnsplash-2000x1000.webp",
@@ -355,7 +355,7 @@
       "path": "public/media/screenshot20240720At83418Pm.webp",
       "width": 4096,
       "height": 2274,
-      "aspectRatio": "4096:2274"
+      "aspectRatio": 0.55517578125
     },
     "sizes": [
       {
@@ -384,48 +384,13 @@
       }
     ]
   },
-  "screenshot20240720At80258Pm": {
-    "original": {
-      "fileName": "screenshot20240720At80258Pm.webp",
-      "path": "public/media/screenshot20240720At80258Pm.webp",
-      "width": 4096,
-      "height": 2268,
-      "aspectRatio": "4096:2268"
-    },
-    "sizes": [
-      {
-        "fileName": "screenshot20240720At80258Pm-1000x500.webp",
-        "path": "public/media/screenshot20240720At80258Pm-1000x500.webp",
-        "width": 1000,
-        "height": 500
-      },
-      {
-        "fileName": "screenshot20240720At80258Pm-2000x1000.webp",
-        "path": "public/media/screenshot20240720At80258Pm-2000x1000.webp",
-        "width": 2000,
-        "height": 1000
-      },
-      {
-        "fileName": "screenshot20240720At80258Pm-500x250.webp",
-        "path": "public/media/screenshot20240720At80258Pm-500x250.webp",
-        "width": 500,
-        "height": 250
-      },
-      {
-        "fileName": "screenshot20240720At80258Pm-3000x1500.webp",
-        "path": "public/media/screenshot20240720At80258Pm-3000x1500.webp",
-        "width": 3000,
-        "height": 1500
-      }
-    ]
-  },
   "celebration": {
     "original": {
       "fileName": "celebration.webp",
       "path": "public/media/celebration.webp",
       "width": 370,
       "height": 208,
-      "aspectRatio": "370:208"
+      "aspectRatio": 0.5621621621621622
     },
     "sizes": [
       {
@@ -460,7 +425,7 @@
       "path": "public/media/screenshot20240720At81608Pm.webp",
       "width": 4096,
       "height": 2270,
-      "aspectRatio": "4096:2270"
+      "aspectRatio": 0.55419921875
     },
     "sizes": [
       {
@@ -476,14 +441,49 @@
         "height": 1000
       },
       {
+        "fileName": "screenshot20240720At81608Pm-500x250.webp",
+        "path": "public/media/screenshot20240720At81608Pm-500x250.webp",
+        "width": 500,
+        "height": 250
+      },
+      {
         "fileName": "screenshot20240720At81608Pm-3000x1500.webp",
         "path": "public/media/screenshot20240720At81608Pm-3000x1500.webp",
         "width": 3000,
         "height": 1500
+      }
+    ]
+  },
+  "screenshot20240720At80258Pm": {
+    "original": {
+      "fileName": "screenshot20240720At80258Pm.webp",
+      "path": "public/media/screenshot20240720At80258Pm.webp",
+      "width": 4096,
+      "height": 2268,
+      "aspectRatio": 0.5537109375
+    },
+    "sizes": [
+      {
+        "fileName": "screenshot20240720At80258Pm-1000x500.webp",
+        "path": "public/media/screenshot20240720At80258Pm-1000x500.webp",
+        "width": 1000,
+        "height": 500
       },
       {
-        "fileName": "screenshot20240720At81608Pm-500x250.webp",
-        "path": "public/media/screenshot20240720At81608Pm-500x250.webp",
+        "fileName": "screenshot20240720At80258Pm-2000x1000.webp",
+        "path": "public/media/screenshot20240720At80258Pm-2000x1000.webp",
+        "width": 2000,
+        "height": 1000
+      },
+      {
+        "fileName": "screenshot20240720At80258Pm-3000x1500.webp",
+        "path": "public/media/screenshot20240720At80258Pm-3000x1500.webp",
+        "width": 3000,
+        "height": 1500
+      },
+      {
+        "fileName": "screenshot20240720At80258Pm-500x250.webp",
+        "path": "public/media/screenshot20240720At80258Pm-500x250.webp",
         "width": 500,
         "height": 250
       }
@@ -495,7 +495,7 @@
       "path": "public/media/screenshot20240720At81648Pm.webp",
       "width": 4096,
       "height": 2270,
-      "aspectRatio": "4096:2270"
+      "aspectRatio": 0.55419921875
     },
     "sizes": [
       {
@@ -511,16 +511,16 @@
         "height": 1000
       },
       {
-        "fileName": "screenshot20240720At81648Pm-3000x1500.webp",
-        "path": "public/media/screenshot20240720At81648Pm-3000x1500.webp",
-        "width": 3000,
-        "height": 1500
-      },
-      {
         "fileName": "screenshot20240720At81648Pm-500x250.webp",
         "path": "public/media/screenshot20240720At81648Pm-500x250.webp",
         "width": 500,
         "height": 250
+      },
+      {
+        "fileName": "screenshot20240720At81648Pm-3000x1500.webp",
+        "path": "public/media/screenshot20240720At81648Pm-3000x1500.webp",
+        "width": 3000,
+        "height": 1500
       }
     ]
   },
@@ -530,7 +530,7 @@
       "path": "public/media/20240720MainHero.webp",
       "width": 3840,
       "height": 2160,
-      "aspectRatio": "3840:2160"
+      "aspectRatio": 0.5625
     },
     "sizes": [
       {
@@ -565,7 +565,7 @@
       "path": "public/media/behindTheScenesShotsTheuncannydom54.webp",
       "width": 6000,
       "height": 4000,
-      "aspectRatio": "6000:4000"
+      "aspectRatio": 0.6666666666666666
     },
     "sizes": [
       {
@@ -600,7 +600,7 @@
       "path": "public/media/behindTheScenesShotsTheuncannydom59.webp",
       "width": 6000,
       "height": 4000,
-      "aspectRatio": "6000:4000"
+      "aspectRatio": 0.6666666666666666
     },
     "sizes": [
       {
@@ -635,20 +635,20 @@
       "path": "public/media/behindTheScenesShotsTheuncannydom34.webp",
       "width": 6000,
       "height": 4000,
-      "aspectRatio": "6000:4000"
+      "aspectRatio": 0.6666666666666666
     },
     "sizes": [
-      {
-        "fileName": "behindTheScenesShotsTheuncannydom34-1000x500.webp",
-        "path": "public/media/behindTheScenesShotsTheuncannydom34-1000x500.webp",
-        "width": 1000,
-        "height": 500
-      },
       {
         "fileName": "behindTheScenesShotsTheuncannydom34-2000x1000.webp",
         "path": "public/media/behindTheScenesShotsTheuncannydom34-2000x1000.webp",
         "width": 2000,
         "height": 1000
+      },
+      {
+        "fileName": "behindTheScenesShotsTheuncannydom34-1000x500.webp",
+        "path": "public/media/behindTheScenesShotsTheuncannydom34-1000x500.webp",
+        "width": 1000,
+        "height": 500
       },
       {
         "fileName": "behindTheScenesShotsTheuncannydom34-3000x1500.webp",

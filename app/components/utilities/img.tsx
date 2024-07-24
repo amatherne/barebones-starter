@@ -59,23 +59,33 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes }) => {
   const newSrc = newPath + camelSrc;
 
   const imageIDString = `image--${camelSrc ? '--' + camelSrc : ''}${alt ? '--' + alt : ''}${className ? '--' + className : ''}`;
+  console.log(imageIDString)
   const imageID = convertFileNameToCamelCase(imageIDString);
+  console.log(imageID)
 
   let imgSrc = src;
   let imgSrcSet = '';
   let imgSizes = '100vw';
 
+  let aspectRatio = '';
+  let imgWidth = '';
+  let imgHeight = '';
+  let originalSrc = '';
+
   if (metadata[camelSrc]) {
 
     const original = metadata[camelSrc].original;
     const sizes = metadata[camelSrc].sizes;
-    console.log(original)
+    // console.log(original)
 
     imgSrc = `${newPath}${original.fileName}`;
     imgSrcSet = sizes.map((size: any) => `${newPath}${size.fileName} ${size.width}w`).join(', ');
     imgSizes = sizes.map((size: any) => `(max-width: ${size.width}px) ${size.width}px`).join(', ');
 
-    // aspectRatio
+    originalSrc = original.path;
+    aspectRatio = original.aspectRatio;
+    imgWidth = original.width;
+    imgHeight = original.height;
   }
 
   return (
@@ -85,22 +95,31 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes }) => {
           <SvgComponent />
         </Suspense>
       ) : (
-        <img
-          src={imgSrc}
-          alt={alt || ''}
-          className="image--image"
-          srcSet={!isSvg ? imgSrcSet : undefined}
-          sizes={!isSvg ? imgSizes || '100vw' : undefined}
-          loading={!isSvg ? 'lazy' : undefined}
-          onLoad={handleImageLoad}
-        />
+        <div className="image--inner">
+          <img
+            src={imgSrc}
+            alt={alt || ''}
+            className="image--image"
+            srcSet={!isSvg ? imgSrcSet : undefined}
+            sizes={!isSvg ? imgSizes || '100vw' : undefined}
+            loading={!isSvg ? 'lazy' : undefined}
+            onLoad={handleImageLoad}
+          />
+        </div>
       )}
-      {!isSvg && dimensions.width && dimensions.height ? (
-        <style jsx>{`
+      {!isSvg && aspectRatio ? (
+        <style jsx global>{`
           .${imageID} {
-            --image--natural-width: ${dimensions.width}px;
-            --image--natural-height: ${dimensions.height}px;
-            --image--aspect-ratio: ${(dimensions.width / dimensions.height).toFixed(2)};
+            --image--max-source: url('${originalSrc}');
+            --image--natural-width: ${imgWidth}px;
+            --image--natural-height: ${imgHeight}px;
+            --image--set-width:var(--image--natural-width);
+            --image--set-height:var(--image--natural-height);
+            --image--aspect-ratio: calc(${aspectRatio} * 100%);
+            max-width:var(--image--set-width,100%);
+          }
+          .${imageID} .image--inner {
+            padding-top:var(--image--aspect-ratio,56.6%);
           }
         `}</style>
       ) : null}

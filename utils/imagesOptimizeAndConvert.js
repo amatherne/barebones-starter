@@ -112,17 +112,18 @@ const createImages = async (filePath) => {
           }
           console.log(`{Image Optimize :: Create Images}   -- Creating Image: '${resizedFileName}'`);
 
-          const aspectRatio = size.width / size.height;
-          
+          const aspectRatio = size.height / size.width;
+
           // Store metadata for original image
           metadata[fileNameWithoutExt] = {
             original: {
               fileName: resizedFileName,
               path: resizedFilePath,
-              width: size.width, // Store natural width
-              height: size.height, // Store natural height
+              // natural sizes
+              width: size.width, 
+              height: size.height, 
+              // natural sizes
               aspectRatio: aspectRatio
-              // aspectRatio: `${size.width}:${size.height}`
             },
             sizes: []
           };
