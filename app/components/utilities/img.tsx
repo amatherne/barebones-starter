@@ -90,12 +90,14 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes }) => {
       ) : (
         <div 
           className="image--inner"
-          style={{
-            '--image--aspect-ratio': aspectRatio ? `calc(${aspectRatio} * 100%)` : '56.6%', // Fallback ratio
-            '--image--max-source': `url('${originalSrc}')`,
-            '--image--natural-width': `${imgWidth}px`,
-            '--image--natural-height': `${imgHeight}px`,
-          }}
+          style={
+            {
+              '--image--aspect-ratio': aspectRatio ? `calc(${aspectRatio} * 100%)` : '56.6%', // Fallback ratio
+              '--image--max-source': `url('${originalSrc}')`,
+              '--image--natural-width': `${imgWidth}px`,
+              '--image--natural-height': `${imgHeight}px`,
+            } as React.CSSProperties
+          } 
         >
           <img
             src={imgSrc}
