@@ -30,24 +30,6 @@
         "path": "public/media/screenshot20240301At100827Am-3000x1500.webp",
         "width": 3000,
         "height": 1500
-      },
-      {
-        "fileName": "screenshot20240301At100827Am-4000x2000.webp",
-        "path": "public/media/screenshot20240301At100827Am-4000x2000.webp",
-        "width": 4000,
-        "height": 2000
-      },
-      {
-        "fileName": "screenshot20240301At100827Am-5000x2500.webp",
-        "path": "public/media/screenshot20240301At100827Am-5000x2500.webp",
-        "width": 5000,
-        "height": 2500
-      },
-      {
-        "fileName": "screenshot20240301At100827Am-6000x3000.webp",
-        "path": "public/media/screenshot20240301At100827Am-6000x3000.webp",
-        "width": 6000,
-        "height": 3000
       }
     ]
   },
@@ -82,180 +64,6 @@
         "path": "public/media/vintage10820571280-3000x1500.webp",
         "width": 3000,
         "height": 1500
-      },
-      {
-        "fileName": "vintage10820571280-4000x2000.webp",
-        "path": "public/media/vintage10820571280-4000x2000.webp",
-        "width": 4000,
-        "height": 2000
-      },
-      {
-        "fileName": "vintage10820571280-5000x2500.webp",
-        "path": "public/media/vintage10820571280-5000x2500.webp",
-        "width": 5000,
-        "height": 2500
-      },
-      {
-        "fileName": "vintage10820571280-6000x3000.webp",
-        "path": "public/media/vintage10820571280-6000x3000.webp",
-        "width": 6000,
-        "height": 3000
-      }
-    ]
-  },
-  "cb59": {
-    "original": {
-      "fileName": "cb59.webp",
-      "path": "public/media/cb59.webp",
-      "width": 2000,
-      "height": 2500
-    },
-    "sizes": [
-      {
-        "fileName": "cb59-2000x1000.webp",
-        "path": "public/media/cb59-2000x1000.webp",
-        "width": 2000,
-        "height": 1000
-      },
-      {
-        "fileName": "cb59-1000x500.webp",
-        "path": "public/media/cb59-1000x500.webp",
-        "width": 1000,
-        "height": 500
-      },
-      {
-        "fileName": "cb59-4000x2000.webp",
-        "path": "public/media/cb59-4000x2000.webp",
-        "width": 4000,
-        "height": 2000
-      },
-      {
-        "fileName": "cb59-3000x1500.webp",
-        "path": "public/media/cb59-3000x1500.webp",
-        "width": 3000,
-        "height": 1500
-      },
-      {
-        "fileName": "cb59-500x250.webp",
-        "path": "public/media/cb59-500x250.webp",
-        "width": 500,
-        "height": 250
-      },
-      {
-        "fileName": "cb59-5000x2500.webp",
-        "path": "public/media/cb59-5000x2500.webp",
-        "width": 5000,
-        "height": 2500
-      },
-      {
-        "fileName": "cb59-6000x3000.webp",
-        "path": "public/media/cb59-6000x3000.webp",
-        "width": 6000,
-        "height": 3000
-      }
-    ]
-  },
-  "cb45": {
-    "original": {
-      "fileName": "cb45.webp",
-      "path": "public/media/cb45.webp",
-      "width": 2738,
-      "height": 1826
-    },
-    "sizes": [
-      {
-        "fileName": "cb45-1000x500.webp",
-        "path": "public/media/cb45-1000x500.webp",
-        "width": 1000,
-        "height": 500
-      },
-      {
-        "fileName": "cb45-500x250.webp",
-        "path": "public/media/cb45-500x250.webp",
-        "width": 500,
-        "height": 250
-      },
-      {
-        "fileName": "cb45-2000x1000.webp",
-        "path": "public/media/cb45-2000x1000.webp",
-        "width": 2000,
-        "height": 1000
-      },
-      {
-        "fileName": "cb45-3000x1500.webp",
-        "path": "public/media/cb45-3000x1500.webp",
-        "width": 3000,
-        "height": 1500
-      },
-      {
-        "fileName": "cb45-5000x2500.webp",
-        "path": "public/media/cb45-5000x2500.webp",
-        "width": 5000,
-        "height": 2500
-      },
-      {
-        "fileName": "cb45-4000x2000.webp",
-        "path": "public/media/cb45-4000x2000.webp",
-        "width": 4000,
-        "height": 2000
-      },
-      {
-        "fileName": "cb45-6000x3000.webp",
-        "path": "public/media/cb45-6000x3000.webp",
-        "width": 6000,
-        "height": 3000
-      }
-    ]
-  },
-  "cb63": {
-    "original": {
-      "fileName": "cb63.webp",
-      "path": "public/media/cb63.webp",
-      "width": 2000,
-      "height": 2500
-    },
-    "sizes": [
-      {
-        "fileName": "cb63-2000x1000.webp",
-        "path": "public/media/cb63-2000x1000.webp",
-        "width": 2000,
-        "height": 1000
-      },
-      {
-        "fileName": "cb63-1000x500.webp",
-        "path": "public/media/cb63-1000x500.webp",
-        "width": 1000,
-        "height": 500
-      },
-      {
-        "fileName": "cb63-4000x2000.webp",
-        "path": "public/media/cb63-4000x2000.webp",
-        "width": 4000,
-        "height": 2000
-      },
-      {
-        "fileName": "cb63-3000x1500.webp",
-        "path": "public/media/cb63-3000x1500.webp",
-        "width": 3000,
-        "height": 1500
-      },
-      {
-        "fileName": "cb63-5000x2500.webp",
-        "path": "public/media/cb63-5000x2500.webp",
-        "width": 5000,
-        "height": 2500
-      },
-      {
-        "fileName": "cb63-500x250.webp",
-        "path": "public/media/cb63-500x250.webp",
-        "width": 500,
-        "height": 250
-      },
-      {
-        "fileName": "cb63-6000x3000.webp",
-        "path": "public/media/cb63-6000x3000.webp",
-        "width": 6000,
-        "height": 3000
       }
     ]
   },
@@ -267,6 +75,12 @@
       "height": 2500
     },
     "sizes": [
+      {
+        "fileName": "cb57-1000x500.webp",
+        "path": "public/media/cb57-1000x500.webp",
+        "width": 1000,
+        "height": 500
+      },
       {
         "fileName": "cb57-2000x1000.webp",
         "path": "public/media/cb57-2000x1000.webp",
@@ -280,34 +94,146 @@
         "height": 1500
       },
       {
-        "fileName": "cb57-1000x500.webp",
-        "path": "public/media/cb57-1000x500.webp",
-        "width": 1000,
-        "height": 500
-      },
-      {
-        "fileName": "cb57-5000x2500.webp",
-        "path": "public/media/cb57-5000x2500.webp",
-        "width": 5000,
-        "height": 2500
-      },
-      {
-        "fileName": "cb57-4000x2000.webp",
-        "path": "public/media/cb57-4000x2000.webp",
-        "width": 4000,
-        "height": 2000
-      },
-      {
-        "fileName": "cb57-6000x3000.webp",
-        "path": "public/media/cb57-6000x3000.webp",
-        "width": 6000,
-        "height": 3000
-      },
-      {
         "fileName": "cb57-500x250.webp",
         "path": "public/media/cb57-500x250.webp",
         "width": 500,
         "height": 250
+      }
+    ]
+  },
+  "cb63": {
+    "original": {
+      "fileName": "cb63.webp",
+      "path": "public/media/cb63.webp",
+      "width": 2000,
+      "height": 2500
+    },
+    "sizes": [
+      {
+        "fileName": "cb63-1000x500.webp",
+        "path": "public/media/cb63-1000x500.webp",
+        "width": 1000,
+        "height": 500
+      },
+      {
+        "fileName": "cb63-2000x1000.webp",
+        "path": "public/media/cb63-2000x1000.webp",
+        "width": 2000,
+        "height": 1000
+      },
+      {
+        "fileName": "cb63-500x250.webp",
+        "path": "public/media/cb63-500x250.webp",
+        "width": 500,
+        "height": 250
+      },
+      {
+        "fileName": "cb63-3000x1500.webp",
+        "path": "public/media/cb63-3000x1500.webp",
+        "width": 3000,
+        "height": 1500
+      }
+    ]
+  },
+  "cb59": {
+    "original": {
+      "fileName": "cb59.webp",
+      "path": "public/media/cb59.webp",
+      "width": 2000,
+      "height": 2500
+    },
+    "sizes": [
+      {
+        "fileName": "cb59-1000x500.webp",
+        "path": "public/media/cb59-1000x500.webp",
+        "width": 1000,
+        "height": 500
+      },
+      {
+        "fileName": "cb59-2000x1000.webp",
+        "path": "public/media/cb59-2000x1000.webp",
+        "width": 2000,
+        "height": 1000
+      },
+      {
+        "fileName": "cb59-3000x1500.webp",
+        "path": "public/media/cb59-3000x1500.webp",
+        "width": 3000,
+        "height": 1500
+      },
+      {
+        "fileName": "cb59-500x250.webp",
+        "path": "public/media/cb59-500x250.webp",
+        "width": 500,
+        "height": 250
+      }
+    ]
+  },
+  "cb52": {
+    "original": {
+      "fileName": "cb52.webp",
+      "path": "public/media/cb52.webp",
+      "width": 2000,
+      "height": 2500
+    },
+    "sizes": [
+      {
+        "fileName": "cb52-1000x500.webp",
+        "path": "public/media/cb52-1000x500.webp",
+        "width": 1000,
+        "height": 500
+      },
+      {
+        "fileName": "cb52-2000x1000.webp",
+        "path": "public/media/cb52-2000x1000.webp",
+        "width": 2000,
+        "height": 1000
+      },
+      {
+        "fileName": "cb52-3000x1500.webp",
+        "path": "public/media/cb52-3000x1500.webp",
+        "width": 3000,
+        "height": 1500
+      },
+      {
+        "fileName": "cb52-500x250.webp",
+        "path": "public/media/cb52-500x250.webp",
+        "width": 500,
+        "height": 250
+      }
+    ]
+  },
+  "cb45": {
+    "original": {
+      "fileName": "cb45.webp",
+      "path": "public/media/cb45.webp",
+      "width": 2738,
+      "height": 1826
+    },
+    "sizes": [
+      {
+        "fileName": "cb45-500x250.webp",
+        "path": "public/media/cb45-500x250.webp",
+        "width": 500,
+        "height": 250
+      },
+      {
+        "fileName": "cb45-1000x500.webp",
+        "path": "public/media/cb45-1000x500.webp",
+        "width": 1000,
+        "height": 500
+      },
+      {
+        "fileName": "cb45-2000x1000.webp",
+        "path": "public/media/cb45-2000x1000.webp",
+        "width": 2000,
+        "height": 1000
+      },
+      {
+        "fileName": "cb45-3000x1500.webp",
+        "path": "public/media/cb45-3000x1500.webp",
+        "width": 3000,
+        "height": 1500
       }
     ]
   },
@@ -320,16 +246,16 @@
     },
     "sizes": [
       {
-        "fileName": "rohitTandon9wg5jcepbswUnsplash-500x250.webp",
-        "path": "public/media/rohitTandon9wg5jcepbswUnsplash-500x250.webp",
-        "width": 500,
-        "height": 250
-      },
-      {
         "fileName": "rohitTandon9wg5jcepbswUnsplash-1000x500.webp",
         "path": "public/media/rohitTandon9wg5jcepbswUnsplash-1000x500.webp",
         "width": 1000,
         "height": 500
+      },
+      {
+        "fileName": "rohitTandon9wg5jcepbswUnsplash-500x250.webp",
+        "path": "public/media/rohitTandon9wg5jcepbswUnsplash-500x250.webp",
+        "width": 500,
+        "height": 250
       },
       {
         "fileName": "rohitTandon9wg5jcepbswUnsplash-2000x1000.webp",
@@ -342,24 +268,6 @@
         "path": "public/media/rohitTandon9wg5jcepbswUnsplash-3000x1500.webp",
         "width": 3000,
         "height": 1500
-      },
-      {
-        "fileName": "rohitTandon9wg5jcepbswUnsplash-5000x2500.webp",
-        "path": "public/media/rohitTandon9wg5jcepbswUnsplash-5000x2500.webp",
-        "width": 5000,
-        "height": 2500
-      },
-      {
-        "fileName": "rohitTandon9wg5jcepbswUnsplash-4000x2000.webp",
-        "path": "public/media/rohitTandon9wg5jcepbswUnsplash-4000x2000.webp",
-        "width": 4000,
-        "height": 2000
-      },
-      {
-        "fileName": "rohitTandon9wg5jcepbswUnsplash-6000x3000.webp",
-        "path": "public/media/rohitTandon9wg5jcepbswUnsplash-6000x3000.webp",
-        "width": 6000,
-        "height": 3000
       }
     ]
   },
@@ -378,6 +286,12 @@
         "height": 500
       },
       {
+        "fileName": "johnTownerJgoerugdY4Unsplash-500x250.webp",
+        "path": "public/media/johnTownerJgoerugdY4Unsplash-500x250.webp",
+        "width": 500,
+        "height": 250
+      },
+      {
         "fileName": "johnTownerJgoerugdY4Unsplash-2000x1000.webp",
         "path": "public/media/johnTownerJgoerugdY4Unsplash-2000x1000.webp",
         "width": 2000,
@@ -388,82 +302,6 @@
         "path": "public/media/johnTownerJgoerugdY4Unsplash-3000x1500.webp",
         "width": 3000,
         "height": 1500
-      },
-      {
-        "fileName": "johnTownerJgoerugdY4Unsplash-500x250.webp",
-        "path": "public/media/johnTownerJgoerugdY4Unsplash-500x250.webp",
-        "width": 500,
-        "height": 250
-      },
-      {
-        "fileName": "johnTownerJgoerugdY4Unsplash-4000x2000.webp",
-        "path": "public/media/johnTownerJgoerugdY4Unsplash-4000x2000.webp",
-        "width": 4000,
-        "height": 2000
-      },
-      {
-        "fileName": "johnTownerJgoerugdY4Unsplash-5000x2500.webp",
-        "path": "public/media/johnTownerJgoerugdY4Unsplash-5000x2500.webp",
-        "width": 5000,
-        "height": 2500
-      },
-      {
-        "fileName": "johnTownerJgoerugdY4Unsplash-6000x3000.webp",
-        "path": "public/media/johnTownerJgoerugdY4Unsplash-6000x3000.webp",
-        "width": 6000,
-        "height": 3000
-      }
-    ]
-  },
-  "cb52": {
-    "original": {
-      "fileName": "cb52.webp",
-      "path": "public/media/cb52.webp",
-      "width": 2000,
-      "height": 2500
-    },
-    "sizes": [
-      {
-        "fileName": "cb52-2000x1000.webp",
-        "path": "public/media/cb52-2000x1000.webp",
-        "width": 2000,
-        "height": 1000
-      },
-      {
-        "fileName": "cb52-3000x1500.webp",
-        "path": "public/media/cb52-3000x1500.webp",
-        "width": 3000,
-        "height": 1500
-      },
-      {
-        "fileName": "cb52-1000x500.webp",
-        "path": "public/media/cb52-1000x500.webp",
-        "width": 1000,
-        "height": 500
-      },
-      {
-        "fileName": "cb52-4000x2000.webp",
-        "path": "public/media/cb52-4000x2000.webp",
-        "width": 4000,
-        "height": 2000
-      },
-      {
-        "fileName": "cb52-500x250.webp",
-        "path": "public/media/cb52-500x250.webp",
-        "width": 500,
-        "height": 250
-      },
-      {
-        "fileName": "cb52-6000x3000.webp",
-        "path": "public/media/cb52-6000x3000.webp",
-        "width": 6000,
-        "height": 3000
-      },
-      {
-        "fileName": "cb52-5000x2500.webp",
-        "path": "public/media/cb52-5000x2500.webp",
-        "width": 5000,
-        "height": 2500
       }
     ]
   },
@@ -494,28 +332,10 @@
         "height": 1000
       },
       {
-        "fileName": "renatoPozziG4ogyyZcsqUnsplash-4000x2000.webp",
-        "path": "public/media/renatoPozziG4ogyyZcsqUnsplash-4000x2000.webp",
-        "width": 4000,
-        "height": 2000
-      },
-      {
         "fileName": "renatoPozziG4ogyyZcsqUnsplash-3000x1500.webp",
         "path": "public/media/renatoPozziG4ogyyZcsqUnsplash-3000x1500.webp",
         "width": 3000,
         "height": 1500
-      },
-      {
-        "fileName": "renatoPozziG4ogyyZcsqUnsplash-5000x2500.webp",
-        "path": "public/media/renatoPozziG4ogyyZcsqUnsplash-5000x2500.webp",
-        "width": 5000,
-        "height": 2500
-      },
-      {
-        "fileName": "renatoPozziG4ogyyZcsqUnsplash-6000x3000.webp",
-        "path": "public/media/renatoPozziG4ogyyZcsqUnsplash-6000x3000.webp",
-        "width": 6000,
-        "height": 3000
       }
     ]
   },
@@ -540,34 +360,16 @@
         "height": 1000
       },
       {
-        "fileName": "screenshot20240720At83418Pm-3000x1500.webp",
-        "path": "public/media/screenshot20240720At83418Pm-3000x1500.webp",
-        "width": 3000,
-        "height": 1500
-      },
-      {
-        "fileName": "screenshot20240720At83418Pm-4000x2000.webp",
-        "path": "public/media/screenshot20240720At83418Pm-4000x2000.webp",
-        "width": 4000,
-        "height": 2000
-      },
-      {
         "fileName": "screenshot20240720At83418Pm-500x250.webp",
         "path": "public/media/screenshot20240720At83418Pm-500x250.webp",
         "width": 500,
         "height": 250
       },
       {
-        "fileName": "screenshot20240720At83418Pm-5000x2500.webp",
-        "path": "public/media/screenshot20240720At83418Pm-5000x2500.webp",
-        "width": 5000,
-        "height": 2500
-      },
-      {
-        "fileName": "screenshot20240720At83418Pm-6000x3000.webp",
-        "path": "public/media/screenshot20240720At83418Pm-6000x3000.webp",
-        "width": 6000,
-        "height": 3000
+        "fileName": "screenshot20240720At83418Pm-3000x1500.webp",
+        "path": "public/media/screenshot20240720At83418Pm-3000x1500.webp",
+        "width": 3000,
+        "height": 1500
       }
     ]
   },
@@ -580,28 +382,16 @@
     },
     "sizes": [
       {
-        "fileName": "screenshot20240720At80258Pm-2000x1000.webp",
-        "path": "public/media/screenshot20240720At80258Pm-2000x1000.webp",
-        "width": 2000,
-        "height": 1000
-      },
-      {
         "fileName": "screenshot20240720At80258Pm-1000x500.webp",
         "path": "public/media/screenshot20240720At80258Pm-1000x500.webp",
         "width": 1000,
         "height": 500
       },
       {
-        "fileName": "screenshot20240720At80258Pm-3000x1500.webp",
-        "path": "public/media/screenshot20240720At80258Pm-3000x1500.webp",
-        "width": 3000,
-        "height": 1500
-      },
-      {
-        "fileName": "screenshot20240720At80258Pm-4000x2000.webp",
-        "path": "public/media/screenshot20240720At80258Pm-4000x2000.webp",
-        "width": 4000,
-        "height": 2000
+        "fileName": "screenshot20240720At80258Pm-2000x1000.webp",
+        "path": "public/media/screenshot20240720At80258Pm-2000x1000.webp",
+        "width": 2000,
+        "height": 1000
       },
       {
         "fileName": "screenshot20240720At80258Pm-500x250.webp",
@@ -610,16 +400,44 @@
         "height": 250
       },
       {
-        "fileName": "screenshot20240720At80258Pm-5000x2500.webp",
-        "path": "public/media/screenshot20240720At80258Pm-5000x2500.webp",
-        "width": 5000,
-        "height": 2500
+        "fileName": "screenshot20240720At80258Pm-3000x1500.webp",
+        "path": "public/media/screenshot20240720At80258Pm-3000x1500.webp",
+        "width": 3000,
+        "height": 1500
+      }
+    ]
+  },
+  "celebration": {
+    "original": {
+      "fileName": "celebration.webp",
+      "path": "public/media/celebration.webp",
+      "width": 370,
+      "height": 208
+    },
+    "sizes": [
+      {
+        "fileName": "celebration-500x250.webp",
+        "path": "public/media/celebration-500x250.webp",
+        "width": 500,
+        "height": 250
       },
       {
-        "fileName": "screenshot20240720At80258Pm-6000x3000.webp",
-        "path": "public/media/screenshot20240720At80258Pm-6000x3000.webp",
-        "width": 6000,
-        "height": 3000
+        "fileName": "celebration-1000x500.webp",
+        "path": "public/media/celebration-1000x500.webp",
+        "width": 1000,
+        "height": 500
+      },
+      {
+        "fileName": "celebration-2000x1000.webp",
+        "path": "public/media/celebration-2000x1000.webp",
+        "width": 2000,
+        "height": 1000
+      },
+      {
+        "fileName": "celebration-3000x1500.webp",
+        "path": "public/media/celebration-3000x1500.webp",
+        "width": 3000,
+        "height": 1500
       }
     ]
   },
@@ -632,28 +450,16 @@
     },
     "sizes": [
       {
-        "fileName": "screenshot20240720At81608Pm-2000x1000.webp",
-        "path": "public/media/screenshot20240720At81608Pm-2000x1000.webp",
-        "width": 2000,
-        "height": 1000
-      },
-      {
         "fileName": "screenshot20240720At81608Pm-1000x500.webp",
         "path": "public/media/screenshot20240720At81608Pm-1000x500.webp",
         "width": 1000,
         "height": 500
       },
       {
-        "fileName": "screenshot20240720At81608Pm-3000x1500.webp",
-        "path": "public/media/screenshot20240720At81608Pm-3000x1500.webp",
-        "width": 3000,
-        "height": 1500
-      },
-      {
-        "fileName": "screenshot20240720At81608Pm-4000x2000.webp",
-        "path": "public/media/screenshot20240720At81608Pm-4000x2000.webp",
-        "width": 4000,
-        "height": 2000
+        "fileName": "screenshot20240720At81608Pm-2000x1000.webp",
+        "path": "public/media/screenshot20240720At81608Pm-2000x1000.webp",
+        "width": 2000,
+        "height": 1000
       },
       {
         "fileName": "screenshot20240720At81608Pm-500x250.webp",
@@ -662,16 +468,44 @@
         "height": 250
       },
       {
-        "fileName": "screenshot20240720At81608Pm-5000x2500.webp",
-        "path": "public/media/screenshot20240720At81608Pm-5000x2500.webp",
-        "width": 5000,
-        "height": 2500
+        "fileName": "screenshot20240720At81608Pm-3000x1500.webp",
+        "path": "public/media/screenshot20240720At81608Pm-3000x1500.webp",
+        "width": 3000,
+        "height": 1500
+      }
+    ]
+  },
+  "screenshot20240720At81648Pm": {
+    "original": {
+      "fileName": "screenshot20240720At81648Pm.webp",
+      "path": "public/media/screenshot20240720At81648Pm.webp",
+      "width": 4096,
+      "height": 2270
+    },
+    "sizes": [
+      {
+        "fileName": "screenshot20240720At81648Pm-1000x500.webp",
+        "path": "public/media/screenshot20240720At81648Pm-1000x500.webp",
+        "width": 1000,
+        "height": 500
       },
       {
-        "fileName": "screenshot20240720At81608Pm-6000x3000.webp",
-        "path": "public/media/screenshot20240720At81608Pm-6000x3000.webp",
-        "width": 6000,
-        "height": 3000
+        "fileName": "screenshot20240720At81648Pm-2000x1000.webp",
+        "path": "public/media/screenshot20240720At81648Pm-2000x1000.webp",
+        "width": 2000,
+        "height": 1000
+      },
+      {
+        "fileName": "screenshot20240720At81648Pm-500x250.webp",
+        "path": "public/media/screenshot20240720At81648Pm-500x250.webp",
+        "width": 500,
+        "height": 250
+      },
+      {
+        "fileName": "screenshot20240720At81648Pm-3000x1500.webp",
+        "path": "public/media/screenshot20240720At81648Pm-3000x1500.webp",
+        "width": 3000,
+        "height": 1500
       }
     ]
   },
@@ -696,108 +530,16 @@
         "height": 1000
       },
       {
-        "fileName": "20240720MainHero-3000x1500.webp",
-        "path": "public/media/20240720MainHero-3000x1500.webp",
-        "width": 3000,
-        "height": 1500
-      },
-      {
         "fileName": "20240720MainHero-500x250.webp",
         "path": "public/media/20240720MainHero-500x250.webp",
         "width": 500,
         "height": 250
       },
       {
-        "fileName": "20240720MainHero-4000x2000.webp",
-        "path": "public/media/20240720MainHero-4000x2000.webp",
-        "width": 4000,
-        "height": 2000
-      },
-      {
-        "fileName": "20240720MainHero-5000x2500.webp",
-        "path": "public/media/20240720MainHero-5000x2500.webp",
-        "width": 5000,
-        "height": 2500
-      },
-      {
-        "fileName": "20240720MainHero-6000x3000.webp",
-        "path": "public/media/20240720MainHero-6000x3000.webp",
-        "width": 6000,
-        "height": 3000
-      }
-    ]
-  },
-  "screenshot20240720At81648Pm": {
-    "original": {
-      "fileName": "screenshot20240720At81648Pm.webp",
-      "path": "public/media/screenshot20240720At81648Pm.webp",
-      "width": 4096,
-      "height": 2270
-    },
-    "sizes": [
-      {
-        "fileName": "screenshot20240720At81648Pm-2000x1000.webp",
-        "path": "public/media/screenshot20240720At81648Pm-2000x1000.webp",
-        "width": 2000,
-        "height": 1000
-      },
-      {
-        "fileName": "screenshot20240720At81648Pm-1000x500.webp",
-        "path": "public/media/screenshot20240720At81648Pm-1000x500.webp",
-        "width": 1000,
-        "height": 500
-      },
-      {
-        "fileName": "screenshot20240720At81648Pm-3000x1500.webp",
-        "path": "public/media/screenshot20240720At81648Pm-3000x1500.webp",
+        "fileName": "20240720MainHero-3000x1500.webp",
+        "path": "public/media/20240720MainHero-3000x1500.webp",
         "width": 3000,
         "height": 1500
-      },
-      {
-        "fileName": "screenshot20240720At81648Pm-500x250.webp",
-        "path": "public/media/screenshot20240720At81648Pm-500x250.webp",
-        "width": 500,
-        "height": 250
-      },
-      {
-        "fileName": "screenshot20240720At81648Pm-4000x2000.webp",
-        "path": "public/media/screenshot20240720At81648Pm-4000x2000.webp",
-        "width": 4000,
-        "height": 2000
-      },
-      {
-        "fileName": "screenshot20240720At81648Pm-5000x2500.webp",
-        "path": "public/media/screenshot20240720At81648Pm-5000x2500.webp",
-        "width": 5000,
-        "height": 2500
-      },
-      {
-        "fileName": "screenshot20240720At81648Pm-6000x3000.webp",
-        "path": "public/media/screenshot20240720At81648Pm-6000x3000.webp",
-        "width": 6000,
-        "height": 3000
-      }
-    ]
-  },
-  "celebration": {
-    "original": {
-      "fileName": "celebration.webp",
-      "path": "public/media/celebration.webp",
-      "width": null,
-      "height": null
-    },
-    "sizes": [
-      {
-        "fileName": "celebration-500x250.webp",
-        "path": "public/media/celebration-500x250.webp",
-        "width": 500,
-        "height": 250
-      },
-      {
-        "fileName": "celebration-1000x500.webp",
-        "path": "public/media/celebration-1000x500.webp",
-        "width": 1000,
-        "height": 500
       }
     ]
   },
@@ -816,40 +558,22 @@
         "height": 1000
       },
       {
-        "fileName": "behindTheScenesShotsTheuncannydom54-3000x1500.webp",
-        "path": "public/media/behindTheScenesShotsTheuncannydom54-3000x1500.webp",
-        "width": 3000,
-        "height": 1500
-      },
-      {
-        "fileName": "behindTheScenesShotsTheuncannydom54-4000x2000.webp",
-        "path": "public/media/behindTheScenesShotsTheuncannydom54-4000x2000.webp",
-        "width": 4000,
-        "height": 2000
-      },
-      {
         "fileName": "behindTheScenesShotsTheuncannydom54-1000x500.webp",
         "path": "public/media/behindTheScenesShotsTheuncannydom54-1000x500.webp",
         "width": 1000,
         "height": 500
       },
       {
-        "fileName": "behindTheScenesShotsTheuncannydom54-5000x2500.webp",
-        "path": "public/media/behindTheScenesShotsTheuncannydom54-5000x2500.webp",
-        "width": 5000,
-        "height": 2500
+        "fileName": "behindTheScenesShotsTheuncannydom54-3000x1500.webp",
+        "path": "public/media/behindTheScenesShotsTheuncannydom54-3000x1500.webp",
+        "width": 3000,
+        "height": 1500
       },
       {
         "fileName": "behindTheScenesShotsTheuncannydom54-500x250.webp",
         "path": "public/media/behindTheScenesShotsTheuncannydom54-500x250.webp",
         "width": 500,
         "height": 250
-      },
-      {
-        "fileName": "behindTheScenesShotsTheuncannydom54-6000x3000.webp",
-        "path": "public/media/behindTheScenesShotsTheuncannydom54-6000x3000.webp",
-        "width": 6000,
-        "height": 3000
       }
     ]
   },
@@ -868,34 +592,16 @@
         "height": 1000
       },
       {
-        "fileName": "behindTheScenesShotsTheuncannydom59-3000x1500.webp",
-        "path": "public/media/behindTheScenesShotsTheuncannydom59-3000x1500.webp",
-        "width": 3000,
-        "height": 1500
-      },
-      {
         "fileName": "behindTheScenesShotsTheuncannydom59-1000x500.webp",
         "path": "public/media/behindTheScenesShotsTheuncannydom59-1000x500.webp",
         "width": 1000,
         "height": 500
       },
       {
-        "fileName": "behindTheScenesShotsTheuncannydom59-4000x2000.webp",
-        "path": "public/media/behindTheScenesShotsTheuncannydom59-4000x2000.webp",
-        "width": 4000,
-        "height": 2000
-      },
-      {
-        "fileName": "behindTheScenesShotsTheuncannydom59-5000x2500.webp",
-        "path": "public/media/behindTheScenesShotsTheuncannydom59-5000x2500.webp",
-        "width": 5000,
-        "height": 2500
-      },
-      {
-        "fileName": "behindTheScenesShotsTheuncannydom59-6000x3000.webp",
-        "path": "public/media/behindTheScenesShotsTheuncannydom59-6000x3000.webp",
-        "width": 6000,
-        "height": 3000
+        "fileName": "behindTheScenesShotsTheuncannydom59-3000x1500.webp",
+        "path": "public/media/behindTheScenesShotsTheuncannydom59-3000x1500.webp",
+        "width": 3000,
+        "height": 1500
       },
       {
         "fileName": "behindTheScenesShotsTheuncannydom59-500x250.webp",
@@ -914,16 +620,16 @@
     },
     "sizes": [
       {
-        "fileName": "behindTheScenesShotsTheuncannydom34-2000x1000.webp",
-        "path": "public/media/behindTheScenesShotsTheuncannydom34-2000x1000.webp",
-        "width": 2000,
-        "height": 1000
-      },
-      {
         "fileName": "behindTheScenesShotsTheuncannydom34-1000x500.webp",
         "path": "public/media/behindTheScenesShotsTheuncannydom34-1000x500.webp",
         "width": 1000,
         "height": 500
+      },
+      {
+        "fileName": "behindTheScenesShotsTheuncannydom34-2000x1000.webp",
+        "path": "public/media/behindTheScenesShotsTheuncannydom34-2000x1000.webp",
+        "width": 2000,
+        "height": 1000
       },
       {
         "fileName": "behindTheScenesShotsTheuncannydom34-3000x1500.webp",
@@ -932,28 +638,10 @@
         "height": 1500
       },
       {
-        "fileName": "behindTheScenesShotsTheuncannydom34-4000x2000.webp",
-        "path": "public/media/behindTheScenesShotsTheuncannydom34-4000x2000.webp",
-        "width": 4000,
-        "height": 2000
-      },
-      {
         "fileName": "behindTheScenesShotsTheuncannydom34-500x250.webp",
         "path": "public/media/behindTheScenesShotsTheuncannydom34-500x250.webp",
         "width": 500,
         "height": 250
-      },
-      {
-        "fileName": "behindTheScenesShotsTheuncannydom34-5000x2500.webp",
-        "path": "public/media/behindTheScenesShotsTheuncannydom34-5000x2500.webp",
-        "width": 5000,
-        "height": 2500
-      },
-      {
-        "fileName": "behindTheScenesShotsTheuncannydom34-6000x3000.webp",
-        "path": "public/media/behindTheScenesShotsTheuncannydom34-6000x3000.webp",
-        "width": 6000,
-        "height": 3000
       }
     ]
   }

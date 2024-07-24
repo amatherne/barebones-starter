@@ -82,57 +82,75 @@ const createImages = async (filePath) => {
       { width: 1000, height: 500 },
       { width: 2000, height: 1000 },
       { width: 3000, height: 1500 },
-      { width: 4000, height: 2000 },
-      { width: 5000, height: 2500 },
-      { width: 6000, height: 3000 },
+      // { width: 4000, height: 2000 },
+      // { width: 5000, height: 2500 },
+      // { width: 6000, height: 3000 },
     ];
 
     const gmInstance = gm(filePath);
 
-    const resizedFileName = `${fileNameWithoutExt}.webp`;
-    const resizedFilePath = path.join(outputDir, resizedFileName);
-    await promisify(gmInstance.quality(75).write.bind(gmInstance))(resizedFilePath);
-    console.log(`{Image Optimize :: Create Images}   -- Creating Image: '${resizedFileName}'`);
-
-    // Store metadata for original image
-    metadata[fileNameWithoutExt] = {
-      original: {
-        fileName: resizedFileName,
-        path: resizedFilePath,
-        width: null, // Will be set later
-        height: null // Will be set later
-      },
-      sizes: []
-    };
-
-    const resizePromises = sizes.map(async (size) => {
-      const resizedFileNameSizes = `${fileNameWithoutExt}-${size.width}x${size.height}.webp`;
-      const resizedFilePathSizes = path.join(outputDir, resizedFileNameSizes);
-      const gmInstanceSize = gm(filePath);
-      await promisify(gmInstanceSize.resize(size.width, size.height).quality(75).write.bind(gmInstanceSize))(resizedFilePathSizes);
-      
-      // Store metadata for resized image
-      metadata[fileNameWithoutExt].sizes.push({
-        fileName: resizedFileNameSizes,
-        path: resizedFilePathSizes,
-        width: size.width,
-        height: size.height
-      });
-    });
-
-    await Promise.all(resizePromises);
-
-    // Get dimensions for the original image and store them in metadata
-    gm(resizedFilePath).size((err, size) => {
-      if (!err) {
-        metadata[fileNameWithoutExt].original.width = size.width;
-        metadata[fileNameWithoutExt].original.height = size.height;
+    // Get natural dimensions of the original image
+    gmInstance.size((err, size) => {
+      if (err) {
+        console.error(`Error getting size for ${filePath}:`, err);
+        return;
       }
-      console.log(`{Image Optimize :: Create Images}   -- Image Created:  '${resizedFileName}'`);
 
-      // Write metadata to JSON file after all operations are completed
-      fs.writeJsonSync(metadataFilePath, metadata, { spaces: 2 });
-      console.log(`{Image Optimize :: Create Images}   -- Metadata written to: '${metadataFilePath}'`);
+      // Log natural dimensions
+      // console.log(`{Image Optimize :: Create Images} -- Natural Dimensions of ${fileName}: ${size.width}x${size.height}`);
+
+      const resizedFileName = `${fileNameWithoutExt}.webp`;
+      const resizedFilePath = path.join(outputDir, resizedFileName);
+      
+      // Resize and save the image
+      gmInstance
+        .quality(75)
+        .write(resizedFilePath, (err) => {
+          if (err) {
+            console.error(`Error writing resized image ${resizedFilePath}:`, err);
+            return;
+          }
+          console.log(`{Image Optimize :: Create Images}   -- Creating Image: '${resizedFileName}'`);
+
+          // Store metadata for original image
+          metadata[fileNameWithoutExt] = {
+            original: {
+              fileName: resizedFileName,
+              path: resizedFilePath,
+              width: size.width, // Store natural width
+              height: size.height // Store natural height
+            },
+            sizes: []
+          };
+
+          // Resize for different sizes
+          const resizePromises = sizes.map(async (size) => {
+            const resizedFileNameSizes = `${fileNameWithoutExt}-${size.width}x${size.height}.webp`;
+            const resizedFilePathSizes = path.join(outputDir, resizedFileNameSizes);
+            const gmInstanceSize = gm(filePath);
+
+            await promisify(gmInstanceSize.resize(size.width, size.height).quality(75).write.bind(gmInstanceSize))(resizedFilePathSizes);
+
+            // Store metadata for resized image
+            metadata[fileNameWithoutExt].sizes.push({
+              fileName: resizedFileNameSizes,
+              path: resizedFilePathSizes,
+              width: size.width,
+              height: size.height
+            });
+            // console.log(`{Image Optimize :: Create Images}   -- Resized Image Created: '${resizedFileNameSizes}'`);
+          });
+
+          Promise.all(resizePromises)
+            .then(() => {
+              // Write metadata to JSON file after all operations are completed
+              fs.writeJsonSync(metadataFilePath, metadata, { spaces: 2 });
+              console.log(`{Image Optimize :: Create Images}   -- Metadata written to: '${metadataFilePath}'`);
+            })
+            .catch(error => {
+              console.error(`Error processing resized images for ${filePath}:`, error);
+            });
+        });
     });
 
   } catch (error) {
