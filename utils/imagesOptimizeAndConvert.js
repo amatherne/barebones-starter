@@ -113,7 +113,7 @@ const createImages = async (filePath) => {
       const newHeight = Math.round(size.height * scaleRatio);
 
       const resizedFileName = `${fileNameWithoutExt}.webp`;
-      const resizedFilePath = path.join(outputDir, resizedFileName);
+      const resizedFilePath = path.join('/media', resizedFileName);
 
       let setWidth = size.width;
       let setHeight = size.height;
@@ -142,12 +142,8 @@ const createImages = async (filePath) => {
       };
 
       const sizes = [
-        // { width: 400, height: 200 },
-        // { width: 750, height: 375 },
-        // { width: 1000, height: 500 },
-        // { width: 2000, height: 1000 },
-        // { width: 3000, height: 1500 },
-        { width: 500, height: 250 },
+        { width: 400, height: 200 },
+        { width: 750, height: 375 },
         { width: 1000, height: 500 },
         { width: 2000, height: 1000 },
         { width: 3000, height: 1500 },

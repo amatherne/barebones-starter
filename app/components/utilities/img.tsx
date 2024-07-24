@@ -72,15 +72,25 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes, lazy }) => {
     const original = metadata[camelSrc].original;
     const sizes = metadata[camelSrc].sizes;
 
-    imgSrc = `${newPath}${original.fileName}`;
-    imgSrcSet = sizes.map((size: any) => `${newPath}${size.fileName} ${size.width}w`).join(', ');
-    imgSizes = sizes.map((size: any) => `(max-width: ${size.width}px) ${size.width}px`).join(', ');
+    
+    imgSrcSet = [
+      `${original.path} ${original.width}w`,
+      ...sizes.map(size => `${size.path} ${size.width}w`)
+    ].join(', ');
 
+    imgSizes = [
+      `(max-width: ${original.width}px) ${original.width}px`,
+      ...sizes.map(size => `(max-width: ${size.width}px) ${size.width}px`)
+    ].join(', ');
+
+    originalSrc = `${newPath}${original.fileName}`;
+    imgSrc = originalSrc;
     aspectRatio = original.aspectRatio;
     imgWidth = original.width;
     imgHeight = original.height;
-    originalSrc = `${newPath}${original.fileName}`;
+
   }
+    console.log(imgSrc)
 
   return (
     <div
