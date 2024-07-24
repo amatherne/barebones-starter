@@ -91,7 +91,6 @@ const createImages = async (filePath) => {
   }
 
   try {
-
     const gmInstance = gm(filePath);
 
     // Get natural dimensions of the original image
@@ -100,6 +99,8 @@ const createImages = async (filePath) => {
         console.error(`Error getting size for ${filePath}:`, err);
         return;
       }
+
+      const aspectRatio = size.height / size.width;
 
       const maxWidth = 3000;
       const maxHeight = 3000;
@@ -117,12 +118,28 @@ const createImages = async (filePath) => {
       let setWidth = size.width;
       let setHeight = size.height;
 
+      // Resize the original image if needed
       if (newWidth < size.width || newHeight < size.height) {
-        setWidth = newWidth;
-        setHeight = newHeight;
-        await promisify(gmInstance.resize(newWidth, newHeight).quality(qualityLevel).write.bind(gmInstance))(resizedFilePath);            
+        let setWidth = newWidth;
+        let setHeight = newHeight;
+        await promisify(gmInstance.resize(setWidth, setHeight).quality(qualityLevel).write.bind(gmInstance))(resizedFilePath);            
         console.log(`{Image Optimize :: Create Images}   -- Resized Image:  '${resizedFileName}' to ${setWidth}x${setHeight}`);
+      } else {
+        await promisify(gmInstance.quality(qualityLevel).write.bind(gmInstance))(resizedFilePath);            
       }
+
+
+      // Store metadata for the resized "original" image
+      metadata[fileNameWithoutExt] = {
+        original: {
+          fileName: resizedFileName,
+          path: resizedFilePath,
+          width: setWidth,
+          height: setHeight,
+          aspectRatio: aspectRatio
+        },
+        sizes: []
+      };
 
       const sizes = [
         // { width: 400, height: 200 },
@@ -135,58 +152,28 @@ const createImages = async (filePath) => {
         { width: 2000, height: 1000 },
         { width: 3000, height: 1500 },
       ].filter(size => size.width < newWidth || size.height < newHeight);
-            
-      // Save the resized image
-      gmInstance
-        .quality(qualityLevel)
-        .write(resizedFilePath, (err) => {
-          if (err) {
-            console.error(`Error writing resized image ${resizedFilePath}:`, err);
-            return;
-          }
-          console.log(`{Image Optimize :: Create Images}   -- Creating Image: '${resizedFileName}'`);
 
-          const aspectRatio = size.height / size.width;
+      // Resize for different sizes
+      const resizePromises = sizes.map(async (size) => {
+        const resizedFileNameSizes = `${fileNameWithoutExt}-${size.width}x${size.height}.webp`;
+        const resizedFilePathSizes = path.join(outputDir, resizedFileNameSizes);
+        const gmInstanceSize = gm(filePath);
 
-          // Store metadata for original image
-          metadata[fileNameWithoutExt] = {
-            original: {
-              fileName: resizedFileName,
-              path: resizedFilePath,
-              width: setWidth,
-              height: setHeight,
-              aspectRatio: aspectRatio
-            },
-            sizes: []
-          };
+        await promisify(gmInstanceSize.resize(size.width, size.height).quality(qualityLevel).write.bind(gmInstanceSize))(resizedFilePathSizes);
 
-          // Resize for different sizes
-          const resizePromises = sizes.map(async (size) => {
-            const resizedFileNameSizes = `${fileNameWithoutExt}-${size.width}x${size.height}.webp`;
-            const resizedFilePathSizes = path.join(outputDir, resizedFileNameSizes);
-            const gmInstanceSize = gm(filePath);
-
-            await promisify(gmInstanceSize.resize(size.width, size.height).quality(qualityLevel).write.bind(gmInstanceSize))(resizedFilePathSizes);
-
-            // Store metadata for resized image
-            metadata[fileNameWithoutExt].sizes.push({
-              fileName: resizedFileNameSizes,
-              path: resizedFilePathSizes,
-              width: size.width,
-              height: size.height,
-            });
-            // console.log(`resizing...`);
-          });
-
-          Promise.all(resizePromises)
-            .then(() => {
-              // Write metadata to JSON file after all operations are completed
-              fs.writeJsonSync(metadataFilePath, metadata, { spaces: 2 });
-            })
-            .catch(error => {
-              console.error(`Error processing resized images for ${filePath}:`, error);
-            });
+        // Store metadata for resized image
+        metadata[fileNameWithoutExt].sizes.push({
+          fileName: resizedFileNameSizes,
+          path: resizedFilePathSizes,
+          width: size.width,
+          height: size.height,
         });
+      });
+
+      await Promise.all(resizePromises);
+      
+      // Write metadata to JSON file after all operations are completed
+      fs.writeJsonSync(metadataFilePath, metadata, { spaces: 2 });
     });
 
   } catch (error) {
