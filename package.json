@@ -42,7 +42,7 @@
     "xml2js": "^0.6.2"
   },
   "devDependencies": {
-    "@tinacms/cli": "^1.5.49",
+    "@tinacms/cli": "^1.5.50",
     "@types/node": "^20.14.9",
     "concurrently": "^8.2.2",
     "dotenv": "^16.4.5",
