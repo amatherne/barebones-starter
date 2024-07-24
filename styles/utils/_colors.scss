@@ -42,6 +42,20 @@ $colors: (
       --color--background             : var(--default--color--background);
       --color--background-rgb         : var(--default--color--background-rgb);
     }
+
+    // @media (prefers-color-scheme: dark) {
+    //   :root {
+    //     --default--color--foreground      : var(--color--white);
+    //     --default--color--foreground-rgb  : var(--color--white-rgb);
+    //     --default--color--background      : var(--color--cod-black);
+    //     --default--color--background-rgb  : var(--color--cod-black-rgb);
+
+    //     --alt--color--foreground          : var(--default--color--background);
+    //     --alt--color--foreground-rgb      : var(--default--color--background-rgb);
+    //     --alt--color--background          : var(--default--color--foreground);
+    //     --alt--color--background-rgb      : var(--default--color--foreground-rgb);
+    //   }
+    // }
   }
   .#{$grid-breakpoint-type}color--1 {
     --color--foreground               : var(--default--color--foreground);

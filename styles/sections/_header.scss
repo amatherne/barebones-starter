@@ -175,8 +175,7 @@
         0 0 4px rgba(var(--color--background-rgb), .5), 
         0 0 10px rgba(var(--color--background-rgb), .47);
       
-
-      body.site-loaded & {
+      body.site-loaded:not(.dark-mode) & {
         color: var(--color--foreground);
         @extend .gradient--text;
         text-shadow: none;
