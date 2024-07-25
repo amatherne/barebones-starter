@@ -54,11 +54,12 @@ const nextConfig = {
       //   'react-dom': 'ReactDOM',
       // }
 
-      config.optimization.splitChunks.cacheGroups.shared = {
-        test: /[\\/]node_modules[\\/]/,
-        name: 'commons',
-        chunks: 'all',
-      }
+      console.log('shared not working')
+      // config.optimization.splitChunks.cacheGroups.shared = {
+      //   test: /[\\/]node_modules[\\/]/,
+      //   name: 'commons',
+      //   chunks: 'all',
+      // }
     }
 
     config.module.rules.push({

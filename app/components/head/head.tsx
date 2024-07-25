@@ -38,6 +38,7 @@ const HeadElement: React.FC<HeadProps> = ({ seoTitle, seoText }) => {
   const finalSeoText = seoText ? seoText : globalSeoText;
 
   useEffect(() => {
+    if (process.env.NODE_ENV === 'development') return;
     clarity.init('naukwulsi8');
   }, []);
 
