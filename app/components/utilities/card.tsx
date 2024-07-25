@@ -5,14 +5,28 @@ import ImgOutput from './img';
 import { cleanBlockName } from '../../../utils/helpers';
 import Link from "next/link";
 
-const card = ({object}) => {
+interface CardProps {
+  object: {
+    node: {
+      __typename: string;
+      blocks: any[];
+      _sys: {
+        filename: string;
+      };
+      title: string;
+    };
+  };
+}
+
+const Card: React.FC<CardProps> = ({object}) => {
 
   const type      = object.node.__typename;
   const handle    = `${type.toLowerCase()}${type.slice(-1)==='s'?'':'s'}`;
-  let imgSrc      = object.node.blocks || '';
+  
+  let imgSrc      = '';
   let imgAlt      = '';
 
-  if (imgSrc) {
+  if (object.node.blocks) {
     const img     = object.node.blocks.find(block => cleanBlockName(block.__typename) === 'BlocksHero').item?.[0] || '';
     imgSrc        = img.src || '';
     imgAlt        = img.alt || '';
@@ -35,4 +49,4 @@ const card = ({object}) => {
   );
 }
 
-export default card;
+export default Card;

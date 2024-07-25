@@ -1,5 +1,3 @@
-// ../components/blocks/hero.tsx
-
 import React from 'react';
 import { TinaMarkdown, TinaMarkdownContent } from 'tinacms/dist/rich-text';
 import ImgOutput from '../utilities/img';
@@ -7,24 +5,64 @@ import { formatUrl } from '../utilities/formatUrl';
 import Link from 'next/link';
 import { convertFileNameToCamelCase, customCSS } from '../../../utils/helpers';
 
-const Hero = ({ settings, index }) => {
+interface ButtonSettings {
+  text?: string;
+  url?: string;
+  content?: string;
+  mobile_button?: string;
+  desktop_button?: string;
+}
 
-  const styles            = settings.styles;
-  const height            = styles?.height || '';
-  const min_height        = styles?.min_height || '';
-  const max_height        = styles?.max_height || '';
+interface BlockStyles {
+  mobile_colors?: string;
+  mobile_opacity?: string;
+  desktop_colors?: string;
+  desktop_opacity?: string;
+  custom_css?: string;
+}
 
-  const hero              = settings.item;
+interface HeroItem {
+  src?: string;
+  alt?: string;
+  title?: string;
+  text?: TinaMarkdownContent;
+  button?: ButtonSettings;
+  styles?: BlockStyles;
+}
 
-  const sectionIndex      = index;
+interface HeroSettings {
+  styles?: {
+    height?: string;
+    min_height?: string;
+    max_height?: string;
+  };
+  item?: HeroItem[];
+}
+
+interface HeroProps {
+  settings: HeroSettings;
+  index: number;
+}
+
+const Hero: React.FC<HeroProps> = ({ settings, index }) => {
+
+  const styles = settings.styles;
+  const height = styles?.height || '';
+  const min_height = styles?.min_height || '';
+  const max_height = styles?.max_height || '';
+
+  const hero = settings.item;
+
+  const sectionIndex = index;
 
   if (!hero) return null;
 
-  const heroStyle: any = { 
+  const heroStyle: React.CSSProperties & { [key: string]: string } = {
     ...(height && { '--height--default': height.replace('%', 'vw') }),
     ...(min_height && { '--height--min': min_height.replace('%', 'vw') }),
     ...(max_height && { '--height--max': max_height.replace('%', 'vw') }),
   };
+
 
   const heroClass = `
     ${height && min_height && max_height ? 'set-height--clamp' : ''}
@@ -40,56 +78,56 @@ const Hero = ({ settings, index }) => {
     >
       {hero.map((item, index) => {
 
-        const image               = item.src || null;
-        const imageAlt            = item.alt || null;
-        const title               = item.title || null;
-        let text                  = item.text;
+        const image = item.src || null;
+        const imageAlt = item.alt || undefined;
+        const title = item.title || null;
+        let text = item.text;
         if (text && text.children.length === 0) {
-          text                     = null; 
+          text = undefined; 
         }
-        const buttonText          = item.button?.text || '';
-        const buttonUrl           = item.button?.url || '';
-        const buttonContent       = item.button?.content || '';
-        const buttonMobile        = item.button?.mobile_button || '';
-        const buttonDesktop       = item.button?.desktop_button || '';
+        const buttonText = item.button?.text || '';
+        const buttonUrl = item.button?.url || '';
+        const buttonContent = item.button?.content || '';
+        const buttonMobile = item.button?.mobile_button || '';
+        const buttonDesktop = item.button?.desktop_button || '';
 
-        let buttonLink: string    = buttonUrl;
+        let buttonLink: string = buttonUrl;
         if (buttonContent) {
-          buttonLink              = formatUrl(buttonContent);  
+          buttonLink = formatUrl(buttonContent);  
         }
 
-        let isLazy                = true;
-        let titleElement          = 'h2';
-        if (index == 0 && sectionIndex == 0) {
-          titleElement            = 'h1';
-          isLazy                  = false;
+        let isLazy = true;
+        let titleElement = 'h2';
+        if (index === 0 && sectionIndex === 0) {
+          titleElement = 'h1';
+          isLazy = false;
         }
 
-        const blockStyles         = item.styles;
+        const blockStyles = item.styles;
 
-        const mobileColors        = blockStyles?.mobile_colors;
-        const mobileOpacity       = blockStyles?.mobile_opacity;
+        const mobileColors = blockStyles?.mobile_colors;
+        const mobileOpacity = blockStyles?.mobile_opacity;
 
-        const desktopColors       = blockStyles?.desktop_colors;
-        const desktopOpacity      = blockStyles?.desktop_opacity;
+        const desktopColors = blockStyles?.desktop_colors;
+        const desktopOpacity = blockStyles?.desktop_opacity;
 
-        let blockCustomCSS        = blockStyles?.custom_css || '';
+        let blockCustomCSS = blockStyles?.custom_css || '';
 
-        const hasButton           = buttonText && buttonLink;
-        const hasOverlayLink      = !hasButton && buttonLink;
+        const hasButton = buttonText && buttonLink;
+        const hasOverlayLink = !hasButton && buttonLink;
 
-        const linkTitle: string   = title || (typeof text === 'string' ? text : imageAlt || '');
+        const linkTitle: string = title || (typeof text === 'string' ? text : imageAlt || '');
 
-        const hasContent          = title || text || hasButton;
+        const hasContent = title || text || hasButton;
 
-        const itemIDString        = `hero--item${image?'--'+image:''}${imageAlt?'--'+imageAlt:''}-${title?'--'+title:''}`;
-        const itemID              = convertFileNameToCamelCase(itemIDString);
+        const itemIDString = `hero--item${image ? '--' + image : ''}${imageAlt ? '--' + imageAlt : ''}${title ? '--' + title : ''}`;
+        const itemID = convertFileNameToCamelCase(itemIDString);
 
         if (blockCustomCSS) {
-          blockCustomCSS          = customCSS(blockCustomCSS,itemID);
+          blockCustomCSS = customCSS(blockCustomCSS, itemID);
         }
 
-        const blockStyle: any = { 
+        const blockStyle: React.CSSProperties & { [key: string]: string } = { 
           ...(mobileOpacity && { '--mobile--image--overlay-opacity': mobileOpacity }),
           ...(desktopOpacity && { '--desktop--image--overlay-opacity': desktopOpacity }),
         };
@@ -106,7 +144,7 @@ const Hero = ({ settings, index }) => {
             className={`hero--item ${blockClass}`}
             style={blockStyle}
           >
-            { hasOverlayLink && buttonLink ? (
+            {hasOverlayLink && buttonLink ? (
               <Link 
                 href={buttonLink} 
                 title={linkTitle} 
@@ -118,8 +156,7 @@ const Hero = ({ settings, index }) => {
               <ImgOutput src={image} alt={imageAlt} className="ctas--image" lazy={isLazy} />
             ) : null }
 
-            
-            { hasContent ? (
+            {hasContent ? (
               <div className="page-width">
                 <div className="hero--text">
                   
@@ -127,13 +164,13 @@ const Hero = ({ settings, index }) => {
                     React.createElement(titleElement, { className: "hxl" }, title)
                   ) : null}
 
-                  { text ? (
+                  {text ? (
                     <div className="rte">
                       <TinaMarkdown content={text} />
                     </div>
                   ) : null }
 
-                  { hasButton ? (
+                  {hasButton ? (
                     <Link 
                       href={buttonLink} 
                       className={`button ${buttonMobile} ${buttonDesktop}`}

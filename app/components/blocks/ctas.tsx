@@ -7,56 +7,91 @@ import { formatUrl } from '../utilities/formatUrl';
 import Link from 'next/link';
 import { convertFileNameToCamelCase, customCSS } from '../../../utils/helpers';
 
-const CTAs = ({ settings, index }) => {
+interface Button {
+  text?: string;
+  url?: string;
+  content?: string;
+}
 
+interface CTAItem {
+  src?: string;
+  alt?: string;
+  title?: string;
+  text?: TinaMarkdownContent;
+  button?: Button;
+  custom_css?: string;
+}
+
+interface Settings {
+  title?: string;
+  text?: TinaMarkdownContent;
+  button?: Button;
+  custom_css?: string;
+  widths?: {
+    mobile_width?: string;
+    tablet_width?: string;
+    desktop_width?: string;
+  };
+  item?: CTAItem[];
+  styles?: {
+    style?: string;
+    colors?: string;
+  };
+}
+
+interface CTAsProps {
+  settings?: Settings;
+  index: number;
+}
+
+const CTAs: React.FC<CTAsProps> = ({ settings, index }) => {
   if (!settings) return null;
 
-  // console.log(settings)
+  const sectionTitle = settings.title || null;
 
-  const sectionTitle                = settings.title || null;
-  let sectionText                   = settings.text;
+  let sectionText: TinaMarkdownContent | undefined = settings.text;
   if (sectionText && sectionText.children.length === 0) {
-    sectionText                     = null; 
+    sectionText = undefined; 
   }
-  const sectionButtonText           = settings.button?.text || '';
-  const sectionButtonUrl            = settings.button?.url || '';
-  const sectionButtonContent        = settings.button?.content || '';
 
-  let sectionButtonLink: string     = sectionButtonUrl;
+  const sectionButtonText = settings.button?.text || '';
+  const sectionButtonUrl = settings.button?.url || '';
+  const sectionButtonContent = settings.button?.content || '';
+
+  let sectionButtonLink: string = sectionButtonUrl;
   if (sectionButtonContent) {
-    sectionButtonLink               = formatUrl(sectionButtonContent);  
+    sectionButtonLink = formatUrl(sectionButtonContent);  
   }
-  const sectionHasButton            = sectionButtonText && sectionButtonLink;
+  const sectionHasButton = sectionButtonText && sectionButtonLink;
 
-  let sectionCustomCSS              = settings.custom_css || '';
+  let sectionCustomCSS = settings.custom_css || '';
 
-  const ctasMobileWidth             = settings.widths?.mobile_width || '';
-  const ctasTabletWidth             = settings.widths?.tablet_width || '';
-  const ctasDesktopWidth            = settings.widths?.desktop_width || '';
+  const ctasMobileWidth = settings.widths?.mobile_width || '';
+  const ctasTabletWidth = settings.widths?.tablet_width || '';
+  const ctasDesktopWidth = settings.widths?.desktop_width || '';
 
-  const widths                      = `${ctasMobileWidth} ${ctasTabletWidth} ${ctasDesktopWidth}`;
+  const widths = `${ctasMobileWidth} ${ctasTabletWidth} ${ctasDesktopWidth}`;
   
-  const ctas                        = settings.item;
-  
+  const ctas = settings.item;
+
   const ctaTitles = ctas ? ctas.map((cta) => {
     const title = cta.title || '';
     return convertFileNameToCamelCase(title);
   }).filter(Boolean).join('--') : [];
 
-  const sectionTitleHasContent      = sectionTitle || sectionText || sectionHasButton;
-
-  const sectionHasContent           = sectionTitleHasContent || ctas;
+  const sectionTitleHasContent = sectionTitle || sectionText || sectionHasButton;
+  const sectionHasContent = sectionTitleHasContent || ctas;
 
   if (!sectionHasContent) return null;
 
-  const style                       = settings.styles?.style;
-  const color                       = settings.styles?.colors;
+  const style = settings.styles?.style;
+  const color = settings.styles?.colors;
 
-  const sectionIDString             = `ctas--section${sectionTitle?'-'+sectionTitle:''}${sectionButtonText?'-'+sectionButtonText:''}${ctaTitles?'-'+ctaTitles:''}`;
-  const sectionID                   = convertFileNameToCamelCase(sectionIDString);
+  const sectionIDString = `ctas--section${sectionTitle ? '-' + sectionTitle : ''}${sectionButtonText ? '-' + sectionButtonText : ''}${ctaTitles ? '-' + ctaTitles : ''}`;
+  const sectionID = convertFileNameToCamelCase(sectionIDString);
 
   if (sectionCustomCSS) {
-    sectionCustomCSS                = customCSS(sectionCustomCSS,sectionID);
+    sectionCustomCSS = customCSS(sectionCustomCSS, sectionID);
   }
   
   return (
@@ -94,41 +129,40 @@ const CTAs = ({ settings, index }) => {
           </div>
         ) : null }
         
-
         {ctas ? (
-          <ul className="cell ">
+          <ul className="cell">
             {ctas.map((item, index) => {
 
-              const image               = item.src || null;
-              const imageAlt            = item.alt || null;
-              const title               = item.title || null;
-              let text                  = item.text || null;
+              const image = item.src || null;
+              const imageAlt = item.alt || undefined;
+              const title = item.title || null;
+              let text: TinaMarkdownContent | undefined = item.text || undefined;
               if (text && text.children.length === 0) {
-                text                    = null; 
+                text = undefined; 
               }
-              const buttonText          = item.button?.text || '';
-              const buttonUrl           = item.button?.url || '';
-              const buttonContent       = item.button?.content || '';
+              const buttonText = item.button?.text || '';
+              const buttonUrl = item.button?.url || '';
+              const buttonContent = item.button?.content || '';
 
-              let buttonLink: string    = buttonUrl;
+              let buttonLink: string = buttonUrl;
               if (buttonContent) {
-                buttonLink              = formatUrl(buttonContent);  
+                buttonLink = formatUrl(buttonContent);  
               }
 
-              let blockCustomCSS        = item.custom_css || '';
+              let blockCustomCSS = item.custom_css || '';
 
-              const hasButton           = buttonText && buttonLink;
-              const hasOverlayLink      = !hasButton && buttonLink;
+              const hasButton = buttonText && buttonLink;
+              const hasOverlayLink = !hasButton && buttonLink;
 
-              const linkTitle: string   = title || (typeof text === 'string' ? text : imageAlt || '');
+              const linkTitle: string = title || (typeof text === 'string' ? text : imageAlt || '');
 
-              const hasContent          = title || text || hasButton;
+              const hasContent = title || text || hasButton;
 
-              const itemIDString        = `ctas--item${image?'-'+image:''}${imageAlt?'-'+imageAlt:''}${title?'-'+title:''}-${index}`;
-              const itemID              = convertFileNameToCamelCase(itemIDString);
+              const itemIDString = `ctas--item${image ? '-' + image : ''}${imageAlt ? '-' + imageAlt : ''}${title ? '-' + title : ''}-${index}`;
+              const itemID = convertFileNameToCamelCase(itemIDString);
 
               if (blockCustomCSS) {
-                blockCustomCSS          = customCSS(blockCustomCSS);
+                blockCustomCSS = customCSS(blockCustomCSS);
               }
 
               return (

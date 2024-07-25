@@ -4,12 +4,24 @@ import React from 'react';
 import Link from 'next/link';
 import activeLink from '../../utils/active-link'; 
 
-const Navigation = ({ menuData, className }) => {
+interface MenuItem {
+  text: string;
+  url?: string;
+  content?: string;
+  subitems?: MenuItem[]; 
+}
+
+interface NavigationProps {
+  menuData?: MenuItem[]; 
+  className?: string;
+}
+
+const Navigation: React.FC<NavigationProps> = ({ menuData, className }) => {
   const { isActive } = activeLink();
 
   const menuActive = 'menu--link--active';
 
-  const renderMenuItems = (items) => {
+  const renderMenuItems = (items: MenuItem[]) => {
     return (
       <ul className="list-unstyled">
         {items.map((item) => {

@@ -7,6 +7,26 @@ import importIcon from '../../../utils/importIcon';
 import { convertFileNameToCamelCase } from '../../../utils/helpers';
 import { useImageMetadata } from '../contexts/imageMetadataContext';
 
+interface Size {
+  path: string;
+  width: string;
+}
+
+interface Metadata {
+  original: {
+    path: string;
+    width: string;
+    fileName: string;
+    aspectRatio: string;
+    height: string;
+  };
+  sizes: Size[];
+}
+
+interface ImageMetadata {
+  [key: string]: Metadata;
+}
+
 interface ImgProps {
   src: string;
   alt?: string;
@@ -17,8 +37,8 @@ interface ImgProps {
 
 const Img: React.FC<ImgProps> = ({ src, alt, className, sizes, lazy }) => {
   const [SvgComponent, setSvgComponent] = useState<React.FC | null>(null);
-  const metadata = useImageMetadata();
-  
+  const metadata = useImageMetadata() as ImageMetadata;
+
   const isSvg = src.endsWith('.svg');
   const isLazy = lazy !== undefined ? lazy : true;
 
@@ -79,7 +99,6 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes, lazy }) => {
     aspectRatio = original.aspectRatio;
     imgWidth = original.width;
     imgHeight = original.height;
-
   }
 
   return (

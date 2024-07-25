@@ -15,9 +15,13 @@ interface Content {
   title: string;
 }
 
-export function formatUrl(content: Content): string {
+export const formatUrl = (content: Content | string): string => {
   const basePath = '/';
   let formattedUrl = '';
+
+  if (typeof content === 'string') {
+    return content; 
+  }
 
   if (content.__typename === 'Website') {
     formattedUrl = `${basePath}websites/${content._sys.filename}`;
