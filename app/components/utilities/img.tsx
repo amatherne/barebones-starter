@@ -62,7 +62,7 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes, lazy }) => {
     const original = metadata[camelSrc].original;
     const sizes = metadata[camelSrc].sizes;
 
-    const removePublicPath = (path: string): string => path.replace(/^\/?public\//, '');
+    const removePublicPath = (path: string): string => path.replace(/^\/?public/, '');
 
     imgSrcSet = [
       `${removePublicPath(original.path)} ${original.width}w`,
@@ -79,6 +79,7 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes, lazy }) => {
     aspectRatio = original.aspectRatio;
     imgWidth = original.width;
     imgHeight = original.height;
+
   }
 
   return (

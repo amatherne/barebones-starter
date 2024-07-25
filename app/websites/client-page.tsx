@@ -1,7 +1,7 @@
 // ../app/websites/client-page.tsx
 
+import React from 'react';
 import Card from '../components/utilities/card';
-
 
 export default function PostList(props) {
     return (

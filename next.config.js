@@ -10,7 +10,6 @@ const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPl
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
-
 es6Promise.polyfill();
 
 const nextConfig = {
@@ -28,7 +27,6 @@ const nextConfig = {
   },
 
   webpack: (config, { isServer }) => {
-
     if (!isServer) {
       config.resolve.alias['@sentry/node'] = '@sentry/browser';
 
@@ -71,8 +69,8 @@ const nextConfig = {
         {
           loader: 'file-loader',
           options: {
-            outputPath: 'static/fonts', 
-            publicPath: '/_next/static/fonts', 
+            outputPath: 'static/fonts',
+            publicPath: '/_next/static/fonts',
             name: '[name].[ext]',
           },
         },
@@ -80,12 +78,12 @@ const nextConfig = {
     });
 
     config.module.rules.push({
-      test: /\.js$/,
+      test: /\.(js|ts|tsx)$/,
       exclude: /node_modules/,
       use: {
         loader: 'babel-loader',
         options: {
-          presets: ['@babel/preset-env', '@babel/preset-react'],
+          presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
         },
       },
     });
@@ -95,7 +93,7 @@ const nextConfig = {
         analyzerMode: 'static',
         reportFilename: isServer ? './bundles/server.html' : './bundles/client.html',
         openAnalyzer: true,
-        analyzerPort: 8889, 
+        analyzerPort: 8889,
       }));
     }
 
@@ -110,13 +108,11 @@ const nextConfig = {
     );
 
     config.cache = {
-      type: 'filesystem', // Use filesystem cache
+      type: 'filesystem',
       buildDependencies: {
-        config: [__filename], // Rebuild when this file changes
+        config: [__filename],
       },
     };
-
-    // config.optimization.usedExports = true;
 
     config.optimization = {
       ...config.optimization,

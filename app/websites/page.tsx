@@ -1,9 +1,8 @@
 // ../app/websites/page.tsx
 
+import React from 'react';
 import WebsiteList from "./client-page";
 import { client } from "../../tina/__generated__/client";
-
-
 
 export default async function Page() {
 

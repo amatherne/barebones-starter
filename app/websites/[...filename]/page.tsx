@@ -1,5 +1,6 @@
 // ../app/websites/[...filename]/page.tsx
 
+import React from 'react';
 import Website from "./client-page";
 import client from "../../../tina/__generated__/client";
 
@@ -11,7 +12,6 @@ export async function generateStaticParams() {
 
   return paths || [];
 }
-
 
 export default async function PostPage({
   params,

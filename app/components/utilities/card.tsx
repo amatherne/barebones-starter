@@ -1,5 +1,6 @@
 // ../components/utilities/card.tsx
 
+import React from 'react';
 import ImgOutput from './img';
 import { cleanBlockName } from '../../../utils/helpers';
 import Link from "next/link";
