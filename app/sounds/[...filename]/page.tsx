@@ -1,7 +1,7 @@
 // ../app/sounds/[...filename]/page.tsx
 
 import React from 'react';
-import Sounds from "./client-page";
+// import Sounds from "./client-page";
 import client from "../../../tina/__generated__/client";
 
 export async function generateStaticParams() {
@@ -25,6 +25,7 @@ export default async function PostPage({
   });
 
   return (
-    <Sounds {...data}></Sounds>
+    <div />
+    // <Sounds {...data}></Sounds>
   );
 }

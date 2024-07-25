@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "reboot": "yarn cache clean && rm -rf node_modules yarn.lock .next && yarn install",
+    "reboot": "yarn cache clean && rm -rf node_modules yarn.lock .next tina/__generated__ && yarn install && tinacms build",
     "dev": "concurrently \"yarn watchAssets\" \"tinacms dev -c \\\"next dev\\\"\"",
     "build": "yarn buildAssets && tinacms build && yarn buildNext",
     "buildTest": "cross-env ANALYZE=true yarn buildNext",

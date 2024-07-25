@@ -25,10 +25,10 @@ export const formatUrl = (content: Content | string): string => {
 
   if (content.__typename === 'Website') {
     formattedUrl = `${basePath}websites/${content._sys.filename}`;
-  } else if (content.__typename === 'Sounds') {
-    formattedUrl = `${basePath}sounds/${content._sys.filename}`;
-  } else if (content.__typename === 'Page') {
-    formattedUrl = `${basePath}${content._sys.filename}`;
+  // } else if (content.__typename === 'Sounds') {
+  //   formattedUrl = `${basePath}sounds/${content._sys.filename}`;
+  // } else if (content.__typename === 'Page') {
+  //   formattedUrl = `${basePath}${content._sys.filename}`;
   } else {
     formattedUrl = `${basePath}${content._sys.filename}`; // Default case
   }

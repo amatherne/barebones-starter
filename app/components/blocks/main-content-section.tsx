@@ -8,9 +8,10 @@ import { convertFileNameToCamelCase, customCSS } from '../../../utils/helpers';
 
 type MainContentType = 
   PageQuery['page'] | 
-  WebsiteQuery['website'] | 
-  SoundsQuery['sounds'] | 
-  PostQuery['post'];
+  WebsiteQuery['website'] ;
+  // | 
+  // SoundsQuery['sounds'] | 
+  // PostQuery['post'];
 
 interface MainContentProps {
   content: MainContentType;
@@ -35,13 +36,13 @@ const isWebsiteQuery = (content: MainContentType): content is WebsiteQuery['webs
   return (content as WebsiteQuery['website']).__typename === 'Website';
 };
 
-const isSoundsQuery = (content: MainContentType): content is SoundsQuery['sounds'] => {
-  return (content as SoundsQuery['sounds']).__typename === 'Sounds';
-};
+// const isSoundsQuery = (content: MainContentType): content is SoundsQuery['sounds'] => {
+//   return (content as SoundsQuery['sounds']).__typename === 'Sounds';
+// };
 
-const isPostQuery = (content: MainContentType): content is PostQuery['post'] => {
-  return (content as PostQuery['post']).__typename === 'Post';
-};
+// const isPostQuery = (content: MainContentType): content is PostQuery['post'] => {
+//   return (content as PostQuery['post']).__typename === 'Post';
+// };
 
 
 
@@ -49,7 +50,8 @@ const MainContent: React.FC<MainContentProps> = ({ settings, content, index }) =
 
   if (!settings || !content) return null;
 
-  const checkMain                                       = isPageQuery(content) || isWebsiteQuery(content) || isSoundsQuery(content) || isPostQuery(content);
+  // const checkMain                                       = isPageQuery(content) || isWebsiteQuery(content) || isSoundsQuery(content) || isPostQuery(content);
+  const checkMain                                       = isPageQuery(content) || isWebsiteQuery(content);
 
   const title                                           = settings?.title || (checkMain ? content.title : null);
   const bodyText                                        = settings?.title || (checkMain) ? content.body : null;
