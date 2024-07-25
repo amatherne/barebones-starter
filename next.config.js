@@ -6,9 +6,13 @@ const path = require('path');
 const es6Promise = require('es6-promise');
 const svgoConfig = require('./svgo.config');
 
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const TerserPlugin = require('terser-webpack-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+})
 
 es6Promise.polyfill();
 
@@ -28,6 +32,7 @@ const nextConfig = {
 
   webpack: (config, { isServer }) => {
     if (!isServer) {
+
       config.resolve.alias['@sentry/node'] = '@sentry/browser';
 
       config.optimization.minimizer.push(
@@ -43,6 +48,17 @@ const nextConfig = {
           extractComments: false, 
         })
       );
+
+      config.externals = {
+        react: 'React',
+        'react-dom': 'ReactDOM',
+      }
+
+      config.optimization.splitChunks.cacheGroups.shared = {
+        test: /[\\/]node_modules[\\/]/,
+        name: 'commons',
+        chunks: 'all',
+      }
     }
 
     config.module.rules.push({
@@ -88,14 +104,14 @@ const nextConfig = {
       },
     });
 
-    if (process.env.ANALYZE) {
-      config.plugins.push(new BundleAnalyzerPlugin({
-        analyzerMode: 'static',
-        reportFilename: isServer ? './bundles/server.html' : './bundles/client.html',
-        openAnalyzer: true,
-        analyzerPort: 8889,
-      }));
-    }
+    // if (process.env.ANALYZE) {
+    //   config.plugins.push(new BundleAnalyzerPlugin({
+    //     analyzerMode: 'static',
+    //     reportFilename: isServer ? './bundles/server.html' : './bundles/client.html',
+    //     openAnalyzer: true,
+    //     analyzerPort: 8889,
+    //   }));
+    // }
 
     config.optimization.minimizer.push(
       new CssMinimizerPlugin({
@@ -130,4 +146,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+module.exports = withBundleAnalyzer(nextConfig);

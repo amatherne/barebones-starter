@@ -95,7 +95,6 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes, lazy }) => {
     ].join(', ');
 
     originalSrc = `${newPath}${original.fileName}`;
-    // imgSrc = originalSrc;
     aspectRatio = original.aspectRatio;
     imgWidth = original.width;
     imgHeight = original.height;

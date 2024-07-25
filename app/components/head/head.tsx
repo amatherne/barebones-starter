@@ -54,6 +54,9 @@ const HeadElement: React.FC<HeadProps> = ({ seoTitle, seoText }) => {
       <title>{finalSeoTitle}</title>
       <meta name="description" content={escapeHtml(finalSeoText)} />  
 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/react/17.0.2/umd/react.production.min.js" />
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/17.0.2/umd/react-dom.production.min.js" />
+
     </>
   );
 };
