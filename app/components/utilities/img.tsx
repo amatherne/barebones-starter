@@ -23,7 +23,7 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes, lazy }) => {
   const isLazy = lazy !== undefined ? lazy : true;
 
   const handleImageLoad = (event: React.SyntheticEvent<HTMLImageElement>) => {
-    if (!isLazy) return;
+    // if (!isLazy) return;
     event.currentTarget.classList.remove('lazyload');
     event.currentTarget.classList.add('lazyloaded');
   };
@@ -63,9 +63,9 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes, lazy }) => {
     const original = metadata[camelSrc].original;
     const sizes = metadata[camelSrc].sizes;
 
-    const removePublicPath = (path) => path.replace(/^\/public\//, '');
+    const removePublicPath = (path: string): string => path.replace(/^\/?public\//, '');
 
-    const srcSet = [
+    imgSrcSet = [
       `${removePublicPath(original.path)} ${original.width}w`,
       ...sizes.map(size => `${removePublicPath(size.path)} ${size.width}w`)
     ].join(', ');
@@ -80,7 +80,6 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes, lazy }) => {
     aspectRatio = original.aspectRatio;
     imgWidth = original.width;
     imgHeight = original.height;
-
   }
 
   return (
@@ -106,7 +105,7 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes, lazy }) => {
           <img
             src={imgSrc}
             alt={alt || ''}
-            className={`image--image ${isLazy ? 'lazyload' : ''}`}
+            className="image--image lazyload"
             srcSet={!isSvg ? imgSrcSet : undefined}
             sizes={!isSvg ? imgSizes || '100vw' : undefined}
             loading={!isSvg && isLazy ? 'lazy' : undefined}

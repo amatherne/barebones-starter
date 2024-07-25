@@ -58,9 +58,11 @@ const Hero = ({ settings, index }) => {
           buttonLink              = formatUrl(buttonContent);  
         }
 
+        let isLazy                = true;
         let titleElement          = 'h2';
         if (index == 0 && sectionIndex == 0) {
           titleElement            = 'h1';
+          isLazy                  = false;
         }
 
         const blockStyles         = item.styles;
@@ -113,7 +115,7 @@ const Hero = ({ settings, index }) => {
             ) : null }
 
             {image ? (
-              <ImgOutput src={image} alt={imageAlt} className="ctas--image" />
+              <ImgOutput src={image} alt={imageAlt} className="ctas--image" lazy={isLazy} />
             ) : null }
 
             
