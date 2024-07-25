@@ -23,7 +23,6 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes, lazy }) => {
   const isLazy = lazy !== undefined ? lazy : true;
 
   const handleImageLoad = (event: React.SyntheticEvent<HTMLImageElement>) => {
-    // if (!isLazy) return;
     event.currentTarget.classList.remove('lazyload');
     event.currentTarget.classList.add('lazyloaded');
   };
@@ -95,8 +94,8 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes, lazy }) => {
           className="image--inner"
           style={
             {
-              '--image--aspect-ratio': aspectRatio ? `calc(${aspectRatio} * 100%)` : '56.6%', // Fallback ratio
-              '--image--max-source': `url('${originalSrc}')`,
+              '--image--aspect-ratio': aspectRatio ? `calc(${aspectRatio} * 100%)` : '56.6%', 
+              '--image--original-source': `url('${originalSrc}')`,
               '--image--natural-width': `${imgWidth}px`,
               '--image--natural-height': `${imgHeight}px`,
             } as React.CSSProperties
