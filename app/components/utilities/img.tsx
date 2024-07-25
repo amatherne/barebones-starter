@@ -12,7 +12,7 @@ interface ImgProps {
   alt?: string;
   className?: string;
   sizes?: string;
-  lazy?: string;
+  lazy?: boolean;
 }
 
 const Img: React.FC<ImgProps> = ({ src, alt, className, sizes, lazy }) => {
