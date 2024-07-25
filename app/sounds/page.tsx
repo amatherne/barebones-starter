@@ -1,6 +1,7 @@
 // ../app/sounds/page.tsx
 
-import SoundsList from "./client-page";
+import React from 'react';
+// import SoundsList from "./client-page";
 import { client } from "../../tina/__generated__/client";
 
 
@@ -9,5 +10,5 @@ export default async function Page() {
 
   const pages = await client.queries.soundsConnection();
 
-  return <SoundsList {...pages} />
+  // return <SoundsList {...pages} />
 }

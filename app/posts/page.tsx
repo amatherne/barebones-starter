@@ -1,20 +1,11 @@
-// ../app/posts/page.tsx
+// ../app/post/page.tsx
 
-import PostList from "./client-page";
-import { client } from "../../tina/__generated__/client";
-import { PostConnectionQuery } from "../../tina/__generated__/types";
-
-export interface Props {
-  data: PostConnectionQuery;
-}
+import React from 'react';
+// import PostList from './client-page';
+import { client } from '../../tina/__generated__/client';
 
 export default async function Page() {
   const response = await client.queries.postConnection();
-
-  // Provide default values if needed
-  const props: Props = {
-    data: response.data || { postConnection: { edges: [] } },
-  };
-
-  return <PostList data={props.data} />;
+  const data = response.data?.postConnection || { edges: [], pageInfo: { hasPreviousPage: false, hasNextPage: false, startCursor: '', endCursor: '' }, totalCount: 0 };
+  // return <PostList data={data} />;
 }

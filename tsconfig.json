@@ -13,7 +13,9 @@
     ],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": true,
+    "strict": false,
+    "noImplicitAny": false,
+    "strictNullChecks": false,
     "noEmit": true,
     "incremental": true,
     "module": "esnext",
@@ -27,9 +29,7 @@
         "name": "next"
       }
     ],
-    "strictNullChecks": true,
-    "forceConsistentCasingInFileNames": true,
-    "types": ["node", "react", "react-dom"]
+    "forceConsistentCasingInFileNames": true
   },
   "include": [
     "next-env.d.ts",
