@@ -34,13 +34,13 @@ const nextConfig = {
         new TerserPlugin({
           terserOptions: {
             compress: {
-              drop_console: true, // Remove console logs
+              drop_console: true, 
             },
             output: {
-              comments: false, // Remove comments
+              comments: true, 
             },
           },
-          extractComments: false, // Disable extracting comments to separate files
+          extractComments: false, 
         })
       );
     }
@@ -101,7 +101,7 @@ const nextConfig = {
       new CssMinimizerPlugin({
         minimizerOptions: {
           preset: ['default', {
-            discardComments: { removeAll: true }, // Remove all comments
+            discardComments: { removeAll: true }, 
           }],
         },
       })
