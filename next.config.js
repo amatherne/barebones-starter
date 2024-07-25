@@ -49,10 +49,10 @@ const nextConfig = {
         })
       );
 
-      config.externals = {
-        react: 'React',
-        'react-dom': 'ReactDOM',
-      }
+      // config.externals = {
+      //   react: 'React',
+      //   'react-dom': 'ReactDOM',
+      // }
 
       config.optimization.splitChunks.cacheGroups.shared = {
         test: /[\\/]node_modules[\\/]/,
