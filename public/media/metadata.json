@@ -932,5 +932,146 @@
         "height": 50
       }
     ]
+  },
+  "100percentHomePage": {
+    "original": {
+      "fileName": "100percentHomePage.webp",
+      "path": "public/media/100percentHomePage.webp",
+      "width": 1986,
+      "height": 1227,
+      "aspectRatio": 0.6178247734138973
+    },
+    "sizes": [
+      {
+        "fileName": "100percentHomePage-750x375.webp",
+        "path": "public/media/100percentHomePage-750x375.webp",
+        "width": 750,
+        "height": 375
+      },
+      {
+        "fileName": "100percentHomePage-400x200.webp",
+        "path": "public/media/100percentHomePage-400x200.webp",
+        "width": 400,
+        "height": 200
+      },
+      {
+        "fileName": "100percentHomePage-1000x500.webp",
+        "path": "public/media/100percentHomePage-1000x500.webp",
+        "width": 1000,
+        "height": 500
+      },
+      {
+        "fileName": "100percentHomePage-100x50.webp",
+        "path": "public/media/100percentHomePage-100x50.webp",
+        "width": 100,
+        "height": 50
+      },
+      {
+        "fileName": "100percentHomePage-2000x1000.webp",
+        "path": "public/media/100percentHomePage-2000x1000.webp",
+        "width": 2000,
+        "height": 1000
+      },
+      {
+        "fileName": "100percentHomePage-3000x1500.webp",
+        "path": "public/media/100percentHomePage-3000x1500.webp",
+        "width": 3000,
+        "height": 1500
+      }
+    ]
+  },
+  "criquetHomePage": {
+    "original": {
+      "fileName": "criquetHomePage.webp",
+      "path": "public/media/criquetHomePage.webp",
+      "width": 1987,
+      "height": 1226,
+      "aspectRatio": 0.6170105686965274
+    },
+    "sizes": [
+      {
+        "fileName": "criquetHomePage-750x375.webp",
+        "path": "public/media/criquetHomePage-750x375.webp",
+        "width": 750,
+        "height": 375
+      },
+      {
+        "fileName": "criquetHomePage-1000x500.webp",
+        "path": "public/media/criquetHomePage-1000x500.webp",
+        "width": 1000,
+        "height": 500
+      },
+      {
+        "fileName": "criquetHomePage-400x200.webp",
+        "path": "public/media/criquetHomePage-400x200.webp",
+        "width": 400,
+        "height": 200
+      },
+      {
+        "fileName": "criquetHomePage-100x50.webp",
+        "path": "public/media/criquetHomePage-100x50.webp",
+        "width": 100,
+        "height": 50
+      },
+      {
+        "fileName": "criquetHomePage-2000x1000.webp",
+        "path": "public/media/criquetHomePage-2000x1000.webp",
+        "width": 2000,
+        "height": 1000
+      },
+      {
+        "fileName": "criquetHomePage-3000x1500.webp",
+        "path": "public/media/criquetHomePage-3000x1500.webp",
+        "width": 3000,
+        "height": 1500
+      }
+    ]
+  },
+  "peacockAlleyHomePage": {
+    "original": {
+      "fileName": "peacockAlleyHomePage.webp",
+      "path": "public/media/peacockAlleyHomePage.webp",
+      "width": 1983,
+      "height": 1227,
+      "aspectRatio": 0.6187594553706506
+    },
+    "sizes": [
+      {
+        "fileName": "peacockAlleyHomePage-100x50.webp",
+        "path": "public/media/peacockAlleyHomePage-100x50.webp",
+        "width": 100,
+        "height": 50
+      },
+      {
+        "fileName": "peacockAlleyHomePage-1000x500.webp",
+        "path": "public/media/peacockAlleyHomePage-1000x500.webp",
+        "width": 1000,
+        "height": 500
+      },
+      {
+        "fileName": "peacockAlleyHomePage-750x375.webp",
+        "path": "public/media/peacockAlleyHomePage-750x375.webp",
+        "width": 750,
+        "height": 375
+      },
+      {
+        "fileName": "peacockAlleyHomePage-400x200.webp",
+        "path": "public/media/peacockAlleyHomePage-400x200.webp",
+        "width": 400,
+        "height": 200
+      },
+      {
+        "fileName": "peacockAlleyHomePage-2000x1000.webp",
+        "path": "public/media/peacockAlleyHomePage-2000x1000.webp",
+        "width": 2000,
+        "height": 1000
+      },
+      {
+        "fileName": "peacockAlleyHomePage-3000x1500.webp",
+        "path": "public/media/peacockAlleyHomePage-3000x1500.webp",
+        "width": 3000,
+        "height": 1500
+      }
+    ]
   }
 }

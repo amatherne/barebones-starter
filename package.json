@@ -3,8 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "reboot": "yarn cache clean && rm -rf node_modules yarn.lock .next tina/__generated__ && yarn install && tinacms build",
-    "dev": "concurrently \"yarn watchAssets\" \"tinacms dev -c \\\"next dev\\\"\"",
+    "dev": "concurrently \"yarn watchAssets\" \"NODE_NO_WARNINGS=1 tinacms dev -c \\\"NODE_NO_WARNINGS=1 next dev\\\"\"",
     "build": "yarn buildAssets && tinacms build && yarn buildNext",
     "buildTest": "cross-env ANALYZE=true yarn buildNext",
     "buildNext": "next build",
@@ -14,7 +13,9 @@
     "svgs": "node utils/svgsOptimizeAndConvert.js",
     "start": "tinacms build && next start",
     "tinaaudit": "tinacms audit",
-    "lint": "next lint"
+    "lint": "next lint",
+    "reboot": "yarn cache clean && rm -rf node_modules yarn.lock .next tina/__generated__ && yarn install && tinacms build",
+    "dev_trace": "concurrently \"yarn watchAssets\" \"node --trace-deprecation node_modules/.bin/tinacms dev -c \\\"next dev\\\"\""
   },
   "dependencies": {
     "@next/bundle-analyzer": "^14.2.5",

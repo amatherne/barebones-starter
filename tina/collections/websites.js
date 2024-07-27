@@ -26,6 +26,7 @@ export default {
 
     defaultItem: () => ({
       published: true, 
+      sortOrder: 0,
       // Ensure all other required fields or items are included
       ...(item.defaultItem ? item.defaultItem() : {}), // Use defaultItem if it exists
     }),
@@ -35,6 +36,16 @@ export default {
       type: "boolean",
       label: "Publish",
       name: "published",
+    },
+    {
+      label: 'Sort Order',
+      name: 'sortOrder',
+      component: 'number',
+      type: 'number',
+      description: 'Set the order in which this post appears',
+      ui: {
+        defaultValue: 0,
+      },
     },
     {
       type: "string",

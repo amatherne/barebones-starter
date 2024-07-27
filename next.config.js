@@ -35,6 +35,19 @@ const nextConfig = {
 
       config.resolve.alias['@sentry/node'] = '@sentry/browser';
 
+      // Initialize optimization properties if they are undefined
+      if (!config.optimization) {
+        config.optimization = {};
+      }
+      if (!config.optimization.splitChunks) {
+        config.optimization.splitChunks = {};
+      }
+      if (!config.optimization.splitChunks.cacheGroups) {
+        config.optimization.splitChunks.cacheGroups = {};
+      }
+
+      // Add minimizers
+      config.optimization.minimizer = config.optimization.minimizer || [];
       config.optimization.minimizer.push(
         new TerserPlugin({
           terserOptions: {
@@ -49,99 +62,94 @@ const nextConfig = {
         })
       );
 
-      // config.externals = {
-      //   react: 'React',
-      //   'react-dom': 'ReactDOM',
-      // }
+      config.optimization.splitChunks.cacheGroups.shared = {
+        test: /[\\/]node_modules[\\/]/,
+        name: 'commons',
+        chunks: 'all',
+      };
 
-      console.log('shared not working')
-      // config.optimization.splitChunks.cacheGroups.shared = {
-      //   test: /[\\/]node_modules[\\/]/,
-      //   name: 'commons',
-      //   chunks: 'all',
-      // }
-    }
-
-    config.module.rules.push({
-      test: /\.svg$/,
-      use: [
-        {
-          loader: '@svgr/webpack',
-          options: {
-            svgoConfig: {
-              plugins: [
-                { removeViewBox: false },
-                { removeDimensions: true },
-              ],
-              floatPrecision: 2,
+      // Add rules for file types
+      config.module.rules.push({
+        test: /\.svg$/,
+        use: [
+          {
+            loader: '@svgr/webpack',
+            options: {
+              svgoConfig: {
+                plugins: [
+                  { removeViewBox: false },
+                  { removeDimensions: true },
+                ],
+                floatPrecision: 2,
+              },
             },
           },
-        },
-      ],
-    });
+        ],
+      });
 
-    config.module.rules.push({
-      test: /\.(woff|woff2|eot|ttf|otf)$/,
-      use: [
-        {
-          loader: 'file-loader',
+      config.module.rules.push({
+        test: /\.(woff|woff2|eot|ttf|otf)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              outputPath: 'static/fonts',
+              publicPath: '/_next/static/fonts',
+              name: '[name].[ext]',
+            },
+          },
+        ],
+      });
+
+      config.module.rules.push({
+        test: /\.(js|ts|tsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
           options: {
-            outputPath: 'static/fonts',
-            publicPath: '/_next/static/fonts',
-            name: '[name].[ext]',
+            presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
           },
         },
-      ],
-    });
+      });
 
-    config.module.rules.push({
-      test: /\.(js|ts|tsx)$/,
-      exclude: /node_modules/,
-      use: {
-        loader: 'babel-loader',
-        options: {
-          presets: ['@babel/preset-env', '@babel/preset-react', '@babel/preset-typescript'],
+      // if (process.env.ANALYZE) {
+      //   config.plugins.push(new BundleAnalyzerPlugin({
+      //     analyzerMode: 'static',
+      //     reportFilename: isServer ? './bundles/server.html' : './bundles/client.html',
+      //     openAnalyzer: true,
+      //     analyzerPort: 8889,
+      //   }));
+      // }
+
+      // Add CSS minimizer
+      config.optimization.minimizer.push(
+        new CssMinimizerPlugin({
+          minimizerOptions: {
+            preset: ['default', {
+              discardComments: { removeAll: true }, 
+            }],
+          },
+        })
+      );
+
+      // Set up caching
+      config.cache = {
+        type: 'filesystem',
+        buildDependencies: {
+          config: [__filename],
         },
-      },
-    });
+      };
 
-    // if (process.env.ANALYZE) {
-    //   config.plugins.push(new BundleAnalyzerPlugin({
-    //     analyzerMode: 'static',
-    //     reportFilename: isServer ? './bundles/server.html' : './bundles/client.html',
-    //     openAnalyzer: true,
-    //     analyzerPort: 8889,
-    //   }));
-    // }
-
-    config.optimization.minimizer.push(
-      new CssMinimizerPlugin({
-        minimizerOptions: {
-          preset: ['default', {
-            discardComments: { removeAll: true }, 
-          }],
-        },
-      })
-    );
-
-    config.cache = {
-      type: 'filesystem',
-      buildDependencies: {
-        config: [__filename],
-      },
-    };
-
-    config.optimization = {
-      ...config.optimization,
-      splitChunks: {
+      // Set default splitChunks config
+      config.optimization.splitChunks = {
         chunks: 'all',
         maxInitialRequests: Infinity,
         minSize: 0,
-      },
-      runtimeChunk: {
+      };
+      config.optimization.runtimeChunk = {
         name: (entrypoint) => `runtime-${entrypoint.name}`,
-      },
-    };
+      };
+    }
 
     return config;
   },
