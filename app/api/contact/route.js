@@ -25,15 +25,15 @@ export async function POST(req) {
     subject: subject ? subject : `Message from ${name}`,
     // Plaintext
     text: 
-      `\nSender Name: ${name}\n`+
+      `Sender Name: ${name}\n`+
       `Sender Email: ${email}\n\n`+
-      `Message: \n${message}`
+      `Sender Message: \n${message}`
     ,
     // if HTML supported
     html: 
       `<p><b>Sender Name</b>: ${name}<br>`+
-      `<b>Sender Email</b>: ${email}</p><br>`+
-      `<p><b>Message</b>:<br>${message}</p>`
+      `<b>Sender Email</b>: ${email}</p>`+
+      `<p><b>Sender Message</b>:<br>${message}</p>`
     ,
   };
 
