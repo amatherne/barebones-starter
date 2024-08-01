@@ -47,7 +47,5 @@ export async function POST(req) {
   }
 }
 
-export const config = {
-  runtime: 'experimental-edge', // Optional: if you are deploying on Vercel Edge Functions
-};
+export const runtime = 'experimental-edge';
 
