@@ -50,7 +50,7 @@ const ContactForm: React.FC<ContactProps> = ({settings}) => {
       if (result.success) {
         e.target.querySelector('.cell').classList.add('hide');
         e.target.querySelector('.form--message').classList.remove('hide');
-        setStatus(`Message sent!\nI'll get back to you soon!`);
+        setStatus(`Message sent!<br>I'll get back to you soon!`);
         setFormData({ 
           name: '', 
           email: '', 
