@@ -14,26 +14,34 @@ blocks:
         styles:
           desktop_opacity: 0.85
           desktop_colors:
-            - color--gradient
+            - md-up--color--gradient
           mobile_opacity: 0.01
           mobile_colors:
-            - color--1
+            - sm--color--gradient
           custom_css: |-
             == img {
               object-position: 0% 23%;
+            }
+
+
+            @media screen and (min-width: 750px) {
+              == .hero--text {
+                left: 50%;
+                transform: translateX(-50%);
+                text-align: center;
+              }
             }
     styles:
       height: 35%
       max_height: calc(95vh - var(--sp--8))
       min_height: 200px
     _template: hero
-  - show_title: false
-    text: ''
-    styles:
-      colors:
-        - color--1
-    _template: main
-  - _template: contactForm
+  - published: true
+    text: |
+      ## You can reach me at:
+
+      **[austin.m.matherne@gmail.com](mailto\:austin.m.matherne@gmail.com)**
+    _template: contactForm
   - published: true
     title: Services
     text: ''

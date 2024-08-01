@@ -9,8 +9,10 @@ $colors: (
   wildsand-white: #F5F5F5,
   alto-white: #E0E0E0,
   mandy-pink: #EE5C6C,
-  cerise-pink: #e32b72,
+  cerise-pink: #E31F69,
   violet-purple: #1D063B,
+  roman-red: #D9534F,
+  haze-green: #009B77,
   gradient-midpoint: midpoint-color(#EE5C6C, #6a0d83)
 );
 
@@ -108,7 +110,7 @@ $colors: (
     --color--foreground                     : var(--gradient--text);
     --color--foreground-rgb                 : var(--gradient--text-rgb);
     --color--background                     : var(--gradient);
-    --color--background-rgb                 : var(--gradient-2--color-end-rgb);
+    --color--background-rgb                 : var(--color--violet-purple-rgb);
   }
 
   .#{$grid-breakpoint-type}color--gradient-2 {

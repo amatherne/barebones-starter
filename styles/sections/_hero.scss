@@ -44,6 +44,7 @@
     overflow: hidden;
     z-index: 1;
     vertical-align: bottom;
+    background: var(--color--background);
 
     @include mq($sm) {
       &:after {
@@ -55,6 +56,10 @@
         height: var(--sp--1-4);
         margin: var(--text--sp) 0 0;
         background: var(--gradient);
+
+      }
+      &[class*="sm--color--gradient"]:after {
+        background: var(--gradient--color-end);
       }
     }
 
@@ -134,7 +139,7 @@
     }
 
     @include mq($sm) {
-      background: var(--color--background);
+      // background: var(--color--background);
     }
 
     @include mq($md-up) {

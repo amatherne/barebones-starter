@@ -3,7 +3,7 @@
 import nodemailer from 'nodemailer';
 
 export async function POST(req) {
-  const { name, email, message } = await req.json();
+  const { name, email, subject, message } = await req.json();
   // console.log('Received data:', { name, email, message });
   const acctUser = 'austin.m.matherne';
   const fromEmail = acctUser+'+contact@gmail.com';
@@ -22,11 +22,18 @@ export async function POST(req) {
     from: fromEmail,
     replyTo: email,
     to: toEmail,
-    subject: `Message from ${name}`,
+    subject: subject ? subject : `Message from ${name}`,
+    // Plaintext
     text: 
       `\nSender Name: ${name}\n`+
       `Sender Email: ${email}\n\n`+
       `Message: \n${message}`
+    ,
+    // if HTML supported
+    html: 
+      `<p><b>Sender Name</b>: ${name}<br>`+
+      `<b>Sender Email</b>: ${email}</p><br>`+
+      `<p><b>Message</b>:<br>${message}</p>`
     ,
   };
 
