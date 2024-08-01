@@ -4,10 +4,9 @@ import nodemailer from 'nodemailer';
 
 export async function POST(req) {
   const { name, email, subject, message } = await req.json();
-  // console.log('Received data:', { name, email, message });
   const acctUser = 'austin.m.matherne';
-  const fromEmail = acctUser+'+contact@gmail.com';
-  const toEmail = acctUser+'@gmail.com';
+  const fromEmail = acctUser + '+contact@gmail.com';
+  const toEmail = acctUser + '@gmail.com';
 
   // Configure the transporter for nodemailer
   const transporter = nodemailer.createTransport({
@@ -22,19 +21,9 @@ export async function POST(req) {
     from: fromEmail,
     replyTo: email,
     to: toEmail,
-    subject: subject ? subject : `Message from ${name}`,
-    // Plaintext
-    text: 
-      `Sender Name: ${name}\n`+
-      `Sender Email: ${email}\n\n`+
-      `Sender Message: \n${message}`
-    ,
-    // if HTML supported
-    html: 
-      `<p><b>Sender Name</b>: ${name}<br>`+
-      `<b>Sender Email</b>: ${email}</p>`+
-      `<p><b>Sender Message</b>:<br>${message}</p>`
-    ,
+    subject: subject || `Message from ${name}`,
+    text: `Sender Name: ${name}\nSender Email: ${email}\n\nSender Message: \n${message}`,
+    html: `<p><b>Sender Name</b>: ${name}<br><b>Sender Email</b>: ${email}</p><p><b>Sender Message</b>:<br>${message}</p>`,
   };
 
   try {
@@ -46,6 +35,3 @@ export async function POST(req) {
     return new Response(JSON.stringify({ success: false, error: error.message }), { status: 500 });
   }
 }
-
-export const runtime = 'experimental-edge';
-

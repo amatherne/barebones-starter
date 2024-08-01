@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import { TinaMarkdown, TinaMarkdownContent } from 'tinacms/dist/rich-text';
 
 interface ContactProps {
-  content: MainContentType;
   index?: number;
   settings?: {
     title?: string;
@@ -148,7 +147,7 @@ const ContactForm: React.FC<ContactProps> = ({settings}) => {
                     value={formData.message}
                     onChange={handleChange}
                     placeholder=""
-                    rows="10"
+                    rows={10}
                     required
                   />
                   <label className="input__label" htmlFor="message">Message*</label>
