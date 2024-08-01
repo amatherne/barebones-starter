@@ -118,6 +118,10 @@
     .hxl {
       line-height: 1.2;
       // color: var(--color--text);
+
+      @include mq($sm) {
+        font-size: var(--theme--font-size--h0);
+      }
     }
 
     .rte {
