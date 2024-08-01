@@ -3,6 +3,7 @@
 import item from '../components/item';
 import link from '../components/link';
 import widths from '../components/widths';
+import alignment from '../components/alignment';
 
 const PageBlocksCtas = {
   type: 'object',
@@ -31,6 +32,23 @@ const PageBlocksCtas = {
         desktop_width: 'lg-up--w-33 ',
         tablet_width: 'md--w-50 ',
         mobile_width: 'w-50 ',
+      },
+      alignment: {
+        title_alignment: {
+          desktop_text_alignment: '',
+          tablet_text_alignment:  '',
+          mobile_text_alignment:  '',
+        },
+        cta_item_alignment: {
+          desktop_text_alignment: '',
+          tablet_text_alignment: '',
+          mobile_text_alignment: '',
+        },
+        cta_content_alignment: {
+          desktop_text_alignment: '',
+          tablet_text_alignment: '',
+          mobile_text_alignment: '',
+        },
       },
       // Ensure all other required fields or items are included
       ...(item.defaultItem ? item.defaultItem() : {}), // Use defaultItem if it exists
@@ -64,6 +82,28 @@ const PageBlocksCtas = {
       fields: link.fields,
     },
     widths,
+    {
+      type: 'object',
+      label: 'Alignment',
+      name: 'alignments',
+      fields: [
+        {
+          ...alignment, 
+          label: 'Title Alignment', 
+          name: 'title_alignment', 
+        },
+        {
+          ...alignment, 
+          label: 'CTA Items Alignment', 
+          name: 'cta_item_alignment', 
+        },
+        {
+          ...alignment, 
+          label: 'CTA Content Alignment', 
+          name: 'cta_content_alignment', 
+        },
+      ],
+    },
     {
       type: 'object',
       label: 'Styles',

@@ -122,7 +122,11 @@
   }
 
   .logo {
-    font-size: var(--theme--font-size--xlg);
+    font: {
+      size: var(--theme--font-size--xlg);
+      family: var(--font-logo--family);
+      weight: var(--font-logo--weight);
+    }
     color: var(--color--foreground);
     font-weight: 900;
     white-space: nowrap;
@@ -379,7 +383,7 @@
         padding: var(--sp--1-4) var(--sp) var(--sp--1-4) 0;
         color: var(--color--foreground);
         line-height: 1.1;
-        letter-spacing: -0.2rem;
+        // letter-spacing: -0.2rem;
         white-space: wrap;
         text-decoration: none;
         width: var(--header--menu-width);

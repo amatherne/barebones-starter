@@ -1,4 +1,7 @@
+// ../components/blocks/hero.tsx
+
 import React from 'react';
+import sanitizeHtml from 'sanitize-html';
 import { TinaMarkdown, TinaMarkdownContent } from 'tinacms/dist/rich-text';
 import ImgOutput from '../utilities/img';
 import { formatUrl } from '../utilities/formatUrl';
@@ -161,7 +164,13 @@ const Hero: React.FC<HeroProps> = ({ settings, index }) => {
                 <div className="hero--text">
                   
                   {title ? (
-                    React.createElement(titleElement, { className: "hxl" }, title)
+                    React.createElement(
+                      titleElement, 
+                      { 
+                        className: "hxl",
+                        dangerouslySetInnerHTML: { __html: sanitizeHtml(title) } 
+                      }, 
+                    )
                   ) : null}
 
                   {text ? (

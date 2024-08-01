@@ -5,12 +5,30 @@
 
   .page-width {
     min-height: calc(100vh - (var(--page-width--padding) * 2));
+    height: 100%;
   }
 
   &--sticky-section {
     position: sticky;
-    top: 25vh;
-    // top: 50%;
-    // transform: translateY(-50%);
+    // top: 25vh;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: var(--sp--2) 0;
+  }
+
+  ul {
+    display: flex;
+    justify-content: center;
+
+    li {
+      padding: var(--sp);
+      display: inline-block;
+    }
+  }
+
+  &--copyright {
+    p {
+      font-size: 1.3rem;
+    }
   }
 }

@@ -4,7 +4,7 @@ blocks:
   - published: true
     item:
       - src: /uploads/Behind the scenes shots - @theuncannydom-54.jpg
-        title: My name is Austin Matherne.
+        title: My name is <br />Austin Matherne.
         text: |
           I'm a Senior Front End Developer with a focus in Shopify. \
           I love a challenge and digging for the best solution.
@@ -28,7 +28,7 @@ blocks:
             }
 
             == .hero--text {
-              max-width: 650px;
+              max-width: 750px;
             }
 
              
@@ -50,23 +50,47 @@ blocks:
       min_height: 200px
     _template: hero
   - published: true
-    title: Some Points of Interest
-    text: ''
+    title: My Guarantees
+    text: >
+      These are just a few of the things I keep in mind when working towards
+      your goals.
     widths:
       desktop_width:
-        - 'lg-up--w-33 '
+        - 'lg-up--w-25 '
       tablet_width:
         - 'md--w-50 '
       mobile_width:
         - 'w-50 '
+    alignments:
+      title_alignment:
+        desktop_text_align:
+          - 'lg-up--text-left '
+        tablet_text_align:
+          - 'md--text-left '
+        mobile_text_align:
+          - 'sm--text-left '
+      cta_item_alignment:
+        desktop_text_align:
+          - 'lg-up--text-left '
+        tablet_text_align:
+          - 'md--text-left '
+        mobile_text_align:
+          - 'sm--text-left '
+      cta_content_alignment:
+        desktop_text_align:
+          - 'lg-up--text-left '
+        tablet_text_align:
+          - 'md--text-left '
+        mobile_text_align:
+          - 'sm--text-left '
     styles:
       colors:
         - color--1
     item:
-      - title: Item 1
+      - title: 'Clean, Concise, and Quick'
         text: >
-          Alderaan? I'm not going to Alderaan. I've got to go home. It's late,
-          I'm in for it as it is. Red Five standing by.
+          A clean codebase is a happy codebase. Taking the time to be tidy now,
+          makes everyone's lives easier later.
         button:
           desktop_button:
             - md-up--button--primary
@@ -79,10 +103,10 @@ blocks:
           mobile_opacity: 0.01
           mobile_colors:
             - color--1
-      - title: Item 2
+      - title: Speed Tested <br>and Responsive Minded
         text: >
-          I call it luck. Your eyes can deceive you. Don't trust them. No!
-          Alderaan is peaceful. We have no weapons. You can't possibly…
+          My mobile-first mindset guides everything. Ensuring that your site
+          loads quickly and correctly on all screens, big and small.
         button:
           desktop_button:
             - md-up--button--primary
@@ -95,8 +119,25 @@ blocks:
           mobile_opacity: 0.01
           mobile_colors:
             - color--1
-      - title: Item 3
-        text: "I care. So, what do you think of her, Han? A tremor in the Force. The last time I felt it was in the presence of my old master. Alderaan?\_\n"
+      - title: SEO Optimized
+        text: >
+          Having the best keywords can only help so much. A clear site structure
+          and proper attribution takes your ranking to the next level.
+        button:
+          desktop_button:
+            - md-up--button--primary
+          mobile_button:
+            - sm--button--primary
+        styles:
+          desktop_opacity: 0.85
+          desktop_colors:
+            - color--gradient
+          mobile_opacity: 0.01
+          mobile_colors:
+            - color--1
+      - title: ADA Compliant
+        text: |
+          It's important to make your content accessible for all users.
         button:
           desktop_button:
             - md-up--button--primary
@@ -160,6 +201,28 @@ blocks:
         - 'md--w-50 '
       mobile_width:
         - 'w-50 '
+    alignments:
+      title_alignment:
+        desktop_text_align:
+          - 'lg-up--text-left '
+        tablet_text_align:
+          - 'md--text-left '
+        mobile_text_align:
+          - 'sm--text-left '
+      cta_item_alignment:
+        desktop_text_align:
+          - 'lg-up--text-left '
+        tablet_text_align:
+          - 'md--text-left '
+        mobile_text_align:
+          - 'sm--text-left '
+      cta_content_alignment:
+        desktop_text_align:
+          - 'lg-up--text-left '
+        tablet_text_align:
+          - 'md--text-left '
+        mobile_text_align:
+          - 'sm--text-left '
     styles:
       colors:
         - color--1
@@ -249,7 +312,7 @@ blocks:
 
 
     _template: ctas
-  - published: true
+  - published: false
     title: Testimonials
     text: ''
     widths:
@@ -259,6 +322,28 @@ blocks:
         - 'md--w-50 '
       mobile_width:
         - 'w-100 '
+    alignments:
+      title_alignment:
+        desktop_text_align:
+          - 'lg-up--text-left '
+        tablet_text_align:
+          - 'md--text-left '
+        mobile_text_align:
+          - 'sm--text-left '
+      cta_item_alignment:
+        desktop_text_align:
+          - 'lg-up--text-left '
+        tablet_text_align:
+          - 'md--text-left '
+        mobile_text_align:
+          - 'sm--text-left '
+      cta_content_alignment:
+        desktop_text_align:
+          - 'lg-up--text-left '
+        tablet_text_align:
+          - 'md--text-left '
+        mobile_text_align:
+          - 'sm--text-left '
     styles:
       colors:
         - color--gradient-2
@@ -311,9 +396,57 @@ blocks:
       }
     _template: ctas
   - published: true
+    item:
+      - src: /uploads/Peacock Alley Home Page.png
+        title: Testimonial
+        text: "Throughout our four plus year relationship, Austin consistently demonstrated a strong work ethic, a dedication to problem-solving, and a willingness to go the extra mile. I’m confident that he will continue to be an important asset to any team that values a skilled and dedicated developer.\n\n–\_Chachi, Peacock Alley\n"
+        button:
+          desktop_button:
+            - md-up--button--primary
+          mobile_button:
+            - sm--button--primary
+        styles:
+          desktop_opacity: 0.85
+          desktop_colors:
+            - color--gradient-2
+          mobile_opacity: 0.01
+          mobile_colors:
+            - color--1
+          custom_css: |-
+            == img {
+              object-position: 0% 0%;
+            }
+    styles:
+      height: 40%
+      max_height: calc(95vh - var(--sp--8))
+      min_height: 200px
+    _template: hero
+  - published: true
     title: Skills
     text: |
       Web Development
+    alignments:
+      title_alignment:
+        desktop_text_align:
+          - 'lg-up--text-left '
+        tablet_text_align:
+          - 'md--text-left '
+        mobile_text_align:
+          - 'sm--text-left '
+      cta_item_alignment:
+        desktop_text_align:
+          - 'lg-up--text-left '
+        tablet_text_align:
+          - 'md--text-left '
+        mobile_text_align:
+          - 'sm--text-left '
+      cta_content_alignment:
+        desktop_text_align:
+          - 'lg-up--text-left '
+        tablet_text_align:
+          - 'md--text-left '
+        mobile_text_align:
+          - 'sm--text-left '
     styles:
       style:
         - inline
@@ -379,6 +512,28 @@ blocks:
   - published: true
     text: |
       Programming Languages
+    alignments:
+      title_alignment:
+        desktop_text_align:
+          - 'lg-up--text-left '
+        tablet_text_align:
+          - 'md--text-left '
+        mobile_text_align:
+          - 'sm--text-left '
+      cta_item_alignment:
+        desktop_text_align:
+          - 'lg-up--text-left '
+        tablet_text_align:
+          - 'md--text-left '
+        mobile_text_align:
+          - 'sm--text-left '
+      cta_content_alignment:
+        desktop_text_align:
+          - 'lg-up--text-left '
+        tablet_text_align:
+          - 'md--text-left '
+        mobile_text_align:
+          - 'sm--text-left '
     styles:
       style:
         - inline
@@ -403,6 +558,28 @@ blocks:
     title: Tools
     text: |
       Development
+    alignments:
+      title_alignment:
+        desktop_text_align:
+          - 'lg-up--text-left '
+        tablet_text_align:
+          - 'md--text-left '
+        mobile_text_align:
+          - 'sm--text-left '
+      cta_item_alignment:
+        desktop_text_align:
+          - 'lg-up--text-left '
+        tablet_text_align:
+          - 'md--text-left '
+        mobile_text_align:
+          - 'sm--text-left '
+      cta_content_alignment:
+        desktop_text_align:
+          - 'lg-up--text-left '
+        tablet_text_align:
+          - 'md--text-left '
+        mobile_text_align:
+          - 'sm--text-left '
     styles:
       style:
         - inline
@@ -439,6 +616,28 @@ blocks:
   - published: true
     text: |
       Design
+    alignments:
+      title_alignment:
+        desktop_text_align:
+          - 'lg-up--text-left '
+        tablet_text_align:
+          - 'md--text-left '
+        mobile_text_align:
+          - 'sm--text-left '
+      cta_item_alignment:
+        desktop_text_align:
+          - 'lg-up--text-left '
+        tablet_text_align:
+          - 'md--text-left '
+        mobile_text_align:
+          - 'sm--text-left '
+      cta_content_alignment:
+        desktop_text_align:
+          - 'lg-up--text-left '
+        tablet_text_align:
+          - 'md--text-left '
+        mobile_text_align:
+          - 'sm--text-left '
     styles:
       style:
         - inline
@@ -472,6 +671,28 @@ blocks:
   - published: true
     text: |
       3D and Game Development
+    alignments:
+      title_alignment:
+        desktop_text_align:
+          - 'lg-up--text-left '
+        tablet_text_align:
+          - 'md--text-left '
+        mobile_text_align:
+          - 'sm--text-left '
+      cta_item_alignment:
+        desktop_text_align:
+          - 'lg-up--text-left '
+        tablet_text_align:
+          - 'md--text-left '
+        mobile_text_align:
+          - 'sm--text-left '
+      cta_content_alignment:
+        desktop_text_align:
+          - 'lg-up--text-left '
+        tablet_text_align:
+          - 'md--text-left '
+        mobile_text_align:
+          - 'sm--text-left '
     styles:
       style:
         - inline
@@ -494,6 +715,28 @@ blocks:
     title: Sounds
     text: |
       Gear
+    alignments:
+      title_alignment:
+        desktop_text_align:
+          - 'lg-up--text-left '
+        tablet_text_align:
+          - 'md--text-left '
+        mobile_text_align:
+          - 'sm--text-left '
+      cta_item_alignment:
+        desktop_text_align:
+          - 'lg-up--text-left '
+        tablet_text_align:
+          - 'md--text-left '
+        mobile_text_align:
+          - 'sm--text-left '
+      cta_content_alignment:
+        desktop_text_align:
+          - 'lg-up--text-left '
+        tablet_text_align:
+          - 'md--text-left '
+        mobile_text_align:
+          - 'sm--text-left '
     styles:
       style:
         - inline
@@ -530,6 +773,28 @@ blocks:
   - published: true
     text: |
       Audio Production
+    alignments:
+      title_alignment:
+        desktop_text_align:
+          - 'lg-up--text-left '
+        tablet_text_align:
+          - 'md--text-left '
+        mobile_text_align:
+          - 'sm--text-left '
+      cta_item_alignment:
+        desktop_text_align:
+          - 'lg-up--text-left '
+        tablet_text_align:
+          - 'md--text-left '
+        mobile_text_align:
+          - 'sm--text-left '
+      cta_content_alignment:
+        desktop_text_align:
+          - 'lg-up--text-left '
+        tablet_text_align:
+          - 'md--text-left '
+        mobile_text_align:
+          - 'sm--text-left '
     styles:
       style:
         - inline

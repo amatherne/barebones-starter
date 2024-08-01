@@ -1073,5 +1073,99 @@
         "height": 1500
       }
     ]
+  },
+  "summerMoonHomePage": {
+    "original": {
+      "fileName": "summerMoonHomePage.webp",
+      "path": "public/media/summerMoonHomePage.webp",
+      "width": 1985,
+      "height": 1227,
+      "aspectRatio": 0.6181360201511334
+    },
+    "sizes": [
+      {
+        "fileName": "summerMoonHomePage-750x375.webp",
+        "path": "public/media/summerMoonHomePage-750x375.webp",
+        "width": 750,
+        "height": 375
+      },
+      {
+        "fileName": "summerMoonHomePage-1000x500.webp",
+        "path": "public/media/summerMoonHomePage-1000x500.webp",
+        "width": 1000,
+        "height": 500
+      },
+      {
+        "fileName": "summerMoonHomePage-400x200.webp",
+        "path": "public/media/summerMoonHomePage-400x200.webp",
+        "width": 400,
+        "height": 200
+      },
+      {
+        "fileName": "summerMoonHomePage-100x50.webp",
+        "path": "public/media/summerMoonHomePage-100x50.webp",
+        "width": 100,
+        "height": 50
+      },
+      {
+        "fileName": "summerMoonHomePage-2000x1000.webp",
+        "path": "public/media/summerMoonHomePage-2000x1000.webp",
+        "width": 2000,
+        "height": 1000
+      },
+      {
+        "fileName": "summerMoonHomePage-3000x1500.webp",
+        "path": "public/media/summerMoonHomePage-3000x1500.webp",
+        "width": 3000,
+        "height": 1500
+      }
+    ]
+  },
+  "pintoRanchHomePage": {
+    "original": {
+      "fileName": "pintoRanchHomePage.webp",
+      "path": "public/media/pintoRanchHomePage.webp",
+      "width": 1983,
+      "height": 1224,
+      "aspectRatio": 0.6172465960665658
+    },
+    "sizes": [
+      {
+        "fileName": "pintoRanchHomePage-750x375.webp",
+        "path": "public/media/pintoRanchHomePage-750x375.webp",
+        "width": 750,
+        "height": 375
+      },
+      {
+        "fileName": "pintoRanchHomePage-1000x500.webp",
+        "path": "public/media/pintoRanchHomePage-1000x500.webp",
+        "width": 1000,
+        "height": 500
+      },
+      {
+        "fileName": "pintoRanchHomePage-400x200.webp",
+        "path": "public/media/pintoRanchHomePage-400x200.webp",
+        "width": 400,
+        "height": 200
+      },
+      {
+        "fileName": "pintoRanchHomePage-100x50.webp",
+        "path": "public/media/pintoRanchHomePage-100x50.webp",
+        "width": 100,
+        "height": 50
+      },
+      {
+        "fileName": "pintoRanchHomePage-2000x1000.webp",
+        "path": "public/media/pintoRanchHomePage-2000x1000.webp",
+        "width": 2000,
+        "height": 1000
+      },
+      {
+        "fileName": "pintoRanchHomePage-3000x1500.webp",
+        "path": "public/media/pintoRanchHomePage-3000x1500.webp",
+        "width": 3000,
+        "height": 1500
+      }
+    ]
   }
 }

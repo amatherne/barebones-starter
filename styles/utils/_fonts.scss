@@ -39,34 +39,29 @@
   font-display: swap;
 }
 
-// @font-face {
-//   font-family: 'Oswald';
-//   src: url('/fonts/Oswald-VariableFont_wght.ttf') format("truetype");
-//   font-display: swap;
-// }
-
-// @font-face {
-//   font-family: 'Quicksand';
-//   src: url('/fonts/Quicksand-VariableFont_wght.ttf') format("truetype");
-//   font-display: swap;
-// }
-
-
-
+:root {
+  --font--butler                    : Butler, Georgia, serif;
+  --font--neuzeit                   : neuzeit-grotesk, sans-serif;
+  --font--neuzeit-cond              : neuzeit-grotesk-condensed, sans-serif;
+  --font--new-order                 : "new-order", sans-serif;
+  --font--noka                      : "noka", sans-serif;
+  --font--gastromond                : "gastromond", sans-serif;
+}
 
 :root {
   --font-body--scale                : 1.0;
-  --font-body--family               : Quicksand, sans-serif;
-  --font-body--family               : neuzeit-grotesk, sans-serif;
-  --font-body--family-condensed     : neuzeit-grotesk-condensed, sans-serif;
-  --font-body--style                : normal;
-  --font-body--weight               : 400;
+  --font-body--family               : var(--font--new-order);
+  --font-body--weight               : 500;
   --font-body--weight-bold          : 700;
+  --font-body--style                : normal;
 
   --font-heading--scale             : 1.0;
-  --font-heading--family            : Butler, Georgia, serif;
+  --font-heading--family            : var(--font--gastromond); 
   --font-heading--style             : normal;
-  --font-heading--weight            : 900
+  --font-heading--weight            : 400;
+
+  --font-logo--family               : var(--font--neuzeit);
+  --font-logo--weight               : 400;
 }
 
 :root {

@@ -1,6 +1,7 @@
 // ../components/blocks/ctas.tsx
 
 import React from 'react';
+import sanitizeHtml from 'sanitize-html';
 import { TinaMarkdown, TinaMarkdownContent } from 'tinacms/dist/rich-text';
 import ImgOutput from '../utilities/img';
 import { formatUrl } from '../utilities/formatUrl';
@@ -31,6 +32,23 @@ interface Settings {
     mobile_width?: string;
     tablet_width?: string;
     desktop_width?: string;
+  };
+  alignments?: {
+    title_alignment?: {
+      mobile_text_align?: string;
+      tablet_text_align?: string;
+      desktop_text_align?: string;
+    };
+    cta_item_alignment?: {
+      mobile_text_align?: string;
+      tablet_text_align?: string;
+      desktop_text_align?: string;
+    };
+    cta_content_alignment?: {
+      mobile_text_align?: string;
+      tablet_text_align?: string;
+      desktop_text_align?: string;
+    };
   };
   item?: CTAItem[];
   styles?: {
@@ -93,6 +111,25 @@ const CTAs: React.FC<CTAsProps> = ({ settings, index }) => {
   if (sectionCustomCSS) {
     sectionCustomCSS = customCSS(sectionCustomCSS, sectionID);
   }
+
+  const alignClassesTitle = settings.alignments?.title_alignment ? `
+    ${settings.alignments?.title_alignment?.mobile_text_align}
+    ${settings.alignments?.title_alignment?.tablet_text_align}
+    ${settings.alignments?.title_alignment?.desktop_text_align}
+  `.trim().replace(/(\r\n|\n|\r)/gm, "") : '';
+
+  const alignClassesCtaItems = settings.alignments?.cta_item_alignment ? `
+    ${settings.alignments?.cta_item_alignment?.mobile_text_align}
+    ${settings.alignments?.cta_item_alignment?.tablet_text_align}
+    ${settings.alignments?.cta_item_alignment?.desktop_text_align}
+  `.trim().replace(/(\r\n|\n|\r)/gm, "") : '';
+
+  const alignClassesCtaContent = settings.alignments?.cta_content_alignment ? `
+    ${settings.alignments?.cta_content_alignment?.mobile_text_align}
+    ${settings.alignments?.cta_content_alignment?.tablet_text_align}
+    ${settings.alignments?.cta_content_alignment?.desktop_text_align}
+  `.trim().replace(/(\r\n|\n|\r)/gm, "") : '';
+
   
   return (
     <section
@@ -106,10 +143,13 @@ const CTAs: React.FC<CTAsProps> = ({ settings, index }) => {
 
         {sectionTitleHasContent ? (
 
-          <div className="section--title text-center">
+          <div className={`section--title ${alignClassesTitle}`} >
             { sectionTitle ? (
-              <h2 className="h1">{sectionTitle}</h2>
+              <h2 className="h1" dangerouslySetInnerHTML={{ __html: sanitizeHtml(sectionTitle) }} />
             ) : null }
+
+            <div  />
+
 
             { sectionText ? (
               <div className="rte">
@@ -130,7 +170,7 @@ const CTAs: React.FC<CTAsProps> = ({ settings, index }) => {
         ) : null }
         
         {ctas ? (
-          <ul className="cell">
+          <ul className={`cell ${alignClassesCtaItems}`} >
             {ctas.map((item, index) => {
 
               const image = item.src || null;
@@ -166,8 +206,8 @@ const CTAs: React.FC<CTAsProps> = ({ settings, index }) => {
               }
 
               return (
-                <li key={index} className={`cell__item text-center ${widths} ${itemID}`}>
-                  <div className={`ctas--item`}>
+                <li key={index} className={`cell__item ${widths} ${itemID}`}>
+                  <div className={`ctas--item  ${alignClassesCtaContent}`}>
                     { hasOverlayLink && buttonLink ? (
                       <Link 
                         href={buttonLink} 
@@ -184,7 +224,7 @@ const CTAs: React.FC<CTAsProps> = ({ settings, index }) => {
                       <div className="ctas--text">
                         
                         { title ? (
-                          <h3 className="h2">{title}</h3>
+                          <h3 className="h2" dangerouslySetInnerHTML={{ __html: sanitizeHtml(title) }} />
                         ) : null }
 
                         { text ? (

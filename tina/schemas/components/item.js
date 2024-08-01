@@ -3,6 +3,7 @@
 import React from 'react';
 import link from './link';
 import opacity from './opacity';
+import alignment from './alignment';
 
 const item = {
   type: 'object',

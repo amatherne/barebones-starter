@@ -6,6 +6,39 @@
 
   @extend .section;
 
+  .section--title {
+    @include mq($sm) {
+      &.sm--text {
+        &-left {
+          margin-left: 0;
+        }
+        &-right {
+          margin-right: 0;
+        }
+      }
+    }
+    @include mq($md) {
+      &.md--text {
+        &-left {
+          margin-left: 0;
+        }
+        &-right {
+          margin-right: 0;
+        }
+      }
+    }
+    @include mq($lg-up) {
+      &.lg-up--text {
+        &-left {
+          margin-left: 0;
+        }
+        &-right {
+          margin-right: 0;
+        }
+      }
+    }
+  }
+
   &--item {
     position: relative;
 
@@ -22,7 +55,7 @@
 
     .h2 {
       color: var(--color--text);
-      line-height: 1.1;
+      // line-height: 1.1;
     }
 
     .rte {
