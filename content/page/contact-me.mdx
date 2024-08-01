@@ -3,7 +3,7 @@ title: Contact Me
 blocks:
   - published: true
     item:
-      - src: /uploads/CB-57.jpg
+      - src: /uploads/CB-59.jpg
         title: Contact Me
         text: ''
         button:
@@ -18,36 +18,14 @@ blocks:
           mobile_opacity: 0.01
           mobile_colors:
             - color--1
-    styles:
-      height: 56%
-      max_height: calc(95vh - var(--sp--8))
-      min_height: 200px
-    _template: hero
-  - published: false
-    item:
-      - src: /uploads/Behind the scenes shots - @theuncannydom-59.jpg
-        title: Contact Me
-        text: ''
-        button:
-          desktop_button:
-            - md-up--button--primary
-          mobile_button:
-            - sm--button--primary
-        styles:
-          desktop_opacity: 0.69
-          desktop_colors:
-            - md-up--color--2
-          mobile_opacity: 0.01
-          mobile_colors:
-            - color--1
           custom_css: |-
-            == .image--image {
-              object-position: 0% 15%;
+            == img {
+              object-position: 0% 23%;
             }
     styles:
-      height: 33vw
-      max_height: 600px
-      min_height: 150px
+      height: 35%
+      max_height: calc(95vh - var(--sp--8))
+      min_height: 200px
     _template: hero
   - show_title: false
     text: ''
@@ -56,7 +34,7 @@ blocks:
         - color--1
     _template: main
   - published: true
-    title: ''
+    title: Services
     text: ''
     widths:
       desktop_width:
@@ -70,7 +48,13 @@ blocks:
         - color--2
     item:
       - title: Web Development
-        text: "I need your help, Luke. She needs your help. I'm getting too old for this sort of thing.\_I care.\_So, what do you think of her, Han?\_I'm surprised you had the courage to take the responsibility yourself.\n"
+        text: >
+          I specialize in bringing your web projects to life, no matter the
+          size. Whether it's developing a comprehensive Shopify site from
+          scratch or making precise adjustments like changing button colors, I
+          am here to turn your vision into reality. With a keen eye for detail
+          and a commitment to clean, efficient code, I ensure that your website
+          is not only visually appealing but also performs flawlessly.
         button:
           desktop_button:
             - md-up--button--primary
@@ -84,7 +68,14 @@ blocks:
           mobile_colors:
             - color--1
       - title: Music
-        text: "Ye-ha! The more you tighten your grip, Tarkin, the more star systems will slip through your fingers.\_She must have hidden the plans in the escape pod.\_Send a detachment down to retrieve them, and see to it personally, Commander.\_There'll be no one to stop us this time!\n"
+        text: >
+          As a versatile musician with over 25 years of experience, primarily in
+          Rock, Punk, and Metal, I bring a wealth of expertise to every
+          performance. My extensive background behind the drum kit allows me to
+          seamlessly integrate into various genres. Whether you need a dedicated
+          drummer for a studio session, a single show, or an entire tour, I am
+          ready to deliver high-energy, professional drumming that enhances your
+          musical projects.
         button:
           desktop_button:
             - md-up--button--primary
@@ -97,6 +88,10 @@ blocks:
           mobile_opacity: 0.01
           mobile_colors:
             - color--1
+    custom_css: |-
+      == .ctas--text {
+        max-width: 600px;
+      }
     _template: ctas
 ---
 
