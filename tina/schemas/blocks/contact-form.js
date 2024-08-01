@@ -1,9 +1,9 @@
-// ../tina/schemas/blocks/main-content-section.js
+// ../tina/schemas/blocks/contact-form.js
 
-const PageBlocksMain = {
+const PageBlocksContactForm = {
   type: 'object',
-  label: 'Main Content',
-  name: 'main',
+  label: 'Contact Form',
+  name: 'contactForm',
   ui: {
     defaultItem: () => ({
       published: true, 
@@ -17,17 +17,12 @@ const PageBlocksMain = {
     },
     {
       type: 'string',
-      label: 'Title (optional)',
+      label: 'Title',
       name: 'title',
     },
     {
-      type: "boolean",
-      label: "Show Title",
-      name: "show_title",
-    },
-    {
       type: 'rich-text',
-      label: 'Text (optional)',
+      label: 'Text',
       name: 'text',
     },
     {
@@ -66,4 +61,4 @@ const PageBlocksMain = {
   ],
 };
 
-export default PageBlocksMain;
+export default PageBlocksContactForm;

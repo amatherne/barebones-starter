@@ -4,6 +4,7 @@ import {
   PageBlocksMain,
   PageBlocksHero,
   PageBlocksCtas,
+  PageBlocksContactForm,
 } from '../blocks'
 
 const blockSelector = { 
@@ -18,6 +19,7 @@ const blockSelector = {
     PageBlocksMain,
     PageBlocksHero,
     PageBlocksCtas,
+    PageBlocksContactForm,
   ],
 };
 

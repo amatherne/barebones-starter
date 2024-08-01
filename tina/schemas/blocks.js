@@ -4,6 +4,7 @@ import React from 'react';
 import PageBlocksHero from './blocks/hero'; 
 import PageBlocksCtas from './blocks/ctas'; 
 import PageBlocksMain from './blocks/main-content-section'; 
+import PageBlocksContactForm from './blocks/contact-form'; 
 
 const Blocks = ({ blocks, ...props }) => {
   
@@ -54,6 +55,17 @@ const Blocks = ({ blocks, ...props }) => {
               />
             ;
 
+          case 'PageBlocksContactForm':
+            return 
+              <PageBlocksContactForm
+                key={index}
+                index={index}
+                data={block}
+                fields={PageBlocksContactForm.fields}
+                {...props} // Spread props if needed
+              />
+            ;
+
           // Add other cases for different block types (if any)
 
           default:
@@ -70,4 +82,5 @@ export {
   PageBlocksMain,
   PageBlocksHero, 
   PageBlocksCtas,
+  PageBlocksContactForm,
 };

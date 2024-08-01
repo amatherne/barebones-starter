@@ -6,6 +6,10 @@
 
   @extend .section;
 
+  .cell {
+    --grid-bottom--mobile: var(--global--grid-vertical,var(--sp));
+  }
+
   .section--title {
     @include mq($sm) {
       &:not([class*="sm--text"]) {

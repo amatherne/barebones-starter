@@ -1,0 +1,54 @@
+:root {
+  --input--padding: var(--sp--1-3);
+  --input--radius: 0px;
+}
+
+.input {
+  position: relative;
+
+  --input--top: calc(var(--input--padding) * 1);
+  --input--transform: translateY(0%) scale(1);
+  
+  &__label {
+    --properties: transform, top;
+    position: absolute;
+    left: calc(var(--input--padding) / 2);
+    top: var(--input--top);
+    padding: calc(var(--input--padding) / 4) var(--input--padding);
+    margin: 0;
+    background: pink;
+    white-space: nowrap;
+    transform: var(--input--transform);
+    transform-origin: 0 0;
+    background: var(--color--background);
+    line-height: 1;
+    will-change: var(--properties);
+    transition: {
+      property: var(--properties);
+      duration: 0.3s;
+      timing-function: ease;
+    }
+  }
+
+  &__textarea,
+  &__field {
+    box-sizing: border-box;
+    display: block;
+    width: 100%;
+    border: 0.1rem solid var(--color--foreground);
+    padding: var(--input--padding);
+    color: var(--color--foreground);
+    background: transparent;
+    line-height: 1.3;
+    
+    &:focus,
+    &:not(:placeholder-shown),
+    &:-webkit-autofill {
+      & + .input__label {
+      --input--top: var(--input--padding);
+      --input--transform: translateY(-100%) scale(.8);
+      }
+    }
+  }
+}
+
