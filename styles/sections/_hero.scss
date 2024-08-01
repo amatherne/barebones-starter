@@ -5,7 +5,7 @@
 
   --text--sp: var(--page-width--padding);
   --text--margin: var(--text--sp);
-  --text--rte-negative: calc(var(--text--sp) * -1.25);
+  --text--rte-negative: calc(var(--text--sp) * -0.5);
 
   @include mq($lg-up) {
     --text--margin: calc(var(--text--sp) * 0.4);
@@ -110,24 +110,14 @@
   }
 
   &--text {
-    // --color--text: var(--color--foreground);
-    // padding: var(--text--sp) var(--text--sp) 0;
     padding: var(--text--sp) 0 0;
     position: relative;
 
     .hxl {
       line-height: 1.2;
-      // color: var(--color--text);
 
       @include mq($sm) {
         font-size: var(--theme--font-size--h0);
-      }
-    }
-
-    .rte {
-      &, 
-      * {
-        // color: var(--color--text);
       }
     }
 
