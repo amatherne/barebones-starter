@@ -221,7 +221,6 @@ $grid-breakpoints: (
 
 .page,
 .section {
-  --page--padding: var(--global--mobile--spacing-sections);
   --cta--padding-top: var(--cta-set--padding-top,var(--page--padding));
   --cta--padding-bottom: var(--cta-set--padding-bottom,var(--page--padding));
   padding: var(--cta--padding-top) 0 var(--cta--padding-bottom);

@@ -14,6 +14,7 @@
   --global--mobile--grid-horizontal : var(--sp--1-2);
   --global--mobile--grid-vertical   : var(--sp--1-2);
 
+  --page--padding: var(--global--mobile--spacing-sections);
   --page-width--padding: var(--sp--2-3);
 
   @include mq($md-up) {
