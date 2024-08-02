@@ -53,10 +53,9 @@
         left: calc(var(--text--sp) * -1);
         position: relative;
         width: calc(100% + (var(--text--sp) * 2));
-        height: var(--sp--1-4);
+        height: var(--sp--1-8);
         margin: var(--text--sp) 0 0;
         background: var(--gradient);
-
       }
       &[class*="sm--color--gradient"]:after {
         background: var(--gradient--color-end);

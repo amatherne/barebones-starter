@@ -85,12 +85,23 @@ const customCSS = (css,className) => {
   }
 };
 
+const cleanPath = (string) => {
+  const match = string.match(/^content\/([^\/]+)\//);
+  const cleanedPath = match ? match[1] : '';
+  return cleanedPath;
+};
 
+const capitalizeFirstWord = (str) => {
+  if (!str) return str;
+  return str.charAt(0).toUpperCase() + str.slice(1);
+};
 
 module.exports = {
   wrapCharactersInSpan,
   convertFileNameToCamelCase,
   checkForSimilarFileNames,
   cleanBlockName,
+  cleanPath,
   customCSS,
+  capitalizeFirstWord,
 };

@@ -1,5 +1,7 @@
 // ../app/components/utilities/formatUrl.tsx
 
+import { cleanPath } from '../../../utils/helpers';
+
 interface SysInfo {
   filename: string;
   basename: string;
@@ -23,14 +25,12 @@ export const formatUrl = (content: Content | string): string => {
     return content; 
   }
 
-  if (content.__typename === 'Website') {
-    formattedUrl = `${basePath}websites/${content._sys.filename}`;
-  // } else if (content.__typename === 'Sounds') {
-  //   formattedUrl = `${basePath}sounds/${content._sys.filename}`;
-  // } else if (content.__typename === 'Page') {
-  //   formattedUrl = `${basePath}${content._sys.filename}`;
+  const newPath = cleanPath(content._sys.path);
+
+  if (newPath != 'page') {
+    formattedUrl = `${basePath}${newPath}/${content._sys.filename}`;
   } else {
-    formattedUrl = `${basePath}${content._sys.filename}`; // Default case
+    formattedUrl = `${basePath}${content._sys.filename}`; 
   }
 
   return formattedUrl;

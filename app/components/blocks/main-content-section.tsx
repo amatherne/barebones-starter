@@ -3,8 +3,8 @@
 import React from 'react';
 import { TinaMarkdown, TinaMarkdownContent } from 'tinacms/dist/rich-text';
 import { PageQuery, WebsiteQuery, SoundsQuery, PostQuery } from '../../../tina/__generated__/types';
-import { convertFileNameToCamelCase, customCSS } from '../../../utils/helpers';
-
+import { convertFileNameToCamelCase, customCSS, cleanPath, capitalizeFirstWord } from '../../../utils/helpers';
+import Breadcrumbs from '../utilities/breadcrumbs';
 
 type MainContentType = 
   PageQuery['page'] | 
@@ -77,6 +77,8 @@ const MainContent: React.FC<MainContentProps> = ({ settings, content, index }) =
   return (
     <section className={`page ${sectionID} ${color}`}>
       <div className="page-width page-width--narrow">
+
+        <Breadcrumbs content={content} title={title} />
 
         {sectionCustomCSS ? (
           <style>{`

@@ -1,0 +1,24 @@
+.breadcrumbs {
+  margin: 0 0 var(--sp);
+  
+  .breadcrumbs__list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    line-height: 1.1;
+  }
+
+  .breadcrumbs__item {
+    display: inline-block;
+    font: {
+      weight: var(--font-body--weight-bold);
+      size: smaller;
+    }
+    
+    &:not(:last-child):after {
+      content: '/';
+      display: inline-block;
+      margin: 0 var(--sp--1-8);
+    }
+  }
+}
