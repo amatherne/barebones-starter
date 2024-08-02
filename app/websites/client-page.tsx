@@ -32,7 +32,7 @@ export default function PostList(props) {
       <section className="page page--default">
         <div className="page-width">
           
-          <div className="section--title">
+          <div className="section--title text-left">
             <h1>Websites</h1>
           </div>
 
