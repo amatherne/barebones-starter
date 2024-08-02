@@ -228,7 +228,17 @@ $grid-breakpoints: (
 }
 
 
-@function midpoint-color($color1, $color2) {
+@function midpoint-color($color1, $color2, $midpoint: 0.5) {
+
+  // $midpoint: 1 = $color1;
+  // $midpoint: 0 = $color2;
+
+  @if ($midpoint < 0) {
+    $midpoint: 0;
+  } @else if ($midpoint > 1) {
+    $midpoint: 1;
+  }
+
   $r1: red($color1);
   $g1: green($color1);
   $b1: blue($color1);
@@ -237,9 +247,9 @@ $grid-breakpoints: (
   $g2: green($color2);
   $b2: blue($color2);
 
-  $r-mid: (($r1 + $r2) / 2);
-  $g-mid: (($g1 + $g2) / 2);
-  $b-mid: (($b1 + $b2) / 2);
+  $r-mid: (($r1 + $r2) * $midpoint);
+  $g-mid: (($g1 + $g2) * $midpoint);
+  $b-mid: (($b1 + $b2) * $midpoint);
 
   @return rgb($r-mid, $g-mid, $b-mid);
 }

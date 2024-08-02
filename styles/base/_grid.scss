@@ -229,7 +229,6 @@
 .cell:not(.no_gutter) {
   margin-bottom: var(--grid-bottom--neg);
 
-  
   &.double-bottom {
     --grid-bottom: var(--global--grid-vertical,var(--sp--2)); 
   }
@@ -237,11 +236,10 @@
   &.sm--double-bottom {
     --grid-bottom--mobile: var(--global--grid-vertical,var(--sp)); 
   }
+
   & > .cell__item {
     margin-bottom: var(--grid-bottom);
   }
-
-  // --grid-bottom--mobile: var(--sp--2);
 }
 
 /*============================================================================
@@ -263,7 +261,7 @@
   width: 100%;
   max-width: var(--page-width);
   margin: 0 auto;
-  padding:{
+  padding: {
     left: var(--page-width--padding);
     right: var(--page-width--padding);
   }

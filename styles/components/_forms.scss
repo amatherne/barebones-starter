@@ -51,8 +51,8 @@
     }
 
     &:focus {
-      outline: 0.1rem solid var(--color--cerise-pink);
-      border-color: var(--color--cerise-pink);
+      outline-color: var(--color--gradient-75);
+      border-color: var(--color--gradient-75);
     }
     
     &:focus,
@@ -62,7 +62,7 @@
       & + .input__label {
         --input--top: var(--input--padding);
         --input--transform: translateY(-100%) scale(.8);
-        --input--color: var(--color--cerise-pink);
+        --input--color: var(--color--gradient-75);
       }
     }
   }

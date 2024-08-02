@@ -32,6 +32,7 @@
 ::selection {
   background: rgba(var(--color--foreground-rgb), 0.2);
   background: rgba(var(--color--mandy-pink-rgb), 0.75);
+  background: rgba(var(--color--gradient-75-rgb), 0.35);
 }
 
 
@@ -109,6 +110,13 @@ h6,
   }
 }
 
+small {
+  font-size: smaller;
+
+  label > & {
+    vertical-align: super;
+  }
+}
 
 blockquote,
 ol,
@@ -119,8 +127,6 @@ a {
   color: var(--color--foreground);
 }
 
-
-
 blockquote {
   font-style: italic;
   border-left: 0.2rem solid rgba(var(--color--foreground-rgb), 0.2);
@@ -130,6 +136,24 @@ blockquote {
 @include mq($md-up) {
   blockquote {
     padding-left: 1.5rem;
+  }
+}
+
+a {
+  color: rgba(var(--color--foreground-rgb), var(--alpha-link));
+  text-underline-offset: 0.3rem;
+  text-decoration-thickness: 0.1rem;
+  --properties: text-decoration-thickness, color;
+  will-change: var(--properties);
+  transition: {
+    property: var(--properties);
+    duration: 0.1s;
+    timing-function: ease;
+  }
+
+  &:hover {
+    color: rgb(var(--color--gradient-75-rgb));
+    text-decoration-thickness: 0.2rem;
   }
 }
 
@@ -173,7 +197,7 @@ ol {
 }
 
 .rte {
-  max-width: 90ch;
+  max-width: 75ch;
   
   &:after {
     clear: both;
@@ -193,7 +217,7 @@ ol {
   .h3,
   .h4,
   .h5 {
-    margin: 0 0 var(--sp--1-4);
+    margin: 0 0 var(--sp--1-2);
 
     &:not(:first-child) {
       margin-top: var(--sp);
@@ -213,7 +237,7 @@ ol {
   }
 
   p {
-    margin: 0 0 var(--sp--1-4);
+    margin: 0 0 var(--sp--1-2);
 
     &:last-child {
       margin-bottom: 0;
@@ -233,18 +257,6 @@ ol {
     margin-bottom: var(--media-shadow-vertical-offset);
   }
 
-  a {
-    color: rgba(var(--color-link), var(--alpha-link));
-    text-underline-offset: 0.3rem;
-    text-decoration-thickness: 0.1rem;
-    transition: text-decoration-thickness var(--duration-short) ease;
-
-    &:hover {
-      color: rgb(var(--color-link));
-      text-decoration-thickness: 0.2rem;
-    }
-  }
-
   blockquote {
     display: inline-flex;
   }
@@ -262,7 +274,7 @@ ol {
 }
 
 .section--title {
-  --title--outer-padding: var(--title-set--outer-padding,var(--sp--2));
+  --title--outer-padding: var(--title-set--outer-padding,var(--sp));
   --title--inner-margin: calc(var(--title--outer-padding) / 4);
 
   // Set Title Size
@@ -299,6 +311,46 @@ ol {
   }
 
   @include mq($sm) {
-    --title--outer-padding: var(--title-set--outer-padding,var(--sp));
+    --title--outer-padding: var(--title-set--outer-padding,var(--sp--1-2));
+
+    &:not([class*="sm--text"]) {
+      margin-left: 0;
+    }
+    &.sm--text {
+      &-left {
+        margin-left: 0;
+      }
+      &-right {
+        margin-right: 0;
+      }
+    }
+  }
+
+  @include mq($md) {
+    &:not([class*="md--text"]) {
+      margin-left: 0;
+    }
+    &.md--text {
+      &-left {
+        margin-left: 0;
+      }
+      &-right {
+        margin-right: 0;
+      }
+    }
+  }
+  
+  @include mq($lg-up) {
+    &:not([class*="lg-up--text"]) {
+      margin-left: 0;
+    }
+    &.lg-up--text {
+      &-left {
+        margin-left: 0;
+      }
+      &-right {
+        margin-right: 0;
+      }
+    }
   }
 }

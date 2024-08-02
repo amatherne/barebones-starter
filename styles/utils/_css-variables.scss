@@ -1,7 +1,7 @@
 
 :root {
   --page-width                      : 1600px;
-  --page-width--text                : 90ch;
+  --page-width--text                : 75ch;
 
   --global--spacing-sections        : var(--sp--2);
 
@@ -10,36 +10,36 @@
   // --global--grid-vertical           : 30px;
   // Only for setting via CMS
 
-  --global--mobile--spacing-sections: var(--sp--4);
+  --global--mobile--spacing-sections: var(--sp--2);
   --global--mobile--grid-horizontal : var(--sp--1-2);
   --global--mobile--grid-vertical   : var(--sp--1-2);
 
   --page--padding: var(--global--mobile--spacing-sections);
   --page-width--padding: var(--sp--2-3);
 
-  @include mq($md-up) {
+  @include mq($lg-up) {
     --page-width--padding: var(--sp);
     --page--padding: var(--global--spacing-sections);
   }
 
-  @include mq($lg-up) {
+  @include mq($x-lg-up) {
     --page-width--padding: var(--sp--2);
   }
 }
 
 :root {
-  --header--width--mobile           : 70px;
+  --header--width--mobile           : 75px;
   --header--width--tablet           : 90px;
-  --header--width--desktop          : 125px;
-
-  --header--width--open             : min(400px,100vw);
+  --header--width--desktop          : 120px;
 
   --header--width                   : var(--header--width--mobile);
+  --header--width--open             : min(400px,100vw);
+  --header--width--closed           : var(--header--width);
 
   @include mq($md-up) {
     --header--width                 : var(--header--width--tablet);
   }
-  @include mq($lg-up) {
+  @include mq($x-lg-up) {
     --header--width                 : var(--header--width--desktop);
   }
 }

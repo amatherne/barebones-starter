@@ -78,7 +78,7 @@
   // theme default
   --font-size                       : var(--theme--font-size--rte);
 
-  @include mq($md-up) {
+  @include mq($x-lg-up) {
     --theme--font-size--xlg         : calc(var(--font-heading--scale) * 6.2rem);
     --theme--font-size--h0          : calc(var(--font-heading--scale) * 5.2rem);
     --theme--font-size--h1          : calc(var(--font-heading--scale) * 4rem);

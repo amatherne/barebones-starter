@@ -135,7 +135,7 @@ const ContactForm: React.FC<ContactProps> = ({settings}) => {
                     onChange={handleChange}
                     placeholder=""
                   />
-                  <label className="input__label" htmlFor="subject">Subject</label>
+                  <label className="input__label" htmlFor="subject">Subject (optional)</label>
                 </div>
               </div>
               <div className="cell__item ">
@@ -150,16 +150,19 @@ const ContactForm: React.FC<ContactProps> = ({settings}) => {
                     rows={10}
                     required
                   />
-                  <label className="input__label" htmlFor="message">Message*</label>
+                  <label className="input__label" htmlFor="message">How can I help you?*</label>
                 </div>
+                <p className="text-right">
+                  <small>
+                    * required
+                  </small>
+                </p>
               </div>
-
-              <div className="cell__item text-center">
-                <button type="submit" className="button button--gradient ">
+              <div className="cell__item text-right">
+                <button type="submit" className="button button--tertiary ">
                   <span>Send</span>
                 </button>
               </div>
-
             </div>
             <div className="form--message hide" dangerouslySetInnerHTML={{ __html: status }} />
           </div>

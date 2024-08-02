@@ -12,9 +12,9 @@ blocks:
           text: Contact Me
           content: content/page/contact-me.mdx
           desktop_button:
-            - md-up--button--gradient
+            - md-up--button--tertiary
           mobile_button:
-            - sm--button--secondary
+            - sm--button--tertiary
         styles:
           desktop_opacity: 0.41
           desktop_colors:
@@ -154,6 +154,10 @@ blocks:
           mobile_opacity: 0.01
           mobile_colors:
             - color--1
+    custom_css: |-
+      == h3 {
+        color:var(--color--gradient-75);
+      }
     _template: ctas
   - published: true
     item:
@@ -165,13 +169,13 @@ blocks:
           text: See my Work
           url: /websites
           desktop_button:
-            - md-up--button--secondary
+            - md-up--button--tertiary
           mobile_button:
-            - sm--button--gradient
+            - sm--button--tertiary
         styles:
           desktop_opacity: 0.15
           desktop_colors:
-            - md-up--color--2
+            - md-up--color--1
           mobile_opacity: 0.01
           custom_css: |-
             == .image--image {
@@ -187,6 +191,7 @@ blocks:
                 width: 100%;
                 height: 100%;
                 background: linear-gradient(215deg, rgb(0, 0, 0, 0) 35%, rgba(0, 0, 0, 0.35) 100%);
+                background-image: linear-gradient(200deg, rgba(var(--color--alabaster-white-rgb),0) 40%, rgba(var(--color--alabaster-white-rgb), 1) 80%);
                 z-index: 1;
               }
             }
@@ -336,6 +341,10 @@ blocks:
           custom_css: |-
             == img {
               object-position: 0% 0%;
+            }
+
+            == .hero--text {
+              max-width: 810px;
             }
     styles:
       height: 40%

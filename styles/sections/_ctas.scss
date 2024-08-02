@@ -10,48 +10,6 @@
     --grid-bottom--mobile: var(--global--grid-vertical,var(--sp));
   }
 
-  .section--title {
-    @include mq($sm) {
-      &:not([class*="sm--text"]) {
-        margin-left: 0;
-      }
-      &.sm--text {
-        &-left {
-          margin-left: 0;
-        }
-        &-right {
-          margin-right: 0;
-        }
-      }
-    }
-    @include mq($md) {
-      &:not([class*="md--text"]) {
-        margin-left: 0;
-      }
-      &.md--text {
-        &-left {
-          margin-left: 0;
-        }
-        &-right {
-          margin-right: 0;
-        }
-      }
-    }
-    @include mq($lg-up) {
-      &:not([class*="lg-up--text"]) {
-        margin-left: 0;
-      }
-      &.lg-up--text {
-        &-left {
-          margin-left: 0;
-        }
-        &-right {
-          margin-right: 0;
-        }
-      }
-    }
-  }
-
   &--item {
     position: relative;
 

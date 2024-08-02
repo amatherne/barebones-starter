@@ -13,7 +13,8 @@ $colors: (
   violet-purple: #1D063B,
   roman-red: #D9534F,
   haze-green: #009B77,
-  gradient-midpoint: midpoint-color(#EE5C6C, #6a0d83)
+  gradient-65: midpoint-color(#E31F69, #1D063B, 0.65),
+  gradient-75: midpoint-color(#E31F69, #1D063B, 0.75),
 );
 
 :root,
@@ -78,6 +79,7 @@ $colors: (
     //   }
     // }
   }
+  
   .#{$grid-breakpoint-type}color--1 {
     --color--foreground                     : var(--default--color--foreground);
     --color--foreground-rgb                 : var(--default--color--foreground-rgb);
@@ -102,8 +104,8 @@ $colors: (
   .#{$grid-breakpoint-type}color--4 {
     --color--foreground                     : var(--default--color--background);
     --color--foreground-rgb                 : var(--default--color--background-rgb);
-    --color--background                     : var(--color--cerise-pink);
-    --color--background-rgb                 : var(--color--cerise-pink-rgb);
+    --color--background                     : var(--color--gradient-75);
+    --color--background-rgb                 : var(--color--gradient-75-rgb);
   }
 
   .#{$grid-breakpoint-type}color--gradient {
@@ -154,6 +156,19 @@ $colors: (
   --color--btn-secondary-txt-hover          : var(--color--foreground);
   --color--btn-secondary-bg-hover           : var(--color--background);
   --color--btn-secondary-bdr-hover          : var(--color--foreground);
+}
+
+:root,
+*,
+*:before,
+*:after {
+  /* Tertiary Button */
+  --color--btn-tertiary-txt                 : var(--default--color--background);
+  --color--btn-tertiary-bg                  : var(--color--gradient-75);
+  --color--btn-tertiary-bdr                 : var(--color--gradient-75);
+  --color--btn-tertiary-txt-hover           : var(--default--color--background);
+  --color--btn-tertiary-bg-hover            : var(--color--gradient-65);
+  --color--btn-tertiary-bdr-hover           : var(--color--gradient-65);
 }
 
 :root,

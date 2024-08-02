@@ -61,6 +61,15 @@
       --color--btn-bdr-hover: var(--color--btn-secondary-bdr-hover);
     }
 
+    &--tertiary {
+      --color--btn-txt: var(--color--btn-tertiary-txt);
+      --color--btn-bg: var(--color--btn-tertiary-bg);
+      --color--btn-bdr: var(--color--btn-tertiary-bdr);
+      --color--btn-txt-hover: var(--color--btn-tertiary-txt-hover);
+      --color--btn-bg-hover: var(--color--btn-tertiary-bg-hover);
+      --color--btn-bdr-hover: var(--color--btn-tertiary-bdr-hover);
+    }
+
     &--gradient,
     &--gradient-2 {
       --color--btn-txt: var(--gradient--text);

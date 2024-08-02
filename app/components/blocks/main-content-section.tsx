@@ -76,7 +76,7 @@ const MainContent: React.FC<MainContentProps> = ({ settings, content, index }) =
 
   return (
     <section className={`page ${sectionID} ${color}`}>
-      <div className="page-width">
+      <div className="page-width page-width--narrow">
 
         {sectionCustomCSS ? (
           <style>{`

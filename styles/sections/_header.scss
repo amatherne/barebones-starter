@@ -20,7 +20,6 @@
 
   &, 
   * {
-    // --header--width: var(--header--width--desktop);
     --header--transition-duration: 0.5s;
     --header--transition-ease: ease;
 
@@ -37,13 +36,7 @@
     --header--shadow-opacity--open: 0.9;
   }
 
-  @include mq($x-sm-up) {
-    // --header--width: var(--header--width--mobile);
-  }
-
   @include mq($sm) {
-    // --header--width: var(--header--width--tablet);
-
     --header--shadow-y: 10px;
     --header--shadow-y--open: 20px;
   }
@@ -135,7 +128,7 @@
     z-index: 2;
     padding: var(--sp--1-4);
     margin: 0;
-    width: var(--header--width);
+    width: var(--header--width--closed);
     display: inline-block;
     position: relative;
     line-height: 1;
@@ -147,22 +140,8 @@
       timing-function: var(--header--transition-ease);
     }
 
-    @include mq($x-sm-up) {
-      width: var(--header--width--tablet);
-    }
-
     @include mq($sm) {
       font-size: var(--theme--font-size--h0);
-      width: var(--header--width--mobile);
-    }
-
-    @include mq($md) {
-      width: var(--header--width--tablet);
-      font-size: var(--theme--font-size--h0);
-    }
-
-    @include mq($lg-up) {
-      width: var(--header--width--desktop);
     }
 
     @include mq($x-sm) {
@@ -172,7 +151,6 @@
     span {
       position: relative;
       z-index: 2;
-      // text-transform: lowercase;
       display: inline-block;
       margin: 0;
       text-shadow: 
@@ -198,10 +176,11 @@
     z-index: 2;
     width: var(--icon--size);
     height: var(--icon--size);
-    will-change: left, top;
+    --properties: left, top, color;
+    will-change: var(--properties);
     transition: {
-      property: left, top;
-      duration: var(--header--transition-duration);
+      property: var(--properties);
+      duration: var(--header--transition-duration), var(--header--transition-duration), .1s;
       timing-function: var(--header--transition-ease);
     }
 
@@ -248,8 +227,9 @@
           duration: var(--header--transition-duration);
           timing-function: var(--header--transition-ease);
         }
+        
         body.header-menu-is-open & {
-          fill: var(--color--mandy-pink);
+          fill: var(--color--gradient-75);
         }
       }
 
