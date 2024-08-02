@@ -225,6 +225,13 @@ $grid-breakpoints: (
   --cta--padding-bottom: var(--cta-set--padding-bottom,var(--page--padding));
   padding: var(--cta--padding-top) 0 var(--cta--padding-bottom);
   background: var(--color--background);
+
+  .section--title {
+    margin: {
+      left: 0;
+      right: 0;
+    }
+  }
 }
 
 
