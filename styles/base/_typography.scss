@@ -280,7 +280,10 @@ ol {
   // Set Title Size
   --font-size--title: var(--set--font-size--title,var(--theme--font-size--h1));
 
-  margin: 0 auto var(--title--outer-padding);
+  margin: {
+    top: 0;
+    bottom: var(--title--outer-padding);
+  }
   max-width: var(--section-title--max-width, 750px);
 
   &:last-child {
@@ -298,7 +301,20 @@ ol {
     }
   }
 
+  &:not([class*="text-"]) {
+    margin: {
+      left: auto;
+      right: auto;
+    }
+  }
+
   &.text {
+    &-center {
+      margin: {
+        left: auto;
+        right: auto;
+      }
+    }
     &-left {
       margin-left: 0;
     }
@@ -314,9 +330,15 @@ ol {
     --title--outer-padding: var(--title-set--outer-padding,var(--sp--1-2));
 
     &:not([class*="sm--text"]) {
-      margin-left: 0;
+      // margin-left: 0;
     }
     &.sm--text {
+      &-center {
+        margin: {
+          left: auto;
+          right: auto;
+        }
+      }
       &-left {
         margin-left: 0;
       }
@@ -328,9 +350,15 @@ ol {
 
   @include mq($md) {
     &:not([class*="md--text"]) {
-      margin-left: 0;
+      // margin-left: 0;
     }
     &.md--text {
+      &-center {
+        margin: {
+          left: auto;
+          right: auto;
+        }
+      }
       &-left {
         margin-left: 0;
       }
@@ -342,9 +370,15 @@ ol {
   
   @include mq($lg-up) {
     &:not([class*="lg-up--text"]) {
-      margin-left: 0;
+      // margin-left: 0;
     }
     &.lg-up--text {
+      &-center {
+        margin: {
+          left: auto;
+          right: auto;
+        }
+      }
       &-left {
         margin-left: 0;
       }
