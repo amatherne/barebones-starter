@@ -272,6 +272,7 @@ blocks:
             - color--1
       - src: /uploads/samuel-ferrara-1527pjeb6jg-unsplash.jpg
         title: This Website!
+        text: ''
         button:
           content: content/websites/this-website!.mdx
           desktop_button:
@@ -296,6 +297,10 @@ blocks:
         transition-property: var(--properties);
         transition-duration: 0.3s;
         transition-timing-function: linear;
+      }
+
+      == .image--inner {
+        --image--set-height: 56%;
       }
 
       == .ctas--item:hover .image--outer,

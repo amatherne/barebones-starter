@@ -71,7 +71,7 @@
     --image--set-height:var(--image--natural-height);
     display: block;
     // max-width:var(--image--set-width,100%);
-    padding-top:var(--image--aspect-ratio,56.6%);
+    padding-top:var(--image--set-height,56.6%);
 
     .video-placeholder {
       display: block;

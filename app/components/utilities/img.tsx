@@ -113,7 +113,7 @@ const Img: React.FC<ImgProps> = ({ src, alt, className, sizes, lazy }) => {
           className="image--inner"
           style={
             {
-              '--image--aspect-ratio': aspectRatio ? `calc(${aspectRatio} * 100%)` : '56.6%', 
+              '--image--set-height': aspectRatio ? `calc(${aspectRatio} * 100%)` : '56.6%', 
               '--image--original-source': `url('${originalSrc}')`,
               '--image--natural-width': `${imgWidth}px`,
               '--image--natural-height': `${imgHeight}px`,

@@ -410,10 +410,10 @@
         }
 
 
-        &:not(.menu--link--active,:hover,:focus) {
-          // font-weight: 400;
-          // text-decoration: none;
-        }
+        // &:not(.menu--link--active,:hover,:focus) {
+        //   font-weight: 400;
+        //   text-decoration: none;
+        // }
       }
 
       body.header-menu-is-open & {
