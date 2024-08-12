@@ -4,8 +4,7 @@
 
 import blockSelector from '../schemas/components/block-selector';
 
-
-export default {
+const websiteCollection = {
   label: "Websites",
   name: "website",
   path: "content/websites",
@@ -23,12 +22,11 @@ export default {
     router: ({ document }) => {
       return `/websites/${document._sys.filename}`;
     },
-
     defaultItem: () => ({
       published: true, 
       sortOrder: 0,
       // Ensure all other required fields or items are included
-      ...(item.defaultItem ? item.defaultItem() : {}), // Use defaultItem if it exists
+      // ...(item.defaultItem ? item.defaultItem() : {}), // Use defaultItem if it exists
     }),
   },
   fields: [
@@ -83,3 +81,5 @@ export default {
     },
   ],
 };
+
+export default websiteCollection;
