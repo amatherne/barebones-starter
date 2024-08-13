@@ -1,16 +1,18 @@
+# Austin-Matherne.com
+
 This is a [Tina CMS](https://tina.io/) project.
 
 ## Local Development
 
 Install the project's dependencies:
 
-```
+```bash
 yarn install
 ```
 
 Run the project locally:
 
-```
+```bash
 yarn dev
 ```
 
@@ -20,7 +22,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 Replace the `.env.example`, with `.env`
 
-```
+```bash
 NEXT_PUBLIC_TINA_CLIENT_ID=<get this from the project you create at app.tina.io>
 TINA_TOKEN=<get this from the project you create at app.tina.io>
 NEXT_PUBLIC_TINA_BRANCH=<Specify the branch with Tina configured>
@@ -43,11 +45,9 @@ You can check out [Tina Github repository](https://github.com/tinacms/tinacms) -
 
 ## [Deploy on Vercel](https://tina.io/guides/tina-cloud/add-tinacms-to-existing-site/deployment/)
 
-
 ## Reset
 
-```
-
+```bash
 yarn cache clean
 rm -rf node_modules
 rm yarn.lock
