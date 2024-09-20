@@ -48,7 +48,7 @@
     "sass": "~1.32.6",
     "styled-components": "^6.1.11",
     "terser-webpack-plugin": "^5.3.10",
-    "tinacms": "^1.6.7",
+    "tinacms": "^2.2.4",
     "typescript": "5.5.2",
     "xml2js": "^0.6.2"
   },
